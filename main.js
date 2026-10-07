@@ -186,21 +186,92 @@ document.addEventListener('DOMContentLoaded', () => {
             const saubererName = sanitiereEingabe(rohName);
             
             formularStatus.style.color = "var(--text-haupt)";
-            formularStatus.textContent = "Ihre Anfrage wird verifiziert und sicher übertragen...";
+            formularStatus.textContent = "Ihre Anfrage wird sicher über Web3Forms übertragen...";
             absendenKnopf.disabled = true;
             
-            setTimeout(() => {
-                formularStatus.textContent = `Vielen Dank. Termin am ${datumInput.value} um ${uhrzeitInput.value} Uhr für ${saubererName} bestätigt.`;
-                formular.reset();
-                generiereCaptcha(); // Captcha neu generieren
-                
+            // WEB3FORMS PAYLOAD
+            const formData = new FormData();
+            formData.append("access_key", "f6a3cdad-537c-4def-8b11-af7a1db3c74a");
+            formData.append("subject", "Neue Terminbuchung (Strategiegespräch) von " + saubererName);
+            formData.append("Name", saubererName);
+            formData.append("Email", document.getElementById('eingabe-email').value);
+            formData.append("Datum", datumInput.value);
+            formData.append("Uhrzeit", uhrzeitInput.value);
+            formData.append("Dienstleistung", rohDienst);
+            formData.append("Beschreibung", document.getElementById('eingabe-beschreibung').value);
+            
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    formularStatus.textContent = `Vielen Dank. Die Terminanfrage für ${datumInput.value} um ${uhrzeitInput.value} Uhr wurde erfolgreich versendet.`;
+                    formular.reset();
+                    generiereCaptcha(); 
+                    document.querySelectorAll('.kalender-tag').forEach(el => el.classList.remove('ausgewaehlt'));
+                    document.querySelectorAll('.uhrzeit-slot').forEach(el => el.classList.remove('ausgewaehlt'));
+                    uhrzeitContainer.style.display = 'none';
+                    datumInput.value = "";
+                    uhrzeitInput.value = "";
+                } else {
+                    formularStatus.textContent = "API Fehler: " + json.message;
+                    formularStatus.style.color = "#ff453a";
+                }
+            })
+            .catch(error => {
+                formularStatus.textContent = "Netzwerkfehler. Bitte später versuchen.";
+                formularStatus.style.color = "#ff453a";
+            })
+            .finally(() => {
                 absendenKnopf.disabled = false;
-                document.querySelectorAll('.kalender-tag').forEach(el => el.classList.remove('ausgewaehlt'));
-                document.querySelectorAll('.uhrzeit-slot').forEach(el => el.classList.remove('ausgewaehlt'));
-                uhrzeitContainer.style.display = 'none';
-                datumInput.value = "";
-                uhrzeitInput.value = "";
-            }, 1200);
+            });
+        });
+    }
+
+    /* --- 4.5 Kontaktformular (Web3Forms) --- */
+    const kontaktFormular = document.getElementById('kontakt-formular');
+    const kontaktStatus = document.getElementById('kontakt-status');
+    const kontaktKnopf = document.getElementById('kontakt-absenden');
+
+    if(kontaktFormular) {
+        kontaktFormular.addEventListener('submit', (ereignis) => {
+            ereignis.preventDefault();
+            
+            kontaktStatus.style.color = "var(--text-haupt)";
+            kontaktStatus.textContent = "Nachricht wird sicher verschlüsselt übertragen...";
+            kontaktKnopf.disabled = true;
+            
+            const formData = new FormData();
+            formData.append("access_key", "f6a3cdad-537c-4def-8b11-af7a1db3c74a");
+            formData.append("subject", "Kontaktanfrage von " + document.getElementById('kontakt-name').value);
+            formData.append("Name", document.getElementById('kontakt-name').value);
+            formData.append("Email", document.getElementById('kontakt-email').value);
+            formData.append("Betreff", document.getElementById('kontakt-betreff').value);
+            formData.append("Nachricht", document.getElementById('kontakt-nachricht').value);
+            
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    kontaktStatus.textContent = "Ihre Nachricht wurde erfolgreich versendet. Wir melden uns in Kürze.";
+                    kontaktFormular.reset();
+                } else {
+                    kontaktStatus.textContent = "API Fehler: " + json.message;
+                    kontaktStatus.style.color = "#ff453a";
+                }
+            })
+            .catch(error => {
+                kontaktStatus.textContent = "Netzwerkfehler. Bitte später versuchen.";
+                kontaktStatus.style.color = "#ff453a";
+            })
+            .finally(() => {
+                kontaktKnopf.disabled = false;
+            });
         });
     }
 

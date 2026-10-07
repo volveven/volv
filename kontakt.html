@@ -39,12 +39,13 @@
         </div>
 
         <div class="terminbuchungs-modul erscheinen-element" style="max-width: 800px;">
-            <form id="kontakt-formular" onsubmit="event.preventDefault(); alert('Security Check: Data sanitized and prepared for encrypted transmission.');">
-                <input type="text" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
-                <input type="email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
-                <input type="text" class="formular-feld interaktives-element" placeholder="Betreff">
-                <textarea class="formular-feld interaktives-element" placeholder="Ihre detaillierte Nachricht..." required></textarea>
-                <button type="submit" class="absenden-knopf interaktives-element">Nachricht Verschlüsselt Senden</button>
+            <form id="kontakt-formular">
+                <input type="text" id="kontakt-name" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
+                <input type="email" id="kontakt-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
+                <input type="text" id="kontakt-betreff" class="formular-feld interaktives-element" placeholder="Betreff" required>
+                <textarea id="kontakt-nachricht" class="formular-feld interaktives-element" placeholder="Ihre detaillierte Nachricht..." required></textarea>
+                <button type="submit" id="kontakt-absenden" class="absenden-knopf interaktives-element">Nachricht Verschlüsselt Senden</button>
+                <div id="kontakt-status" style="margin-top: 1rem; font-size: 0.9rem; text-align: center;"></div>
             </form>
         </div>
     </main>
