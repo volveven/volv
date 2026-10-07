@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de" class="weiches-scrollen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>volvevent | Enterprise IT</title>
+    <!-- Note: Google reCAPTCHA URL added to CSP script-src -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src https://www.google.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google reCAPTCHA v2 (Test Keys / Placeholder) -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="main.js" defer></script>
+</head>
+<body class="seiten-huelle">
+
+    <!-- Mauszeiger -->
+    <div class="maus-zeiger-aussen" id="maus-zeiger-aussen"></div>
+    <div class="maus-zeiger-innen" id="maus-zeiger-innen"></div>
+
+    <!-- Apple-Style Smart Dropdown Navigation -->
+    <nav class="navigationsleiste" id="navigationsleiste">
+        <a href="index.html" class="logo-text interaktives-element">volvevent.</a>
+        <div class="menue-liste">
+            <div class="menue-punkt"><a href="index.html" class="menue-link interaktives-element">Home</a></div>
+            <div class="menue-punkt"><a href="#matrix" class="menue-link interaktives-element">Leistungen</a></div>
+            <div class="menue-punkt"><a href="#portfolio" class="menue-link interaktives-element">Portfolio</a></div>
+            <div class="menue-punkt"><a href="#architekt" class="menue-link interaktives-element">Architekt</a></div>
+            <div class="menue-punkt"><a href="#terminbuchung" class="menue-link interaktives-element">Strategiegespräch</a></div>
+            <div class="menue-punkt">
+                <span class="menue-link interaktives-element" style="cursor:none;">Legal ▾</span>
+                <div class="dropdown-menue">
+                    <a href="impressum.html" class="dropdown-link interaktives-element">Impressum</a>
+                    <a href="datenschutz.html" class="dropdown-link interaktives-element">Datenschutzerklärung</a>
+                    <a href="agb.html" class="dropdown-link interaktives-element">AGB</a>
+                    <a href="kontakt.html" class="dropdown-link interaktives-element">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Bereich -->
+        <header class="sektions-abstand zentrierter-container text-zentriert" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 900px; padding-top: 48px;">
+                <h1 class="haupt-ueberschrift erscheinen-element">
+                    Enterprise IT.<br>
+                    <span class="text-gradient">Kompromisslos sicher.</span>
+                </h1>
+                <p class="fliesstext erscheinen-element" style="margin: 0 auto; font-size: 1.4rem;">
+                    Wir implementieren forensische Sicherheit und kompromisslose Performance für Ihr Unternehmensnetzwerk. Keine Templates. Nur massgeschneiderte, unzerstörbare Software- und Netzwerkarchitekturen.
+                </p>
+                <!-- Trust Indicators -->
+                <div class="erscheinen-element" style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;">
+                    <span class="label-text" style="color: var(--text-haupt);">100% DSGVO Konform</span>
+                    <span class="label-text" style="color: var(--text-haupt);">Zero-Trust Architektur</span>
+                    <span class="label-text" style="color: var(--text-haupt);">In-House Entwicklung</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Die Matrix (Service Arsenal) -->
+        <section id="matrix" class="sektions-abstand zentrierter-container">
+            <h2 class="sektions-ueberschrift erscheinen-element">Das Spektrum.</h2>
+
+            <div class="raster-layout">
+                <article class="premium-kachel erscheinen-element">
+                    <span class="label-text">Infrastruktur</span>
+                    <h3 class="kachel-ueberschrift">Server & Directory.</h3>
+                    <p class="fliesstext">
+                        Komplexe Windows- und Linux-Serverlandschaften. Wir orchestrieren Active Directory mit hochrestriktiven Gruppenrichtlinien (GPOs) und steuern Hardware-Rollouts mit militärischer Präzision.
+                    </p>
+                </article>
+
+                <article class="premium-kachel erscheinen-element">
+                    <span class="label-text">Virtualisierung</span>
+                    <h3 class="kachel-ueberschrift">High-Availability.</h3>
+                    <p class="fliesstext">
+                        Redundante HA-Cluster Architektur zur Eliminierung von Single Points of Failure. Skalierbare Deployments mit VMware vSphere Enterprise, Microsoft Hyper-V und Proxmox VE.
+                    </p>
+                </article>
+
+                <article class="premium-kachel erscheinen-element">
+                    <span class="label-text">Defense</span>
+                    <h3 class="kachel-ueberschrift">Netzwerk & Security.</h3>
+                    <p class="fliesstext">
+                        Latenzfreie, ausfallsichere Topologien durch intelligentes Routing. Mikroskopische VLAN-Segmentierung, Zero-Trust Firewalls und 24/7 Monitoring via Checkmk zur Früherkennung.
+                    </p>
+                </article>
+
+                <article class="premium-kachel erscheinen-element">
+                    <span class="label-text">Software</span>
+                    <h3 class="kachel-ueberschrift">Full-Stack Dev.</h3>
+                    <p class="fliesstext">
+                        Entwicklung nativer Enterprise Apps, Web-SaaS Lösungen und Corporate Websites. Maßgeschneiderte API-Backends und Exploit-resistente Datenbankarchitekturen, gehostet in isolierten Umgebungen.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- NEU: Referenzprojekte & Expertise -->
+        <section id="portfolio" class="sektions-abstand zentrierter-container" style="border-top: 1px solid var(--rahmen-farbe);">
+            <div class="text-zentriert erscheinen-element" style="margin-bottom: 4rem;">
+                <h2 class="sektions-ueberschrift" style="margin-bottom: 0.5em;">Referenzen & Expertise.</h2>
+                <p class="fliesstext" style="max-width: 700px; margin: 0 auto;">Bewiesene Kompetenz aus realen Enterprise- und Software-Projekten. Von B2B-Plattformen bis hin zu Consumer-Apps.</p>
+            </div>
+            
+            <div class="raster-layout-3">
+                <!-- OmniVoice App -->
+                <article class="portfolio-kachel erscheinen-element">
+                    <span class="label-text" style="color: var(--akzent-blau);">In-House App (Coming Soon)</span>
+                    <h3 class="kachel-ueberschrift">OmniVoice</h3>
+                    <p class="fliesstext" style="font-size: 1rem;">Unsere firmeneigene Mobile-Applikation. Ein technologischer Meilenstein in Entwicklung. Bald weltweit in allen App Stores verfügbar.</p>
+                </article>
+
+                <!-- mha-solutions.de -->
+                <article class="portfolio-kachel erscheinen-element">
+                    <span class="label-text">Corporate Webpräsenz</span>
+                    <h3 class="kachel-ueberschrift">mha-solutions.de</h3>
+                    <p class="fliesstext" style="font-size: 1rem;">Entwicklung einer repräsentativen, performanten Webseite für ein Bauunternehmen. Fokus auf die klare digitale Präsentation allumfänglicher Baudienstleistungen.</p>
+                </article>
+
+                <!-- latuning.de -->
+                <article class="portfolio-kachel erscheinen-element">
+                    <span class="label-text">Automotive Webarchitektur</span>
+                    <h3 class="kachel-ueberschrift">latuning.de</h3>
+                    <p class="fliesstext" style="font-size: 1rem;">Digitale Präsenz für einen professionellen Chiptuner. Strukturierte Darstellung komplexer technischer Leistungen wie Stage 1-2 Tuning und Fahrzeugoptimierung für optimalen Verbrauch.</p>
+                </article>
+
+                <!-- SaaS Feedback -->
+                <article class="portfolio-kachel erscheinen-element">
+                    <span class="label-text">Cloud Software (SaaS)</span>
+                    <h3 class="kachel-ueberschrift">Feedback Engine</h3>
+                    <p class="fliesstext" style="font-size: 1rem;">Entwicklung einer hochskalierbaren "Software as a Service" (SaaS) Plattform für automatisiertes, sicheres Kundenfeedback im B2B-Bereich.</p>
+                </article>
+
+                <!-- Game Apps -->
+                <article class="portfolio-kachel erscheinen-element">
+                    <span class="label-text">Mobile Development</span>
+                    <h3 class="kachel-ueberschrift">Div. Spiele-Apps</h3>
+                    <p class="fliesstext" style="font-size: 1rem;">Konzeption und Programmierung nativer und hybrider Mobile-Games, fokussiert auf flüssige Performance und sichere Backend-Saves.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Der Architekt -->
+        <section id="architekt" class="sektions-abstand zentrierter-container" style="border-top: 1px solid var(--rahmen-farbe);">
+            <div class="raster-layout">
+                <div class="erscheinen-element" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <h2 class="sektions-ueberschrift" style="text-align: left; margin-bottom: 0;">Der Architekt.</h2>
+                    <h3 class="kachel-ueberschrift">Muhammet Hasan Gürcan</h3>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <span style="border: 1px solid var(--text-sekundaer); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">24 Jahre alt</span>
+                        <span style="background: var(--text-haupt); color: var(--bg-schwarz); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">7 Jahre Veteranen-Praxis</span>
+                    </div>
+                    <p class="fliesstext">
+                        Er vereint die analytische Präzision eines Senior Systemadministrators, das Designverständnis eines Frontend-Experten und die Logik eines Full-Stack App-Entwicklers. Seit seinem 17. Lebensjahr härtet er Server und konfiguriert Enterprise-Netzwerke auf tiefster Protokollebene.
+                    </p>
+                    <div class="zertifikate-raster" style="margin-top: 1rem;">
+                        <div class="zertifikat-badge interaktives-element">Cisco CCNA (Routing & Switching)</div>
+                        <div class="zertifikat-badge interaktives-element">Aruba Enterprise Switches</div>
+                        <div class="zertifikat-badge interaktives-element">Alcatel-Lucent OmniVista 2500</div>
+                        <div class="zertifikat-badge interaktives-element">Brocade Datacenter Networking</div>
+                    </div>
+                </div>
+
+                <!-- Architekt Bild Container -->
+                <div class="erscheinen-element" style="display: flex; justify-content: center; align-items: flex-start;">
+                    <div class="architekt-bild-container interaktives-element">
+                        <img src="layer-man.jpg" alt="Muhammet Hasan Gürcan - Inhaber volvevent" class="architekt-bild" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23333\'><path d=\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\'/></svg>'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terminbuchungs-Modul (Mit Google reCAPTCHA) -->
+        <section id="terminbuchung" class="sektions-abstand zentrierter-container" style="border-top: 1px solid var(--rahmen-farbe);">
+            <div class="text-zentriert erscheinen-element" style="margin-bottom: 4rem;">
+                <h2 class="sektions-ueberschrift" style="margin-bottom: 0.5em;">Strategiegespräch planen.</h2>
+                <p class="fliesstext" style="max-width: 600px; margin: 0 auto;">Wählen Sie Ihr gewünschtes technisches Anliegen präzise aus, damit wir das Architektur-Gespräch effizient vorbereiten können.</p>
+            </div>
+            
+            <div class="premium-kachel erscheinen-element">
+                <div class="raster-layout">
+                    <!-- Linke Spalte: Datum & Uhrzeit -->
+                    <div>
+                        <span class="label-text">1. Datum wählen (Oktober 2026)</span>
+                        <div class="kalender-wochentage">
+                            <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+                        </div>
+                        <div class="kalender-raster" id="buchungs-kalender"></div>
+                        
+                        <div id="uhrzeiten-container" style="display:none; margin-top: 2rem;">
+                            <span class="label-text">2. Uhrzeit wählen (1h Sessions)</span>
+                            <div class="uhrzeiten-raster" id="uhrzeiten-raster"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rechte Spalte: Formular & reCAPTCHA -->
+                    <div>
+                        <span class="label-text">3. Anforderungsdetails</span>
+                        <form id="buchungs-formular">
+                            <input type="text" id="eingabe-name" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
+                            <input type="email" id="eingabe-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
+                            
+                            <!-- Massive Erweiterung der Kategorien -->
+                            <select id="eingabe-dienstleistung" class="formular-feld interaktives-element" required>
+                                <option value="" disabled selected>Exaktes technisches Anliegen wählen...</option>
+                                
+                                <optgroup label="Software & App Entwicklung">
+                                    <option value="app_saas">Software as a Service (SaaS) Plattform Entwicklung (z.B. Kundenfeedback)</option>
+                                    <option value="app_mobile">Mobile App Entwicklung (Native iOS / Android)</option>
+                                    <option value="app_game">Spiele-App Konzeption & Programmierung</option>
+                                    <option value="app_omnivoice">Consulting (Referenz: OmniVoice Architekturen)</option>
+                                </optgroup>
+                                
+                                <optgroup label="Webarchitektur & E-Commerce">
+                                    <option value="web_corporate">High-End Corporate Website Erstellung</option>
+                                    <option value="web_shop">E-Commerce Plattform (Shop-System)</option>
+                                    <option value="web_hosting">Secure Enterprise Hosting & Skalierung</option>
+                                </optgroup>
+
+                                <optgroup label="Netzwerkarchitektur & Security">
+                                    <option value="net_switch">Enterprise Switch Konfiguration (VLAN, Routing)</option>
+                                    <option value="net_firewall">Hardware-Firewall Setup & Härtung</option>
+                                    <option value="net_design">Komplettes Netzwerk-Architektur Design</option>
+                                    <option value="net_checkmk">Checkmk Monitoring Implementierung & Alerts</option>
+                                    <option value="net_vpn">Enterprise VPN & Remote-Access</option>
+                                </optgroup>
+
+                                <optgroup label="Server & Virtualisierung">
+                                    <option value="sys_ad">Windows Server & Active Directory Setup</option>
+                                    <option value="virt_vmware">VMware vSphere Cluster Aufbau</option>
+                                    <option value="virt_proxmox">Proxmox VE Migration / Installation</option>
+                                    <option value="sys_backup">Backup-Strategie & Disaster Recovery</option>
+                                    <option value="sys_hyperv">Microsoft Hyper-V Datacenter Architektur</option>
+                                </optgroup>
+                            </select>
+
+                            <textarea id="eingabe-beschreibung" class="formular-feld interaktives-element" placeholder="Bitte beschreiben Sie Ihr Vorhaben detailliert. Was ist Ihr Ziel? Gibt es aktuelle Herausforderungen in der Infrastruktur?..." required></textarea>
+                            
+                            <!-- Google reCAPTCHA v2 Integration (Test Key zur Veranschaulichung) -->
+                            <div class="recaptcha-container">
+                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            </div>
+
+                            <input type="hidden" id="ausgewaehltes-datum" value="">
+                            <input type="hidden" id="ausgewaehlte-uhrzeit" value="">
+                            
+                            <button type="submit" id="absenden-knopf" class="absenden-knopf interaktives-element">Termin verbindlich anfragen</button>
+                            <div id="formular-status" style="margin-top: 1rem; font-size: 0.9rem; text-align: center;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating WhatsApp -->
+    <div class="whatsapp-schwebend interaktives-element">
+        <a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%;">
+            <svg class="whatsapp-icon" viewBox="0 0 24 24" style="width: 30px; height: 30px; fill: var(--bg-schwarz);"><path d="M12.01 2.014c-5.46 0-9.897 4.436-9.897 9.897 0 1.944.544 3.754 1.488 5.302L2.348 21.65l4.57-1.198c1.472.84 3.167 1.32 4.975 1.32 5.46 0 9.897-4.437 9.897-9.897s-4.437-9.897-9.897-9.897zm5.556 14.195c-.244.693-1.42 1.258-2.02 1.314-.542.05-1.194.137-3.61-.867-2.9-1.2-4.732-4.17-4.877-4.364-.145-.194-1.162-1.547-1.162-2.95 0-1.403.73-2.096.993-2.388.263-.292.573-.365.764-.365.19 0 .38.002.546.01.173.007.41-.065.642.494.244.59.833 2.03.905 2.176.072.146.12.316.024.51-.096.195-.145.317-.29.488-.145.17-.306.356-.437.478-.145.132-.303.277-.137.564.167.287.74 1.22 1.583 1.977.962.862 1.88 1.144 2.167 1.29.287.146.455.122.625-.073.17-.195.74-.853.94-1.145.192-.292.385-.244.646-.146.264.097 1.666.786 1.953.932.287.146.478.22.548.34.07.12.07.703-.174 1.396z"/></svg>
+        </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+/* assets/style.css */
+
+/* Custom High-Tech Elements */
+.glass-panel {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.neon-text {
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #00e5ff, #7000ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Cybernetic Grid Background */
+.bg-grid {
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+.glow-on-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+    border-color: rgba(0, 229, 255, 0.4);
+    transform: translateY(-5px);
+}
+
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #030712; 
+}
+::-webkit-scrollbar-thumb {
+    background: #1f2937; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #00e5ff; 
+}

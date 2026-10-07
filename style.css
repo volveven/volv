@@ -1,0 +1,239 @@
+/* ==========================================
+ * VOLVEVENT - APPLE-STYLE PREMIUM DESIGN
+ * ========================================== */
+
+:root {
+    --bg-schwarz: #000000;
+    --bg-kachel: #1d1d1f;
+    --bg-input: #2c2c2e; /* Deutlicheres Grau für Inputs/Selects für perfekten Kontrast */
+    --text-haupt: #ffffff;
+    --text-sekundaer: #a1a1a6; /* Etwas helleres Grau für bessere Lesbarkeit */
+    --akzent-blau: #2997ff;
+    --akzent-blau-hover: #0077ed;
+    --rahmen-farbe: rgba(255, 255, 255, 0.15);
+    
+    --schrift-apple: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --schrift-code: "SFMono-Regular", Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+    background-color: var(--bg-schwarz);
+    color: var(--text-haupt);
+    font-family: var(--schrift-apple);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* TYPOGRAFIE */
+h1, h2, h3, h4, p { overflow-wrap: break-word; }
+
+.haupt-ueberschrift {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.sektions-ueberschrift {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.kachel-ueberschrift {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+
+.fliesstext {
+    font-size: 1.2rem;
+    color: var(--text-sekundaer);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.text-zentriert { text-align: center; }
+.text-gradient {
+    background: linear-gradient(90deg, #fff, #86868b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.label-text {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sekundaer);
+    margin-bottom: 0.5rem;
+    display: block;
+    font-weight: 600;
+}
+
+/* LAYOUT */
+.zentrierter-container { max-width: 1200px; margin: 0 auto; padding: 0 5vw; }
+.sektions-abstand { padding-top: 8rem; padding-bottom: 8rem; }
+.raster-layout { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 768px) { .raster-layout { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .raster-layout-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; } }
+
+/* APPLE-STYLE NAVIGATION */
+.navigationsleiste {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 50;
+    background-color: rgba(0, 0, 0, 0.72); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--rahmen-farbe); padding: 0 5vw; height: 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+}
+.navigationsleiste.versteckt { transform: translateY(-100%); }
+.logo-text { font-size: 1.1rem; font-weight: 600; color: var(--text-haupt); text-decoration: none; letter-spacing: -0.02em; }
+.menue-liste { display: flex; gap: 2rem; align-items: center; height: 100%; }
+.menue-punkt { position: relative; height: 100%; display: flex; align-items: center; }
+.menue-link { color: var(--text-haupt); text-decoration: none; font-size: 0.85rem; font-weight: 400; opacity: 0.8; transition: opacity 0.3s; }
+.menue-link:hover { opacity: 1; }
+
+.dropdown-menue {
+    position: absolute; top: 48px; left: -1rem;
+    background-color: var(--bg-kachel); border: 1px solid var(--rahmen-farbe); border-radius: 0 0 12px 12px;
+    min-width: 200px; display: flex; flex-direction: column;
+    opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.2, 1, 0.2, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;
+}
+.menue-punkt:hover .dropdown-menue { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-link { padding: 0.8rem 1.5rem; color: var(--text-haupt); text-decoration: none; font-size: 0.85rem; transition: background 0.3s; }
+.dropdown-link:hover { background-color: rgba(255,255,255,0.05); }
+
+/* KACHELN (Cards) & PORTFOLIO */
+.premium-kachel {
+    background-color: var(--bg-kachel); border-radius: 20px; padding: 3rem;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+    display: flex; flex-direction: column; height: 100%;
+}
+.premium-kachel:hover { transform: scale(1.02); }
+
+.portfolio-kachel {
+    background-color: var(--bg-kachel); border: 1px solid var(--rahmen-farbe); border-radius: 20px; padding: 2rem;
+    display: flex; flex-direction: column; height: 100%;
+}
+
+/* ARCHITEKT BILD */
+.architekt-bild-container {
+    width: 100%; max-width: 400px; aspect-ratio: 9/16;
+    background-color: var(--bg-kachel); border-radius: 20px;
+    overflow: hidden; border: 1px solid var(--rahmen-farbe);
+    display: flex; justify-content: center; align-items: center;
+}
+.architekt-bild { width: 100%; height: 100%; object-fit: cover; }
+
+/* ZERTIFIKATE */
+.zertifikate-raster { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+.zertifikat-badge {
+    background-color: var(--bg-kachel); border: 1px solid var(--rahmen-farbe); border-radius: 12px;
+    padding: 0.8rem 1.2rem; font-size: 0.85rem; font-weight: 500; color: var(--text-haupt);
+    transition: background 0.3s;
+}
+.zertifikat-badge:hover { background-color: rgba(255,255,255,0.1); }
+
+/* TERMINBUCHUNG UI */
+.formular-feld {
+    width: 100%;
+    background-color: var(--bg-input); /* Helles Grau für perfekten Kontrast */
+    border: 1px solid var(--rahmen-farbe);
+    color: var(--text-haupt); /* Pures Weiß für den Text */
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    font-family: var(--schrift-apple);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.formular-feld::placeholder { color: #888888; }
+.formular-feld:focus { 
+    border-color: var(--akzent-blau);
+    box-shadow: 0 0 0 3px rgba(41, 151, 255, 0.2);
+}
+select.formular-feld {
+    appearance: none; 
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5em;
+    padding-right: 3rem;
+}
+select.formular-feld option {
+    background-color: var(--bg-kachel);
+    color: var(--text-haupt);
+    font-weight: 500;
+}
+select.formular-feld optgroup {
+    background-color: var(--bg-schwarz);
+    color: var(--text-sekundaer);
+    font-style: normal;
+    font-weight: 700;
+}
+textarea.formular-feld { resize: vertical; min-height: 120px; }
+
+/* Kalender */
+.kalender-wochentage { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; margin-bottom: 0.5rem; text-align: center; font-weight: 600; color: var(--text-sekundaer); font-size: 0.75rem; }
+.kalender-raster { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; margin-bottom: 1.5rem; }
+.kalender-tag { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.8rem 0; text-align: center; color: var(--text-haupt); font-size: 0.9rem; transition: all 0.2s; }
+.kalender-tag:hover:not(.inaktiv) { background: rgba(255,255,255,0.1); }
+.kalender-tag.inaktiv { opacity: 0.2; pointer-events: none; background: transparent; }
+.kalender-tag.ausgewaehlt { background: var(--akzent-blau); color: #fff; font-weight: 600; }
+
+/* Uhrzeiten Raster */
+.uhrzeiten-raster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1.5rem; }
+.uhrzeit-slot { border: 1px solid var(--rahmen-farbe); border-radius: 8px; padding: 0.6rem 0; text-align: center; color: var(--text-haupt); font-size: 0.85rem; transition: all 0.2s; }
+.uhrzeit-slot:hover { border-color: var(--akzent-blau); }
+.uhrzeit-slot.ausgewaehlt { background: var(--akzent-blau); border-color: var(--akzent-blau); font-weight: 600; }
+
+/* RECAPTCHA Container */
+.recaptcha-container { margin-bottom: 1.5rem; display: flex; justify-content: flex-start; }
+
+/* Button */
+.absenden-knopf { background: var(--akzent-blau); color: #fff; border: none; padding: 1rem 2rem; border-radius: 20px; font-size: 1rem; font-weight: 500; width: 100%; transition: background 0.3s; }
+.absenden-knopf:hover { background: var(--akzent-blau-hover); }
+
+/* CUSTOM CURSOR */
+.maus-zeiger-aussen { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9998; mix-blend-mode: difference; transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), height 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+.maus-zeiger-innen { position: fixed; top: 0; left: 0; width: 4px; height: 4px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; opacity: 0; transition: opacity 0.3s; }
+.maus-zeiger-aussen.hover-aktiv { width: 60px; height: 60px; }
+.maus-zeiger-innen.hover-aktiv { opacity: 1; }
+
+/* FLOATING WHATSAPP */
+.whatsapp-schwebend {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background-color: var(--text-haupt);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+}
+.whatsapp-schwebend:hover {
+    transform: scale(1.1);
+}
+
+/* ANIMATIONEN */
+.erscheinen-element { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.erscheinen-element.sichtbar { opacity: 1; transform: translateY(0); }

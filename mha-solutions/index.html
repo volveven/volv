@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHA-Solutions | Future-Proof IT & Software</title>
+    <meta name="description" content="MHA-Solutions ist Ihre Tech-Agentur für App-Entwicklung, SaaS, Cloud-Infrastruktur und High-End Web-Entwicklung.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#030712', // gray-950
+                            darker: '#000000',
+                            primary: '#00e5ff', // Cyber cyan
+                            secondary: '#7000ff' // Deep purple
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="bg-brand-dark text-gray-300 font-sans antialiased overflow-x-hidden selection:bg-brand-primary selection:text-black">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-brand-primary/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold text-white tracking-tighter">
+                        MHA<span class="text-brand-primary">.</span>Solutions
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="hover:text-brand-primary transition-colors duration-300 px-3 py-2 text-sm font-medium">Services</a>
+                        <a href="#about" class="hover:text-brand-primary transition-colors duration-300 px-3 py-2 text-sm font-medium">Founder</a>
+                        <a href="#contact" class="hover:text-brand-primary transition-colors duration-300 px-3 py-2 text-sm font-medium">Kontakt</a>
+                        <a href="#contact" class="bg-brand-primary/10 border border-brand-primary text-brand-primary px-4 py-2 rounded hover:bg-brand-primary hover:text-black transition-all duration-300 text-sm font-mono font-bold">INITIATE_PROJECT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-30 z-0"></div>
+        <!-- Gradient glow behind text -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-primary/20 rounded-full blur-[120px] z-0 pointer-events-none"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="hero-badge inline-flex items-center px-3 py-1 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-primary text-xs font-mono font-bold tracking-widest uppercase mb-8">
+                <span class="w-2 h-2 rounded-full bg-brand-primary mr-2 animate-pulse"></span>
+                System Online
+            </div>
+            <h1 class="hero-title text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                Zukunftssichere Software.<br>
+                <span class="gradient-text">Skalierbare Infrastruktur.</span>
+            </h1>
+            <p class="hero-desc text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light">
+                Wir entwickeln hochmoderne IT-Lösungen, von nativer On-Device KI bis hin zu globalen Cloud-Architekturen. Entfesseln Sie das volle Potenzial Ihres Unternehmens.
+            </p>
+            <div class="hero-cta flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#services" class="px-8 py-4 bg-white text-black font-semibold rounded-none hover:bg-gray-200 transition-colors">
+                    Dienstleistungen entdecken
+                </a>
+                <a href="#contact" class="px-8 py-4 bg-transparent border border-gray-600 text-white font-semibold rounded-none hover:border-brand-primary hover:text-brand-primary transition-colors flex items-center justify-center gap-2">
+                    System-Check anfragen <span class="text-xl">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (Scrollytelling) -->
+    <section id="services" class="py-32 relative z-10 bg-brand-darker">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-left mb-20 section-header">
+                <h2 class="text-sm font-mono text-brand-primary tracking-widest uppercase mb-2">// Unsere Expertise</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-white">Technologie der nächsten Generation.</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- App Dev -->
+                <div class="service-card glass-panel p-8 rounded-xl glow-on-hover group">
+                    <div class="w-14 h-14 rounded bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20 mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">App-Entwicklung</h4>
+                    <p class="text-gray-400 leading-relaxed">
+                        Native Android & iOS Apps mit starkem Fokus auf <strong>On-Device KI</strong>. Wir integrieren hochkomplexe Sprachmodelle (z.B. Sherpa-ONNX für Voice Cloning) in mobile Endgeräte, gepaart mit einer absolut nahtlosen, kompromisslosen User Experience.
+                    </p>
+                </div>
+
+                <!-- SaaS -->
+                <div class="service-card glass-panel p-8 rounded-xl glow-on-hover group">
+                    <div class="w-14 h-14 rounded bg-brand-secondary/10 flex items-center justify-center border border-brand-secondary/20 mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Software as a Service (SaaS)</h4>
+                    <p class="text-gray-400 leading-relaxed">
+                        Entwicklung hochskalierbarer Cloud-Lösungen und Automatisierungs-Tools. Perfekt abgestimmte Architekturen für komplexe E-Commerce-Prozesse und Dropshipping-Integrationen, um Ihre betriebliche Effizienz zu maximieren.
+                    </p>
+                </div>
+
+                <!-- IaaS & PaaS -->
+                <div class="service-card glass-panel p-8 rounded-xl glow-on-hover group">
+                    <div class="w-14 h-14 rounded bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20 mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">IaaS & PaaS</h4>
+                    <p class="text-gray-400 leading-relaxed">
+                        Bereitstellung und vollumfängliches Management kritischer Infrastruktur. Ob Google Cloud Platform (GCP), dediziertes Server-Management oder das Design komplexer Network Infrastructures – wir garantieren Stabilität und Skalierbarkeit.
+                    </p>
+                </div>
+
+                <!-- Web Development -->
+                <div class="service-card glass-panel p-8 rounded-xl glow-on-hover group">
+                    <div class="w-14 h-14 rounded bg-brand-secondary/10 flex items-center justify-center border border-brand-secondary/20 mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4">Web-Entwicklung</h4>
+                    <p class="text-gray-400 leading-relaxed">
+                        Wir bauen keine einfachen Webseiten – wir erschaffen digitale Erlebnisse. Von interaktiven Scrollytelling-Websites über hochkomplexe Web-Applikationen bis hin zu performanten Browser-Erweiterungen. Code, der atmet.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section id="about" class="py-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-2xl p-8 md:p-16 border border-gray-800 relative overflow-hidden about-content">
+                <!-- Decorative background elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-secondary/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="lg:w-1/3">
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full border-2 border-brand-primary/50 p-2 mx-auto lg:mx-0">
+                            <!-- Placeholder for Founder Image -->
+                            <div class="w-full h-full rounded-full bg-gray-800 flex items-center justify-center overflow-hidden relative group">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-brand-dark to-brand-secondary opacity-50 group-hover:opacity-30 transition-opacity"></div>
+                                <span class="font-mono text-4xl text-gray-600 group-hover:text-brand-primary transition-colors">MHG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-2/3">
+                        <h2 class="text-sm font-mono text-brand-primary tracking-widest uppercase mb-2">// Der Kopf dahinter</h2>
+                        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Muhammet Hasan Gürcan</h3>
+                        <div class="space-y-4 text-gray-400 leading-relaxed">
+                            <p>
+                                Mit über <strong>6 Jahren intensiver Berufserfahrung</strong> in der IT-Branche vereint Muhammet das Know-how eines Webdesigners, IT-Systemadministrators und Softwareentwicklers in einer Person. Er ist der Architekt hinter den Lösungen von MHA-Solutions.
+                            </p>
+                            <p>
+                                Der Grundstein für dieses tiefe technische Verständnis wurde durch eine zweijährige Fachausbildung an der Berufsfachschule für Informatik in Landshut (Fokus: Softwareentwicklung & Systemintegration) gelegt. 
+                            </p>
+                            <p>
+                                <strong>Netzwerk- & System-Expertise:</strong> Zertifiziert in branchenführenden Technologien, darunter Cisco CCNA, Aruba Switches, OmniVista Server 2500, OmniVista Switches und Brocade.
+                            </p>
+                            <div class="pt-4 mt-4 border-t border-gray-800">
+                                <h4 class="text-white font-semibold mb-3">Tech-Stack & Fokus-Projekte</h4>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-gray-800 text-xs font-mono rounded text-gray-300">HTML5</span>
+                                    <span class="px-3 py-1 bg-gray-800 text-xs font-mono rounded text-gray-300">CSS3</span>
+                                    <span class="px-3 py-1 bg-gray-800 text-xs font-mono rounded text-brand-primary">JavaScript</span>
+                                    <span class="px-3 py-1 bg-gray-800 text-xs font-mono rounded text-brand-secondary">Python</span>
+                                </div>
+                                <p class="text-sm">
+                                    Spezialisiert auf die Entwicklung lokaler LLM-Workflows, Android-Apps mit <em>Sherpa-ONNX/Voice-Cloning</em>, visuell atemberaubende Scrollytelling-Webseiten (z. B. im Automotive Detailing Bereich) sowie die Konzeption hochkomplexer Netzwerk-Architekturen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative z-10 bg-brand-darker">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-sm font-mono text-brand-primary tracking-widest uppercase mb-2">// Verbindung herstellen</h2>
+            <h3 class="text-4xl font-bold text-white mb-8">Bereit für das nächste Level?</h3>
+            <p class="text-gray-400 mb-10">
+                Senden Sie uns eine Anfrage. Wir analysieren Ihre Anforderungen und entwickeln eine Architektur, die Ihr Unternehmen in die Zukunft skaliert.
+            </p>
+            
+            <form class="space-y-6 text-left" action="#" method="POST">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Name / Firma</label>
+                        <input type="text" id="name" name="name" class="w-full bg-brand-dark border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition-colors" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-400 mb-1">E-Mail Adresse</label>
+                        <input type="email" id="email" name="email" class="w-full bg-brand-dark border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition-colors" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Projekt-Spezifikation / Nachricht</label>
+                    <textarea id="message" name="message" rows="4" class="w-full bg-brand-dark border border-gray-800 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-primary transition-colors" required></textarea>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input id="gdpr" name="gdpr" type="checkbox" required class="w-4 h-4 bg-brand-dark border-gray-800 rounded focus:ring-brand-primary text-brand-primary">
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="gdpr" class="font-medium text-gray-400">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html" class="text-brand-primary hover:underline">Datenschutzerklärung</a> zu.</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-primary text-black font-bold font-mono py-4 rounded hover:bg-white transition-colors uppercase tracking-widest">
+                    Datenübertragung starten
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-bold text-white tracking-tighter">
+                    MHA<span class="text-brand-primary">.</span>Solutions
+                </span>
+                <p class="text-xs text-gray-600 mt-1">Ein Unternehmen von volvevent (Einzelunternehmen)</p>
+            </div>
+            <div class="flex space-x-6 text-sm text-gray-500">
+                <a href="impressum.html" class="hover:text-white transition-colors">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-white transition-colors">Datenschutz</a>
+                <a href="agb.html" class="hover:text-white transition-colors">AGB</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 text-center md:text-left text-xs text-gray-700">
+            &copy; 2026 MHA-Solutions. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="fixed bottom-0 left-0 w-full z-[100] transform translate-y-full transition-transform duration-500 ease-in-out">
+        <div class="glass-panel border-t border-brand-primary/30 p-6 shadow-2xl">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-sm text-gray-300">
+                    <p class="font-bold text-white mb-1">System-Protokoll: Datenerfassung (Cookies)</p>
+                    Wir verwenden Cookies und ähnliche Technologien, um das Nutzererlebnis zu optimieren und den Traffic zu analysieren. Weitere Details finden Sie in unserer <a href="datenschutz.html" class="text-brand-primary hover:underline">Datenschutzerklärung</a>.
+                </div>
+                <div class="flex gap-4 shrink-0">
+                    <button id="decline-cookies" class="px-6 py-2 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 rounded text-sm transition-colors">
+                        Nur Essenzielle
+                    </button>
+                    <button id="accept-cookies" class="px-6 py-2 bg-brand-primary text-black font-bold rounded text-sm hover:bg-white transition-colors shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+                        Alle Akzeptieren
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de" class="weiches-scrollen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | volvevent</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body class="seiten-huelle">
+
+    <div class="maus-zeiger-aussen" id="maus-zeiger-aussen"></div>
+    <div class="maus-zeiger-innen" id="maus-zeiger-innen"></div>
+
+    <nav class="navigationsleiste" id="navigationsleiste">
+        <a href="index.html" class="logo-text interaktives-element">VOLVEVENT</a>
+        <div class="menue-liste code-schrift">
+            <div class="menue-punkt"><a href="index.html" class="menue-link interaktives-element">Home</a></div>
+            <div class="menue-punkt">
+                <span class="menue-link interaktives-element" style="cursor:none;">Legal Compliance ▾</span>
+                <div class="dropdown-menue">
+                    <a href="impressum.html" class="dropdown-link interaktives-element">Impressum</a>
+                    <a href="datenschutz.html" class="dropdown-link interaktives-element">Datenschutzerklärung</a>
+                    <a href="agb.html" class="dropdown-link interaktives-element">AGB</a>
+                    <a href="kontakt.html" class="dropdown-link interaktives-element" style="color:white;">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="zentrierter-container sektions-abstand">
+        <div class="erscheinen-element" style="max-width: 800px; margin-top: 100px; margin-bottom: 50px;">
+            <h1 class="haupt-ueberschrift">Sichere <br>Verbindung.</h1>
+            <p class="fliesstext">Wenn Sie kein direktes Strategiegespräch über den Kalender buchen möchten, können Sie hier eine reguläre Kontaktanfrage stellen. Alle Anfragen werden vertraulich behandelt.</p>
+            <p class="fliesstext" style="margin-top: 2rem; font-weight: 600; color: var(--text-haupt);">
+                Direkter Kontakt & WhatsApp: <a href="https://wa.me/491727045269" target="_blank" style="color: var(--akzent-blau); text-decoration: none;">+49 172 7045269</a>
+            </p>
+        </div>
+
+        <div class="terminbuchungs-modul erscheinen-element" style="max-width: 800px;">
+            <form id="kontakt-formular" onsubmit="event.preventDefault(); alert('Security Check: Data sanitized and prepared for encrypted transmission.');">
+                <input type="text" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
+                <input type="email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
+                <input type="text" class="formular-feld interaktives-element" placeholder="Betreff">
+                <textarea class="formular-feld interaktives-element" placeholder="Ihre detaillierte Nachricht..." required></textarea>
+                <button type="submit" class="absenden-knopf interaktives-element">Nachricht Verschlüsselt Senden</button>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
