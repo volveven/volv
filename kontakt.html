@@ -39,15 +39,19 @@
         </div>
 
         <div class="terminbuchungs-modul erscheinen-element" style="max-width: 800px;">
-            <form id="kontakt-formular">
-                <input type="text" id="kontakt-name" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
-                <input type="email" id="kontakt-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
-                <input type="text" id="kontakt-betreff" class="formular-feld interaktives-element" placeholder="Betreff" required>
-                <textarea id="kontakt-nachricht" class="formular-feld interaktives-element" placeholder="Ihre detaillierte Nachricht..." required></textarea>
+            <form action="https://api.web3forms.com/submit" method="POST" id="kontakt-formular">
+                <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
+                <input type="hidden" name="redirect" value="https://volveven.github.io/?success=true">
+                <input type="hidden" name="subject" id="kontakt-hidden-subject" value="Kontaktanfrage">
+                <input type="checkbox" name="botcheck" style="display: none;">
+                
+                <input type="text" name="Name" id="kontakt-name" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
+                <input type="email" name="Email" id="kontakt-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
+                <input type="text" name="Betreff" id="kontakt-betreff" class="formular-feld interaktives-element" placeholder="Betreff" required>
+                <textarea name="Nachricht" id="kontakt-nachricht" class="formular-feld interaktives-element" placeholder="Ihre detaillierte Nachricht..." required></textarea>
                 
                 <!-- Custom Enterprise Security Check -->
                 <div class="security-modul">
-                    <input type="text" id="sec-honeypot-kontakt" name="unternehmen_website_url" style="display:none !important; opacity:0; position:absolute; top:-9999px;" tabindex="-1" autocomplete="off">
                     <span class="label-text" style="margin-bottom: 0.8rem; color: var(--akzent-blau);">Verifizierung (Bot-Schutz)</span>
                     <div class="slide-captcha-container interaktives-element" id="slide-captcha-kontakt">
                         <div class="slide-captcha-track" id="slide-track-kontakt"></div>

@@ -197,49 +197,54 @@
                     <!-- Rechte Spalte: Formular & reCAPTCHA -->
                     <div>
                         <span class="label-text">3. Anforderungsdetails</span>
-                        <form id="buchungs-formular">
-                            <input type="text" id="eingabe-name" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
-                            <input type="email" id="eingabe-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
+                        <form action="https://api.web3forms.com/submit" method="POST" id="buchungs-formular">
+                            <!-- Web3Forms Hidden Routing Config -->
+                            <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
+                            <input type="hidden" name="redirect" value="https://volveven.github.io/?success=true">
+                            <input type="hidden" name="subject" id="hidden-subject" value="Neue Terminbuchung">
+                            <input type="checkbox" name="botcheck" style="display: none;">
+                            
+                            <input type="text" name="Name" id="eingabe-name" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
+                            <input type="email" name="Email" id="eingabe-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
                             
                             <!-- Massive Erweiterung der Kategorien -->
-                            <select id="eingabe-dienstleistung" class="formular-feld interaktives-element" required>
+                            <select name="Dienstleistung" id="eingabe-dienstleistung" class="formular-feld interaktives-element" required>
                                 <option value="" disabled selected>Exaktes technisches Anliegen wählen...</option>
                                 
                                 <optgroup label="Software & App Entwicklung">
-                                    <option value="app_saas">Software as a Service (SaaS) Plattform Entwicklung (z.B. Kundenfeedback)</option>
-                                    <option value="app_mobile">Mobile App Entwicklung (Native iOS / Android)</option>
-                                    <option value="app_game">Spiele-App Konzeption & Programmierung</option>
-                                    <option value="app_omnivoice">Consulting (Referenz: OmniVoice Architekturen)</option>
+                                    <option value="SaaS Plattform">Software as a Service (SaaS) Plattform Entwicklung (z.B. Kundenfeedback)</option>
+                                    <option value="Mobile App">Mobile App Entwicklung (Native iOS / Android)</option>
+                                    <option value="Spiele App">Spiele-App Konzeption & Programmierung</option>
+                                    <option value="Consulting OmniVoice">Consulting (Referenz: OmniVoice Architekturen)</option>
                                 </optgroup>
                                 
                                 <optgroup label="Webarchitektur & E-Commerce">
-                                    <option value="web_corporate">High-End Corporate Website Erstellung</option>
-                                    <option value="web_shop">E-Commerce Plattform (Shop-System)</option>
-                                    <option value="web_hosting">Secure Enterprise Hosting & Skalierung</option>
+                                    <option value="Corporate Website">High-End Corporate Website Erstellung</option>
+                                    <option value="E-Commerce">E-Commerce Plattform (Shop-System)</option>
+                                    <option value="Enterprise Hosting">Secure Enterprise Hosting & Skalierung</option>
                                 </optgroup>
 
                                 <optgroup label="Netzwerkarchitektur & Security">
-                                    <option value="net_switch">Enterprise Switch Konfiguration (VLAN, Routing)</option>
-                                    <option value="net_firewall">Hardware-Firewall Setup & Härtung</option>
-                                    <option value="net_design">Komplettes Netzwerk-Architektur Design</option>
-                                    <option value="net_checkmk">Checkmk Monitoring Implementierung & Alerts</option>
-                                    <option value="net_vpn">Enterprise VPN & Remote-Access</option>
+                                    <option value="Switch Konfiguration">Enterprise Switch Konfiguration (VLAN, Routing)</option>
+                                    <option value="Hardware Firewall">Hardware-Firewall Setup & Härtung</option>
+                                    <option value="Netzwerk Design">Komplettes Netzwerk-Architektur Design</option>
+                                    <option value="Checkmk Monitoring">Checkmk Monitoring Implementierung & Alerts</option>
+                                    <option value="Enterprise VPN">Enterprise VPN & Remote-Access</option>
                                 </optgroup>
 
                                 <optgroup label="Server & Virtualisierung">
-                                    <option value="sys_ad">Windows Server & Active Directory Setup</option>
-                                    <option value="virt_vmware">VMware vSphere Cluster Aufbau</option>
-                                    <option value="virt_proxmox">Proxmox VE Migration / Installation</option>
-                                    <option value="sys_backup">Backup-Strategie & Disaster Recovery</option>
-                                    <option value="sys_hyperv">Microsoft Hyper-V Datacenter Architektur</option>
+                                    <option value="Windows Server AD">Windows Server & Active Directory Setup</option>
+                                    <option value="VMware Cluster">VMware vSphere Cluster Aufbau</option>
+                                    <option value="Proxmox VE">Proxmox VE Migration / Installation</option>
+                                    <option value="Backup Strategy">Backup-Strategie & Disaster Recovery</option>
+                                    <option value="Hyper-V">Microsoft Hyper-V Datacenter Architektur</option>
                                 </optgroup>
                             </select>
 
-                            <textarea id="eingabe-beschreibung" class="formular-feld interaktives-element" placeholder="Bitte beschreiben Sie Ihr Vorhaben detailliert. Was ist Ihr Ziel? Gibt es aktuelle Herausforderungen in der Infrastruktur?..." required></textarea>
+                            <textarea name="Nachricht" id="eingabe-beschreibung" class="formular-feld interaktives-element" placeholder="Bitte beschreiben Sie Ihr Vorhaben detailliert. Was ist Ihr Ziel? Gibt es aktuelle Herausforderungen in der Infrastruktur?..." required></textarea>
                             
                             <!-- Custom Enterprise Security Check -->
                             <div class="security-modul">
-                                <input type="text" id="sec-honeypot" name="unternehmen_website_url" style="display:none !important; opacity:0; position:absolute; top:-9999px;" tabindex="-1" autocomplete="off">
                                 <span class="label-text" style="margin-bottom: 0.8rem; color: var(--akzent-blau);">Verifizierung (Bot-Schutz)</span>
                                 <div class="slide-captcha-container interaktives-element" id="slide-captcha">
                                     <div class="slide-captcha-track" id="slide-track"></div>
@@ -250,8 +255,9 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" id="ausgewaehltes-datum" value="">
-                            <input type="hidden" id="ausgewaehlte-uhrzeit" value="">
+                            <!-- Native Form Inputs für Kalender (werden via JS befüllt) -->
+                            <input type="hidden" name="Datum" id="ausgewaehltes-datum" value="">
+                            <input type="hidden" name="Uhrzeit" id="ausgewaehlte-uhrzeit" value="">
                             
                             <button type="submit" id="absenden-knopf" class="absenden-knopf interaktives-element">Termin verbindlich anfragen</button>
                             <div id="formular-status" style="margin-top: 1rem; font-size: 0.9rem; text-align: center;"></div>

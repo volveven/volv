@@ -1,6 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- 0. Mobile Navigation (Injected for all HTML files) --- */
+    /* --- 0. Formular Erfolgs-Check (Web3Forms Redirect) --- */
+    if (window.location.search.includes('success=true')) {
+        alert("Erfolg! Ihre verschlüsselte Nachricht / Terminbuchung wurde erfolgreich an uns übermittelt.");
+        // URL bereinigen, ohne die Seite neu zu laden
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    /* --- 0.5 Mobile Navigation (Injected for all HTML files) --- */
     const navLeiste = document.getElementById('navigationsleiste');
     const menueListe = document.querySelector('.menue-liste');
     if (navLeiste && menueListe) {
@@ -240,56 +247,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const rohName = document.getElementById('eingabe-name').value;
-            const rohDienst = document.getElementById('eingabe-dienstleistung').value;
             const saubererName = sanitiereEingabe(rohName);
             
             formularStatus.style.color = "var(--text-haupt)";
-            formularStatus.textContent = "Ihre Anfrage wird sicher über Web3Forms übertragen...";
+            formularStatus.textContent = "Verbindung wird hergestellt...";
             absendenKnopf.disabled = true;
+
+            // Versteckte Felder befüllen
+            document.getElementById('hidden-subject').value = "Neue Terminbuchung von " + saubererName;
+            document.getElementById('ausgewaehltes-datum').value = datumInput.value;
+            document.getElementById('ausgewaehlte-uhrzeit').value = uhrzeitInput.value;
             
-            // WEB3FORMS PAYLOAD (Als JSON für bessere Cloudflare-Kompatibilität)
-            const payload = {
-                access_key: "f6a3cdad-537c-4def-8b11-af7a1db3c74a",
-                subject: "Neue Terminbuchung (Strategiegespräch) von " + saubererName,
-                Name: saubererName,
-                Email: document.getElementById('eingabe-email').value,
-                Datum: datumInput.value,
-                Uhrzeit: uhrzeitInput.value,
-                Dienstleistung: rohDienst,
-                Beschreibung: document.getElementById('eingabe-beschreibung').value
-            };
-            
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
-                    formularStatus.textContent = `Vielen Dank. Die Terminanfrage für ${datumInput.value} um ${uhrzeitInput.value} Uhr wurde erfolgreich versendet.`;
-                    formular.reset();
-                    indexSlider.reset();
-                    document.querySelectorAll('.kalender-tag').forEach(el => el.classList.remove('ausgewaehlt'));
-                    document.querySelectorAll('.uhrzeit-slot').forEach(el => el.classList.remove('ausgewaehlt'));
-                    uhrzeitContainer.style.display = 'none';
-                    datumInput.value = "";
-                    uhrzeitInput.value = "";
-                } else {
-                    formularStatus.textContent = "API Fehler: " + json.message;
-                    formularStatus.style.color = "#ff453a";
-                }
-            })
-            .catch(error => {
-                formularStatus.textContent = "Netzwerkfehler. Bitte später versuchen.";
-                formularStatus.style.color = "#ff453a";
-            })
-            .finally(() => {
-                absendenKnopf.disabled = false;
-            });
+            // Native Formular-Übermittlung (bypasses CORS/Adblockers)
+            formular.submit();
         });
     }
 
@@ -323,44 +293,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             kontaktStatus.style.color = "var(--text-haupt)";
-            kontaktStatus.textContent = "Nachricht wird sicher verschlüsselt übertragen...";
+            kontaktStatus.textContent = "Verbindung wird hergestellt...";
             kontaktKnopf.disabled = true;
+
+            // Verstecktes Feld befüllen
+            document.getElementById('kontakt-hidden-subject').value = "Kontaktanfrage von " + document.getElementById('kontakt-name').value;
             
-            const payload = {
-                access_key: "f6a3cdad-537c-4def-8b11-af7a1db3c74a",
-                subject: "Kontaktanfrage von " + document.getElementById('kontakt-name').value,
-                Name: document.getElementById('kontakt-name').value,
-                Email: document.getElementById('kontakt-email').value,
-                Betreff: document.getElementById('kontakt-betreff').value,
-                Nachricht: document.getElementById('kontakt-nachricht').value
-            };
-            
-            fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
-                    kontaktStatus.textContent = "Ihre Nachricht wurde erfolgreich versendet. Wir melden uns in Kürze.";
-                    kontaktFormular.reset();
-                    kontaktSlider.reset();
-                } else {
-                    kontaktStatus.textContent = "API Fehler: " + json.message;
-                    kontaktStatus.style.color = "#ff453a";
-                }
-            })
-            .catch(error => {
-                kontaktStatus.textContent = "Netzwerkfehler. Bitte später versuchen.";
-                kontaktStatus.style.color = "#ff453a";
-            })
-            .finally(() => {
-                kontaktKnopf.disabled = false;
-            });
+            // Native Formular-Übermittlung (bypasses CORS/Adblockers)
+            kontaktFormular.submit();
         });
     }
 
