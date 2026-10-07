@@ -247,20 +247,25 @@ document.addEventListener('DOMContentLoaded', () => {
             formularStatus.textContent = "Ihre Anfrage wird sicher über Web3Forms übertragen...";
             absendenKnopf.disabled = true;
             
-            // WEB3FORMS PAYLOAD
-            const formData = new FormData();
-            formData.append("access_key", "f6a3cdad-537c-4def-8b11-af7a1db3c74a");
-            formData.append("subject", "Neue Terminbuchung (Strategiegespräch) von " + saubererName);
-            formData.append("Name", saubererName);
-            formData.append("Email", document.getElementById('eingabe-email').value);
-            formData.append("Datum", datumInput.value);
-            formData.append("Uhrzeit", uhrzeitInput.value);
-            formData.append("Dienstleistung", rohDienst);
-            formData.append("Beschreibung", document.getElementById('eingabe-beschreibung').value);
+            // WEB3FORMS PAYLOAD (Als JSON für bessere Cloudflare-Kompatibilität)
+            const payload = {
+                access_key: "f6a3cdad-537c-4def-8b11-af7a1db3c74a",
+                subject: "Neue Terminbuchung (Strategiegespräch) von " + saubererName,
+                Name: saubererName,
+                Email: document.getElementById('eingabe-email').value,
+                Datum: datumInput.value,
+                Uhrzeit: uhrzeitInput.value,
+                Dienstleistung: rohDienst,
+                Beschreibung: document.getElementById('eingabe-beschreibung').value
+            };
             
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                body: formData
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
             .then(async (response) => {
                 let json = await response.json();
@@ -321,17 +326,22 @@ document.addEventListener('DOMContentLoaded', () => {
             kontaktStatus.textContent = "Nachricht wird sicher verschlüsselt übertragen...";
             kontaktKnopf.disabled = true;
             
-            const formData = new FormData();
-            formData.append("access_key", "f6a3cdad-537c-4def-8b11-af7a1db3c74a");
-            formData.append("subject", "Kontaktanfrage von " + document.getElementById('kontakt-name').value);
-            formData.append("Name", document.getElementById('kontakt-name').value);
-            formData.append("Email", document.getElementById('kontakt-email').value);
-            formData.append("Betreff", document.getElementById('kontakt-betreff').value);
-            formData.append("Nachricht", document.getElementById('kontakt-nachricht').value);
+            const payload = {
+                access_key: "f6a3cdad-537c-4def-8b11-af7a1db3c74a",
+                subject: "Kontaktanfrage von " + document.getElementById('kontakt-name').value,
+                Name: document.getElementById('kontakt-name').value,
+                Email: document.getElementById('kontakt-email').value,
+                Betreff: document.getElementById('kontakt-betreff').value,
+                Nachricht: document.getElementById('kontakt-nachricht').value
+            };
             
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                body: formData
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
             .then(async (response) => {
                 let json = await response.json();
