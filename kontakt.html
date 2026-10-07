@@ -44,6 +44,20 @@
                 <input type="email" id="kontakt-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
                 <input type="text" id="kontakt-betreff" class="formular-feld interaktives-element" placeholder="Betreff" required>
                 <textarea id="kontakt-nachricht" class="formular-feld interaktives-element" placeholder="Ihre detaillierte Nachricht..." required></textarea>
+                
+                <!-- Custom Enterprise Security Check -->
+                <div class="security-modul">
+                    <input type="text" id="sec-honeypot-kontakt" name="unternehmen_website_url" style="display:none !important; opacity:0; position:absolute; top:-9999px;" tabindex="-1" autocomplete="off">
+                    <span class="label-text" style="margin-bottom: 0.8rem; color: var(--akzent-blau);">Verifizierung (Bot-Schutz)</span>
+                    <div class="slide-captcha-container interaktives-element" id="slide-captcha-kontakt">
+                        <div class="slide-captcha-track" id="slide-track-kontakt"></div>
+                        <div class="slide-captcha-text" id="slide-text-kontakt">Nachricht verifizieren <span style="font-family: var(--schrift-code); opacity: 0.6; margin-left: 8px;">[Slide]</span></div>
+                        <div class="slide-captcha-thumb" id="slide-thumb-kontakt">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="submit" id="kontakt-absenden" class="absenden-knopf interaktives-element">Nachricht Verschlüsselt Senden</button>
                 <div id="kontakt-status" style="margin-top: 1rem; font-size: 0.9rem; text-align: center;"></div>
             </form>

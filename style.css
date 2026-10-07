@@ -281,3 +281,83 @@ textarea.formular-feld { resize: vertical; min-height: 120px; }
     .uhrzeiten-raster { grid-template-columns: 1fr; }
     .premium-kachel { padding: 1.2rem; }
 }
+
+/* ==========================================
+   ENTERPRISE SECURITY SLIDER (Bot-Schutz)
+   ========================================== */
+.security-modul {
+    background: var(--bg-kachel);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--rahmen-farbe);
+    margin-bottom: 1.5rem;
+}
+.slide-captcha-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #111111;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid var(--rahmen-farbe);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+.slide-captcha-track {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 0;
+    background: rgba(41, 151, 255, 0.2);
+    border-radius: 25px 0 0 25px;
+    transition: background 0.3s ease;
+}
+.slide-captcha-text {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-sekundaer);
+    font-size: 0.9rem;
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+.slide-captcha-thumb {
+    position: absolute;
+    top: 4px; left: 4px;
+    width: 42px;
+    height: 42px;
+    background: var(--bg-schwarz);
+    border: 1px solid var(--rahmen-farbe);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    z-index: 3;
+    transition: transform 0.1s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.slide-captcha-thumb:active { cursor: grabbing; }
+
+/* Verifiziert Status */
+.slide-captcha-container.verifiziert .slide-captcha-track {
+    background: rgba(48, 209, 88, 0.2); /* Apple Green */
+    width: 100% !important;
+}
+.slide-captcha-container.verifiziert .slide-captcha-thumb {
+    background: #30d158;
+    border-color: #30d158;
+    left: calc(100% - 46px) !important;
+}
+.slide-captcha-container.verifiziert .slide-captcha-text {
+    color: #30d158;
+    font-weight: 600;
+}

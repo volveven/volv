@@ -135,7 +135,70 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* --- 4. Formular Security & Google reCAPTCHA Validation --- */
+    /* --- 4. Enterprise Security Slider (Bot-Schutz) --- */
+    const setupSlider = (containerId, thumbId, trackId, textId) => {
+        const container = document.getElementById(containerId);
+        const thumb = document.getElementById(thumbId);
+        const track = document.getElementById(trackId);
+        const textElement = document.getElementById(textId);
+        if(!container || !thumb) return { isVerified: () => false, reset: () => {} };
+
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let verifiziert = false;
+        const maxSlide = container.clientWidth - thumb.clientWidth - 8; // 8px padding
+
+        const onMove = (e) => {
+            if (!isDragging || verifiziert) return;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            currentX = clientX - startX;
+            if (currentX < 0) currentX = 0;
+            if (currentX >= maxSlide) {
+                currentX = maxSlide;
+                verifiziert = true;
+                container.classList.add('verifiziert');
+                textElement.innerHTML = 'Verifiziert <svg viewBox="0 0 24 24" width="16" height="16" style="margin-left:5px" fill="none"><path d="M5 13l4 4L19 7" stroke="#30d158" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                isDragging = false;
+            }
+            thumb.style.left = `calc(4px + ${currentX}px)`;
+            track.style.width = `calc(4px + ${currentX}px + 20px)`;
+        };
+
+        const onEnd = () => {
+            if (!isDragging) return;
+            isDragging = false;
+            if (!verifiziert) {
+                thumb.style.left = '4px';
+                track.style.width = '0';
+                currentX = 0;
+            }
+        };
+
+        thumb.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX - currentX; });
+        thumb.addEventListener('touchstart', (e) => { isDragging = true; startX = e.touches[0].clientX - currentX; }, {passive: true});
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('touchmove', onMove, {passive: true});
+        document.addEventListener('mouseup', onEnd);
+        document.addEventListener('touchend', onEnd);
+
+        return {
+            isVerified: () => verifiziert,
+            reset: () => {
+                verifiziert = false;
+                container.classList.remove('verifiziert');
+                thumb.style.left = '4px';
+                track.style.width = '0';
+                currentX = 0;
+                textElement.innerHTML = 'Sitzung verifizieren <span style="font-family: monospace; opacity: 0.6; margin-left: 8px;">[Slide]</span>';
+            }
+        };
+    };
+
+    const loadTime = Date.now();
+    const indexSlider = setupSlider('slide-captcha', 'slide-thumb', 'slide-track', 'slide-text');
+    const kontaktSlider = setupSlider('slide-captcha-kontakt', 'slide-thumb-kontakt', 'slide-track-kontakt', 'slide-text-kontakt');
+
     const formular = document.getElementById('buchungs-formular');
     const formularStatus = document.getElementById('formular-status');
     const absendenKnopf = document.getElementById('absenden-knopf');
@@ -156,10 +219,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Google reCAPTCHA Validierung
-            const recaptchaResponse = typeof grecaptcha !== "undefined" ? grecaptcha.getResponse() : "";
-            if (recaptchaResponse.length === 0) {
-                formularStatus.textContent = "Bitte bestätigen Sie das reCAPTCHA.";
+            // Honeypot Check (Bot Falle)
+            const honeypot = document.getElementById('sec-honeypot');
+            if (honeypot && honeypot.value !== "") {
+                return; // Silent fail für Bots
+            }
+
+            // Timestamp Check (zu schnell = Bot)
+            if (Date.now() - loadTime < 3000) {
+                formularStatus.textContent = "Verifizierung fehlgeschlagen (Time-Lock).";
+                formularStatus.style.color = "#ff453a";
+                return;
+            }
+
+            // Slider Check
+            if (!indexSlider.isVerified()) {
+                formularStatus.textContent = "Bitte ziehen Sie den Regler zur Verifizierung nach rechts.";
                 formularStatus.style.color = "#ff453a";
                 return;
             }
@@ -182,7 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append("Uhrzeit", uhrzeitInput.value);
             formData.append("Dienstleistung", rohDienst);
             formData.append("Beschreibung", document.getElementById('eingabe-beschreibung').value);
-            formData.append("g-recaptcha-response", recaptchaResponse);
             
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
@@ -193,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.status == 200) {
                     formularStatus.textContent = `Vielen Dank. Die Terminanfrage für ${datumInput.value} um ${uhrzeitInput.value} Uhr wurde erfolgreich versendet.`;
                     formular.reset();
-                    if(typeof grecaptcha !== "undefined") grecaptcha.reset(); 
+                    indexSlider.reset();
                     document.querySelectorAll('.kalender-tag').forEach(el => el.classList.remove('ausgewaehlt'));
                     document.querySelectorAll('.uhrzeit-slot').forEach(el => el.classList.remove('ausgewaehlt'));
                     uhrzeitContainer.style.display = 'none';
@@ -223,6 +297,26 @@ document.addEventListener('DOMContentLoaded', () => {
         kontaktFormular.addEventListener('submit', (ereignis) => {
             ereignis.preventDefault();
             
+            // Honeypot Check (Bot Falle)
+            const honeypot = document.getElementById('sec-honeypot-kontakt');
+            if (honeypot && honeypot.value !== "") {
+                return; // Silent fail für Bots
+            }
+
+            // Timestamp Check (zu schnell = Bot)
+            if (Date.now() - loadTime < 3000) {
+                kontaktStatus.textContent = "Verifizierung fehlgeschlagen (Time-Lock).";
+                kontaktStatus.style.color = "#ff453a";
+                return;
+            }
+
+            // Slider Check
+            if (!kontaktSlider.isVerified()) {
+                kontaktStatus.textContent = "Bitte ziehen Sie den Regler zur Verifizierung nach rechts.";
+                kontaktStatus.style.color = "#ff453a";
+                return;
+            }
+            
             kontaktStatus.style.color = "var(--text-haupt)";
             kontaktStatus.textContent = "Nachricht wird sicher verschlüsselt übertragen...";
             kontaktKnopf.disabled = true;
@@ -244,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.status == 200) {
                     kontaktStatus.textContent = "Ihre Nachricht wurde erfolgreich versendet. Wir melden uns in Kürze.";
                     kontaktFormular.reset();
+                    kontaktSlider.reset();
                 } else {
                     kontaktStatus.textContent = "API Fehler: " + json.message;
                     kontaktStatus.style.color = "#ff453a";

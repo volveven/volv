@@ -8,7 +8,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src https://www.google.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
     <link rel="stylesheet" href="style.css">
     
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="main.js" defer></script>
 </head>
 <body class="seiten-huelle">
@@ -238,10 +237,17 @@
 
                             <textarea id="eingabe-beschreibung" class="formular-feld interaktives-element" placeholder="Bitte beschreiben Sie Ihr Vorhaben detailliert. Was ist Ihr Ziel? Gibt es aktuelle Herausforderungen in der Infrastruktur?..." required></textarea>
                             
-                            <!-- Google reCAPTCHA v2 Integration -->
-                            <div class="recaptcha-container">
-                                <!-- HINWEIS: Echter Google reCAPTCHA v2 Site-Key aktiv! -->
-                                <div class="g-recaptcha" data-sitekey="6LdZReQtAAAAAPU60bkl6bMT1YVdJP4K7GcTqnVB"></div>
+                            <!-- Custom Enterprise Security Check -->
+                            <div class="security-modul">
+                                <input type="text" id="sec-honeypot" name="unternehmen_website_url" style="display:none !important; opacity:0; position:absolute; top:-9999px;" tabindex="-1" autocomplete="off">
+                                <span class="label-text" style="margin-bottom: 0.8rem; color: var(--akzent-blau);">Verifizierung (Bot-Schutz)</span>
+                                <div class="slide-captcha-container interaktives-element" id="slide-captcha">
+                                    <div class="slide-captcha-track" id="slide-track"></div>
+                                    <div class="slide-captcha-text" id="slide-text">Sitzung verifizieren <span style="font-family: var(--schrift-code); opacity: 0.6; margin-left: 8px;">[Slide]</span></div>
+                                    <div class="slide-captcha-thumb" id="slide-thumb">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </div>
+                                </div>
                             </div>
 
                             <input type="hidden" id="ausgewaehltes-datum" value="">
