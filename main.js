@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append("Uhrzeit", uhrzeitInput.value);
             formData.append("Dienstleistung", rohDienst);
             formData.append("Beschreibung", document.getElementById('eingabe-beschreibung').value);
+            formData.append("g-recaptcha-response", recaptchaResponse);
             
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
