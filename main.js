@@ -135,27 +135,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* --- 4. Formular Security & Custom Math Captcha --- */
+    /* --- 4. Formular Security & Google reCAPTCHA Validation --- */
     const formular = document.getElementById('buchungs-formular');
     const formularStatus = document.getElementById('formular-status');
     const absendenKnopf = document.getElementById('absenden-knopf');
-    
-    // Math Captcha Setup
-    const captchaFrage = document.getElementById('captcha-frage');
-    const captchaEingabe = document.getElementById('eingabe-captcha');
-    let captchaZahl1 = 0;
-    let captchaZahl2 = 0;
-    let captchaErgebnis = 0;
-    
-    const generiereCaptcha = () => {
-        if(!captchaFrage) return;
-        captchaZahl1 = Math.floor(Math.random() * 9) + 1;
-        captchaZahl2 = Math.floor(Math.random() * 9) + 1;
-        captchaErgebnis = captchaZahl1 + captchaZahl2;
-        captchaFrage.textContent = `${captchaZahl1} + ${captchaZahl2} =`;
-        if(captchaEingabe) captchaEingabe.value = "";
-    };
-    generiereCaptcha();
 
     if(formular) {
         const sanitiereEingabe = (text) => {
@@ -173,11 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Custom Math Captcha Validierung
-            if (parseInt(captchaEingabe.value) !== captchaErgebnis) {
-                formularStatus.textContent = "Sicherheits-Check fehlgeschlagen. Bitte rechnen Sie erneut.";
+            // Google reCAPTCHA Validierung
+            const recaptchaResponse = typeof grecaptcha !== "undefined" ? grecaptcha.getResponse() : "";
+            if (recaptchaResponse.length === 0) {
+                formularStatus.textContent = "Bitte bestätigen Sie das reCAPTCHA.";
                 formularStatus.style.color = "#ff453a";
-                generiereCaptcha();
                 return;
             }
 
@@ -209,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.status == 200) {
                     formularStatus.textContent = `Vielen Dank. Die Terminanfrage für ${datumInput.value} um ${uhrzeitInput.value} Uhr wurde erfolgreich versendet.`;
                     formular.reset();
-                    generiereCaptcha(); 
+                    if(typeof grecaptcha !== "undefined") grecaptcha.reset(); 
                     document.querySelectorAll('.kalender-tag').forEach(el => el.classList.remove('ausgewaehlt'));
                     document.querySelectorAll('.uhrzeit-slot').forEach(el => el.classList.remove('ausgewaehlt'));
                     uhrzeitContainer.style.display = 'none';
