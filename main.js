@@ -1,5 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* --- 0. Mobile Navigation (Injected for all HTML files) --- */
+    const navLeiste = document.getElementById('navigationsleiste');
+    const menueListe = document.querySelector('.menue-liste');
+    if (navLeiste && menueListe) {
+        const burgerKnopf = document.createElement('div');
+        burgerKnopf.className = 'mobile-menue-knopf interaktives-element';
+        burgerKnopf.innerHTML = '<svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
+        navLeiste.insertBefore(burgerKnopf, menueListe);
+        
+        burgerKnopf.addEventListener('click', () => {
+            menueListe.classList.toggle('offen');
+        });
+        
+        // Menü schließen wenn auf mobilen Link geklickt wird
+        document.querySelectorAll('.menue-link:not([style*="cursor:none"])').forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth <= 768) menueListe.classList.remove('offen');
+            });
+        });
+    }
+
     /* --- 1. Smart Navigation (Hide on scroll down, show on scroll up) --- */
     const navigationsleiste = document.getElementById('navigationsleiste');
     if (navigationsleiste) {
@@ -114,10 +135,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* --- 4. Formular Security & Google reCAPTCHA Validation --- */
+    /* --- 4. Formular Security & Custom Math Captcha --- */
     const formular = document.getElementById('buchungs-formular');
     const formularStatus = document.getElementById('formular-status');
     const absendenKnopf = document.getElementById('absenden-knopf');
+    
+    // Math Captcha Setup
+    const captchaFrage = document.getElementById('captcha-frage');
+    const captchaEingabe = document.getElementById('eingabe-captcha');
+    let captchaZahl1 = 0;
+    let captchaZahl2 = 0;
+    let captchaErgebnis = 0;
+    
+    const generiereCaptcha = () => {
+        if(!captchaFrage) return;
+        captchaZahl1 = Math.floor(Math.random() * 9) + 1;
+        captchaZahl2 = Math.floor(Math.random() * 9) + 1;
+        captchaErgebnis = captchaZahl1 + captchaZahl2;
+        captchaFrage.textContent = `${captchaZahl1} + ${captchaZahl2} =`;
+        if(captchaEingabe) captchaEingabe.value = "";
+    };
+    generiereCaptcha();
 
     if(formular) {
         const sanitiereEingabe = (text) => {
@@ -135,11 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Google reCAPTCHA Validierung (Prüft ob die API geladen ist und der Response String exisiert)
-            const recaptchaResponse = typeof grecaptcha !== "undefined" ? grecaptcha.getResponse() : "";
-            if (recaptchaResponse.length === 0) {
-                formularStatus.textContent = "Bitte bestätigen Sie das reCAPTCHA.";
+            // Custom Math Captcha Validierung
+            if (parseInt(captchaEingabe.value) !== captchaErgebnis) {
+                formularStatus.textContent = "Sicherheits-Check fehlgeschlagen. Bitte rechnen Sie erneut.";
                 formularStatus.style.color = "#ff453a";
+                generiereCaptcha();
                 return;
             }
 
@@ -154,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 formularStatus.textContent = `Vielen Dank. Termin am ${datumInput.value} um ${uhrzeitInput.value} Uhr für ${saubererName} bestätigt.`;
                 formular.reset();
-                if(typeof grecaptcha !== "undefined") grecaptcha.reset(); // reCAPTCHA zurücksetzen
+                generiereCaptcha(); // Captcha neu generieren
                 
                 absendenKnopf.disabled = false;
                 document.querySelectorAll('.kalender-tag').forEach(el => el.classList.remove('ausgewaehlt'));

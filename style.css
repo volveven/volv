@@ -237,3 +237,47 @@ textarea.formular-feld { resize: vertical; min-height: 120px; }
 /* ANIMATIONEN */
 .erscheinen-element { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .erscheinen-element.sichtbar { opacity: 1; transform: translateY(0); }
+
+/* ==========================================
+   MOBILE RESPONSIVENESS (iOS, Android, Tablets) 
+   ========================================== */
+.raster-layout-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 768px) { .raster-layout-3 { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .raster-layout-3 { grid-template-columns: 1fr 1fr 1fr; } }
+
+.mobile-menue-knopf { display: none; }
+
+@media (max-width: 768px) {
+    .haupt-ueberschrift { font-size: 2.5rem; }
+    .sektions-abstand { padding-top: 4rem; padding-bottom: 4rem; }
+    .premium-kachel { padding: 1.5rem; }
+    
+    /* Mobile Menu */
+    .mobile-menue-knopf { display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0.5rem; z-index: 100; }
+    .menue-liste { 
+        position: absolute; top: 48px; left: 0; width: 100%; 
+        background-color: rgba(0, 0, 0, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        flex-direction: column; gap: 0; 
+        max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+        border-bottom: 1px solid var(--rahmen-farbe);
+    }
+    .menue-liste.offen { max-height: 500px; }
+    .menue-punkt { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .menue-link { padding: 1.2rem 5vw; display: block; width: 100%; font-size: 1rem; }
+    .dropdown-menue { position: relative; top: 0; left: 0; opacity: 1; visibility: visible; transform: none; min-width: 100%; border: none; padding-left: 1.5rem; background: transparent; box-shadow: none; border-radius: 0; }
+    .menue-punkt:hover .dropdown-menue { transform: none; }
+    
+    /* Calendar / Booking */
+    .kalender-tag { font-size: 0.85rem; padding: 0.6rem 0; }
+    .uhrzeiten-raster { grid-template-columns: 1fr 1fr; }
+    
+    /* Architect Image */
+    .architekt-bild-container { aspect-ratio: auto; height: 350px; }
+}
+
+@media (max-width: 480px) {
+    .haupt-ueberschrift { font-size: 2.2rem; }
+    .sektions-ueberschrift { font-size: 1.8rem; }
+    .uhrzeiten-raster { grid-template-columns: 1fr; }
+    .premium-kachel { padding: 1.2rem; }
+}

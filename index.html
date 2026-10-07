@@ -8,8 +8,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src https://www.google.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
     <link rel="stylesheet" href="style.css">
     
-    <!-- Google reCAPTCHA v2 (Test Keys / Placeholder) -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="main.js" defer></script>
 </head>
 <body class="seiten-huelle">
@@ -239,9 +237,13 @@
 
                             <textarea id="eingabe-beschreibung" class="formular-feld interaktives-element" placeholder="Bitte beschreiben Sie Ihr Vorhaben detailliert. Was ist Ihr Ziel? Gibt es aktuelle Herausforderungen in der Infrastruktur?..." required></textarea>
                             
-                            <!-- Google reCAPTCHA v2 Integration (Test Key zur Veranschaulichung) -->
-                            <div class="recaptcha-container">
-                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            <!-- DSGVO-konformer Apple-Style Spamschutz (Custom Math Captcha) -->
+                            <div class="recaptcha-container" style="display: flex; flex-direction: column; gap: 0.5rem; background: var(--bg-kachel); padding: 1rem; border-radius: 12px; border: 1px solid var(--rahmen-farbe);">
+                                <span class="label-text" style="margin: 0; color: var(--akzent-blau);">Sicherheits-Check</span>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <span id="captcha-frage" style="font-weight: 600; font-size: 1.2rem; min-width: 80px;">? + ? =</span>
+                                    <input type="number" id="eingabe-captcha" class="formular-feld interaktives-element" placeholder="Ergebnis..." style="margin: 0; padding: 0.8rem; width: 100px;" required>
+                                </div>
                             </div>
 
                             <input type="hidden" id="ausgewaehltes-datum" value="">
