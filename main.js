@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
 
     /* --- 0. Formular Erfolgs-Check (Web3Forms Redirect) --- */
     if (window.location.search.includes('success=true')) {
@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* --- 2. Custom Präzisions-Cursor (Beibehalten) --- */
+    /* --- 2. Custom Cursor Auto-Inject (alle Seiten) --- */
+    if (!document.getElementById('maus-zeiger-aussen')) {
+        const _ca = document.createElement('div'); _ca.id = 'maus-zeiger-aussen';
+        const _ci = document.createElement('div'); _ci.id = 'maus-zeiger-innen';
+        document.body.prepend(_ci); document.body.prepend(_ca);
+    }
     const mausAussen = document.getElementById('maus-zeiger-aussen');
     const mausInnen = document.getElementById('maus-zeiger-innen');
     const interaktiveElemente = document.querySelectorAll('.interaktives-element, a, button, input, select, textarea, label');

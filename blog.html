@@ -4,576 +4,545 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News & Insights | volvevent.</title>
-    <meta name="description" content="IT News, Cybersecurity Insights und Trends rund um Enterprise Architektur.">
-    
+    <link rel="stylesheet" href="style.css?v=2.0">
     <style>
-        :root {
-            --bg-dark: #000000;
-            --bg-darker: #0a0a0a;
-            --card-bg: rgba(255,255,255,0.04);
-            --card-border: rgba(255,255,255,0.08);
-            --accent-blue: #2997FF;
-            --success-green: #30d158;
-            --text-main: #f5f5f7;
-            --text-muted: #86868b;
-        }
-
-        * {
-            box-sizing: border-box;
+        body {
+            background-color: #0a0a0a;
+            color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
+            cursor: none;
+            line-height: 1.6;
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.5;
-            overflow-x: hidden;
-            padding-top: 70px;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* NAVIGATION */
-        .navbar {
-            position: fixed;
+        
+        /* Navbar */
+        nav {
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid var(--card-border);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
-        }
-
         .nav-links {
             display: flex;
             gap: 2rem;
-            align-items: center;
         }
-
-        .nav-link {
+        .nav-links a {
+            color: #f5f5f7;
+            text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
-
-        .nav-link:hover {
-            color: var(--accent-blue);
+        .nav-links a:hover {
+            color: #2997FF;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
         }
 
-        .cta-btn {
-            background-color: var(--accent-blue);
-            color: #fff;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background-color 0.3s, transform 0.2s;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        .cta-btn:hover {
-            background-color: #0071e3;
-            transform: scale(1.05);
-        }
-        
-        .cta-btn-outline {
-            background-color: transparent;
-            color: var(--accent-blue);
-            border: 1px solid var(--accent-blue);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .cta-btn-outline:hover {
-            background-color: var(--accent-blue);
-            color: #fff;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background-color: var(--text-main);
-            transition: 0.3s;
-        }
-
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.95);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                padding: 2rem 0;
-                border-bottom: 1px solid var(--card-border);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .hamburger {
-                display: flex;
-            }
-        }
-
-        /* HERO SECTION */
+        /* Hero */
         .hero {
-            padding: 6rem 5% 4rem;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,10,10,1)), url('images/cybersecurity_hero.jpg') center/cover;
+            padding: 8rem 2rem 4rem;
             text-align: center;
-            background: var(--bg-darker);
-            border-bottom: 1px solid var(--card-border);
         }
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin: 0 0 1rem;
         }
         .hero p {
             font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
+            color: #86868b;
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        /* BLOG GRID */
-        .blog-container {
-            padding: 5rem 5%;
+        /* Filters */
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
+        .filter-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #f5f5f7;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #2997FF;
+            border-color: #2997FF;
         }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: transform 0.3s, background 0.3s;
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+        @media (min-width: 768px) {
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .blog-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .artikel-karte {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
             display: flex;
             flex-direction: column;
         }
-
-        .card:hover {
+        .artikel-karte:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.06);
+            border-color: rgba(41,151,255,0.3);
         }
-        
-        .badge {
-            display: inline-block;
-            background: rgba(41, 151, 255, 0.1);
-            color: var(--accent-blue);
-            padding: 0.3rem 0.8rem;
+        .artikel-bild {
+            position: relative;
+        }
+        .kategorie-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 4px 10px;
             border-radius: 12px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            align-self: flex-start;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            flex-grow: 1;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-meta {
+        .artikel-inhalt {
+            padding: 1.5rem;
             display: flex;
-            justify-content: space-between;
-            color: #666;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .artikel-meta {
+            color: #86868b;
             font-size: 0.8rem;
-            margin-bottom: 1.5rem;
-            border-top: 1px solid var(--card-border);
-            padding-top: 1rem;
-        }
-
-        /* FOOTER */
-        .footer {
-            background-color: var(--bg-darker);
-            border-top: 1px solid var(--card-border);
-            padding: 4rem 5% 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
             margin-bottom: 0.8rem;
         }
-
-        .footer-col ul li a {
-            color: var(--text-muted);
-            transition: color 0.3s;
+        .artikel-titel {
+            margin: 0 0 1rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+        .artikel-excerpt {
+            color: #86868b;
             font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .artikel-link {
+            color: #2997FF;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .artikel-link:hover {
+            text-decoration: underline;
         }
 
-        .footer-col ul li a:hover {
-            color: var(--text-main);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--card-border);
-            padding-top: 2rem;
+        /* CTA & Footer (Same as forum) */
+        .cta-section {
+            margin: 6rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(41,151,255,0.05));
+            border: 1px solid rgba(41,151,255,0.2);
+            border-radius: 24px;
         }
-
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            margin: 0 0.5rem;
+        }
+        .btn:hover { opacity: 0.8; }
+        .btn-primary { background: #2997FF; color: white; }
+        .btn-whatsapp { background: #30d158; color: white; }
+        footer {
+            background: #000;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            color: #86868b;
+        }
+        .footer-content h4 { color: #fff; margin-bottom: 1.5rem; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: #86868b; text-decoration: none; }
+        .footer-links a:hover { color: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <a href="index.html" class="logo">volvevent.</a>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html" class="nav-link">Start</a>
-            <a href="termin.html" class="nav-link">Services</a>
-            <a href="projekte.html" class="nav-link">Projekte</a>
-            <a href="blog.html" class="nav-link">News</a>
-            <a href="forum.html" class="nav-link">Forum</a>
-            <a href="kontakt.html" class="nav-link">Kontakt</a>
-            <a href="termin.html" class="cta-btn">Termin buchen</a>
-        </div>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+    <nav>
+        <div class="logo">volvevent.</div>
+        <div class="nav-links">
+            <a href="index.html">Start</a>
+            <a href="#">Services</a>
+            <a href="#">Projekte</a>
+            <a href="blog.html" style="color:#2997FF;">News</a>
+            <a href="forum.html">Forum</a>
+            <a href="#">Kontakt</a>
+            <a href="#" class="btn-primary" style="padding: 6px 12px; border-radius: 6px; margin-left: 1rem;">Termin buchen</a>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="hero">
+    <section class="hero">
         <h1>News & Insights</h1>
-        <p>Tiefgreifende Analysen, Best Practices und aktuelle Trends aus der Enterprise IT-Welt.</p>
-    </header>
+        <p>Tiefes Fachwissen statt Oberflächlichkeit. 20 Artikel zu den wichtigsten IT-Themen 2025/2026.</p>
+    </section>
 
-    <!-- BLOG GRID -->
-    <main class="blog-container">
-        <div class="grid">
-            
-            <article class="card">
-                <span class="badge">Cybersecurity</span>
-                <h3>Zero-Trust Architektur: Warum Vertrauen in der IT-Sicherheit ein Risiko ist</h3>
-                <p>Eine tiefgehende Analyse des Zero-Trust-Modells und warum der Perimeter-basierte Schutzansatz längst ausgedient hat.</p>
-                <div class="card-meta">
-                    <span>Okt 08, 2026</span>
-                    <span>5 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-            
-            <article class="card">
-                <span class="badge">Virtualisierung</span>
-                <h3>Proxmox VE vs. VMware vSphere: Die ehrliche Kosten-Nutzen-Analyse</h3>
-                <p>Nach den jüngsten Preisänderungen bei VMware bewerten wir Proxmox als ernsthafte Enterprise-Alternative für den Mittelstand.</p>
-                <div class="card-meta">
-                    <span>Sep 29, 2026</span>
-                    <span>8 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-            
-            <article class="card">
-                <span class="badge">KI & Automatisierung</span>
-                <h3>KI in der IT-Administration: Automatisierung von Monitoring-Alerts</h3>
-                <p>Wie Sie mithilfe von Machine Learning False-Positives in Checkmk reduzieren und das Alert-Fatigue-Syndrom verhindern.</p>
-                <div class="card-meta">
-                    <span>Sep 22, 2026</span>
-                    <span>6 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
+    <div class="filters">
+        <button class="filter-btn active">Alle</button>
+        <button class="filter-btn">Cybersecurity</button>
+        <button class="filter-btn">Virtualisierung</button>
+        <button class="filter-btn">KI & Automatisierung</button>
+        <button class="filter-btn">Netzwerk</button>
+        <button class="filter-btn">Compliance</button>
+    </div>
 
-            <article class="card">
-                <span class="badge">Cybersecurity</span>
-                <h3>Ransomware 2026: Die neue Generation der Angriffe und wie man sich schützt</h3>
-                <p>Ransomware wird durch KI intelligenter. Erfahren Sie, wie moderne Abwehrmechanismen und unveränderliche Backups Ihr Unternehmen retten.</p>
-                <div class="card-meta">
-                    <span>Sep 15, 2026</span>
-                    <span>7 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Netzwerkarchitektur</span>
-                <h3>VLAN-Segmentierung als Ransomware-Schutzmassnahme</h3>
-                <p>Die Mikrosegmentierung von Netzwerken ist der effektivste Weg, um die laterale Ausbreitung von Schadsoftware zu stoppen.</p>
-                <div class="card-meta">
-                    <span>Sep 01, 2026</span>
-                    <span>5 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Cloud</span>
-                <h3>Microsoft 365 richtig absichern: 10 Schritte für Unternehmen</h3>
-                <p>Die Standardeinstellungen von M365 genügen nicht für Enterprise-Ansprüche. Ein Leitfaden zur Härtung Ihres Tenants.</p>
-                <div class="card-meta">
-                    <span>Aug 24, 2026</span>
-                    <span>10 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">IT-Sicherheit</span>
-                <h3>Checkmk Enterprise: Proaktives Monitoring statt Feuerlöschen</h3>
-                <p>Warum ein reaktives Monitoring-Setup nicht ausreicht und wie proaktive Schwellenwerte Ausfälle komplett verhindern können.</p>
-                <div class="card-meta">
-                    <span>Aug 12, 2026</span>
-                    <span>6 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Virtualisierung</span>
-                <h3>Hyper-V vs. Proxmox für den Mittelstand: Ein direkter Vergleich</h3>
-                <p>Welcher Hypervisor eignet sich am besten für kleine bis mittlere Unternehmen? Ein Vergleich in Performance, Kosten und Verwaltung.</p>
-                <div class="card-meta">
-                    <span>Aug 05, 2026</span>
-                    <span>7 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Cybersecurity</span>
-                <h3>DNS-over-HTTPS (DoH): Warum klassisches DNS eine Sicherheitslücke ist</h3>
-                <p>Erfahren Sie, wie unverschlüsselte DNS-Anfragen abgehört werden können und warum DoH auf Enterprise-Ebene Pflicht ist.</p>
-                <div class="card-meta">
-                    <span>Jul 28, 2026</span>
-                    <span>4 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Netzwerkarchitektur</span>
-                <h3>Cisco vs. Aruba: Welches Switch-Ökosystem passt zu Ihrem Unternehmen?</h3>
-                <p>Ein architektonischer und finanzieller Vergleich zweier Branchenriesen im Bereich Enterprise Switching und Routing.</p>
-                <div class="card-meta">
-                    <span>Jul 20, 2026</span>
-                    <span>8 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">KI & Automatisierung</span>
-                <h3>ChatGPT & Co. im Unternehmen: Chancen und versteckte Datenschutzrisiken</h3>
-                <p>Der sichere Umgang mit LLMs in der Unternehmensumgebung und wie Sie interne Daten vor ungewolltem Training schützen.</p>
-                <div class="card-meta">
-                    <span>Jul 10, 2026</span>
-                    <span>6 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">IT-Sicherheit</span>
-                <h3>Hardware-Firewalls 2026: Warum Software-Firewalls allein nicht reichen</h3>
-                <p>Deep Packet Inspection (DPI) und IDS/IPS auf Hardware-Ebene: Warum dedizierte Firewalls weiterhin unverzichtbar sind.</p>
-                <div class="card-meta">
-                    <span>Jun 29, 2026</span>
-                    <span>5 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Windows Server</span>
-                <h3>Windows Server 2025: Die wichtigsten neuen Sicherheitsfeatures</h3>
-                <p>Ein Blick auf die Neuerungen in der aktuellen Windows Server Version und wie sie bei der Härtung von Active Directory helfen.</p>
-                <div class="card-meta">
-                    <span>Jun 15, 2026</span>
-                    <span>7 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Cloud</span>
-                <h3>Backup-Strategie nach der 3-2-1-Regel: So schützen Sie Ihre Unternehmensdaten</h3>
-                <p>Das Fundament jeder Desaster-Recovery-Planung: Wie Sie die 3-2-1-Regel effizient in hybriden Umgebungen umsetzen.</p>
-                <div class="card-meta">
-                    <span>Jun 02, 2026</span>
-                    <span>5 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Netzwerkarchitektur</span>
-                <h3>Edge Computing im Mittelstand: Wann lohnt sich der Einstieg?</h3>
-                <p>Verlagerung der Rechenleistung an den Rand des Netzwerks: Use-Cases und Architekturen für produzierende Unternehmen.</p>
-                <div class="card-meta">
-                    <span>Mai 21, 2026</span>
-                    <span>6 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Windows Server</span>
-                <h3>Active Directory Härtung: 15 kritische Einstellungen die jeder Admin kennen muss</h3>
-                <p>Schliessen Sie die häufigsten Sicherheitslücken in Ihrem AD. Ein technischer Leitfaden zur Vermeidung von Privilege Escalation.</p>
-                <div class="card-meta">
-                    <span>Mai 08, 2026</span>
-                    <span>12 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">IT-Sicherheit</span>
-                <h3>NIS2-Richtlinie: Was Unternehmen bis 2026 umsetzen müssen</h3>
-                <p>Die Frist für die NIS2-Richtlinie rückt näher. Erfahren Sie, ob Ihr Unternehmen betroffen ist und welche technischen Maßnahmen Pflicht werden.</p>
-                <div class="card-meta">
-                    <span>Apr 25, 2026</span>
-                    <span>9 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Cybersecurity</span>
-                <h3>KI-gestützte Pentesting-Tools: Angreifer werden smarter – sind Sie es auch?</h3>
-                <p>Die Evolution von Penetration-Testing durch künstliche Intelligenz und wie Sie Ihre Verteidigungsmechanismen daran anpassen.</p>
-                <div class="card-meta">
-                    <span>Apr 12, 2026</span>
-                    <span>6 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Netzwerkarchitektur</span>
-                <h3>VPN vs. Zero Trust Network Access (ZTNA): Was schützt wirklich besser?</h3>
-                <p>Klassisches VPN gewährt Zugriff auf das gesamte Netz. ZTNA beschränkt den Zugriff auf Applikationsebene. Ein direkter Vergleich.</p>
-                <div class="card-meta">
-                    <span>Mär 30, 2026</span>
-                    <span>7 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-            <article class="card">
-                <span class="badge">Cloud</span>
-                <h3>SaaS-Plattformen selbst entwickeln vs. kaufen: Eine TCO-Analyse</h3>
-                <p>Total Cost of Ownership (TCO) bei Eigenentwicklungen im Vergleich zu Off-the-Shelf Lösungen für kritische Geschäftsprozesse.</p>
-                <div class="card-meta">
-                    <span>Mär 18, 2026</span>
-                    <span>8 Min Lesezeit</span>
-                </div>
-                <a href="#" class="cta-btn-outline" style="text-align:center;">Weiterlesen</a>
-            </article>
-
-        </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #fff;">volvevent.</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
-                    Enterprise IT-Architektur & High-End Softwareentwicklung aus Bayern.
-                </p>
+    <div class="blog-grid">
+        
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="Zero-Trust Architektur" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Cybersecurity</span>
             </div>
-            <div class="footer-col">
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">15. Oktober 2026 · 8 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Zero-Trust Architektur: Warum Vertrauen in der IT-Sicherheit ein Risiko ist</h3>
+                <p class="artikel-excerpt">Das klassische Sicherheitsmodell geht davon aus, dass alles innerhalb des Firmennetzwerks vertrauenswürdig ist. Diese Annahme ist gefährlich. Zero-Trust eliminiert dieses Risiko durch konsequente Verifikation jeder Anfrage.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/virtualization_servers.jpg" alt="Proxmox vs VMware" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Virtualisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">10. Oktober 2026 · 12 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Proxmox VE vs. VMware vSphere: Die ehrliche Kosten-Nutzen-Analyse</h3>
+                <p class="artikel-excerpt">Seit der Broadcom-Übernahme hat VMware seine Lizenzkosten um bis zu 1000% erhöht. Wir zeigen, warum Proxmox VE für die meisten mittelständischen Unternehmen die überlegene Alternative ist.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="KI in der IT-Administration" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">KI & Automatisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">5. Oktober 2026 · 7 Min. Lesezeit</div>
+                <h3 class="artikel-titel">KI in der IT-Administration: Automatisierung von Monitoring-Alerts</h3>
+                <p class="artikel-excerpt">KI-gestützte Monitoring-Systeme erkennen Anomalien, bevor sie zu Ausfällen werden. Wir zeigen, wie Checkmk mit Machine-Learning-Plugins Ihre IT-Abteilung entlasten kann.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/ransomware_attack.jpg" alt="Ransomware 2026" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Cybersecurity</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">1. Oktober 2026 · 10 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Ransomware 2026: Die neue Generation der Angriffe</h3>
+                <p class="artikel-excerpt">Ransomware-as-a-Service macht Cyberangriffe für jeden buchbar. Die neueste Generation verschlüsselt nicht nur Daten, sondern exfiltriert sie vorher – und droht mit Veröffentlichung. So schützen Sie sich.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="VLAN-Segmentierung" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Netzwerk</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">28. September 2026 · 9 Min. Lesezeit</div>
+                <h3 class="artikel-titel">VLAN-Segmentierung als Ransomware-Schutzmaßnahme</h3>
+                <p class="artikel-excerpt">Richtig konfigurierte VLANs verhindern, dass sich Ransomware lateral im Netzwerk ausbreitet. Wir erklären die optimale Segmentierungsstrategie für mittelständische Unternehmen.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="Microsoft 365 absichern" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Cybersecurity</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">22. September 2026 · 11 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Microsoft 365 richtig absichern: 10 Schritte für Unternehmen</h3>
+                <p class="artikel-excerpt">Microsoft 365 ist das Einfallstor Nummer 1 für Cyberangreifer. Viele Unternehmen nutzen die Plattform mit Standard-Einstellungen. Das ist fahrlässig. Unsere 10-Punkte-Checkliste schließt die kritischsten Lücken.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/virtualization_servers.jpg" alt="Checkmk Enterprise" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Virtualisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">18. September 2026 · 8 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Checkmk Enterprise: Proaktives Monitoring statt Feuerlöschen</h3>
+                <p class="artikel-excerpt">Die meisten IT-Teams reagieren auf Probleme, anstatt sie vorherzusagen. Checkmk mit ML-basierten Anomalieerkennung ermöglicht einen Paradigmenwechsel hin zu proaktiver IT-Verwaltung.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/virtualization_servers.jpg" alt="Hyper-V vs. Proxmox" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Virtualisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">14. September 2026 · 10 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Hyper-V vs. Proxmox für den Mittelstand: Ein direkter Vergleich</h3>
+                <p class="artikel-excerpt">Microsoft Hyper-V oder Proxmox VE? Beide Plattformen haben ihre Daseinsberechtigung. Wir vergleichen Lizenzkosten, Performance, HA-Funktionen und Verwaltungsaufwand für Unternehmen bis 500 Mitarbeiter.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="DNS-over-HTTPS" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Netzwerk</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">10. September 2026 · 7 Min. Lesezeit</div>
+                <h3 class="artikel-titel">DNS-over-HTTPS (DoH): Warum klassisches DNS eine Sicherheitslücke ist</h3>
+                <p class="artikel-excerpt">Unverschlüsseltes DNS ist für Angreifer ein offenes Buch. DNS-over-HTTPS und DNS-over-TLS schließen diese Lücke. Wir zeigen die Implementierung in Unternehmensumgebungen.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/virtualization_servers.jpg" alt="Cisco vs. Aruba" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Netzwerk</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">5. September 2026 · 9 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Cisco vs. Aruba: Welches Switch-Ökosystem passt zu Ihrem Unternehmen?</h3>
+                <p class="artikel-excerpt">Cisco und Aruba (HPE) dominieren den Enterprise-Switch-Markt. Beide bieten exzellente Leistung, aber unterschiedliche Stärken. Unsere Analyse hilft bei der strategischen Entscheidung.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="ChatGPT & Co." style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">KI & Automatisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">1. September 2026 · 8 Min. Lesezeit</div>
+                <h3 class="artikel-titel">ChatGPT & Co. im Unternehmen: Chancen und versteckte Datenschutzrisiken</h3>
+                <p class="artikel-excerpt">KI-Tools steigern die Produktivität erheblich, aber was passiert mit den eingegebenen Unternehmensdaten? Wir analysieren die Datenschutzrisiken und zeigen DSGVO-konforme Alternativen.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="Hardware-Firewalls 2026" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Cybersecurity</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">25. August 2026 · 8 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Hardware-Firewalls 2026: Warum Software-Firewalls allein nicht reichen</h3>
+                <p class="artikel-excerpt">Software-Firewalls schützen den Endpunkt. Aber was schützt den Netzwerkperimeter? Hardware-Firewalls von Fortinet, pfSense und Sophos bieten Schutzebenen, die Software niemals erreichen kann.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/virtualization_servers.jpg" alt="Windows Server 2025" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Virtualisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">20. August 2026 · 9 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Windows Server 2025: Die wichtigsten neuen Sicherheitsfeatures</h3>
+                <p class="artikel-excerpt">Windows Server 2025 bringt Credential Guard, SMB-Compression und verbesserte Hyper-V-Sicherheit. Wir erklären, welche Features sich für den Produktionseinsatz eignen und was noch reifen muss.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/virtualization_servers.jpg" alt="Backup-Strategie" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Cybersecurity</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">15. August 2026 · 7 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Backup-Strategie nach der 3-2-1-Regel: Unternehmensdaten richtig sichern</h3>
+                <p class="artikel-excerpt">Die 3-2-1-Backup-Regel ist der Goldstandard. Doch viele Unternehmen setzen sie falsch um. Wir zeigen die häufigsten Fehler und eine enterprise-taugliche Backup-Architektur.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="Edge Computing" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">KI & Automatisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">10. August 2026 · 8 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Edge Computing im Mittelstand: Wann lohnt sich der Einstieg?</h3>
+                <p class="artikel-excerpt">Edge Computing verlagert Rechenleistung an den Netzwerkrand und reduziert Latenz drastisch. Für Produktionsbetriebe und IoT-Anwendungen ist das ein Game-Changer. Aber wann ist der Zeitpunkt reif?</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="Active Directory Härtung" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Cybersecurity</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">5. August 2026 · 12 Min. Lesezeit</div>
+                <h3 class="artikel-titel">Active Directory Härtung: 15 kritische Einstellungen</h3>
+                <p class="artikel-excerpt">Active Directory ist das Herzstück jeder Windows-Infrastruktur und das Hauptziel von Angreifern. Unsere 15-Punkte-Checkliste schließt die gefährlichsten Konfigurationslücken.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="NIS2-Richtlinie" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Compliance</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">1. August 2026 · 10 Min. Lesezeit</div>
+                <h3 class="artikel-titel">NIS2-Richtlinie: Was Unternehmen jetzt umsetzen müssen</h3>
+                <p class="artikel-excerpt">Die NIS2-Richtlinie betrifft weitaus mehr Unternehmen als ihre Vorgängerin. Bußgelder von bis zu 10 Millionen Euro drohen. Wir erklären, wer betroffen ist und welche Maßnahmen Pflicht sind.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/ransomware_attack.jpg" alt="KI-gestützte Pentesting-Tools" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Cybersecurity</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">25. Juli 2026 · 9 Min. Lesezeit</div>
+                <h3 class="artikel-titel">KI-gestützte Pentesting-Tools: Angreifer werden smarter</h3>
+                <p class="artikel-excerpt">KI-Tools wie AutoGPT-Pentest und Metasploit-AI automatisieren Angriffsvektoren, die früher Expertenwissen erforderten. Security-Teams müssen diese Werkzeuge verstehen, um sich zu verteidigen.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="VPN vs. ZTNA" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">Netzwerk</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">20. Juli 2026 · 8 Min. Lesezeit</div>
+                <h3 class="artikel-titel">VPN vs. Zero Trust Network Access (ZTNA): Was schützt wirklich besser?</h3>
+                <p class="artikel-excerpt">Klassische VPNs gewähren nach Authentifizierung vollen Netzwerkzugriff. ZTNA hingegen verifiziert jede einzelne Anfrage kontextbasiert. Für Remote-Work-Szenarien ein fundamentaler Unterschied.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+        <article class="artikel-karte">
+            <div class="artikel-bild">
+                <img src="images/cybersecurity_hero.jpg" alt="SaaS-Plattformen TCO" style="width:100%;height:200px;object-fit:cover;border-radius:12px 12px 0 0;">
+                <span class="kategorie-badge">KI & Automatisierung</span>
+            </div>
+            <div class="artikel-inhalt">
+                <div class="artikel-meta">15. Juli 2026 · 11 Min. Lesezeit</div>
+                <h3 class="artikel-titel">SaaS-Plattformen selbst entwickeln vs. kaufen: Eine TCO-Analyse</h3>
+                <p class="artikel-excerpt">Standard-SaaS-Lösungen passen selten perfekt. Eigene Entwicklung bietet maximale Kontrolle, aber höhere Initialkosten. Unsere Total-Cost-of-Ownership-Analyse zeigt, wann sich was lohnt.</p>
+                <a href="#" class="artikel-link">Weiterlesen →</a>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="cta-section">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Haben Sie eine konkrete Sicherheitsfrage?</h2>
+        <p style="color: #86868b; margin-bottom: 2rem; font-size: 1.1rem;">Lassen Sie uns über Ihre Infrastruktur sprechen. Unverbindlich und auf Augenhöhe.</p>
+        <a href="#" class="btn btn-whatsapp">💬 WhatsApp</a>
+        <a href="#" class="btn btn-primary">📅 Termin buchen</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4 style="font-size: 1.5rem; font-weight: 700;">volvevent.</h4>
+                <p>Enterprise IT Company.<br>Wir bauen sichere, skalierbare Infrastrukturen.</p>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul class="footer-links">
+                    <li>Bäckerstr. 8a, 84030 Ergolding</li>
+                    <li>+49 172 7045269</li>
+                    <li>info@volvevent.de</li>
+                </ul>
+            </div>
+            <div>
                 <h4>Navigation</h4>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="index.html">Start</a></li>
-                    <li><a href="termin.html">Services</a></li>
-                    <li><a href="projekte.html">Projekte</a></li>
-                    <li><a href="blog.html">News</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="blog.html">News & Insights</a></li>
                     <li><a href="forum.html">Forum</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
+            <div>
                 <h4>Rechtliches</h4>
-                <ul>
-                    <li><a href="impressum.html">Impressum</a></li>
-                    <li><a href="datenschutz.html">Datenschutz</a></li>
-                    <li><a href="agb.html">AGB</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Kontakt</h4>
-                <ul>
-                    <li style="color: var(--text-muted); font-size: 0.9rem;">Bäckerstr. 8a<br>84030 Ergolding</li>
-                    <li><a href="tel:+491727045269">+49 172 7045269</a></li>
-                    <li><a href="mailto:info@volvevent.de">info@volvevent.de</a></li>
+                <ul class="footer-links">
+                    <li><a href="#">Impressum</a></li>
+                    <li><a href="#">Datenschutz</a></li>
+                    <li><a href="#">AGB</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            &copy; 2026 volvevent. Muhammet Hasan Gürcan. Alle Rechte vorbehalten.
+        <div style="text-align: center; margin-top: 4rem; color: #666; font-size: 0.9rem;">
+            &copy; 2026 volvevent. Alle Rechte vorbehalten.
         </div>
     </footer>
 
-    <script>
-        // Hamburger Menu Toggle
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
