@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybersecurity Forum | volvevent.</title>
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=3.0">
     <style>
         body {
             background-color: #0a0a0a;
@@ -14,6 +14,7 @@
             padding: 0;
             cursor: none;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         /* Navbar */
@@ -21,23 +22,26 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background 0.3s;
         }
         .nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
         .nav-links a {
             color: #f5f5f7;
             text-decoration: none;
             font-size: 0.9rem;
-            transition: color 0.3s;
+            transition: color 0.3s, opacity 0.3s;
         }
         .nav-links a:hover {
             color: #2997FF;
@@ -46,15 +50,56 @@
             font-weight: 700;
             font-size: 1.5rem;
             letter-spacing: -0.5px;
+            color: #fff;
+            text-decoration: none;
         }
 
-        /* Forum Cards */
+        /* Hero */
+        .hero {
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(10,10,10,1)), url('images/cybersecurity_hero.jpg') center/cover no-repeat;
+            min-height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,69,58,0.15);
+            color: #ff453a;
+            border: 1px solid rgba(255,69,58,0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0 0 1rem;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            color: #86868b;
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Forum Grid */
         .forum-grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: 1fr;
             gap: 1.5rem;
             max-width: 1200px;
-            margin: -3rem auto 4rem;
+            margin: -4rem auto 6rem;
             padding: 0 2rem;
             position: relative;
             z-index: 10;
@@ -67,479 +112,636 @@
         .forum-card { 
             background: rgba(255,255,255,0.04); 
             border: 1px solid rgba(255,255,255,0.08); 
-            border-radius:16px; 
-            padding:2rem; 
-            transition: all 0.3s; 
-            cursor:pointer; 
+            border-radius: 16px; 
+            padding: 2rem; 
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, border-color 0.3s; 
             backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.8s ease-out backwards;
         }
         .forum-card:hover { 
-            background: rgba(41,151,255,0.08); 
+            background: rgba(41,151,255,0.06); 
             border-color: rgba(41,151,255,0.3); 
-            transform: translateY(-4px); 
+            transform: translateY(-5px); 
+        }
+        .forum-card-icon {
+            margin-bottom: 1rem;
         }
         .forum-card h3 {
             margin-top: 0;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
         }
         .forum-card p {
             color: #86868b;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
         .post-count {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 14px;
             border-radius: 12px;
             font-size: 0.8rem;
-            color: #86868b;
+            color: #a1a1a6;
+            align-self: flex-start;
         }
 
-        /* Featured Guides */
+        /* Guides Container */
         .guides-container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 6rem;
         }
-        .guide-card {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+        
+        .guide-article {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: 24px;
             overflow: hidden;
+            transition: transform 0.4s ease;
         }
-        @media (min-width: 992px) {
-            .guide-card {
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-            }
-            .img-right .guide-content { order: 1; }
-            .img-right .guide-image { order: 2; }
+        .guide-article:hover {
+            border-color: rgba(255,255,255,0.12);
         }
-        .guide-content {
-            padding: 3rem;
+        
+        .guide-hero {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
         }
-        .guide-image img {
+        .guide-hero img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            min-height: 400px;
+            transition: transform 0.6s;
         }
-        .badge {
-            display: inline-block;
-            background: rgba(41,151,255,0.1);
+        .guide-article:hover .guide-hero img {
+            transform: scale(1.03);
+        }
+        .guide-hero-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent, rgba(10,10,10,1));
+        }
+        
+        .guide-content {
+            padding: 3rem;
+            background: #0a0a0a;
+        }
+        .guide-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #86868b;
+        }
+        .guide-badge {
+            background: rgba(41,151,255,0.15);
             color: #2997FF;
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        .meta {
-            color: #86868b;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-        .guide-card h2 {
-            font-size: 2rem;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        .guide-card h3 {
-            font-size: 1.2rem;
-            color: #2997FF;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .guide-card p {
-            color: #86868b;
-            margin-bottom: 1rem;
-        }
-        .action-box {
-            background: rgba(41,151,255,0.05);
-            border-left: 4px solid #2997FF;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            border-radius: 0 8px 8px 0;
-        }
-        .table-dark {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-        }
-        .table-dark th, .table-dark td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .table-dark th {
-            color: #fff;
-            background: rgba(255,255,255,0.05);
-        }
-        .table-dark td {
-            color: #86868b;
         }
         
-        /* Text only guide */
-        .text-guide {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 24px;
-            padding: 4rem;
-            margin-top: 2rem;
+        .guide-content h2 {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
         }
-        .checklist-item {
+        .guide-content p {
+            color: #a1a1a6;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .guide-content h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            align-items: center;
+            gap: 12px;
         }
-        .step-num {
-            background: #2997FF;
-            color: white;
-            width: 40px;
-            height: 40px;
+        
+        .step-circle {
+            background: rgba(41,151,255,0.1);
+            color: #2997FF;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(41,151,255,0.3);
             flex-shrink: 0;
         }
-        .callout {
-            background: rgba(255, 214, 10, 0.1);
-            border: 1px solid rgba(255, 214, 10, 0.3);
-            color: #ffd60a;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: inline-block;
+
+        .action-box {
+            background: linear-gradient(90deg, rgba(41,151,255,0.08), transparent);
+            border-left: 4px solid #2997FF;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 0 12px 12px 0;
+        }
+        .action-box strong {
+            display: block;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Checklist Guide */
+        .checklist-guide {
+            padding: 4rem;
+        }
+        .checklist-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .checklist-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .check-icon {
+            margin-top: 4px;
+            background: rgba(48,209,88,0.1);
+            border: 1px solid rgba(48,209,88,0.3);
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Table */
+        .table-dark {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 2rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .table-dark th, .table-dark td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .table-dark th {
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            font-weight: 600;
+        }
+        .table-dark tr:last-child td {
+            border-bottom: none;
+        }
+        .table-dark td {
+            color: #a1a1a6;
         }
 
         /* CTA */
         .cta-section {
-            margin: 6rem 2rem;
-            padding: 4rem 2rem;
+            margin: 6rem auto;
+            max-width: 900px;
+            padding: 5rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(41,151,255,0.05));
-            border: 1px solid rgba(41,151,255,0.2);
+            background: radial-gradient(circle at center, rgba(41,151,255,0.1) 0%, transparent 70%);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 24px;
         }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .cta-section p {
+            color: #a1a1a6;
+            margin-bottom: 3rem;
+            font-size: 1.15rem;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
             font-weight: 600;
             text-decoration: none;
-            transition: opacity 0.3s;
-            margin: 0 0.5rem;
+            transition: all 0.3s;
+            font-size: 1rem;
         }
-        .btn:hover { opacity: 0.8; }
-        .btn-primary { background: #2997FF; color: white; }
-        .btn-whatsapp { background: #30d158; color: white; }
+        .btn-whatsapp { 
+            background: #30d158; 
+            color: #000; 
+        }
+        .btn-whatsapp:hover { 
+            background: #28b84d; 
+            transform: translateY(-2px);
+        }
+        .btn-primary { 
+            background: #2997FF; 
+            color: white; 
+        }
+        .btn-primary:hover { 
+            background: #0077ed; 
+            transform: translateY(-2px);
+        }
+        .btn-nav {
+            background: #2997FF;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            margin-left: 1rem;
+        }
 
         /* Footer */
         footer {
             background: #000;
             border-top: 1px solid rgba(255,255,255,0.08);
-            padding: 4rem 2rem;
-            margin-top: 4rem;
+            padding: 6rem 2rem 3rem;
         }
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
             color: #86868b;
         }
-        .footer-content h4 { color: #fff; margin-bottom: 1.5rem; }
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 0.8rem; }
-        .footer-links a { color: #86868b; text-decoration: none; }
+        .footer-content h4 { color: #fff; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a { color: #86868b; text-decoration: none; transition: color 0.3s; }
         .footer-links a:hover { color: #fff; }
+        .footer-logo { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
     </style>
+    <script src="main.js?v=3.0" defer></script>
 </head>
 <body>
 
     <nav>
-        <div class="logo">volvevent.</div>
+        <a href="index.html" class="logo">volvevent.</a>
         <div class="nav-links">
             <a href="index.html">Start</a>
-            <a href="#">Services</a>
-            <a href="#">Projekte</a>
+            <a href="projekte.html">Projekte</a>
             <a href="blog.html">News</a>
             <a href="forum.html" style="color:#2997FF;">Forum</a>
-            <a href="#">Kontakt</a>
-            <a href="#" class="btn-primary" style="padding: 6px 12px; border-radius: 6px; margin-left: 1rem;">Termin buchen</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="termin.html" class="btn-nav">Termin buchen</a>
         </div>
     </nav>
 
-    <section style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('images/cybersecurity_hero.jpg') center/cover; min-height: 60vh; display:flex; align-items:center; justify-content:center; text-align:center; padding: 6rem 2rem;">
+    <header class="hero">
         <div>
-            <span style="background: rgba(255,69,58,0.15); color:#ff453a; border:1px solid rgba(255,69,58,0.3); padding:6px 16px; border-radius:20px; font-size:0.85rem; font-weight:600;">⚠️ Cybersecurity Forum</span>
-            <h1 style="font-size:clamp(2.5rem,6vw,4rem); font-weight:700; margin:1.5rem 0 1rem;">IT-Sicherheit.<br>Kein Marketing.<br>Nur Fakten.</h1>
-            <p style="color:#86868b; font-size:1.2rem; max-width:600px; margin:0 auto 2rem;">Praxiserprobtes Expertenwissen für Administratoren, IT-Leiter und Unternehmer. Kostenlos. Direkt anwendbar.</p>
+            <div class="hero-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff453a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                Cybersecurity Forum
+            </div>
+            <h1>IT-Sicherheit.<br>Kein Marketing.<br>Nur Fakten.</h1>
+            <p>Praxiserprobtes Expertenwissen für Administratoren, IT-Leiter und Unternehmer. Kostenlos. Direkt anwendbar und radikal transparent.</p>
         </div>
-    </section>
+    </header>
 
-    <div class="forum-grid">
-        <div class="forum-card">
-            <h3>🔒 Cybersecurity Grundlagen</h3>
-            <p>Basiswissen, Best Practices und Fundamente einer sicheren IT-Infrastruktur.</p>
-            <span class="post-count">42 Beiträge</span>
+    <main>
+        <div class="forum-grid">
+            <div class="forum-card delay-1">
+                <div class="forum-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2997FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h3>Cybersecurity Grundlagen</h3>
+                <p>Basiswissen, Best Practices und Fundamente einer modernen, sicheren IT-Infrastruktur.</p>
+                <span class="post-count">42 Beiträge</span>
+            </div>
+            <div class="forum-card delay-2">
+                <div class="forum-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2997FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <h3>Netzwerkarchitektur & Firewalls</h3>
+                <p>Segmentierung, Routing, VPNs und Deep Packet Inspection im technischen Detail analysiert.</p>
+                <span class="post-count">38 Beiträge</span>
+            </div>
+            <div class="forum-card delay-3">
+                <div class="forum-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2997FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h3>Server & Virtualisierung</h3>
+                <p>Sichere Bereitstellung von VMs, Hypervisoren und modernen Container-Umgebungen.</p>
+                <span class="post-count">29 Beiträge</span>
+            </div>
+            <div class="forum-card delay-4">
+                <div class="forum-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff453a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                </div>
+                <h3>Ransomware & Incident Response</h3>
+                <p>Prävention, schnelle Erkennung und verlässliche Notfallpläne für den Ernstfall.</p>
+                <span class="post-count">51 Beiträge</span>
+            </div>
+            <div class="forum-card delay-5">
+                <div class="forum-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2997FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                </div>
+                <h3>KI & Automatisierung</h3>
+                <p>Sicherer Einsatz von Automatisierungstools und generativer KI in Unternehmensprozessen.</p>
+                <span class="post-count">17 Beiträge</span>
+            </div>
+            <div class="forum-card delay-6">
+                <div class="forum-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2997FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                </div>
+                <h3>Datenschutz & Compliance</h3>
+                <p>DSGVO, NIS2 und rechtliche Rahmenbedingungen technisch sauber in der IT umsetzen.</p>
+                <span class="post-count">24 Beiträge</span>
+            </div>
         </div>
-        <div class="forum-card">
-            <h3>🌐 Netzwerkarchitektur & Firewalls</h3>
-            <p>Segmentierung, Routing, VPNs und Deep Packet Inspection im Detail.</p>
-            <span class="post-count">38 Beiträge</span>
+
+        <div class="guides-container">
+            
+            <!-- GUIDE 1 -->
+            <article class="guide-article">
+                <div class="guide-hero">
+                    <img src="images/ransomware_attack.jpg" alt="Ransomware Attack Visualization">
+                    <div class="guide-hero-overlay"></div>
+                </div>
+                <div class="guide-content">
+                    <div class="guide-meta">
+                        <span class="guide-badge">Threat Intelligence</span>
+                        <span>12. Oktober 2026</span>
+                        <span>8 Min. Lesezeit</span>
+                    </div>
+                    <h2>Die 5 gefährlichsten Angriffsvektoren 2026</h2>
+                    <p>Die Bedrohungslandschaft wandelt sich in einem nie dagewesenen Tempo. Angreifer agieren professioneller, sind extrem gut finanziert und setzen zunehmend auf hochautomatisierte Angriffsvektoren. Wer sich heute als Unternehmen nur noch auf einen Standard-Virenschutz und eine einfache Basis-Firewall verlässt, handelt grob fahrlässig. Dieser Leitfaden analysiert detailliert die akutesten und gefährlichsten Bedrohungen für mittelständische Unternehmen und zeigt sofort umsetzbare, konkrete Abwehrmechanismen auf, um die Resilienz Ihrer Infrastruktur signifikant zu erhöhen.</p>
+                    
+                    <h3><div class="step-circle">1</div> KI-gestütztes Spear-Phishing</h3>
+                    <p>Phishing-Mails sind dank generativer KI von legitimer Geschäftskorrespondenz so gut wie nicht mehr zu unterscheiden. Die Zeiten von schlechter Grammatik sind lange vorbei. Angreifer analysieren öffentlich zugängliche Daten, um kontextbezogene E-Mails zu generieren, die selbst IT-affine und aufmerksame Mitarbeiter täuschen.</p>
+                    
+                    <h3><div class="step-circle">2</div> Supply-Chain-Angriffe</h3>
+                    <p>Anstatt das gut gesicherte Hauptziel direkt anzugreifen, kompromittieren Hacker zunehmend die schwächer geschützten IT-Dienstleister oder Software-Zulieferer. Über vertrauenswürdige Update-Mechanismen oder VPN-Tunnel externer Partner infiltrieren sie anschließend das eigentliche Unternehmensnetzwerk. Die digitale Lieferkette wird so zum massiven Risiko.</p>
+                    
+                    <h3><div class="step-circle">3</div> Ungepatchte VPN-Gateways</h3>
+                    <p>Der dauerhafte Trend zu Remote-Work hat VPN-Gateways zu einem der lukrativsten Angriffsziele überhaupt gemacht. Schwachstellen in Fortinet, Pulse Secure oder Cisco Systemen werden oft innerhalb von Stunden massenhaft ausgenutzt. Ein kompromittiertes Gateway gewährt sofortigen Zugang ins interne Netz.</p>
+                    
+                    <h3><div class="step-circle">4</div> Insider Threats & geleakte Credentials</h3>
+                    <p>Der menschliche Faktor bleibt ein hochkritisches Einfallstor. Ob böswillige Insider oder unabsichtlich geleakte Zugangsdaten – mit gültigen Credentials müssen Hacker schlicht keine Sicherheitslücken mehr finden. Sie loggen sich einfach ein und bewegen sich völlig unauffällig als legitimer Nutzer im System.</p>
+                    
+                    <h3><div class="step-circle">5</div> Ransomware-as-a-Service (RaaS)</h3>
+                    <p>Cyberkriminalität ist heute ein hochprofitables Dienstleistungsgeschäft. RaaS-Plattformen ermöglichen es Kriminellen ohne tiefes technisches Wissen, hochentwickelte Erpressungstrojaner einzusetzen. Die klassische Verschlüsselung wird dabei zunehmend von der doppelten Erpressung abgelöst: Daten werden vorab gestohlen und mit Veröffentlichung gedroht.</p>
+                    
+                    <div class="action-box">
+                        <strong>Konkrete Handlungsempfehlung:</strong>
+                        Führen Sie schrittweise ein Zero-Trust-Modell ein. Verifizieren Sie konsequent jede Identität, validieren Sie jedes Gerät und gewähren Sie Zugriffsrechte immer nur nach dem strikten Least-Privilege-Prinzip. Ein Security Operations Center (SOC) as a Service hilft, Anomalien rechtzeitig vor der Verschlüsselung zu erkennen.
+                    </div>
+                </div>
+            </article>
+
+            <!-- GUIDE 2 -->
+            <article class="guide-article">
+                <div class="guide-hero">
+                    <img src="images/cybersecurity_hero.jpg" alt="Cybersecurity Shield">
+                    <div class="guide-hero-overlay"></div>
+                </div>
+                <div class="guide-content">
+                    <div class="guide-meta">
+                        <span class="guide-badge">Architektur</span>
+                        <span>05. Oktober 2026</span>
+                        <span>10 Min. Lesezeit</span>
+                    </div>
+                    <h2>Zero-Trust in 5 Schritten</h2>
+                    <p>Das traditionelle Perimeter-Sicherheitsmodell, oft als "Burg und Burggraben" bezeichnet, hat in modernen Umgebungen ausgedient. Sobald ein Angreifer die äußere Firewall überwindet – meist durch einen simplen, versehentlichen Phishing-Klick –, hat er sofort freies Spiel im vermeintlich sicheren internen Netzwerk. Zero Trust geht von der radikalen Prämisse aus: "Vertraue niemandem, verifiziere alles." Hier ist der praxisnahe und schrittweise Weg dorthin für Ihr Unternehmen.</p>
+                    
+                    <h3><div class="step-circle">1</div> Identitätsverifizierung & MFA</h3>
+                    <p>Die Identität ist der moderne Perimeter. Implementieren Sie zwingend Multi-Faktor-Authentifizierung (MFA) für absolut alle Zugänge. Nutzen Sie hardwarebasierte Token (FIDO2) oder moderne Authenticator-Apps. Binden Sie alle Applikationen an einen zentralen Identity Provider wie Entra ID an.</p>
+                    
+                    <h3><div class="step-circle">2</div> Netzwerk-Mikrosegmentierung</h3>
+                    <p>Brechen Sie große, flache Unternehmensnetzwerke in kleine, isolierte Zonen auf. Ein kompromittierter IoT-Drucker im Gäste-WLAN darf niemals Zugriff auf den kritischen Datenbankserver haben. Restriktive interne Firewall-Regeln zwischen Segmenten verhindern die laterale Ausbreitung effektiv.</p>
+                    
+                    <h3><div class="step-circle">3</div> Least-Privilege-Prinzip</h3>
+                    <p>Geben Sie Benutzern und Service-Accounts nur die absolut minimal notwendigen Rechte für ihre Aufgabe. Entziehen Sie dauerhafte lokale Administratorrechte auf allen Endgeräten. Nutzen Sie Privileged Identity Management für zeitlich begrenzte Admin-Zugriffe, die streng überwacht werden.</p>
+                    
+                    <h3><div class="step-circle">4</div> Endgeräte-Validierung (EDR/MDM)</h3>
+                    <p>Behandeln Sie jedes Endgerät als potenziell kompromittiert. Nutzen Sie Mobile Device Management und Endpoint Detection and Response, um den Gesundheitszustand kontinuierlich zu prüfen. Ein Zugriff darf nur von konformen, aktualisierten und sauberen Geräten aus erfolgen.</p>
+                    
+                    <h3><div class="step-circle">5</div> Kontinuierliches Monitoring</h3>
+                    <p>Ohne tiefgehende Sichtbarkeit gibt es keine echte Sicherheit. Sammeln und korrelieren Sie Logdaten aus allen Systemen zentral in einem SIEM. Nutzen Sie Monitoring-Tools, um Abweichungen von der normalen Baseline in Echtzeit zu erkennen und sofort automatisiert darauf reagieren zu können.</p>
+                    
+                    <div class="action-box">
+                        <strong>Fazit:</strong>
+                        Zero Trust ist kein fertiges Software-Produkt, das man einfach kaufen kann. Es ist ein Architekturansatz und ein Mindset. Beginnen Sie iterativ mit den Identitäten (Schritt 1) – hier erzielen Sie sofort den mit Abstand größten Sicherheitsgewinn bei vergleichsweise überschaubarem Aufwand.
+                    </div>
+                </div>
+            </article>
+
+            <!-- GUIDE 3 -->
+            <article class="guide-article">
+                <div class="guide-hero">
+                    <img src="images/virtualization_servers.jpg" alt="Proxmox Server Rack">
+                    <div class="guide-hero-overlay"></div>
+                </div>
+                <div class="guide-content">
+                    <div class="guide-meta">
+                        <span class="guide-badge">Infrastruktur</span>
+                        <span>28. September 2026</span>
+                        <span>12 Min. Lesezeit</span>
+                    </div>
+                    <h2>Proxmox VE vs. VMware vSphere</h2>
+                    <p>Die Übernahme von VMware durch Broadcom hat die IT-Welt massiv erschüttert. Drastische Preiserhöhungen durch den aggressiven Zwang zu Subscription-Modellen und das Abkündigen bewährter Kauflizenzen zwingen aktuell viele IT-Entscheider zum grundlegenden Umdenken. Ist der Wechsel zum Open-Source-Champion Proxmox VE wirklich die Lösung für den Mittelstand? Ein detaillierter, technisch schonungsloser Vergleich beider Welten.</p>
+                    
+                    <h3>Kostenvergleich: Die harte Realität</h3>
+                    <p>VMware vSphere Standard kostet im neuen Modell oft das Drei- bis Fünffache der bisher gewohnten Wartungsverträge. Ein typischer mittelständischer Cluster mit 3 Hosts kann extrem schnell über 15.000 € pro Jahr verschlingen. Proxmox VE ist grundsätzlich kostenlos; eine Enterprise-Subscription für denselben Cluster inklusive Premium Support liegt bei lediglich rund 3.000 € jährlich.</p>
+                    
+                    <h3>Performance & Architektur</h3>
+                    <p>Während VMware traditionell auf den proprietären ESXi-Kernel setzt, basiert Proxmox auf bewährtem Debian Linux und KVM (Kernel-based Virtual Machine). In realistischen Benchmarks nehmen sich beide Hypervisoren bei reiner CPU/RAM-Performance so gut wie nichts. Proxmox punktet zudem enorm mit nativer LXC-Container-Unterstützung für extrem ressourcenschonende, leichtgewichtige Workloads.</p>
+                    
+                    <h3>Feature-Vergleich</h3>
+                    <table class="table-dark">
+                        <tr>
+                            <th>Feature</th>
+                            <th>VMware vSphere</th>
+                            <th>Proxmox VE</th>
+                        </tr>
+                        <tr>
+                            <td>Live Migration</td>
+                            <td>Ja (vMotion)</td>
+                            <td>Ja (inklusive)</td>
+                        </tr>
+                        <tr>
+                            <td>High Availability (HA)</td>
+                            <td>Exzellent (vSphere HA)</td>
+                            <td>Sehr gut (Corosync/Pacemaker)</td>
+                        </tr>
+                        <tr>
+                            <td>Software Defined Storage</td>
+                            <td>vSAN (sehr teuer lizenziert)</td>
+                            <td>Ceph & ZFS (voll integriert, gratis)</td>
+                        </tr>
+                        <tr>
+                            <td>Backup & Restore</td>
+                            <td>Veeam (zusätzlicher Drittanbieter)</td>
+                            <td>Proxmox Backup Server (inkludiert)</td>
+                        </tr>
+                        <tr>
+                            <td>Ecosystem / 3rd Party</td>
+                            <td>Riesig, etablierter Branchenstandard</td>
+                            <td>Wachsend, aber teils noch eingeschränkt</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="action-box">
+                        <strong>Fazit:</strong>
+                        Prüfen Sie kritisch Ihre bestehenden Abhängigkeiten zu Drittanbieter-Tools (insbesondere spezielle Backup-Software oder Storage-APIs). Sind diese technisch lösbar oder ersetzbar, bietet Proxmox VE aktuell ein absolut unschlagbares Preis-Leistungs-Verhältnis für den Mittelstand.
+                    </div>
+                </div>
+            </article>
+
+            <!-- GUIDE 4 (Checklist, No Image) -->
+            <article class="guide-article checklist-guide">
+                <div class="guide-meta">
+                    <span class="guide-badge">Cloud Security</span>
+                    <span>15. September 2026</span>
+                    <span>7 Min. Lesezeit</span>
+                </div>
+                <h2>Microsoft 365 absichern: 7 kritische Einstellungen</h2>
+                <p style="font-size: 1.15rem; color: #a1a1a6; margin-bottom: 3.5rem;">Standardmäßig priorisiert Microsoft bei M365 reibungslose Benutzerfreundlichkeit klar über strikte Sicherheit. Ein frischer Out-of-the-Box Tenant ist ein gefundenes Fressen für automatisierte Angreifer. Administratoren müssen hier zwingend und aktiv eingreifen. Setzen Sie diese 7 kritischen Konfigurationen umgehend um, um Ihr unternehmerisches Risiko drastisch zu minimieren.</p>
+                
+                <div class="checklist-item">
+                    <div class="check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">MFA für alle Konten global erzwingen</h3>
+                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Der absolute und wichtigste Basis-Schutz überhaupt. Deaktivieren Sie das veraltete per-User MFA und erzwingen Sie es konsequent global über Conditional Access Policies. Ohne MFA bedeutet ein einziges geknacktes Passwort sofort den Vollzugriff auf sensible Unternehmensdaten und Mails.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Conditional Access Policies konfigurieren</h3>
+                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Binden Sie jeden Zugriff zwingend an harte Bedingungen. Blockieren Sie pauschal Logins aus Ländern, in denen Sie operativ keine Geschäfte machen. Erlauben Sie den Zugriff auf vertrauliche SharePoint-Seiten ausschließlich von durch Intune verwalteten und als konform markierten Firmen-Geräten.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Legacy-Authentifizierung hart blockieren</h3>
+                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Alte Protokolle (wie POP3, IMAP, SMTP oder veraltete Office-Clients) unterstützen moderne Authentifizierung und MFA schlichtweg nicht. Angreifer nutzen diese gezielt für großangelegte Brute-Force-Attacken. Blockieren Sie Legacy-Auth global via CA, um diese massive historische Lücke endgültig zu schließen.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Admin-Rollen strikt trennen (PIM)</h3>
+                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Niemand benötigt 24/7 aktive globale Admin-Rechte auf dem Tenant. Richten Sie separate, unlizenzierte Admin-Accounts ein. Nutzen Sie Privileged Identity Management (PIM), sodass Admins ihre erweiterten Rechte nur bei konkretem Bedarf, streng zeitlich befristet und nach erneuter Überprüfung aktivieren können.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Defender for Office 365 ausreizen</h3>
+                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Verlassen Sie sich keinesfalls nur auf den einfachen Standard-Spamfilter. Konfigurieren Sie zwingend Safe Links für die dynamische URL-Prüfung beim Klick und Safe Attachments für das sichere Sandboxing von E-Mail-Anhängen, um hochentwickeltes Spear-Phishing abzufangen, bevor es Schaden anrichtet.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">DLP-Richtlinien aktiv einsetzen</h3>
+                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Data Loss Prevention (DLP) verhindert zuverlässig, dass Mitarbeiter versehentlich oder gar absichtlich Kreditkartennummern, Personaldaten oder als vertraulich markierte Dokumente nach extern freigeben. Klassifizieren Sie Ihre Datenstrukturen und setzen Sie unübersehbare Warnungen oder harte Blockaden für den Abfluss.</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="check-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">DKIM, DMARC und SPF perfektionieren</h3>
+                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Schützen Sie aktiv den wertvollen Ruf Ihrer eigenen E-Mail-Domain. Diese essenziellen DNS-Einträge stellen sicher, dass E-Mails authentisch sind. Ohne korrektes und striktes DMARC landen Ihre legitimen Mails oft im Spam, während externe Angreifer völlig ungestört unter Ihrem guten Namen Phishing betreiben.</p>
+                    </div>
+                </div>
+            </article>
+
         </div>
-        <div class="forum-card">
-            <h3>🖥️ Server & Virtualisierung</h3>
-            <p>Sichere Bereitstellung von VMs, Hypervisoren und Container-Umgebungen.</p>
-            <span class="post-count">29 Beiträge</span>
-        </div>
-        <div class="forum-card">
-            <h3>☠️ Ransomware & Incident Response</h3>
-            <p>Prävention, Erkennung und Notfallpläne für den Ernstfall.</p>
-            <span class="post-count">51 Beiträge</span>
-        </div>
-        <div class="forum-card">
-            <h3>🤖 KI & Automatisierung</h3>
-            <p>Sicherer Einsatz von Automatisierungstools und KI in Unternehmensprozessen.</p>
-            <span class="post-count">17 Beiträge</span>
-        </div>
-        <div class="forum-card">
-            <h3>📋 Datenschutz & Compliance</h3>
-            <p>DSGVO, NIS2 und rechtliche Rahmenbedingungen technisch umsetzen.</p>
-            <span class="post-count">24 Beiträge</span>
-        </div>
-    </div>
 
-    <div class="guides-container">
-        
-        <!-- GUIDE 1 -->
-        <article class="guide-card img-right">
-            <div class="guide-content">
-                <span class="badge">Threat Intelligence</span>
-                <div class="meta">12. Oktober 2026 · 8 Min. Lesezeit</div>
-                <h2>Die 5 gefährlichsten Angriffsvektoren 2026</h2>
-                <p>Die Bedrohungslandschaft wandelt sich rasant. Angreifer agieren professioneller, besser finanziert und zunehmend automatisiert. Wer sich heute nur auf Antivirus und eine Basis-Firewall verlässt, handelt grob fahrlässig. Dieser Artikel analysiert die akutesten Bedrohungen für mittelständische Unternehmen und zeigt konkrete Abwehrmechanismen auf, um die Resilienz signifikant zu erhöhen.</p>
-                
-                <h3>1. KI-gestütztes Spear-Phishing</h3>
-                <p>Phishing-Mails sind dank generativer KI von legitimer Geschäftskorrespondenz kaum noch zu unterscheiden. Die Zeiten von schlechter Rechtschreibung sind vorbei. Angreifer analysieren öffentlich zugängliche Daten, um hochgradig personalisierte, kontextbezogene E-Mails zu generieren, die selbst aufmerksame Mitarbeiter täuschen.</p>
-                
-                <h3>2. Supply-Chain-Angriffe (wie SolarWinds 2.0)</h3>
-                <p>Anstatt das gut gesicherte Ziel direkt anzugreifen, kompromittieren Hacker zunehmend schwächer geschützte Zulieferer oder Dienstleister. Über vertrauenswürdige Update-Mechanismen oder VPN-Tunnel externer Partner infiltrieren sie anschließend das eigentliche Unternehmensnetzwerk. Die Lieferkette wird zum massiven Risiko.</p>
-                
-                <h3>3. Ungepatchte VPN-Gateways</h3>
-                <p>Remote-Work hat VPN-Gateways zu einem der lukrativsten Ziele gemacht. Schwachstellen in Fortinet, Pulse Secure oder Cisco Geräten werden innerhalb von Stunden nach Bekanntwerden massenhaft ausgenutzt. Ein kompromittiertes Gateway gewährt Angreifern sofortigen, ungehinderten Zugang ins interne Netz.</p>
-                
-                <h3>4. Insider Threats & kompromittierte Zugangsdaten</h3>
-                <p>Der menschliche Faktor bleibt kritisch. Ob böswillige Insider oder, noch häufiger, unabsichtlich geleakte Credentials (z.B. durch Wiederverwendung von Passwörtern) – mit gültigen Zugangsdaten müssen Hacker keine Sicherheitslücken mehr finden, sie loggen sich einfach ein.</p>
-                
-                <h3>5. Ransomware-as-a-Service (RaaS)</h3>
-                <p>Cyberkriminalität ist heute ein Dienstleistungsgeschäft. RaaS-Plattformen ermöglichen es auch technisch unversierten Kriminellen, hochentwickelte Erpressungstrojaner einzusetzen. Die Verschlüsselung wird dabei zunehmend von der doppelten Erpressung (Double Extortion) begleitet: Daten werden vor der Verschlüsselung gestohlen.</p>
-                
-                <div class="action-box">
-                    <strong>Konkrete Handlungsempfehlung:</strong><br>
-                    Führen Sie ein Zero-Trust-Modell ein. Verifizieren Sie jede Identität, validieren Sie jedes Gerät und gewähren Sie Zugriffsrechte nur nach dem Least-Privilege-Prinzip. Ein Security Operations Center (SOC) as a Service kann helfen, Anomalien rechtzeitig zu erkennen.
-                </div>
+        <section class="cta-section">
+            <h2>Haben Sie eine konkrete Sicherheitsfrage?</h2>
+            <p>Lassen Sie uns transparent und offen über Ihre aktuelle Infrastruktur sprechen. Unverbindlich, ehrlich und absolut auf Augenhöhe mit unseren technischen Experten.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-whatsapp">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                   WhatsApp
+                </a>
+                <a href="termin.html" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                   Termin buchen
+                </a>
             </div>
-            <div class="guide-image">
-                <img src="images/ransomware_attack.jpg" alt="Ransomware Attack Visualization">
-            </div>
-        </article>
-
-        <!-- GUIDE 2 -->
-        <article class="guide-card">
-            <div class="guide-image">
-                <img src="images/cybersecurity_hero.jpg" alt="Cybersecurity Shield">
-            </div>
-            <div class="guide-content">
-                <span class="badge">Architektur</span>
-                <div class="meta">05. Oktober 2026 · 10 Min. Lesezeit</div>
-                <h2>Zero-Trust in 5 Schritten: Der Implementierungsguide</h2>
-                <p>Das traditionelle Perimeter-Sicherheitsmodell ("Burg und Burggraben") hat ausgedient. Sobald ein Angreifer die äußere Firewall überwindet – oft durch einen simplen Phishing-Klick –, hat er freies Spiel im vermeintlich sicheren internen Netz. Zero Trust geht von der Prämisse aus: "Vertraue niemandem, verifiziere alles." Hier ist der praxisnahe Weg dorthin.</p>
-                
-                <h3>Schritt 1: Identitätsverifizierung & MFA einführen</h3>
-                <p>Die Identität ist der neue Perimeter. Implementieren Sie zwingend Multi-Faktor-Authentifizierung (MFA) für alle Zugänge. Nutzen Sie hardwarebasierte Token (FIDO2) oder Authenticator-Apps statt SMS. Binden Sie alle Applikationen an einen zentralen Identity Provider (IdP) wie Entra ID (Azure AD) an.</p>
-                
-                <h3>Schritt 2: Netzwerk mikrosegmentieren</h3>
-                <p>Brechen Sie große, flache Netzwerke in kleine, isolierte Zonen (VLANs) auf. Ein kompromittierter Drucker im Gäste-WLAN darf niemals Zugriff auf den Datenbankserver haben. Restriktive Firewall-Regeln zwischen den Segmenten verhindern die laterale Ausbreitung von Schadsoftware effektiv.</p>
-                
-                <h3>Schritt 3: Least-Privilege-Prinzip konsequent umsetzen</h3>
-                <p>Geben Sie Benutzern und Diensten nur die minimal notwendigen Rechte, die sie für ihre aktuelle Aufgabe benötigen. Entziehen Sie dauerhafte lokale Administratorrechte auf Endgeräten. Nutzen Sie Privileged Identity Management (PIM) für zeitlich begrenzte Admin-Zugriffe ("Just-in-Time").</p>
-                
-                <h3>Schritt 4: Alle Endgeräte als potenziell kompromittiert behandeln</h3>
-                <p>Nutzen Sie Mobile Device Management (MDM) und Endpoint Detection and Response (EDR), um den Gesundheitszustand jedes Geräts kontinuierlich zu prüfen. Ein Zugriff auf Unternehmensdaten darf nur von konformen, aktuellen und sauberen Endgeräten erfolgen.</p>
-                
-                <h3>Schritt 5: Kontinuierliches Monitoring mit Checkmk & SIEM</h3>
-                <p>Ohne Sichtbarkeit keine Sicherheit. Sammeln und korrelieren Sie Logdaten aus allen Systemen in einem Security Information and Event Management (SIEM). Nutzen Sie Monitoring-Tools wie Checkmk, um Abweichungen von der Baseline (Anomalien) in Echtzeit zu erkennen.</p>
-                
-                <div class="action-box">
-                    <strong>Fazit:</strong><br>
-                    Zero Trust ist kein Produkt, das man kaufen kann, sondern ein Architekturansatz. Beginnen Sie iterativ mit den Identitäten (Schritt 1) – hier erzielen Sie den größten Sicherheitsgewinn mit dem geringsten Aufwand.
-                </div>
-            </div>
-        </article>
-
-        <!-- GUIDE 3 -->
-        <article class="guide-card img-right">
-            <div class="guide-content">
-                <span class="badge">Infrastruktur</span>
-                <div class="meta">28. September 2026 · 12 Min. Lesezeit</div>
-                <h2>Proxmox VE vs. VMware vSphere: Die ehrliche Analyse</h2>
-                <p>Die Übernahme von VMware durch Broadcom hat die IT-Welt erschüttert. Drastische Preiserhöhungen durch den Zwang zu Subscription-Modellen und das Abkündigen bewährter Kauflizenzen zwingen viele IT-Leiter zum Umdenken. Ist der Wechsel zum Open-Source-Champion Proxmox VE die Lösung? Ein detaillierter, technischer Vergleich.</p>
-                
-                <h3>Kostenvergleich: Die harte Realität</h3>
-                <p>VMware vSphere Standard kostet im neuen Modell oft das Drei- bis Fünffache der bisherigen Wartungsverträge. Ein mittelständischer Cluster mit 3 Hosts (je 2 CPUs) kann schnell über 15.000 € pro Jahr verschlingen. Proxmox VE ist grundsätzlich kostenlos; eine Enterprise-Subscription für denselben Cluster (Premium Support) liegt bei etwa 3.000 € pro Jahr.</p>
-                
-                <h3>Performance & Architektur</h3>
-                <p>Während VMware auf den proprietären ESXi-Kernel setzt, basiert Proxmox auf Debian Linux und KVM (Kernel-based Virtual Machine). In Benchmarks nehmen sich beide Hypervisoren bei reiner CPU/RAM-Performance kaum etwas. Proxmox punktet zusätzlich mit nativer LXC-Container-Unterstützung für extrem ressourcenschonende Workloads.</p>
-                
-                <h3>Feature-Vergleich</h3>
-                <table class="table-dark">
-                    <tr>
-                        <th>Feature</th>
-                        <th>VMware vSphere</th>
-                        <th>Proxmox VE</th>
-                    </tr>
-                    <tr>
-                        <td>Live Migration</td>
-                        <td>Ja (vMotion)</td>
-                        <td>Ja</td>
-                    </tr>
-                    <tr>
-                        <td>High Availability (HA)</td>
-                        <td>Exzellent (vSphere HA)</td>
-                        <td>Sehr gut (Corosync/Pacemaker)</td>
-                    </tr>
-                    <tr>
-                        <td>Storage</td>
-                        <td>vSAN (teuer)</td>
-                        <td>Ceph & ZFS (integriert, inkl.)</td>
-                    </tr>
-                    <tr>
-                        <td>Backup</td>
-                        <td>Veeam (drittanbieter)</td>
-                        <td>Proxmox Backup Server (inkl.)</td>
-                    </tr>
-                    <tr>
-                        <td>Ecosystem/3rd Party</td>
-                        <td>Riesig, Branchenstandard</td>
-                        <td>Wachsend, aber eingeschränkt</td>
-                    </tr>
-                </table>
-                
-                <h3>Einsatzszenarien & Empfehlung</h3>
-                <p>Für hochkomplexe Enterprise-Umgebungen, die stark auf drittanbieter-Ökosysteme (wie komplexe SANs oder spezifische Backup-Lösungen) angewiesen sind, bleibt VMware oft alternativlos. Für den klassischen Mittelstand, der stabile VMs, HA und solides Backup (mit Proxmox Backup Server) benötigt, ist Proxmox VE aktuell die wirtschaftlich und technisch vernünftigste Wahl.</p>
-                
-                <div class="action-box">
-                    <strong>Fazit:</strong><br>
-                    Prüfen Sie Ihre Abhängigkeiten zu Drittanbieter-Tools (insbesondere Backup). Sind diese lösbar, bietet Proxmox VE ein unschlagbares Preis-Leistungs-Verhältnis.
-                </div>
-            </div>
-            <div class="guide-image">
-                <img src="images/virtualization_servers.jpg" alt="Proxmox Server Rack">
-            </div>
-        </article>
-
-        <!-- GUIDE 4 (Text Only) -->
-        <article class="text-guide">
-            <span class="badge">Cloud Security</span>
-            <h2>Microsoft 365 absichern: Die 7 kritischen Einstellungen</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 3rem;">Standardmäßig priorisiert Microsoft 365 Benutzerfreundlichkeit über Sicherheit. Out-of-the-Box ist ein Tenant ein gefundenes Fressen für Angreifer. Administratoren müssen aktiv eingreifen. Setzen Sie diese 7 kritischen Konfigurationen um, um Ihr Risiko drastisch zu minimieren.</p>
-            
-            <div class="checklist-item">
-                <div class="step-num">1</div>
-                <div>
-                    <h3>Multi-Faktor-Authentifizierung (MFA) für alle Konten erzwingen</h3>
-                    <p>Der absolute Basis-Schutz. Deaktivieren Sie per-User MFA und erzwingen Sie es global über Conditional Access (oder Security Defaults, falls Sie kein Entra ID P1 haben). Ohne MFA ist ein geknacktes Passwort sofort ein Vollzugriff auf alle Unternehmensdaten.</p>
-                    <span class="callout">Tipp: Nutzen Sie Number Matching in der Authenticator App gegen MFA Fatigue Attacks.</span>
-                </div>
-            </div>
-            
-            <div class="checklist-item">
-                <div class="step-num">2</div>
-                <div>
-                    <h3>Conditional Access Policies konfigurieren</h3>
-                    <p>Binden Sie den Zugriff an Bedingungen. Blockieren Sie Logins aus Ländern, in denen Sie keine Geschäfte machen. Erlauben Sie den Zugriff auf sensible SharePoint-Seiten nur von Firmen-Geräten (Intune-compliant) und fordern Sie bei riskanten Anmeldungen eine Passwortänderung.</p>
-                </div>
-            </div>
-            
-            <div class="checklist-item">
-                <div class="step-num">3</div>
-                <div>
-                    <h3>Legacy-Authentifizierung blockieren</h3>
-                    <p>Alte Protokolle (POP3, IMAP, SMTP, veraltete Office-Clients) unterstützen moderne Authentifizierung und MFA oft nicht. Angreifer nutzen diese gezielt für Brute-Force-Attacken. Blockieren Sie Legacy-Auth global via Conditional Access, um diese massive Lücke zu schließen.</p>
-                    <span class="callout">Warnung: Prüfen Sie vorher in den Sign-in-Logs, ob alte Multifunktionsdrucker davon betroffen sind.</span>
-                </div>
-            </div>
-            
-            <div class="checklist-item">
-                <div class="step-num">4</div>
-                <div>
-                    <h3>Admin-Rollen strikt trennen (PIM)</h3>
-                    <p>Niemand braucht 24/7 globale Admin-Rechte. Richten Sie separate, unlizenzierte Admin-Accounts ein. Nutzen Sie Privileged Identity Management (PIM), sodass Admins ihre Rechte nur bei Bedarf, zeitlich befristet und nach erneuter MFA-Prüfung aktivieren können.</p>
-                </div>
-            </div>
-            
-            <div class="checklist-item">
-                <div class="step-num">5</div>
-                <div>
-                    <h3>Microsoft Defender for Office 365 aktivieren</h3>
-                    <p>Verlassen Sie sich nicht auf den Standard-Spamfilter. Konfigurieren Sie Safe Links (URL-Prüfung beim Klick) und Safe Attachments (Sandboxing von E-Mail-Anhängen), um hochentwickeltes Phishing und Zero-Day-Malware abzufangen, bevor sie den Posteingang erreichen.</p>
-                </div>
-            </div>
-            
-            <div class="checklist-item">
-                <div class="step-num">6</div>
-                <div>
-                    <h3>DLP-Richtlinien für sensible Daten einrichten</h3>
-                    <p>Data Loss Prevention (DLP) verhindert, dass Mitarbeiter versehentlich oder absichtlich Kreditkartennummern, Personaldaten oder vertrauliche Dokumente nach extern freigeben oder per E-Mail versenden. Klassifizieren Sie Ihre Daten und setzen Sie entsprechende Warnungen oder Blockaden.</p>
-                </div>
-            </div>
-            
-            <div class="checklist-item">
-                <div class="step-num">7</div>
-                <div>
-                    <h3>DKIM, DMARC und SPF für alle Domains konfigurieren</h3>
-                    <p>Schützen Sie den Ruf Ihrer Domain. Diese drei DNS-Einträge stellen sicher, dass E-Mails, die in Ihrem Namen gesendet werden, authentisch sind. Ohne korrektes DMARC landen Ihre legitimen Mails zunehmend im Spam, während Angreifer munter unter Ihrer Domain Phishing betreiben.</p>
-                    <span class="callout">Wichtig: DMARC erst auf 'none' stellen, auswerten und dann schrittweise auf 'reject' hochstufen.</span>
-                </div>
-            </div>
-        </article>
-
-    </div>
-
-    <div class="cta-section">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Haben Sie eine konkrete Sicherheitsfrage?</h2>
-        <p style="color: #86868b; margin-bottom: 2rem; font-size: 1.1rem;">Lassen Sie uns über Ihre Infrastruktur sprechen. Unverbindlich und auf Augenhöhe.</p>
-        <a href="#" class="btn btn-whatsapp">💬 WhatsApp</a>
-        <a href="#" class="btn btn-primary">📅 Termin buchen</a>
-    </div>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-content">
             <div>
-                <h4 style="font-size: 1.5rem; font-weight: 700;">volvevent.</h4>
+                <a href="index.html" class="logo footer-logo" style="display:block;">volvevent.</a>
                 <p>Enterprise IT Company.<br>Wir bauen sichere, skalierbare Infrastrukturen.</p>
             </div>
             <div>
                 <h4>Kontakt</h4>
                 <ul class="footer-links">
-                    <li>Bäckerstr. 8a, 84030 Ergolding</li>
-                    <li>+49 172 7045269</li>
+                    <li>Bäckerstr. 8a<br>84030 Ergolding</li>
+                    <li style="margin-top:1rem;">+49 172 7045269</li>
                     <li>info@volvevent.de</li>
                 </ul>
             </div>
@@ -547,7 +749,7 @@
                 <h4>Navigation</h4>
                 <ul class="footer-links">
                     <li><a href="index.html">Start</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="projekte.html">Projekte</a></li>
                     <li><a href="blog.html">News & Insights</a></li>
                     <li><a href="forum.html">Forum</a></li>
                 </ul>
@@ -555,16 +757,18 @@
             <div>
                 <h4>Rechtliches</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Impressum</a></li>
-                    <li><a href="#">Datenschutz</a></li>
-                    <li><a href="#">AGB</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
                 </ul>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 4rem; color: #666; font-size: 0.9rem;">
+        <div style="text-align: center; margin-top: 4rem; color: #555; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
             &copy; 2026 volvevent. Alle Rechte vorbehalten.
         </div>
     </footer>
 
 </body>
 </html>
+
+
