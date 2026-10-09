@@ -205,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadTime = Date.now();
     const indexSlider = setupSlider('slide-captcha', 'slide-thumb', 'slide-track', 'slide-text');
     const kontaktSlider = setupSlider('slide-captcha-kontakt', 'slide-thumb-kontakt', 'slide-track-kontakt', 'slide-text-kontakt');
+    const terminSlider = setupSlider('slide-captcha-termin', 'slide-thumb-termin', 'slide-track-termin', 'slide-text-termin');
 
     const formular = document.getElementById('buchungs-formular');
     const formularStatus = document.getElementById('formular-status');
@@ -301,6 +302,49 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Native Formular-Übermittlung (bypasses CORS/Adblockers)
             kontaktFormular.submit();
+        });
+    }
+
+    /* --- 4.6 Termin-Formular (termin.html) --- */
+    const terminFormular = document.getElementById('termin-formular');
+    const terminStatus = document.getElementById('termin-formular-status');
+    const terminKnopf = document.getElementById('termin-absenden');
+
+    if(terminFormular) {
+        terminFormular.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Slider Check
+            if (!terminSlider.isVerified()) {
+                if(terminStatus) {
+                    terminStatus.textContent = 'Bitte ziehen Sie den Regler zur Verifizierung nach rechts.';
+                    terminStatus.style.color = '#ff453a';
+                }
+                return;
+            }
+
+            // Timestamp Check
+            if (Date.now() - loadTime < 3000) {
+                if(terminStatus) {
+                    terminStatus.textContent = 'Verifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.';
+                    terminStatus.style.color = '#ff453a';
+                }
+                return;
+            }
+
+            if(terminStatus) {
+                terminStatus.textContent = 'Verbindung wird hergestellt...';
+                terminStatus.style.color = 'var(--akzent-blau, #2997FF)';
+            }
+            if(terminKnopf) terminKnopf.disabled = true;
+
+            // Subject dynamisch setzen
+            const nameVal = document.getElementById('termin-name') ? document.getElementById('termin-name').value : '';
+            const dienstVal = document.getElementById('termin-dienstleistung') ? document.getElementById('termin-dienstleistung').value : '';
+            const hiddenSubj = document.getElementById('termin-hidden-subject');
+            if(hiddenSubj) hiddenSubj.value = 'Terminanfrage: ' + dienstVal + ' von ' + nameVal;
+
+            terminFormular.submit();
         });
     }
 

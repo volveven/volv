@@ -1,27 +1,374 @@
 <!DOCTYPE html>
-<html lang="de" class="weiches-scrollen">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="3tmSzY6xermROxEE_cOnU1lgtfQVs-yvAVjeaPoQkfM" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>volvevent | Enterprise IT Architektur & Cybersecurity</title>
-    <meta name="description" content="volvevent. ist Ihr Premium-Partner für Enterprise IT-Architektur, High-End Softwareentwicklung und Cybersecurity aus Ergolding. Zero-Trust IT, VMware & SaaS.">
-    <meta name="keywords" content="IT Architektur, Cybersecurity, Softwareentwicklung, Ergolding, IT Systemhaus, SaaS Entwicklung, App Entwicklung, VMware, Proxmox, Checkmk, Webarchitektur, E-Commerce, VPN, Hardware Firewall">
-    <meta name="author" content="volvevent">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.volvevent.de/">
+    <meta name="google-site-verification" content="3tmSzY6xermROxEE_cOnU1lgtfQVs-yvAVjeaPoQkfM" />
+    <title>volvevent. | Enterprise IT. Ohne Kompromisse.</title>
+    <meta name="description" content="volvevent. ist Ihr Premium-Partner für Enterprise IT-Architektur, High-End Softwareentwicklung und Cybersecurity aus Ergolding.">
     
-    <!-- Open Graph (Social Media) -->
-    <meta property="og:title" content="volvevent | Enterprise IT Architektur & Cybersecurity">
-    <meta property="og:description" content="Premium-Partner für ganzheitliche Enterprise IT, Softwareentwicklung und Cybersecurity aus Ergolding.">
-    <meta property="og:url" content="https://www.volvevent.de/">
-    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-darker: #0a0a0a;
+            --card-bg: rgba(255,255,255,0.04);
+            --card-border: rgba(255,255,255,0.08);
+            --accent-blue: #2997FF;
+            --success-green: #30d158;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+        }
 
-    <!-- Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; frame-src https://www.google.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
-    <link rel="stylesheet" href="style.css?v=2.0">
-    <script src="main.js?v=2.0" defer></script>
-    
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .cta-btn {
+            background-color: var(--accent-blue);
+            color: #fff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background-color: #0071e3;
+            transform: scale(1.05);
+        }
+        
+        .cta-btn-outline {
+            background-color: transparent;
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .cta-btn-outline:hover {
+            background-color: var(--accent-blue);
+            color: #fff;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--card-border);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(41, 151, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(41, 151, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
+            z-index: 1;
+            animation: bgMove 20s linear infinite;
+        }
+
+        @keyframes bgMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* STATS STRIP */
+        .stats-strip {
+            background-color: var(--bg-darker);
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            padding: 3rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECTIONS GENERAL */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        /* CARDS */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: transform 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1.5rem;
+            fill: var(--accent-blue);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(41, 151, 255, 0.1);
+            color: var(--accent-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: var(--bg-darker);
+            border-top: 1px solid var(--card-border);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--text-main);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--card-border);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-ctas { flex-direction: column; }
+        }
+    </style>
+
     <!-- Enterprise E-E-A-T JSON-LD Mastercode -->
     <script type="application/ld+json">
     {
@@ -160,271 +507,298 @@
     }
     </script>
 </head>
-<body class="seiten-huelle">
+<body>
 
-    <!-- Mauszeiger -->
-    <div class="maus-zeiger-aussen" id="maus-zeiger-aussen"></div>
-    <div class="maus-zeiger-innen" id="maus-zeiger-innen"></div>
-
-    <!-- Apple-Style Smart Dropdown Navigation -->
-    <nav class="navigationsleiste" id="navigationsleiste">
-        <a href="index.html" class="logo-text interaktives-element">volvevent.</a>
-        <div class="menue-liste">
-            <div class="menue-punkt"><a href="index.html" class="menue-link interaktives-element">Home</a></div>
-            <div class="menue-punkt"><a href="#matrix" class="menue-link interaktives-element">Leistungen</a></div>
-            <div class="menue-punkt"><a href="#portfolio" class="menue-link interaktives-element">Portfolio</a></div>
-            <div class="menue-punkt"><a href="#architekt" class="menue-link interaktives-element">Architekt</a></div>
-            <div class="menue-punkt"><a href="#terminbuchung" class="menue-link interaktives-element">Strategiegespräch</a></div>
-            <div class="menue-punkt">
-                <span class="menue-link interaktives-element" style="cursor:none;">Legal ▾</span>
-                <div class="dropdown-menue">
-                    <a href="impressum.html" class="dropdown-link interaktives-element">Impressum</a>
-                    <a href="datenschutz.html" class="dropdown-link interaktives-element">Datenschutzerklärung</a>
-                    <a href="agb.html" class="dropdown-link interaktives-element">AGB</a>
-                    <a href="kontakt.html" class="dropdown-link interaktives-element">Kontakt</a>
-                </div>
-            </div>
+    <!-- 1. NAVIGATION -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">volvevent.</a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Start</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="projekte.html" class="nav-link">Projekte</a>
+            <a href="blog.html" class="nav-link">News</a>
+            <a href="forum.html" class="nav-link">Forum</a>
+            <a href="kontakt.html" class="nav-link">Kontakt</a>
+            <a href="termin.html" class="cta-btn">Termin buchen</a>
+        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
-    <main>
-        <!-- Hero Bereich -->
-        <header class="sektions-abstand zentrierter-container text-zentriert" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 900px; padding-top: 48px;">
-                <h1 class="haupt-ueberschrift erscheinen-element">
-                    Enterprise IT.<br>
-                    <span class="text-gradient">Kompromisslos sicher.</span>
-                </h1>
-                <p class="fliesstext erscheinen-element" style="margin: 0 auto; font-size: 1.4rem;">
-                    Wir implementieren forensische Sicherheit und kompromisslose Performance für Ihr Unternehmensnetzwerk. Keine Templates. Nur massgeschneiderte, unzerstörbare Software- und Netzwerkarchitekturen.
-                </p>
-                <!-- Trust Indicators -->
-                <div class="erscheinen-element" style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;">
-                    <span class="label-text" style="color: var(--text-haupt);">100% DSGVO Konform</span>
-                    <span class="label-text" style="color: var(--text-haupt);">Zero-Trust Architektur</span>
-                    <span class="label-text" style="color: var(--text-haupt);">In-House Entwicklung</span>
-                </div>
+    <!-- 2. HERO SECTION -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content reveal">
+            <h1>Enterprise IT.<br>Ohne Kompromisse.</h1>
+            <p>Ganzheitliche IT-Architektur, Cybersecurity und High-End Softwareentwicklung aus Ergolding. Für Unternehmen in ganz Deutschland, die auf Sicherheit und Performance setzen.</p>
+            <div class="hero-ctas">
+                <a href="termin.html" class="cta-btn">Termin buchen</a>
+                <a href="projekte.html" class="cta-btn-outline">Unsere Projekte</a>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Die Matrix (Service Arsenal) -->
-        <section id="matrix" class="sektions-abstand zentrierter-container">
-            <h2 class="sektions-ueberschrift erscheinen-element">Das Spektrum.</h2>
-
-            <div class="raster-layout">
-                <article class="premium-kachel erscheinen-element">
-                    <span class="label-text">Infrastruktur</span>
-                    <h3 class="kachel-ueberschrift">Server & Directory.</h3>
-                    <p class="fliesstext">
-                        Komplexe Windows- und Linux-Serverlandschaften. Wir orchestrieren Active Directory mit hochrestriktiven Gruppenrichtlinien (GPOs) und steuern Hardware-Rollouts mit militärischer Präzision.
-                    </p>
-                </article>
-
-                <article class="premium-kachel erscheinen-element">
-                    <span class="label-text">Virtualisierung</span>
-                    <h3 class="kachel-ueberschrift">High-Availability.</h3>
-                    <p class="fliesstext">
-                        Redundante HA-Cluster Architektur zur Eliminierung von Single Points of Failure. Skalierbare Deployments mit VMware vSphere Enterprise, Microsoft Hyper-V und Proxmox VE.
-                    </p>
-                </article>
-
-                <article class="premium-kachel erscheinen-element">
-                    <span class="label-text">Defense</span>
-                    <h3 class="kachel-ueberschrift">Netzwerk & Security.</h3>
-                    <p class="fliesstext">
-                        Latenzfreie, ausfallsichere Topologien durch intelligentes Routing. Mikroskopische VLAN-Segmentierung, Zero-Trust Firewalls und 24/7 Monitoring via Checkmk zur Früherkennung.
-                    </p>
-                </article>
-
-                <article class="premium-kachel erscheinen-element">
-                    <span class="label-text">Software</span>
-                    <h3 class="kachel-ueberschrift">Full-Stack Dev.</h3>
-                    <p class="fliesstext">
-                        Entwicklung nativer Enterprise Apps, Web-SaaS Lösungen und Corporate Websites. Maßgeschneiderte API-Backends und Exploit-resistente Datenbankarchitekturen, gehostet in isolierten Umgebungen.
-                    </p>
-                </article>
-            </div>
-        </section>
-
-        <!-- NEU: Referenzprojekte & Expertise -->
-        <section id="portfolio" class="sektions-abstand zentrierter-container" style="border-top: 1px solid var(--rahmen-farbe);">
-            <div class="text-zentriert erscheinen-element" style="margin-bottom: 4rem;">
-                <h2 class="sektions-ueberschrift" style="margin-bottom: 0.5em;">Referenzen & Expertise.</h2>
-                <p class="fliesstext" style="max-width: 700px; margin: 0 auto;">Bewiesene Kompetenz aus realen Enterprise- und Software-Projekten. Von B2B-Plattformen bis hin zu Consumer-Apps.</p>
-            </div>
-            
-            <div class="raster-layout-3">
-                <!-- OmniVoice App -->
-                <article class="portfolio-kachel erscheinen-element">
-                    <span class="label-text" style="color: var(--akzent-blau);">In-House App (Coming Soon)</span>
-                    <h3 class="kachel-ueberschrift">OmniVoice</h3>
-                    <p class="fliesstext" style="font-size: 1rem;">Unsere firmeneigene Mobile-Applikation. Ein technologischer Meilenstein in Entwicklung. Bald weltweit in allen App Stores verfügbar.</p>
-                </article>
-
-                <!-- mha-solutions.de -->
-                <article class="portfolio-kachel erscheinen-element">
-                    <span class="label-text">Corporate Webpräsenz</span>
-                    <h3 class="kachel-ueberschrift">mha-solutions.de</h3>
-                    <p class="fliesstext" style="font-size: 1rem;">Entwicklung einer repräsentativen, performanten Webseite für ein Bauunternehmen. Fokus auf die klare digitale Präsentation allumfänglicher Baudienstleistungen.</p>
-                </article>
-
-                <!-- latuning.de -->
-                <article class="portfolio-kachel erscheinen-element">
-                    <span class="label-text">Automotive Webarchitektur</span>
-                    <h3 class="kachel-ueberschrift">latuning.de</h3>
-                    <p class="fliesstext" style="font-size: 1rem;">Digitale Präsenz für einen professionellen Chiptuner. Strukturierte Darstellung komplexer technischer Leistungen wie Stage 1-2 Tuning und Fahrzeugoptimierung für optimalen Verbrauch.</p>
-                </article>
-
-                <!-- SaaS Feedback -->
-                <article class="portfolio-kachel erscheinen-element">
-                    <span class="label-text">Cloud Software (SaaS)</span>
-                    <h3 class="kachel-ueberschrift">Feedback Engine</h3>
-                    <p class="fliesstext" style="font-size: 1rem;">Entwicklung einer hochskalierbaren "Software as a Service" (SaaS) Plattform für automatisiertes, sicheres Kundenfeedback im B2B-Bereich.</p>
-                </article>
-
-                <!-- Game Apps -->
-                <article class="portfolio-kachel erscheinen-element">
-                    <span class="label-text">Mobile Development</span>
-                    <h3 class="kachel-ueberschrift">Div. Spiele-Apps</h3>
-                    <p class="fliesstext" style="font-size: 1rem;">Konzeption und Programmierung nativer und hybrider Mobile-Games, fokussiert auf flüssige Performance und sichere Backend-Saves.</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- Der Architekt -->
-        <section id="architekt" class="sektions-abstand zentrierter-container" style="border-top: 1px solid var(--rahmen-farbe);">
-            <div class="raster-layout">
-                <div class="erscheinen-element" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <h2 class="sektions-ueberschrift" style="text-align: left; margin-bottom: 0;">Der Architekt.</h2>
-                    <h3 class="kachel-ueberschrift">Muhammet Hasan Gürcan</h3>
-                    <div style="display: flex; gap: 1rem; align-items: center;">
-                        <span style="border: 1px solid var(--text-sekundaer); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem;">24 Jahre alt</span>
-                        <span style="background: var(--text-haupt); color: var(--bg-schwarz); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">7 Jahre Veteranen-Praxis</span>
-                    </div>
-                    <p class="fliesstext">
-                        Er vereint die analytische Präzision eines Senior Systemadministrators, das Designverständnis eines Frontend-Experten und die Logik eines Full-Stack App-Entwicklers. Seit seinem 17. Lebensjahr härtet er Server und konfiguriert Enterprise-Netzwerke auf tiefster Protokollebene.
-                    </p>
-                    <div class="zertifikate-raster" style="margin-top: 1rem;">
-                        <div class="zertifikat-badge interaktives-element">Cisco CCNA (Routing & Switching)</div>
-                        <div class="zertifikat-badge interaktives-element">Aruba Enterprise Switches</div>
-                        <div class="zertifikat-badge interaktives-element">Alcatel-Lucent OmniVista 2500</div>
-                        <div class="zertifikat-badge interaktives-element">Brocade Datacenter Networking</div>
-                    </div>
-                </div>
-
-                <!-- Architekt Bild Container -->
-                <div class="erscheinen-element" style="display: flex; justify-content: center; align-items: flex-start;">
-                    <div class="architekt-bild-container interaktives-element">
-                        <img src="layer-man.jpg" alt="Muhammet Hasan Gürcan - Inhaber volvevent" class="architekt-bild" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23333\'><path d=\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\'/></svg>'">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Terminbuchungs-Modul (Mit Google reCAPTCHA) -->
-        <section id="terminbuchung" class="sektions-abstand zentrierter-container" style="border-top: 1px solid var(--rahmen-farbe);">
-            <div class="text-zentriert erscheinen-element" style="margin-bottom: 4rem;">
-                <h2 class="sektions-ueberschrift" style="margin-bottom: 0.5em;">Strategiegespräch planen.</h2>
-                <p class="fliesstext" style="max-width: 600px; margin: 0 auto;">Wählen Sie Ihr gewünschtes technisches Anliegen präzise aus, damit wir das Architektur-Gespräch effizient vorbereiten können.</p>
-            </div>
-            
-            <div class="premium-kachel erscheinen-element">
-                <div class="raster-layout">
-                    <!-- Linke Spalte: Datum & Uhrzeit -->
-                    <div>
-                        <span class="label-text">1. Datum wählen (Oktober 2026)</span>
-                        <div class="kalender-wochentage">
-                            <span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
-                        </div>
-                        <div class="kalender-raster" id="buchungs-kalender"></div>
-                        
-                        <div id="uhrzeiten-container" style="display:none; margin-top: 2rem;">
-                            <span class="label-text">2. Uhrzeit wählen (1h Sessions)</span>
-                            <div class="uhrzeiten-raster" id="uhrzeiten-raster"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Rechte Spalte: Formular & reCAPTCHA -->
-                    <div>
-                        <span class="label-text">3. Anforderungsdetails</span>
-                        <form action="https://api.web3forms.com/submit" method="POST" id="buchungs-formular">
-                            <!-- Web3Forms Hidden Routing Config -->
-                            <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
-                            <input type="hidden" name="redirect" value="https://volveven.github.io/?success=true">
-                            <input type="hidden" name="subject" id="hidden-subject" value="Neue Terminbuchung">
-                            <input type="checkbox" name="botcheck" style="display: none;">
-                            
-                            <input type="text" name="Name" id="eingabe-name" class="formular-feld interaktives-element" placeholder="Vollständiger Name / Unternehmen" required>
-                            <input type="email" name="Email" id="eingabe-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
-                            
-                            <!-- Massive Erweiterung der Kategorien -->
-                            <select name="Dienstleistung" id="eingabe-dienstleistung" class="formular-feld interaktives-element" required>
-                                <option value="" disabled selected>Exaktes technisches Anliegen wählen...</option>
-                                
-                                <optgroup label="Software & App Entwicklung">
-                                    <option value="SaaS Plattform">Software as a Service (SaaS) Plattform Entwicklung (z.B. Kundenfeedback)</option>
-                                    <option value="Mobile App">Mobile App Entwicklung (Native iOS / Android)</option>
-                                    <option value="Spiele App">Spiele-App Konzeption & Programmierung</option>
-                                    <option value="Consulting OmniVoice">Consulting (Referenz: OmniVoice Architekturen)</option>
-                                </optgroup>
-                                
-                                <optgroup label="Webarchitektur & E-Commerce">
-                                    <option value="Corporate Website">High-End Corporate Website Erstellung</option>
-                                    <option value="E-Commerce">E-Commerce Plattform (Shop-System)</option>
-                                    <option value="Enterprise Hosting">Secure Enterprise Hosting & Skalierung</option>
-                                </optgroup>
-
-                                <optgroup label="Netzwerkarchitektur & Security">
-                                    <option value="Switch Konfiguration">Enterprise Switch Konfiguration (VLAN, Routing)</option>
-                                    <option value="Hardware Firewall">Hardware-Firewall Setup & Härtung</option>
-                                    <option value="Netzwerk Design">Komplettes Netzwerk-Architektur Design</option>
-                                    <option value="Checkmk Monitoring">Checkmk Monitoring Implementierung & Alerts</option>
-                                    <option value="Enterprise VPN">Enterprise VPN & Remote-Access</option>
-                                </optgroup>
-
-                                <optgroup label="Server & Virtualisierung">
-                                    <option value="Windows Server AD">Windows Server & Active Directory Setup</option>
-                                    <option value="VMware Cluster">VMware vSphere Cluster Aufbau</option>
-                                    <option value="Proxmox VE">Proxmox VE Migration / Installation</option>
-                                    <option value="Backup Strategy">Backup-Strategie & Disaster Recovery</option>
-                                    <option value="Hyper-V">Microsoft Hyper-V Datacenter Architektur</option>
-                                </optgroup>
-                            </select>
-
-                            <textarea name="Nachricht" id="eingabe-beschreibung" class="formular-feld interaktives-element" placeholder="Bitte beschreiben Sie Ihr Vorhaben detailliert. Was ist Ihr Ziel? Gibt es aktuelle Herausforderungen in der Infrastruktur?..." required></textarea>
-                            
-                            <!-- Custom Enterprise Security Check -->
-                            <div class="security-modul">
-                                <span class="label-text" style="margin-bottom: 0.8rem; color: var(--akzent-blau);">Verifizierung (Bot-Schutz)</span>
-                                <div class="slide-captcha-container interaktives-element" id="slide-captcha">
-                                    <div class="slide-captcha-track" id="slide-track"></div>
-                                    <div class="slide-captcha-text" id="slide-text">Sitzung verifizieren <span style="font-family: var(--schrift-code); opacity: 0.6; margin-left: 8px;">[Slide]</span></div>
-                                    <div class="slide-captcha-thumb" id="slide-thumb">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Native Form Inputs für Kalender (werden via JS befüllt) -->
-                            <input type="hidden" name="Datum" id="ausgewaehltes-datum" value="">
-                            <input type="hidden" name="Uhrzeit" id="ausgewaehlte-uhrzeit" value="">
-                            
-                            <button type="submit" id="absenden-knopf" class="absenden-knopf interaktives-element">Termin verbindlich anfragen</button>
-                            <div id="formular-status" style="margin-top: 1rem; font-size: 0.9rem; text-align: center;"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Floating WhatsApp -->
-    <div class="whatsapp-schwebend interaktives-element">
-        <a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" style="display:flex; justify-content:center; align-items:center; width:100%; height:100%;">
-            <svg class="whatsapp-icon" viewBox="0 0 24 24" style="width: 30px; height: 30px; fill: var(--bg-schwarz);"><path d="M12.01 2.014c-5.46 0-9.897 4.436-9.897 9.897 0 1.944.544 3.754 1.488 5.302L2.348 21.65l4.57-1.198c1.472.84 3.167 1.32 4.975 1.32 5.46 0 9.897-4.437 9.897-9.897s-4.437-9.897-9.897-9.897zm5.556 14.195c-.244.693-1.42 1.258-2.02 1.314-.542.05-1.194.137-3.61-.867-2.9-1.2-4.732-4.17-4.877-4.364-.145-.194-1.162-1.547-1.162-2.95 0-1.403.73-2.096.993-2.388.263-.292.573-.365.764-.365.19 0 .38.002.546.01.173.007.41-.065.642.494.244.59.833 2.03.905 2.176.072.146.12.316.024.51-.096.195-.145.317-.29.488-.145.17-.306.356-.437.478-.145.132-.303.277-.137.564.167.287.74 1.22 1.583 1.977.962.862 1.88 1.144 2.167 1.29.287.146.455.122.625-.073.17-.195.74-.853.94-1.145.192-.292.385-.244.646-.146.264.097 1.666.786 1.953.932.287.146.478.22.548.34.07.12.07.703-.174 1.396z"/></svg>
-        </a>
+    <!-- 3. STATS STRIP -->
+    <div class="stats-strip reveal">
+        <div class="stat-item">
+            <h3>7+ Jahre</h3>
+            <p>Erfahrung in der IT</p>
+        </div>
+        <div class="stat-item">
+            <h3>3</h3>
+            <p>Aktive Stammkunden</p>
+        </div>
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Zufriedenheitsrate</p>
+        </div>
+        <div class="stat-item">
+            <h3>Bayern</h3>
+            <p>Und deutschlandweit</p>
+        </div>
     </div>
 
+    <!-- 4. SERVICES OVERVIEW -->
+    <section id="services" class="section">
+        <h2 class="section-title reveal">Unsere Services</h2>
+        <p class="section-subtitle reveal">Maßgeschneiderte Lösungen für Ihre IT-Infrastruktur und digitale Präsenz.</p>
+        
+        <div class="grid-3">
+            <a href="termin.html?service=netzwerk" class="card reveal">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <h3>Enterprise Netzwerkarchitektur</h3>
+                <p>Hochverfügbare, skalierbare und performante Netzwerkstrukturen für den Enterprise-Sektor.</p>
+            </a>
+            
+            <a href="termin.html?service=server" class="card reveal">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M19 15v4H5v-4h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 18.5c-.82 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM19 5v4H5V5h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 8.5c-.82 0-1.5-.67-1.5-1.5S6.18 5.5 7 5.5s1.5.67 1.5 1.5S7.83 8.5 7 8.5z"/></svg>
+                <h3>Server & Virtualisierung</h3>
+                <p>Aufbau robuster Serverlandschaften mit VMware, Proxmox oder Microsoft Hyper-V.</p>
+            </a>
+            
+            <a href="termin.html?service=security" class="card reveal">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                <h3>Cybersecurity & Zero-Trust</h3>
+                <p>Kompromisslose Absicherung Ihrer Daten und Systeme. Vertraue niemandem, überprüfe jeden.</p>
+            </a>
+            
+            <a href="termin.html?service=web" class="card reveal">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <h3>High-End Webdesign & E-Commerce</h3>
+                <p>Performante, sichere und optisch beeindruckende Webpräsenzen und Online-Shops.</p>
+            </a>
+            
+            <a href="termin.html?service=dev" class="card reveal">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                <h3>App & SaaS Entwicklung</h3>
+                <p>Massgeschneiderte Softwarelösungen, Native Apps und skalierbare SaaS-Plattformen.</p>
+            </a>
+            
+            <a href="termin.html?service=admin" class="card reveal">
+                <svg class="card-icon" viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+                <h3>IT Systemadministration</h3>
+                <p>Verlässliche Wartung, Monitoring und Support für Ihren reibungslosen Betriebsablauf.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- 5. PROJEKTE / REFERENZEN -->
+    <section class="section" style="background: var(--bg-darker);">
+        <h2 class="section-title reveal">Projekte & Referenzen</h2>
+        <p class="section-subtitle reveal">Erfolgreich umgesetzte Enterprise-Projekte.</p>
+        
+        <div class="grid-3">
+            <div class="card reveal">
+                <span class="badge">Full-Stack IT Partner</span>
+                <h3>MHA-Solutions</h3>
+                <p><strong>Rolle:</strong> Generalunternehmer<br><br>Kompletter Aufbau der IT-Infrastruktur, M365 Integration, Hardware-Härtung, Virtualisierung, VPN, Firewall und Corporate Website.</p>
+            </div>
+            
+            <div class="card reveal">
+                <span class="badge">Web & Security</span>
+                <h3>ShineFactory by Arikan</h3>
+                <p><strong>Rolle:</strong> Aufbereitung<br><br>Design und Entwicklung der neuen Website, tiefgreifende SEO-Optimierung und Einrichtung sicheren Mailverkehrs für erhöhte Kundenanfragen.</p>
+            </div>
+            
+            <div class="card reveal">
+                <span class="badge">SEO Champion</span>
+                <h3>latuning.de</h3>
+                <p><strong>Rolle:</strong> Chiptuning KFZ<br><br>Modernisierung der Website inklusive starker SEO-Optimierung. Ergebnis: Rang #1 bei der Google-Suche für das Keyword 'Chiptuning Landshut'.</p>
+            </div>
+        </div>
+        <div class="reveal" style="text-align: center; margin-top: 3rem;">
+            <a href="projekte.html" class="cta-btn-outline">Alle Projekte ansehen</a>
+        </div>
+    </section>
+
+    <!-- 6. TESTIMONIALS -->
+    <section class="section">
+        <h2 class="section-title reveal">Stimmen unserer Kunden</h2>
+        
+        <div class="grid-3">
+            <div class="card reveal">
+                <p style="font-style: italic; margin-bottom: 1.5rem;">"Wir haben volvevent. mit dem kompletten Aufbau unserer IT-Infrastruktur betraut. Von der Firewall bis zum Microsoft 365-Setup – alles wurde präzise und termintreu umgesetzt. Absolute Empfehlung für Unternehmen, die keine Kompromisse bei der IT-Sicherheit machen."</p>
+                <div style="margin-top: auto;">
+                    <strong>Ahmed</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.85rem;">Geschäftsführer, MHA-Solutions</span>
+                </div>
+            </div>
+            
+            <div class="card reveal">
+                <p style="font-style: italic; margin-bottom: 1.5rem;">"Unsere neue Webseite hat uns sofort mehr Kundenanfragen gebracht. Die SEO-Optimierung war ein Gamechanger. Muhammet hat jeden Wunsch professionell und ohne unnötige Rückfragen umgesetzt."</p>
+                <div style="margin-top: auto;">
+                    <strong>Arikan</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.85rem;">Inhaber, ShineFactory</span>
+                </div>
+            </div>
+            
+            <div class="card reveal">
+                <p style="font-style: italic; margin-bottom: 1.5rem;">"Nach dem Relaunch durch volvevent. stehen wir bei Google-Suche auf Platz 1 für unser Kernkeyword. Das hat unsere Umsätze direkt messbar gesteigert. Hervorragende Arbeit!"</p>
+                <div style="margin-top: auto;">
+                    <strong>Inhaber</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.85rem;">latuning.de</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. NEWS PREVIEW -->
+    <section class="section" style="background: var(--bg-darker);">
+        <h2 class="section-title reveal">News & Insights</h2>
+        <div class="grid-3">
+            <div class="card reveal">
+                <span class="badge">Cybersecurity</span>
+                <h3>Zero-Trust Architektur</h3>
+                <p>Warum traditionelles Vertrauen in der IT-Sicherheit ein massives Risiko für Unternehmen darstellt.</p>
+                <a href="blog.html" class="cta-btn-outline" style="align-self: flex-start; margin-top: 1rem; border:none; padding-left:0;">Weiterlesen &rarr;</a>
+            </div>
+            <div class="card reveal">
+                <span class="badge">Virtualisierung</span>
+                <h3>Proxmox VE vs. VMware</h3>
+                <p>Eine ehrliche Kosten-Nutzen-Analyse der beiden führenden Virtualisierungslösungen.</p>
+                <a href="blog.html" class="cta-btn-outline" style="align-self: flex-start; margin-top: 1rem; border:none; padding-left:0;">Weiterlesen &rarr;</a>
+            </div>
+            <div class="card reveal">
+                <span class="badge">KI & Automatisierung</span>
+                <h3>KI in der IT-Administration</h3>
+                <p>Wie Automatisierung von Monitoring-Alerts die Effizienz von IT-Teams drastisch steigert.</p>
+                <a href="blog.html" class="cta-btn-outline" style="align-self: flex-start; margin-top: 1rem; border:none; padding-left:0;">Weiterlesen &rarr;</a>
+            </div>
+        </div>
+        <div class="reveal" style="text-align: center; margin-top: 3rem;">
+            <a href="blog.html" class="cta-btn">Alle News lesen</a>
+        </div>
+    </section>
+
+    <!-- 8. FORUM TEASER -->
+    <section class="section">
+        <div class="card reveal" style="text-align: center; max-width: 800px; margin: 0 auto; background: var(--bg-darker);">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Cybersecurity Forum</h2>
+            <p style="margin-bottom: 2rem;">Treten Sie unserer Community von IT-Experten bei. Diskutieren Sie über die neuesten Bedrohungen, Best Practices und Enterprise-Lösungen im deutschsprachigen Raum.</p>
+            
+            <div style="text-align: left; margin-bottom: 2rem; display:flex; flex-direction:column; gap:1rem;">
+                <div style="padding: 1rem; border-left: 3px solid var(--accent-blue); background: rgba(255,255,255,0.02);">
+                    <strong>Hot Topic:</strong> Ransomware 2026 - Neue Verteidigungsstrategien
+                </div>
+                <div style="padding: 1rem; border-left: 3px solid var(--accent-blue); background: rgba(255,255,255,0.02);">
+                    <strong>Hot Topic:</strong> Windows Server 2025 Best Practices
+                </div>
+                <div style="padding: 1rem; border-left: 3px solid var(--accent-blue); background: rgba(255,255,255,0.02);">
+                    <strong>Hot Topic:</strong> NIS2-Richtlinie: Umsetzung im Mittelstand
+                </div>
+            </div>
+            
+            <a href="forum.html" class="cta-btn">Zum Forum</a>
+        </div>
+    </section>
+
+    <!-- 9. CTA SECTION -->
+    <section class="section" style="background: var(--bg-darker); text-align: center;">
+        <div class="reveal">
+            <h2 style="font-size: 3rem; margin-bottom: 2rem;">Bereit für IT auf Enterprise-Niveau?</h2>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/491727045269" class="cta-btn-outline" style="display:flex; align-items:center; gap:0.5rem; color: var(--success-green); border-color: var(--success-green);">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.01 2.014c-5.46 0-9.897 4.436-9.897 9.897 0 1.944.544 3.754 1.488 5.302L2.348 21.65l4.57-1.198c1.472.84 3.167 1.32 4.975 1.32 5.46 0 9.897-4.437 9.897-9.897s-4.437-9.897-9.897-9.897zm5.556 14.195c-.244.693-1.42 1.258-2.02 1.314-.542.05-1.194.137-3.61-.867-2.9-1.2-4.732-4.17-4.877-4.364-.145-.194-1.162-1.547-1.162-2.95 0-1.403.73-2.096.993-2.388.263-.292.573-.365.764-.365.19 0 .38.002.546.01.173.007.41-.065.642.494.244.59.833 2.03.905 2.176.072.146.12.316.024.51-.096.195-.145.317-.29.488-.145.17-.306.356-.437.478-.145.132-.303.277-.137.564.167.287.74 1.22 1.583 1.977.962.862 1.88 1.144 2.167 1.29.287.146.455.122.625-.073.17-.195.74-.853.94-1.145.192-.292.385-.244.646-.146.264.097 1.666.786 1.953.932.287.146.478.22.548.34.07.12.07.703-.174 1.396z"/></svg>
+                    WhatsApp Chat
+                </a>
+                <a href="termin.html" class="cta-btn">Strategiegespräch buchen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #fff;">volvevent.</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                    Enterprise IT-Architektur & High-End Softwareentwicklung aus Bayern.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="termin.html">Services</a></li>
+                    <li><a href="projekte.html">Projekte</a></li>
+                    <li><a href="blog.html">News</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li style="color: var(--text-muted); font-size: 0.9rem;">Bäckerstr. 8a<br>84030 Ergolding</li>
+                    <li><a href="tel:+491727045269">+49 172 7045269</a></li>
+                    <li><a href="mailto:info@volvevent.de">info@volvevent.de</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 volvevent. Muhammet Hasan Gürcan. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Intersection Observer for Smooth Scroll Reveal
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
 </body>
 </html>

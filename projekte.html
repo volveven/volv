@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Projekte | volvevent.</title>
+    <link rel="stylesheet" href="style.css?v=2.0">
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --bg-darker: #0a0a0a;
+            --card-bg: rgba(255,255,255,0.04);
+            --card-border: rgba(255,255,255,0.08);
+            --accent-blue: #2997FF;
+            --success-green: #30d158;
+            --warning-red: #ff453a;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid var(--card-border);
+        }
+        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-link { font-size: 0.9rem; transition: color 0.3s; }
+        .nav-link:hover { color: var(--accent-blue); }
+        .cta-btn {
+            background-color: var(--accent-blue); color: #fff; padding: 0.5rem 1.2rem;
+            border-radius: 20px; font-size: 0.9rem; font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s; border: none; cursor: pointer; display: inline-block;
+        }
+        .cta-btn:hover { background-color: #0071e3; transform: scale(1.05); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { width: 25px; height: 2px; background-color: var(--text-main); transition: 0.3s; }
+        
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none; position: absolute; top: 70px; left: 0; width: 100%;
+                background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px);
+                flex-direction: column; padding: 2rem 0; border-bottom: 1px solid var(--card-border);
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: flex; }
+        }
+
+        /* HERO */
+        .hero {
+            position: relative; min-height: 40vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 120px 5% 50px; background: var(--bg-dark);
+        }
+        .hero h1 {
+            font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-inline: auto; }
+
+        /* FILTER BAR */
+        .filter-bar {
+            display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+            padding: 2rem 5%; background: var(--bg-darker); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);
+        }
+        .filter-btn {
+            background: transparent; border: 1px solid var(--card-border); color: var(--text-main);
+            padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--card-bg); border-color: var(--accent-blue); color: var(--accent-blue);
+        }
+
+        /* SECTIONS */
+        .section { padding: 4rem 5%; }
+        
+        /* PROJECT CARD */
+        .project-card {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 20px; margin-bottom: 3rem; overflow: hidden;
+            display: flex; flex-direction: column; transition: transform 0.3s;
+        }
+        .project-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.06); }
+        @media (min-width: 900px) {
+            .project-card { flex-direction: row; }
+            .project-content { width: 65%; padding: 3rem; border-right: 1px solid var(--card-border); }
+            .project-stats { width: 35%; padding: 3rem; background: rgba(0,0,0,0.2); }
+        }
+        @media (max-width: 899px) {
+            .project-content, .project-stats { padding: 2rem; }
+            .project-stats { border-top: 1px solid var(--card-border); background: rgba(0,0,0,0.2); }
+        }
+
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+        .project-title { font-size: 2rem; font-weight: 700; }
+        .project-badge {
+            background: rgba(48, 209, 88, 0.1); color: var(--success-green);
+            padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+            border: 1px solid rgba(48, 209, 88, 0.2);
+        }
+        
+        .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .tag { background: rgba(255,255,255,0.05); padding: 0.3rem 0.8rem; border-radius: 8px; font-size: 0.8rem; color: var(--text-muted); }
+
+        .project-text h4 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem; }
+        .project-text p { color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
+
+        .stat-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .stat-item { padding-bottom: 1.5rem; border-bottom: 1px solid var(--card-border); }
+        .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .stat-value { font-size: 1.8rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.3rem; }
+        .stat-label { font-size: 0.9rem; color: var(--text-muted); }
+
+        .testimonial { margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-blue); border-radius: 0 12px 12px 0; }
+        .testimonial p { font-style: italic; color: var(--text-main); margin-bottom: 1rem; }
+        .testimonial-author { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: var(--bg-darker); text-align: center; padding: 6rem 5%;
+            border-top: 1px solid var(--card-border);
+        }
+
+        /* FOOTER */
+        .footer { background-color: var(--bg-darker); border-top: 1px solid var(--card-border); padding: 4rem 5% 2rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-col h4 { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: var(--text-muted); transition: color 0.3s; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--text-main); }
+        .footer-bottom { border-top: 1px solid var(--card-border); padding-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+
+        /* FLOATING WHATSAPP */
+        .floating-whatsapp {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background-color: var(--success-green); border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(48, 209, 88, 0.4);
+            z-index: 1000; transition: transform 0.3s;
+        }
+        .floating-whatsapp:hover { transform: scale(1.1); }
+        .floating-whatsapp svg { width: 35px; height: 35px; fill: #fff; }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">volvevent.</a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Start</a>
+            <a href="index.html#services" class="nav-link">Services</a>
+            <a href="projekte.html" class="nav-link">Projekte</a>
+            <a href="blog.html" class="nav-link">News</a>
+            <a href="forum.html" class="nav-link">Forum</a>
+            <a href="kontakt.html" class="nav-link">Kontakt</a>
+            <a href="termin.html" class="cta-btn">Termin buchen</a>
+        </div>
+        <div class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content reveal active">
+            <h1>Unsere Projekte</h1>
+            <p>Echte Ergebnisse. Echte Kunden. Nachmessbare Erfolge.</p>
+        </div>
+    </header>
+
+    <div class="filter-bar reveal">
+        <button class="filter-btn active">Alle</button>
+        <button class="filter-btn">Netzwerk & Security</button>
+        <button class="filter-btn">Webdesign & SEO</button>
+        <button class="filter-btn">Infrastruktur</button>
+    </div>
+
+    <section class="section">
+        <div class="project-card reveal">
+            <div class="project-content">
+                <div class="project-header">
+                    <h2 class="project-title">MHA-Solutions</h2>
+                    <span class="project-badge">Aktiver Partner</span>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">Full-Stack IT</span>
+                    <span class="tag">Netzwerk</span>
+                    <span class="tag">Virtualisierung</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">Web</span>
+                </div>
+                <div class="project-text">
+                    <h4>Die Herausforderung</h4>
+                    <p>MHA-Solutions benötigte eine vollständige IT-Infrastruktur von Grund auf. Als wachsendes Generalunternehmen waren dezentrale Datenspeicherung, fehlende IT-Security-Richtlinien und ineffiziente Kommunikationswege ein Wachstumsblocker. Eine professionelle Webpräsenz zur Neukundengewinnung fehlte gänzlich. Es wurde ein zentraler, verlässlicher Partner gesucht, der das gesamte Spektrum abdeckt.</p>
+                    
+                    <h4>Die Lösung</h4>
+                    <p>volvevent. übernahm das gesamte Projekt als Full-Stack IT Partner. Wir implementierten eine sichere Netzwerkarchitektur mit Hardware-Firewalls und VPN-Zugängen. Lokale Dienste wurden auf einer hochverfügbaren Virtualisierungsumgebung bereitgestellt, während die Kommunikation nahtlos in Microsoft 365 migriert und durch strikte Security-Policies abgesichert wurde. Zusätzlich entwickelten wir eine performante Corporate Website, die das professionelle Image des Unternehmens unterstreicht.</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Wir haben volvevent. mit dem kompletten Aufbau unserer IT-Infrastruktur betraut. Von der Firewall bis zum Microsoft 365-Setup – alles wurde präzise und termintreu umgesetzt. Absolute Empfehlung."</p>
+                    <div class="testimonial-author">— Ahmed, Geschäftsführer</div>
+                </div>
+            </div>
+            <div class="project-stats">
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Sicherheitsvorfälle seit Projektabschluss</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">Uptime auf der virtualisierten Infrastruktur</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">< 2h</div>
+                        <div class="stat-label">Setup für jeden neuen Mitarbeiter via M365</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">1</div>
+                        <div class="stat-label">Ansprechpartner für die gesamte IT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-content">
+                <div class="project-header">
+                    <h2 class="project-title">ShineFactory by Arikan</h2>
+                    <span class="project-badge">Aktiver Partner</span>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">Webdesign</span>
+                    <span class="tag">SEO</span>
+                    <span class="tag">E-Mail Security</span>
+                </div>
+                <div class="project-text">
+                    <h4>Die Herausforderung</h4>
+                    <p>Das Aufbereitungsunternehmen ShineFactory stand vor dem Problem mangelnder digitaler Sichtbarkeit. Die bestehende Webseite war veraltet, nicht mobiloptimiert und wurde bei Google von der lokalen Konkurrenz übertrumpft. Zudem gab es wiederholt Probleme mit Spam-Mails und E-Mails, die bei Kunden im Spam-Ordner landeten, was zu Kommunikationsabbrüchen führte.</p>
+                    
+                    <h4>Die Lösung</h4>
+                    <p>Wir entwickelten eine komplett neue, High-End HTML/CSS Website ohne Page-Builder, die extrem schnell lädt und durch eine durchdachte UI/UX besticht. Parallel setzten wir eine aggressive lokale SEO-Strategie um. Die E-Mail-Infrastruktur wurde durch die korrekte Konfiguration von DKIM, DMARC und SPF-Records vollständig bereinigt und abgesichert, um eine perfekte Zustellbarkeit zu garantieren.</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Unsere neue Webseite hat uns sofort mehr Kundenanfragen gebracht. Die SEO-Optimierung war ein Gamechanger. Muhammet hat jeden Wunsch professionell und ohne unnötige Rückfragen umgesetzt."</p>
+                    <div class="testimonial-author">— Arikan, Inhaber</div>
+                </div>
+            </div>
+            <div class="project-stats">
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">+340%</div>
+                        <div class="stat-label">Organischer Traffic in 3 Monaten</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Top 3</div>
+                        <div class="stat-label">Bei Google für Hauptkeywords</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">0</div>
+                        <div class="stat-label">Spam-Mails durch DKIM/DMARC/SPF Konfiguration</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">98/100</div>
+                        <div class="stat-label">PageSpeed Score (Mobile & Desktop)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-content">
+                <div class="project-header">
+                    <h2 class="project-title">latuning.de</h2>
+                    <span class="project-badge">Aktiver Partner</span>
+                </div>
+                <div class="project-tags">
+                    <span class="tag">Webdesign</span>
+                    <span class="tag">SEO</span>
+                    <span class="tag">Performance</span>
+                </div>
+                <div class="project-text">
+                    <h4>Die Herausforderung</h4>
+                    <p>latuning.de, ein Spezialist für Chiptuning und KFZ-Optimierung, benötigte dringend eine technische Modernisierung der Webpräsenz. Der stark umkämpfte Markt in Bayern erforderte herausragende Suchmaschinenplatzierungen, die mit der alten technischen Basis nicht erreichbar waren. Die Ladezeiten waren lang und die Conversion-Rate der Besucher in tatsächliche Anfragen unzureichend.</p>
+                    
+                    <h4>Die Lösung</h4>
+                    <p>volvevent. führte einen kompletten Relaunch der Webseite durch. Durch den Einsatz moderner Webtechnologien ohne Bloatware reduzierten wir die Ladezeit drastisch. Wir strukturierten die Inhalte komplett neu und setzten eine tiefe On-Page SEO-Optimierung für lokale und regionale Suchbegriffe um. Das neue Design fokussiert sich aggressiv auf die Conversion-Rate-Optimierung (CRO).</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Nach dem Relaunch durch volvevent. stehen wir bei Google-Suche auf Platz 1 für unser Kernkeyword. Das hat unsere Umsätze direkt messbar gesteigert. Hervorragende Arbeit!"</p>
+                    <div class="testimonial-author">— Inhaber, latuning.de</div>
+                </div>
+            </div>
+            <div class="project-stats">
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">Platz #1</div>
+                        <div class="stat-label">Bei Keyword 'Chiptuning Landshut'</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">+280%</div>
+                        <div class="stat-label">Anfragen nach dem Relaunch</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">< 1.5s</div>
+                        <div class="stat-label">Ladezeit der Website</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Top 5</div>
+                        <div class="stat-label">Für alle Chiptuning-Keywords in Bayern</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-section reveal">
+        <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">Ihr Unternehmen könnte das nächste Erfolgsbeispiel sein.</h2>
+        <p style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; max-width: 600px; margin-inline: auto;">Lassen Sie uns gemeinsam über Ihre IT-Herausforderungen sprechen und eine maßgeschneiderte Lösung entwickeln.</p>
+        <a href="termin.html" class="cta-btn" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Termin buchen</a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #fff;">volvevent.</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                    Enterprise IT-Architektur & High-End Softwareentwicklung aus Bayern.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Start</a></li>
+                    <li><a href="termin.html">Services</a></li>
+                    <li><a href="projekte.html">Projekte</a></li>
+                    <li><a href="blog.html">News</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul>
+                    <li style="color: var(--text-muted); font-size: 0.9rem;">Bäckerstr. 8a<br>84030 Ergolding</li>
+                    <li><a href="tel:+491727045269">+49 172 7045269</a></li>
+                    <li><a href="mailto:info@volvevent.de">info@volvevent.de</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 volvevent. Muhammet Hasan Gürcan. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+
+    <a href="https://wa.me/491727045269" class="floating-whatsapp" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M12.01 2.014c-5.46 0-9.897 4.436-9.897 9.897 0 1.944.544 3.754 1.488 5.302L2.348 21.65l4.57-1.198c1.472.84 3.167 1.32 4.975 1.32 5.46 0 9.897-4.437 9.897-9.897s-4.437-9.897-9.897-9.897zm5.556 14.195c-.244.693-1.42 1.258-2.02 1.314-.542.05-1.194.137-3.61-.867-2.9-1.2-4.732-4.17-4.877-4.364-.145-.194-1.162-1.547-1.162-2.95 0-1.403.73-2.096.993-2.388.263-.292.573-.365.764-.365.19 0 .38.002.546.01.173.007.41-.065.642.494.244.59.833 2.03.905 2.176.072.146.12.316.024.51-.096.195-.145.317-.29.488-.145.17-.306.356-.437.478-.145.132-.303.277-.137.564.167.287.74 1.22 1.583 1.977.962.862 1.88 1.144 2.167 1.29.287.146.455.122.625-.073.17-.195.74-.853.94-1.145.192-.292.385-.244.646-.146.264.097 1.666.786 1.953.932.287.146.478.22.548.34.07.12.07.703-.174 1.396z"/></svg>
+    </a>
+
+    <script src="main.js?v=2.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+            reveals.forEach(reveal => revealOnScroll.observe(reveal));
+        });
+    </script>
+</body>
+</html>
