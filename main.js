@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     /* --- 0. Formular Erfolgs-Check (Web3Forms Redirect) --- */
     if (window.location.search.includes('success=true')) {
@@ -48,46 +48,93 @@
         });
     }
 
-    /* --- 2. Custom Präzisions-Cursor (Beibehalten) --- */
-    /* --- 2. Custom Cursor Auto-Inject (alle Seiten) --- */
-    if (!document.getElementById('maus-zeiger-aussen')) {
-        const _ca = document.createElement('div'); _ca.id = 'maus-zeiger-aussen';
-        const _ci = document.createElement('div'); _ci.id = 'maus-zeiger-innen';
-        document.body.prepend(_ci); document.body.prepend(_ca);
-    }
-    const mausAussen = document.getElementById('maus-zeiger-aussen');
-    const mausInnen = document.getElementById('maus-zeiger-innen');
-    const interaktiveElemente = document.querySelectorAll('.interaktives-element, a, button, input, select, textarea, label');
+    /* --- 2. Custom Präzisions-Cursor (Robust & Desktop-aktiviert) --- */
+    const isDesktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    if(mausAussen && mausInnen) {
-        let mausX = window.innerWidth / 2;
-        let mausY = window.innerHeight / 2;
-        let zielX = mausX;
-        let zielY = mausY;
+    if (isDesktopPointer) {
+        let mausAussen = document.getElementById('maus-zeiger-aussen');
+        let mausInnen = document.getElementById('maus-zeiger-innen');
+
+        if (!mausAussen) {
+            mausAussen = document.createElement('div');
+            mausAussen.id = 'maus-zeiger-aussen';
+            mausAussen.className = 'maus-zeiger-aussen';
+            document.body.appendChild(mausAussen);
+        } else {
+            mausAussen.className = 'maus-zeiger-aussen';
+        }
+
+        if (!mausInnen) {
+            mausInnen = document.createElement('div');
+            mausInnen.id = 'maus-zeiger-innen';
+            mausInnen.className = 'maus-zeiger-innen';
+            document.body.appendChild(mausInnen);
+        } else {
+            mausInnen.className = 'maus-zeiger-innen';
+        }
+
+        // Native Cursor nur verbergen, weil Custom Cursor erfolgreich instanziiert wurde
+        document.documentElement.classList.add('custom-cursor-aktiv');
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+        let isVisible = false;
 
         window.addEventListener('mousemove', (ereignis) => {
-            mausX = ereignis.clientX;
-            mausY = ereignis.clientY;
-            mausInnen.style.transform = `translate3d(${mausX}px, ${mausY}px, 0) translate(-50%, -50%)`;
+            mouseX = ereignis.clientX;
+            mouseY = ereignis.clientY;
+            if (!isVisible) {
+                isVisible = true;
+                mausAussen.style.opacity = '1';
+                mausInnen.style.opacity = '1';
+                ringX = mouseX;
+                ringY = mouseY;
+            }
+            mausInnen.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        }, { passive: true });
+
+        const animateCursorRing = () => {
+            if (isVisible) {
+                ringX += (mouseX - ringX) * 0.22;
+                ringY += (mouseY - ringY) * 0.22;
+                mausAussen.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+            }
+            requestAnimationFrame(animateCursorRing);
+        };
+        requestAnimationFrame(animateCursorRing);
+
+        document.addEventListener('mousedown', () => {
+            mausAussen.classList.add('klick-aktiv');
+        });
+        document.addEventListener('mouseup', () => {
+            mausAussen.classList.remove('klick-aktiv');
         });
 
-        const maximiereCursor = () => {
-            zielX += (mausX - zielX) * 0.2;
-            zielY += (mausY - zielY) * 0.2;
-            mausAussen.style.transform = `translate3d(${zielX}px, ${zielY}px, 0) translate(-50%, -50%)`;
-            requestAnimationFrame(maximiereCursor);
-        };
-        maximiereCursor();
+        document.addEventListener('mouseleave', () => {
+            isVisible = false;
+            mausAussen.style.opacity = '0';
+            mausInnen.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+            isVisible = true;
+            mausAussen.style.opacity = '1';
+            mausInnen.style.opacity = '1';
+        });
 
-        interaktiveElemente.forEach(element => {
-            element.addEventListener('mouseenter', () => {
+        // Event-Delegation für alle interaktiven Elemente (funktioniert auch für dynamische Artikel/Modals)
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, input, select, textarea, label, .interaktives-element, [role="button"], .artikel-karte, .guide-article, .forum-card')) {
                 mausAussen.classList.add('hover-aktiv');
                 mausInnen.classList.add('hover-aktiv');
-            });
-            element.addEventListener('mouseleave', () => {
+            }
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('a, button, input, select, textarea, label, .interaktives-element, [role="button"], .artikel-karte, .guide-article, .forum-card')) {
                 mausAussen.classList.remove('hover-aktiv');
                 mausInnen.classList.remove('hover-aktiv');
-            });
+            }
         });
     }
 

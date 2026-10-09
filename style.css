@@ -16,7 +16,7 @@
     --schrift-code: "SFMono-Regular", Consolas, monospace;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -208,11 +208,79 @@ textarea.formular-feld { resize: vertical; min-height: 120px; }
 .absenden-knopf { background: var(--akzent-blau); color: #fff; border: none; padding: 1rem 2rem; border-radius: 20px; font-size: 1rem; font-weight: 500; width: 100%; transition: background 0.3s; }
 .absenden-knopf:hover { background: var(--akzent-blau-hover); }
 
-/* CUSTOM CURSOR */
-.maus-zeiger-aussen { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9998; mix-blend-mode: difference; transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), height 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
-.maus-zeiger-innen { position: fixed; top: 0; left: 0; width: 4px; height: 4px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; opacity: 0; transition: opacity 0.3s; }
-.maus-zeiger-aussen.hover-aktiv { width: 60px; height: 60px; }
-.maus-zeiger-innen.hover-aktiv { opacity: 1; }
+/* CUSTOM PRECISION CURSOR - HIGH-END ENTERPRISE DESIGN */
+#maus-zeiger-aussen, .maus-zeiger-aussen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid rgba(41, 151, 255, 0.75);
+    background: rgba(41, 151, 255, 0.08);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease,
+                opacity 0.2s ease;
+}
+
+#maus-zeiger-innen, .maus-zeiger-innen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000000;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    box-shadow: 0 0 10px #2997ff, 0 0 4px #ffffff;
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+#maus-zeiger-aussen.hover-aktiv, .maus-zeiger-aussen.hover-aktiv {
+    width: 52px;
+    height: 52px;
+    border-color: #2997ff;
+    background-color: rgba(41, 151, 255, 0.18);
+    box-shadow: 0 0 20px rgba(41, 151, 255, 0.35);
+}
+
+#maus-zeiger-innen.hover-aktiv, .maus-zeiger-innen.hover-aktiv {
+    width: 8px;
+    height: 8px;
+    background-color: #2997ff;
+    box-shadow: 0 0 12px #2997ff;
+}
+
+#maus-zeiger-aussen.klick-aktiv, .maus-zeiger-aussen.klick-aktiv {
+    transform: scale(0.85);
+    background-color: rgba(41, 151, 255, 0.35);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    html.custom-cursor-aktiv,
+    html.custom-cursor-aktiv * {
+        cursor: none !important;
+    }
+}
+
+@media (hover: none), (pointer: coarse) {
+    #maus-zeiger-aussen, .maus-zeiger-aussen,
+    #maus-zeiger-innen, .maus-zeiger-innen {
+        display: none !important;
+    }
+    * {
+        cursor: auto !important;
+    }
+}
 
 /* FLOATING WHATSAPP */
 .whatsapp-schwebend {
