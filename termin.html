@@ -247,16 +247,16 @@
     <section class="section" style="background: var(--bg-darker);">
         <div class="form-container reveal">
             <h2 class="section-title" style="margin-bottom: 2rem;">Projektanfrage starten</h2>
-            <form action="https://api.web3forms.com/submit" method="POST" id="terminForm">
+            <form action="https://api.web3forms.com/submit" method="POST" id="termin-formular">
                 <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
                 <input type="checkbox" name="botcheck" style="display: none;">
-                <input type="hidden" name="subject" value="NeueTerminbuchung von volvevent.de">
+                <input type="hidden" name="subject" id="termin-hidden-subject" value="Terminanfrage via volvevent.de">
                 <input type="hidden" name="redirect" value="https://www.volvevent.de/?success=true">
 
                 <div class="grid-2">
                     <div class="form-group">
                         <label class="form-label">Vollständiger Name *</label>
-                        <input type="text" name="Name" class="form-control" required>
+                        <input type="text" name="Name" id="termin-name" class="form-control interaktives-element" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Unternehmen / Organisation</label>
@@ -278,7 +278,7 @@
                 <div class="grid-2">
                     <div class="form-group">
                         <label class="form-label">Dienstleistung</label>
-                        <select name="Dienstleistung" class="form-control">
+                        <select name="Dienstleistung" id="termin-dienstleistung" class="form-control interaktives-element">
                             <option value="">Bitte wählen...</option>
                             <option value="Enterprise Netzwerkarchitektur">Enterprise Netzwerkarchitektur</option>
                             <option value="Server & Virtualisierung">Server & Virtualisierung</option>
@@ -347,7 +347,7 @@
 
                 <div id="termin-formular-status"></div>
 
-                <button type="submit" class="submit-btn">Anfrage verschlüsselt senden</button>
+                <button type="submit" class="submit-btn interaktives-element" id="termin-absenden">Anfrage verschlüsselt senden</button>
             </form>
         </div>
 

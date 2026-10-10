@@ -359,9 +359,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* --- 4.6 Termin-Formular (termin.html) --- */
-    const terminFormular = document.getElementById('termin-formular');
+    const terminFormular = document.getElementById('termin-formular') || document.getElementById('terminForm');
     const terminStatus = document.getElementById('termin-formular-status');
-    const terminKnopf = document.getElementById('termin-absenden');
+    const terminKnopf = document.getElementById('termin-absenden') || (terminFormular ? terminFormular.querySelector('.submit-btn') : null);
 
     if(terminFormular) {
         terminFormular.addEventListener('submit', (e) => {

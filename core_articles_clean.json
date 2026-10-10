@@ -1,0 +1,202 @@
+[
+  {
+    "id": "artikel-1",
+    "title": "Zero-Trust Architektur: Warum Vertrauen in der IT-Sicherheit ein Risiko ist",
+    "category": "Cybersecurity",
+    "date": "15. Oktober 2026",
+    "readTime": "8 Min.",
+    "image": "images/cybersecurity_hero.jpg",
+    "excerpt": "Das klassische Sicherheitsmodell geht davon aus, dass alles innerhalb des Firmennetzwerks vertrauenswürdig ist. Diese Annahme ist im Zeitalter von Cloud und Remote-Work gefährlich. Zero-Trust eliminiert dieses Risiko durch konsequente Verifikation jeder einzelnen Anfrage.",
+    "content": "<h2>1. Das Scheitern des klassischen Burggraben-Modells</h2><p>Jahrzehntelang basierte die IT-Sicherheit auf dem sogenannten Perimeter-Modell (Burg-und-Burggraben): Wer sich physisch im Büro befand oder sich per VPN eingewählt hatte, galt automatisch als vertrauenswürdig und hatte weitreichenden Zugriff auf interne Dateiserver, Datenbanken und Applikationen. In modernen Unternehmen mit Cloud-Diensten, hybrider Arbeitsweise und mobilen Endgeräten existiert dieser feste Perimeter schlichtweg nicht mehr.</p><p>Sobald ein Angreifer heute die Anmeldedaten eines Mitarbeiters per Spear-Phishing kompromittiert oder eine Schwachstelle in einem veralteten VPN-Gateway ausnutzt, kann er sich im flachen Firmennetzwerk lateral frei bewegen, Daten exfiltrieren und Backups unbemerkt verschlüsseln.</p><div class=\"tip-box\"><strong>Grundsatz von Zero-Trust:</strong> <em>\"Never Trust, Always Verify\"</em> – Jedes Gerät, jeder Benutzer und jede Datenübertragung wird zu jedem Zeitpunkt als potenziell kompromittiert eingestuft, bis die Identität und Integrität kontextbasiert zweifelsfrei bewiesen ist.</div><h2>2. Die drei fundamentalen Pfeiler einer Zero-Trust-Architektur</h2><p>Zero-Trust ist kein einzelnes Produkt, sondern ein durchgängiges architektonisches Framework, das auf drei Säulen ruht:</p><ul><li><strong>Explizite, kontinuierliche Verifikation:</strong> Authentifizierung und Autorisierung erfolgen nicht einmalig beim Login, sondern fortlaufend unter Berücksichtigung von Benutzeridentität, Standort, Gerätestatus, Datenklassifizierung und Verhaltensanomalien.</li><li><strong>Prinzip der geringsten Berechtigung (Least Privilege):</strong> Zugriff wird zeitlich befristet (Just-In-Time) und strikt auf das zwingend erforderliche Mindestmaß (Just-Enough-Access) beschränkt. Standard-Admin-Rechte auf Endgeräten werden konsequent entzogen.</li><li><strong>Annahme des Sicherheitsvorfalls (Assume Breach):</strong> Die Infrastruktur wird so segmentiert, dass selbst bei einem erfolgreichen Einbruch der Schaden auf eine winzige Zelle isoliert bleibt. Sämtlicher Datenverkehr wird verschlüsselt und forensisch überwacht.</li></ul><h2>3. Praktischer 5-Stufen-Fahrplan für den Mittelstand</h2><ol><li><strong>Phishing-resistente MFA:</strong> FIDO2-Sicherheitsschlüssel oder Authenticator Number-Matching für alle Konten erzwingen.</li><li><strong>Netzwerk-Mikrosegmentierung:</strong> Trennung von Arbeitsplatzrechnern, Servern, Druckern und IoT-Geräten in separate VLANs mit strikten Firewall-Regeln.</li><li><strong>Geräte-Compliance erzwingen:</strong> Zugriff auf Unternehmensdaten nur von verwalteten Endgeräten mit aktuellem Patch-Status erlauben.</li><li><strong>Privileged Access Management (PAM):</strong> Trennung von Standard- und Admin-Konten.</li><li><strong>Zentrales Security-Monitoring:</strong> Sammeln und Korrelieren aller Anmelde- und Netzwerkprotokolle zur Früherkennung.</li></ol>"
+  },
+  {
+    "id": "artikel-2",
+    "title": "Proxmox VE vs. VMware vSphere: Die ehrliche Kosten-Nutzen-Analyse",
+    "category": "Virtualisierung",
+    "date": "10. Oktober 2026",
+    "readTime": "12 Min.",
+    "image": "images/virtualization_servers.jpg",
+    "excerpt": "Seit der Broadcom-Übernahme hat VMware seine Lizenzkosten um bis zu 1000% erhöht. Wir zeigen mit konkreten Zahlen, warum Proxmox VE für die meisten mittelständischen Unternehmen die überlegene Alternative ist.",
+    "content": "<h2>1. Das VMware-Beben nach der Broadcom-Übernahme</h2><p>Im November 2023 schloss Broadcom die Übernahme von VMware ab. Die Folgen für Bestandskunden sind drastisch: Permanente Kauflizenzen wurden gestrichen, Kunden in teure Kern-Abonnements gezwungen und Preise um bis zu 1.000% erhöht.</p><div class=\"tip-box\"><strong>Kostenvergleich für 3 Server-Nodes (96 Kerne):</strong><br>• <em>VMware vSphere Foundation:</em> ca. 12.000 € – 18.000 € jährlich.<br>• <em>Proxmox VE Enterprise Support:</em> 3x 1.090 € = 3.270 € jährlich für Enterprise-Support (oder 0 € Softwarelizenz).<br><strong>Ersparnis über 5 Jahre: über 50.000 €!</strong></div><h2>2. Proxmox Virtual Environment im technischen Detail</h2><ul><li><strong>KVM & LXC auf einem Host:</strong> Hardware-Virtualisierung für Windows und ressourcensparende Linux-Container auf derselben Oberfläche.</li><li><strong>Integriertes Ceph-Storage:</strong> Hochverfügbarer Shared Storage ohne teure externe SAN/NAS-Hardware. Festplatten der Nodes werden zu einem fehlertoleranten Pool gebündelt.</li><li><strong>Live-Migration ohne Ausfallzeit:</strong> Virtuelle Maschinen wandern im laufenden Betrieb unterbrechungsfrei zwischen Hosts.</li><li><strong>Native HTML5-Webkonsole:</strong> Intuitive Verwaltung ohne ressourcenhungrige vCenter-Appliance.</li></ul><h2>3. Proxmox Backup Server (PBS)</h2><p>Clientseitige Deduplizierung und inkrementelle Backups auf Blockebene sichern VMs in Sekunden. Backups sind kryptografisch verschlüsselt und bieten vollen Schutz vor Ransomware.</p>"
+  },
+  {
+    "id": "artikel-3",
+    "title": "KI in der IT-Administration: Automatisierung von Monitoring-Alerts",
+    "category": "KI & Automatisierung",
+    "date": "5. Oktober 2026",
+    "readTime": "7 Min.",
+    "image": "images/ai_cloud_network.jpg",
+    "excerpt": "KI-gestützte Monitoring-Systeme erkennen Anomalien, bevor sie zu spürbaren Ausfällen führen. Wir zeigen, wie Checkmk mit Machine-Learning-Algorithmen Ihre IT-Abteilung wirksam entlastet.",
+    "content": "<h2>1. Das Phänomen der Alert Fatigue</h2><p>In modernen IT-Umgebungen schlagen Monitoring-Systeme ununterbrochen Alarm: Eine CPU erreicht kurzzeitig 95%, ein Ping benötigt 2 Millisekunden länger als üblich. Administratoren werden täglich mit hunderten Benachrichtigungen bombardiert – kritische Alarme gehen im Grundrauschen unter.</p><h2>2. Intelligente Mustererkennung statt statischer Schwellenwerte</h2><ul><li><strong>Dynamische Baseline-Berechnung:</strong> Das System lernt den normalen Geschäftsverlauf. Hohe Disk-Aktivität beim Freitagabend-Backup ist normal – am Sonntagmorgen um 03:00 Uhr verdächtig.</li><li><strong>Kausale Ereignis-Korrelation:</strong> Bricht eine Core-Switch-Verbindung weg, fasst die KI 50 Folgealarme zu einer einzigen, priorisierten Benachrichtigung mit Root-Cause-Angabe zusammen.</li><li><strong>Automatisierte Remediation:</strong> Vordefinierte Bereinigungsskripte beheben bekannte Fehler selbstständig, bevor Anwender einen Ausfall spüren.</li></ul>"
+  },
+  {
+    "id": "artikel-4",
+    "title": "Ransomware 2026: Die neue Generation der Angriffe und wie man sich schützt",
+    "category": "Cybersecurity",
+    "date": "1. Oktober 2026",
+    "readTime": "10 Min.",
+    "image": "images/ransomware_attack.jpg",
+    "excerpt": "Ransomware-as-a-Service macht Cyberangriffe für jeden buchbar. Die neueste Generation verschlüsselt nicht nur Daten, sondern exfiltriert sie vorher und droht mit Veröffentlichung. So schützen Sie sich.",
+    "content": "<h2>1. Die Industrialisierung der Cyberkriminalität (RaaS)</h2><p>Bei Ransomware-as-a-Service (RaaS) stellen professionelle Entwicklergruppen Schadsoftware und Zahlungsportale bereit, während Partner den eigentlichen Einbruch in Unternehmensnetzwerke durchführen.</p><h2>2. Die Vierfach-Erpressung (Quadruple Extortion)</h2><ol><li><strong>Verschlüsselung:</strong> Alle Server und VM-Cluster werden mit AES-256 verschlüsselt.</li><li><strong>Daten-Exfiltration:</strong> Kopieren sensibler Bilanzen und Kundendaten vor der Verschlüsselung.</li><li><strong>Kunden-Belästigung:</strong> Direkte Kontaktaufnahme mit Ihren Geschäftspartnern zur Druckerhöhung.</li><li><strong>DDoS & Regulierungs-Druck:</strong> Drohung mit Meldungen an Aufsichtsbehörden bezüglich DSGVO- und NIS2-Verstößen.</li></ol><div class=\"tip-box\"><strong>Die 3 Überlebensregeln:</strong><br>1. <strong>Unveränderbare Backups (Immutability):</strong> Backups auf WORM-Speicher oder S3 Object Lock.<br>2. <strong>Strikte Netzwerk-Isolation:</strong> Trennung der Backup-Server vom Active Directory.<br>3. <strong>EDR:</strong> Verhaltensbasierte Erkennung stoppt Massenumbenennungen in Millisekunden.</div>"
+  },
+  {
+    "id": "artikel-5",
+    "title": "VLAN-Segmentierung als Ransomware-Schutzmaßnahme",
+    "category": "Netzwerk",
+    "date": "28. September 2026",
+    "readTime": "9 Min.",
+    "image": "images/hardware_firewall_switch.jpg",
+    "excerpt": "Richtig konfigurierte VLANs verhindern, dass sich Ransomware lateral im Netzwerk ausbreitet. Wir erklären die optimale Segmentierungsstrategie für mittelständische Unternehmen.",
+    "content": "<h2>1. Die Gefahr flacher Netzwerke</h2><p>In flachen Netzwerken befinden sich alle PCs, Drucker und Server im selben Subnetz. Infiziert sich ein Büro-PC, hat die Malware direkten IP-Zugriff auf alle anderen Systeme im Betrieb.</p><h2>2. Das 802.1Q Zonen-Konzept</h2><ul><li><strong>VLAN 10 – Management:</strong> iLO, iDRAC, Switch- und Firewall-Management. Zugriff nur über Admin-Terminals.</li><li><strong>VLAN 20 – Server & Core:</strong> Domain Controller, Datenbanken, Hypervisoren.</li><li><strong>VLAN 30 – Clients:</strong> Office-PCs mit Client-Isolation (Private VLANs).</li><li><strong>VLAN 40 – VoIP:</strong> Sprachverkehr mit priorisiertem QoS.</li><li><strong>VLAN 50 – IoT & Kameras:</strong> Streng abgeriegelt ohne Serverzugriff.</li><li><strong>VLAN 60 – Gäste-WLAN:</strong> Reiner Internetzugang.</li></ul>"
+  },
+  {
+    "id": "artikel-6",
+    "title": "Microsoft 365 richtig absichern: 10 Schritte für Unternehmen",
+    "category": "Cybersecurity",
+    "date": "22. September 2026",
+    "readTime": "11 Min.",
+    "image": "images/cloud_identity_security.jpg",
+    "excerpt": "Microsoft 365 ist das Einfallstor Nummer 1 für Cyberangreifer. Viele Unternehmen nutzen die Plattform mit Standard-Einstellungen. Unsere 10-Punkte-Checkliste schließt die kritischsten Lücken.",
+    "content": "<h2>Die 10 unverzichtbaren Härtungsschritte</h2><ol><li>MFA ausnahmslos für alle Konten global via Conditional Access erzwingen.</li><li>Legacy-Authentifizierung (POP3, IMAP) tenant-weit abschalten.</li><li>Automatische externe Postfach-Weiterleitung sperren.</li><li>Conditional Access Geo-Blocking für verdächtige Länder aktivieren.</li><li>Privileged Identity Management (PIM) für zeitlich begrenzte Admin-Rechte nutzen.</li><li>Zwei Break-Glass Notfallkonten im Notfalltresor vorhalten.</li><li>DKIM, DMARC und SPF lückenlos scharfschalten.</li><li>Audit-Protokollierung auf mindestens 180 Tage aktivieren.</li><li>Defender for Office 365 Safe Links & Safe Attachments aktivieren.</li><li>Anonyme Freigabelinks für SharePoint und OneDrive deaktivieren.</li></ol>"
+  },
+  {
+    "id": "artikel-7",
+    "title": "Checkmk Enterprise: Proaktives Monitoring statt Feuerlöschen",
+    "category": "Virtualisierung",
+    "date": "18. September 2026",
+    "readTime": "8 Min.",
+    "image": "images/datacenter_minimal.jpg",
+    "excerpt": "Die meisten IT-Teams reagieren auf Probleme erst, wenn Telefone klingeln. Checkmk mit proaktiver Überwachung ermöglicht einen Paradigmenwechsel hin zu vorausschauender IT-Verwaltung.",
+    "content": "<h2>Leistungsmerkmale von Checkmk Enterprise</h2><ul><li>Micro Core verarbeitet hunderttausende Service-Checks pro Minute bei minimaler Systemlast.</li><li>Automatische Erkennung von Festplatten, Diensten und Sensoren bei Agenten-Installation.</li><li>Piggyback-Datenverknüpfung für VMware- und Proxmox-Cluster.</li><li>SNMP-Hardwareüberwachung von Netzteilen, Lüftern und RAID-Status.</li></ul><div class=\"tip-box\"><strong>volvevent. Best Practice:</strong> Wir implementieren Checkmk mit automatisierten SLA-Dashboards und SMS-/Push-Alarmierung für lückenlose 24/7-Überwachung.</div>"
+  },
+  {
+    "id": "artikel-8",
+    "title": "Hyper-V vs. Proxmox für den Mittelstand: Ein direkter Vergleich",
+    "category": "Virtualisierung",
+    "date": "14. September 2026",
+    "readTime": "10 Min.",
+    "image": "images/virtualization_servers.jpg",
+    "excerpt": "Microsoft Hyper-V oder Proxmox VE? Beide Plattformen haben klare Stärken. Wir vergleichen Lizenzkosten, Performance, HA-Funktionen und Verwaltungsaufwand für Unternehmen bis 500 Mitarbeiter.",
+    "content": "<h2>Der direkte Vergleich</h2><p>Hyper-V eignet sich ideal für reine Windows-Server-Infrastrukturen mit vorhandenen Datacenter-Lizenzen. Sobald jedoch Linux-Dienste, Container oder Web-Apps betrieben werden, punktet Proxmox VE mit integriertem Ceph/ZFS-Storage, nativer HTML5-Verwaltung und vollständiger Lizenzkostenfreiheit.</p>"
+  },
+  {
+    "id": "artikel-9",
+    "title": "DNS-over-HTTPS (DoH): Warum klassisches DNS eine Sicherheitslücke ist",
+    "category": "Netzwerk",
+    "date": "10. September 2026",
+    "readTime": "7 Min.",
+    "image": "images/cybersecurity_hero.jpg",
+    "excerpt": "Unverschlüsseltes DNS über Port 53 ist für Angreifer und Provider ein offenes Buch. DNS-over-HTTPS und DNS-over-TLS schließen diese Lücke wirkungsvoll.",
+    "content": "<h2>Verschlüsseltes DNS in der Unternehmenspraxis</h2><p>Klassisches DNS über Port 53 überträgt jede Anfrage im Klartext. DoH kapselt Anfragen in verschlüsselte HTTPS-Verbindungen über Port 443. Dies schützt vor DNS-Spoofing, Manipulation und Schnüffelei im Netz.</p>"
+  },
+  {
+    "id": "artikel-10",
+    "title": "Cisco vs. Aruba: Welches Switch-Ökosystem passt zu Ihrem Unternehmen?",
+    "category": "Netzwerk",
+    "date": "5. September 2026",
+    "readTime": "9 Min.",
+    "image": "images/hardware_firewall_switch.jpg",
+    "excerpt": "Cisco Catalyst und Aruba CX dominieren den Enterprise-Switch-Markt. Beide bieten exzellente Leistung, aber grundverschiedene Philosophie und Lizenzmodelle.",
+    "content": "<h2>Vergleich Cisco Catalyst vs. Aruba CX</h2><p>Cisco Catalyst bietet bewährtes IOS-XE mit Cisco DNA Abonnement-Modell. Aruba CX überzeugt mit moderner Linux-Architektur, REST-APIs, automatisierter Network Analytics Engine (NAE) und lebenslanger Hardwaregarantie ohne laufende Basislizenzkosten.</p>"
+  },
+  {
+    "id": "artikel-11",
+    "title": "ChatGPT & Co. im Unternehmen: Chancen und versteckte Datenschutzrisiken",
+    "category": "KI & Automatisierung",
+    "date": "1. September 2026",
+    "readTime": "8 Min.",
+    "image": "images/ai_cloud_network.jpg",
+    "excerpt": "KI-Tools steigern die Produktivität enorm, aber was passiert mit eingegebenen Unternehmensdaten? Wir analysieren die Risiken und zeigen DSGVO-konforme Alternativen.",
+    "content": "<h2>Datenschutzkonforme KI-Nutzung</h2><p>Kostenlose öffentliche KI-Dienste nutzen eingegebene Daten oft zum Modelltraining. Die Lösung für Unternehmen: Private Open-Source-LLMs (wie Llama 3 oder Mistral) direkt auf eigener Serverhardware im Rechenzentrum – 100% datenschutzkonform und DSGVO-sicher.</p>"
+  },
+  {
+    "id": "artikel-12",
+    "title": "Hardware-Firewalls 2026: Warum Software-Firewalls allein nicht reichen",
+    "category": "Cybersecurity",
+    "date": "25. August 2026",
+    "readTime": "8 Min.",
+    "image": "images/hardware_firewall_switch.jpg",
+    "excerpt": "Software-Firewalls auf Endgeräten schützen den Host. Aber was schützt den gesamten Netzwerkperimeter? Hardware-Appliances bieten Schutzebenen, die Software niemals erreicht.",
+    "content": "<h2>Warum dedizierte Hardware-Appliances unverzichtbar sind</h2><p>Software-Firewalls laufen auf demselben System, das sie schützen sollen. Dedizierte Next-Gen-Firewalls (FortiGate, pfSense) untersuchen den gesamten Netzwerkverkehr mit spezialisierten Sicherheits-ASICs, führen Deep Packet Inspection durch und stoppen Angriffe vor dem Betreten des Firmennetzwerks.</p>"
+  },
+  {
+    "id": "artikel-13",
+    "title": "Windows Server 2025: Die wichtigsten neuen Sicherheitsfeatures",
+    "category": "Virtualisierung",
+    "date": "20. August 2026",
+    "readTime": "9 Min.",
+    "image": "images/datacenter_minimal.jpg",
+    "excerpt": "Windows Server 2025 bringt Hotpatching, SMB-over-QUIC und verbesserte Active Directory Sicherheit. Wir erklären, welche Features sich für den Produktivbetrieb lohnen.",
+    "content": "<h2>Neuerungen in Windows Server 2025</h2><ul><li>Hotpatching für Sicherheitsupdates im laufenden Betrieb ohne Serverneustart.</li><li>SMB über QUIC für sicheren Zugriff auf Dateifreigaben über das Internet ohne VPN.</li><li>Modernisiertes Active Directory mit 32k Datenbankseiten und Kerberos-Verbesserungen.</li></ul>"
+  },
+  {
+    "id": "artikel-14",
+    "title": "Backup-Strategie nach der 3-2-1-Regel: Unternehmensdaten richtig sichern",
+    "category": "Compliance",
+    "date": "15. August 2026",
+    "readTime": "7 Min.",
+    "image": "images/data_backup_recovery.jpg",
+    "excerpt": "Die 3-2-1-Backup-Regel ist der anerkannte Goldstandard. Doch viele Unternehmen setzen sie falsch um. Wir zeigen die häufigsten Fehler und eine enterprise-taugliche Architektur.",
+    "content": "<h2>Die 3-2-1-1-0 Regel</h2><div class=\"tip-box\">• <strong>3</strong> Datenkopien.<br>• <strong>2</strong> verschiedene Speichermedien.<br>• <strong>1</strong> Kopie an einem getrennten Offsite-Standort.<br>• <strong>1</strong> Kopie unveränderbar (Immutable S3 / WORM).<br>• <strong>0</strong> Fehler bei automatisierten Wiederherstellungstests!</div>"
+  },
+  {
+    "id": "artikel-15",
+    "title": "Edge Computing im Mittelstand: Wann lohnt sich der Einstieg?",
+    "category": "KI & Automatisierung",
+    "date": "10. August 2026",
+    "readTime": "8 Min.",
+    "image": "images/ai_cloud_network.jpg",
+    "excerpt": "Edge Computing verlagert Rechenleistung an den Netzwerkrand und reduziert Latenzen drastisch. Für Produktionsbetriebe und IoT ist das ein Game-Changer.",
+    "content": "<h2>Lokale Datenverarbeitung</h2><p>In Industrie- und IoT-Szenarien werden Sensordaten direkt vor Ort von kompakten Edge-Servern verarbeitet. Nur verdichtete Metriken fließen in die Cloud, wodurch Latenzen minimiert und Bandbreitenkosten geschont werden.</p>"
+  },
+  {
+    "id": "artikel-16",
+    "title": "Active Directory Härtung: 15 kritische Einstellungen",
+    "category": "Cybersecurity",
+    "date": "5. August 2026",
+    "readTime": "12 Min.",
+    "image": "images/cloud_identity_security.jpg",
+    "excerpt": "Active Directory ist das Herzstück jeder Windows-Infrastruktur und das Primärziel von Angreifern. Unsere 15-Punkte-Checkliste schließt die gefährlichsten Konfigurationslücken.",
+    "content": "<h2>Kernmaßnahmen zur AD-Härtung</h2><ol><li>Einführung des 3-Stufen-Modells (Tier 0/1/2).</li><li>Deaktivierung von NTLMv1 und schwachen LM-Hashes.</li><li>Erzwingung von Kerberos AES-128 und AES-256 Verschlüsselung.</li><li>Einsatz von Microsoft LAPS für eindeutige lokale Admin-Passwörter.</li><li>Verwendung von Group Managed Service Accounts (gMSA).</li></ol>"
+  },
+  {
+    "id": "artikel-17",
+    "title": "NIS2-Richtlinie: Was Unternehmen jetzt umsetzen müssen",
+    "category": "Compliance",
+    "date": "1. August 2026",
+    "readTime": "10 Min.",
+    "image": "images/cybersecurity_hero.jpg",
+    "excerpt": "Die NIS2-Richtlinie der EU betrifft tausende deutsche Mittelständler. Bei Verstößen drohen persönliche Geschäftsführerhaftung und Millionenstrafen.",
+    "content": "<h2>Pflichtmaßnahmen unter NIS2</h2><ul><li>Risikoanalysen und dokumentierte Sicherheitskonzepte für Informationssysteme.</li><li>24-Stunden-Meldefrist bei signifikanten Sicherheitsvorfällen.</li><li>Sicherheitsprüfung der gesamten Lieferkette.</li><li>Persönliche Haftung der Geschäftsleitung bei grober Fahrlässigkeit.</li></ul>"
+  },
+  {
+    "id": "artikel-18",
+    "title": "KI-gestützte Pentesting-Tools: Angreifer werden smarter",
+    "category": "Cybersecurity",
+    "date": "25. Juli 2026",
+    "readTime": "9 Min.",
+    "image": "images/ransomware_attack.jpg",
+    "excerpt": "Autonome offensive KI-Agenten scannen Netzwerke und generieren maßgeschneiderte Exploits in Sekundenschnelle. Security-Teams müssen aufrüsten.",
+    "content": "<h2>Das automatisierte Wettrüsten</h2><p>Offensive KI-Agenten scannen Netzwerke und generieren maßgeschneiderte Exploits in Sekundenschnelle. Security-Teams müssen auf kontinuierliches Schwachstellenmanagement (CTEM) statt jährlicher Einzelprüfungen setzen.</p>"
+  },
+  {
+    "id": "artikel-19",
+    "title": "VPN vs. Zero Trust Network Access (ZTNA): Was schützt wirklich besser?",
+    "category": "Netzwerk",
+    "date": "20. Juli 2026",
+    "readTime": "8 Min.",
+    "image": "images/cloud_identity_security.jpg",
+    "excerpt": "Klassische VPNs gewähren nach erfolgreicher Einwahl vollen Netzwerkzugriff. ZTNA verifiziert jede einzelne Anfrage kontextbasiert. Ein fundamentaler Unterschied.",
+    "content": "<h2>Der Paradigmenwechsel zu ZTNA</h2><p>Ein herkömmliches VPN verbindet das Endgerät mit dem gesamten Firmennetzwerk. ZTNA gewährt granularen Zugriff ausschließlich auf die autorisierte Anwendung – das restliche Firmennetzwerk bleibt für das Endgerät unsichtbar.</p>"
+  },
+  {
+    "id": "artikel-20",
+    "title": "SaaS-Plattformen selbst entwickeln vs. kaufen: Eine TCO-Analyse",
+    "category": "KI & Automatisierung",
+    "date": "15. Juli 2026",
+    "readTime": "11 Min.",
+    "image": "images/software_saas_code.jpg",
+    "excerpt": "Standard-SaaS-Lösungen passen selten perfekt. Eine eigene Softwareplattform bietet maximale Kontrolle, Unabhängigkeit und Wettbewerbsvorteile.",
+    "content": "<h2>Build vs. Buy TCO-Analyse</h2><p>Bei Kernprozessen amortisiert sich die Eigenentwicklung durch wegfallende Lizenzkosten, volle Datenhoheit und maßgeschneiderte Schnittstellen bereits nach wenigen Jahren.</p>"
+  }
+]

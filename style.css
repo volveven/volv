@@ -218,8 +218,8 @@ textarea.formular-feld { resize: vertical; min-height: 120px; }
     border: 1.5px solid rgba(41, 151, 255, 0.75);
     background: rgba(41, 151, 255, 0.08);
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 999999;
+    pointer-events: none !important;
+    z-index: 9999999;
     opacity: 0;
     transform: translate3d(-100px, -100px, 0);
     transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
@@ -230,34 +230,15 @@ textarea.formular-feld { resize: vertical; min-height: 120px; }
 }
 
 #maus-zeiger-innen, .maus-zeiger-innen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 6px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1000000;
-    opacity: 0;
-    transform: translate3d(-100px, -100px, 0);
-    box-shadow: 0 0 10px #2997ff, 0 0 4px #ffffff;
-    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    display: none !important;
 }
 
 #maus-zeiger-aussen.hover-aktiv, .maus-zeiger-aussen.hover-aktiv {
     width: 52px;
     height: 52px;
     border-color: #2997ff;
-    background-color: rgba(41, 151, 255, 0.18);
+    background-color: rgba(41, 151, 255, 0.16);
     box-shadow: 0 0 20px rgba(41, 151, 255, 0.35);
-}
-
-#maus-zeiger-innen.hover-aktiv, .maus-zeiger-innen.hover-aktiv {
-    width: 8px;
-    height: 8px;
-    background-color: #2997ff;
-    box-shadow: 0 0 12px #2997ff;
 }
 
 #maus-zeiger-aussen.klick-aktiv, .maus-zeiger-aussen.klick-aktiv {
@@ -265,20 +246,27 @@ textarea.formular-feld { resize: vertical; min-height: 120px; }
     background-color: rgba(41, 151, 255, 0.35);
 }
 
-@media (hover: hover) and (pointer: fine) {
-    html.custom-cursor-aktiv,
-    html.custom-cursor-aktiv * {
-        cursor: none !important;
-    }
+/* Nativer Cursor bleibt ausnahmslos auf allen Seiten sichtbar & reaktionsschnell */
+html, body {
+    cursor: default !important;
+}
+
+a, button, [role="button"], .interaktives-element, .filter-btn, .close-reader-btn, .artikel-karte, .forum-card {
+    cursor: pointer !important;
+}
+
+input, textarea {
+    cursor: text !important;
+}
+
+select, option {
+    cursor: pointer !important;
 }
 
 @media (hover: none), (pointer: coarse) {
     #maus-zeiger-aussen, .maus-zeiger-aussen,
     #maus-zeiger-innen, .maus-zeiger-innen {
         display: none !important;
-    }
-    * {
-        cursor: auto !important;
     }
 }
 
