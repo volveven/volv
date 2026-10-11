@@ -7,35 +7,80 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 
-    /* --- 0.5 Mobile Navigation (Injected for all HTML files) --- */
+    /* --- 0.5 Mobile Navigation (Robust for all devices including Android) --- */
     const navLeiste = document.getElementById('navigationsleiste');
     const menueListe = document.querySelector('.menue-liste');
-    if (navLeiste && menueListe && !document.querySelector('.mobile-menue-knopf')) {
-        const burgerKnopf = document.createElement('div');
-        burgerKnopf.className = 'mobile-menue-knopf interaktives-element';
-        burgerKnopf.innerHTML = '<svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
-        menueListe.parentNode.insertBefore(burgerKnopf, menueListe);
+    let mobileToggle = document.getElementById('mobile-menue-toggle') || document.querySelector('.mobile-menue-knopf');
+
+    // Fallback falls der Button noch nicht im HTML ist
+    if (navLeiste && menueListe && !mobileToggle) {
+        mobileToggle = document.createElement('button');
+        mobileToggle.id = 'mobile-menue-toggle';
+        mobileToggle.className = 'mobile-menue-knopf interaktives-element';
+        mobileToggle.setAttribute('aria-label', 'Menü öffnen');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.innerHTML = '<span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>';
         
-        burgerKnopf.addEventListener('click', () => {
-            menueListe.classList.toggle('offen');
+        const actionWrapper = document.createElement('div');
+        actionWrapper.className = 'nav-mobile-actions';
+        const mobileCta = document.createElement('a');
+        mobileCta.href = 'termin.html';
+        mobileCta.className = 'nav-mobile-cta interaktives-element';
+        mobileCta.textContent = 'Termin';
+        actionWrapper.appendChild(mobileCta);
+        actionWrapper.appendChild(mobileToggle);
+        
+        menueListe.parentNode.insertBefore(actionWrapper, menueListe);
+    }
+
+    if (mobileToggle && menueListe) {
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = menueListe.classList.toggle('offen');
+            mobileToggle.classList.toggle('offen', isOpen);
+            mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            if (isOpen) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
-        
-        // Menü schließen wenn auf mobilen Link geklickt wird
-        document.querySelectorAll('.menue-link:not([style*="cursor:none"])').forEach(link => {
+
+        // Menü schließen wenn ein Menülink angeklickt wird
+        menueListe.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                if(window.innerWidth <= 768) menueListe.classList.remove('offen');
+                menueListe.classList.remove('offen');
+                mobileToggle.classList.remove('offen');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
             });
+        });
+
+        // Menü mit Escape schließen
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menueListe.classList.contains('offen')) {
+                menueListe.classList.remove('offen');
+                mobileToggle.classList.remove('offen');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
         });
     }
 
-    /* --- 1. Smart Navigation (Hide on scroll down, show on scroll up) --- */
+    /* --- 1. Smart Navigation (Nur auf Desktop aktiv - Auf Android & Mobilgeräten BLEIBT DIE LEISTE IMMER SICHTBAR) --- */
     const navigationsleiste = document.getElementById('navigationsleiste');
     if (navigationsleiste) {
         let letzeScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         
         window.addEventListener('scroll', () => {
+            // Auf allen Smartphones & Tablets (Android, iOS) niemals ausblenden!
+            if (window.innerWidth <= 1080) {
+                navigationsleiste.classList.remove('versteckt');
+                return;
+            }
+
             const aktuelleScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            if (aktuelleScrollPosition > 50) {
+            if (aktuelleScrollPosition > 80) {
                 if (aktuelleScrollPosition > letzeScrollPosition) {
                     navigationsleiste.classList.add('versteckt');
                 } else {
@@ -45,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 navigationsleiste.classList.remove('versteckt');
             }
             letzeScrollPosition = aktuelleScrollPosition <= 0 ? 0 : aktuelleScrollPosition;
-        });
+        }, { passive: true });
     }
 
     /* --- 2. Custom Präzisions-Cursor (Robust & Desktop-aktiviert) --- */
