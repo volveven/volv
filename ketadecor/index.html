@@ -9,7 +9,7 @@
     <meta property="og:title" content="Ketadecor | Exklusive Heiratsanträge & Luxus-Dekoration">
     <meta property="og:description" content="Wir erschaffen keine Dekorationen. Wir inszenieren Gefühle. Heiratsanträge & Event-Setups in NRW, BaWü und bald Bayern.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="images/nacht_setup.jpg">
+    <meta property="og:image" content="images/IMG_0012.PNG">
     <title>Ketadecor | Exklusive Heiratsanträge & Luxus-Dekoration</title>
 
     <!-- Tailwind CSS -->
@@ -157,14 +157,42 @@
         }
         #hero-bg {
             position:absolute; inset:0;
-            background:url('images/nacht_setup.jpg') center/cover no-repeat;
-            transform:scale(1.08); filter:brightness(.32); will-change:transform;
+            background:url('images/IMG_0012.PNG') center 35%/cover no-repeat;
+            transform:scale(1.08); filter:brightness(.38); will-change:transform;
         }
         #hero-overlay {
             position:absolute; inset:0;
-            background:linear-gradient(180deg,rgba(2,2,2,.25) 0%,rgba(2,2,2,0) 35%,rgba(2,2,2,.95) 100%);
+            background:linear-gradient(180deg,rgba(2,2,2,.35) 0%,rgba(2,2,2,.08) 40%,rgba(2,2,2,.95) 100%);
         }
         .hero-content { position:relative; z-index:10; text-align:center; padding:0 1.5rem; }
+
+        /* ─── Lightbox Modal ──────────────────────────────────── */
+        #lightbox-modal {
+            position:fixed; inset:0; z-index:9999;
+            background:rgba(2,2,2,.95);
+            backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+            display:none; align-items:center; justify-content:center;
+            flex-direction:column; padding:1.5rem;
+            opacity:0; transition:opacity .35s ease;
+        }
+        #lightbox-modal.active { display:flex; opacity:1; }
+        #lightbox-img {
+            max-width:92vw; max-height:82vh; object-fit:contain;
+            border:1px solid rgba(201,168,108,.3);
+            box-shadow:0 25px 70px rgba(0,0,0,.85);
+            transform:scale(.96); transition:transform .35s cubic-bezier(.215,.61,.355,1);
+        }
+        #lightbox-modal.active #lightbox-img { transform:scale(1); }
+        #lightbox-caption {
+            margin-top:1.25rem; color:#FAF8F3; font-family:'Cormorant Garamond',serif;
+            font-size:1.25rem; font-style:italic; text-align:center;
+        }
+        #lightbox-close {
+            position:absolute; top:1.8rem; right:2.2rem;
+            background:none; border:none; color:#FAF8F3;
+            font-size:2.2rem; cursor:pointer; transition:color .2s; line-height:1;
+        }
+        #lightbox-close:hover { color:#C9A86C; }
 
         /* ─── Floating Button Cluster ────────────────────────── */
         #float-cluster {
@@ -529,6 +557,13 @@
 <div id="cursor-dot"  aria-hidden="true"></div>
 <div id="cursor-ring" aria-hidden="true"></div>
 
+<!-- ═══ LIGHTBOX MODAL ═══════════════════════════════════════ -->
+<div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Bildvergrößerung">
+    <button id="lightbox-close" aria-label="Schließen">&times;</button>
+    <img id="lightbox-img" src="" alt="Ketadecor Eventansicht">
+    <div id="lightbox-caption"></div>
+</div>
+
 <!-- ═══ PRELOADER ═══════════════════════════════════════════ -->
 <div id="preloader" aria-hidden="true">
     <div id="pre-logo">KETADECOR</div>
@@ -543,13 +578,13 @@
     <a href="#ablauf"    class="mobile-nav-link" onclick="closeMobileMenu()">Ablauf</a>
     <a href="#kontakt"   class="mobile-nav-link" onclick="closeMobileMenu()">Anfragen</a>
     <div class="flex gap-6 mt-4">
-        <a href="https://www.instagram.com/ketadecor_/" target="_blank" rel="noopener" class="text-muted hover:text-gold transition" aria-label="Instagram">
+        <a href="https://www.instagram.com/ketadecor/" target="_blank" rel="noopener" class="text-muted hover:text-gold transition" aria-label="Instagram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
         </a>
-        <a href="https://www.tiktok.com/@ketadecor_" target="_blank" rel="noopener" class="text-muted hover:text-gold transition" aria-label="TikTok">
+        <a href="https://www.tiktok.com/@ketadecor" target="_blank" rel="noopener" class="text-muted hover:text-gold transition" aria-label="TikTok">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
         </a>
-        <a href="https://wa.me/49123456789" target="_blank" rel="noopener" class="text-muted hover:text-gold transition" aria-label="WhatsApp">
+        <a href="https://wa.me/4917657354779" target="_blank" rel="noopener" class="text-muted hover:text-gold transition" aria-label="WhatsApp">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/></svg>
         </a>
     </div>
@@ -559,17 +594,17 @@
 <!-- ═══ FLOATING BUTTON CLUSTER ═════════════════════════════ -->
 <div id="float-cluster" aria-label="Schnellkontakt">
     <!-- TikTok -->
-    <a href="https://www.tiktok.com/@ketadecor_" target="_blank" rel="noopener noreferrer" class="float-btn float-tt" aria-label="TikTok DM" title="TikTok @ketadecor_">
+    <a href="https://www.tiktok.com/@ketadecor" target="_blank" rel="noopener noreferrer" class="float-btn float-tt" aria-label="TikTok DM" title="TikTok @ketadecor">
         <span class="float-label">TikTok DM</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF8F3" stroke-width="1.6" stroke-linecap="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
     </a>
     <!-- Instagram -->
-    <a href="https://www.instagram.com/ketadecor_/" target="_blank" rel="noopener noreferrer" class="float-btn float-ig" aria-label="Instagram DM" title="Instagram @ketadecor_">
+    <a href="https://www.instagram.com/ketadecor/" target="_blank" rel="noopener noreferrer" class="float-btn float-ig" aria-label="Instagram DM" title="Instagram @ketadecor">
         <span class="float-label">Instagram DM</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF8F3" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="#FAF8F3"/></svg>
     </a>
     <!-- WhatsApp (pulsing — primary CTA) -->
-    <a href="https://wa.me/49123456789" target="_blank" rel="noopener noreferrer" class="float-btn float-wa" aria-label="WhatsApp Anfrage" title="WhatsApp">
+    <a href="https://wa.me/4917657354779" target="_blank" rel="noopener noreferrer" class="float-btn float-wa" aria-label="WhatsApp Anfrage" title="WhatsApp +49 176 57354779">
         <span class="float-label">Jetzt anfragen</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAF8F3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
     </a>
@@ -654,13 +689,13 @@
 
     <!-- Social strip (right) -->
     <div class="absolute bottom-10 right-8 z-10 flex flex-col gap-4" aria-label="Social Media Links">
-        <a href="https://www.instagram.com/ketadecor_/" target="_blank" rel="noopener noreferrer" title="Instagram @ketadecor_" style="cursor:none;" class="text-muted hover:text-gold transition">
+        <a href="https://www.instagram.com/ketadecor/" target="_blank" rel="noopener noreferrer" title="Instagram @ketadecor" style="cursor:none;" class="text-muted hover:text-gold transition">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
         </a>
-        <a href="https://www.tiktok.com/@ketadecor_" target="_blank" rel="noopener noreferrer" title="TikTok @ketadecor_" style="cursor:none;" class="text-muted hover:text-gold transition">
+        <a href="https://www.tiktok.com/@ketadecor" target="_blank" rel="noopener noreferrer" title="TikTok @ketadecor" style="cursor:none;" class="text-muted hover:text-gold transition">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
         </a>
-        <a href="https://wa.me/49123456789" target="_blank" rel="noopener noreferrer" title="WhatsApp" style="cursor:none;" class="text-muted hover:text-gold transition">
+        <a href="https://wa.me/4917657354779" target="_blank" rel="noopener noreferrer" title="WhatsApp +49 176 57354779" style="cursor:none;" class="text-muted hover:text-gold transition">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/></svg>
         </a>
     </div>
@@ -685,58 +720,58 @@
     </div>
 
     <div id="h-track">
-        <!-- Slide 1 -->
+        <!-- Slide 1: Köln -->
         <div class="h-slide" id="pakete">
-            <img src="images/kerzenmeer_setup_1791424478512.jpg" alt="Kerzenmeer Setup von Ketadecor" class="h-bg" loading="eager">
+            <img src="images/IMG_0012.PNG" alt="Heiratsantrag in Köln von Ketadecor" class="h-bg" loading="eager">
             <div class="h-num" aria-hidden="true">01 / 05</div>
             <div class="h-content">
-                <h2 class="h-title">Luce</h2>
-                <p class="h-sub">Das Kerzenmeer</p>
-                <p class="h-desc">Hunderte warmer Lichtpunkte formen einen Weg zum wichtigsten Augenblick Ihres Lebens. Intim, überwältigend, unvergesslich.</p>
+                <h2 class="h-title">Köln</h2>
+                <p class="h-sub">Köln am Rhein · Skyline &amp; Sparklers</p>
+                <p class="h-desc">Die Kölner Skyline als Kulisse, funkelnde Fontänen und unser monumentaler roter Rosenherzbogen. Ein Heiratsantrag wie im Kinofilm.</p>
             </div>
         </div>
 
-        <!-- Slide 2 -->
+        <!-- Slide 2: Düsseldorf -->
         <div class="h-slide">
-            <img src="images/blumenbogen_setup_1791424487109.jpg" alt="Blumenbogen Setup von Ketadecor" class="h-bg" loading="lazy">
+            <img src="images/IMG_0976.jpg.jpeg" alt="Sunset Candlelight Heiratsantrag in Düsseldorf" class="h-bg" loading="lazy">
             <div class="h-num" aria-hidden="true">02 / 05</div>
             <div class="h-content">
-                <h2 class="h-title">Flora</h2>
-                <p class="h-sub">Der Royal-Blumenbogen</p>
-                <p class="h-desc">Majestätische Floralarchitektur aus Premium-Rosen und Pampasgras. Handgefertigt für Ihre einzigartige Geschichte.</p>
+                <h2 class="h-title">Düsseldorf</h2>
+                <p class="h-sub">Düsseldorf · Sunset am Rheinufer</p>
+                <p class="h-desc">Feiner Sand unter den Füßen, der goldene Sonnenuntergang und ein intimes Candlelight-Dinner, umhüllt von hunderten weißen Blüten.</p>
             </div>
         </div>
 
-        <!-- Slide 3 — Terra (Luxus-Picknick) — wiederhergstellt -->
+        <!-- Slide 3: Köln Glasiglu -->
         <div class="h-slide">
-            <img src="images/tisch_deko_setup_1791424506090.jpg" alt="Luxus Picknick Setup von Ketadecor" class="h-bg" loading="lazy">
+            <img src="images/IMG_0787.jpg.jpeg" alt="Exklusives Glasiglu Heiratsantrag in Köln" class="h-bg" loading="lazy">
             <div class="h-num" aria-hidden="true">03 / 05</div>
             <div class="h-content">
-                <h2 class="h-title">Terra</h2>
-                <p class="h-sub">Das Luxus-Picknick</p>
-                <p class="h-desc">Unter freiem Himmel, inmitten der Natur — ein sorgfältig kuratiertes Picknick-Setup, das Eleganz und Wildheit vereint.</p>
+                <h2 class="h-title">Köln</h2>
+                <p class="h-sub">Köln · Das beheizte Glasiglu</p>
+                <p class="h-desc">Ein warmer, privater Lichttempel unter freiem Himmel: Funkelnde Lichterketten, weißer Rosenherzbogen und ungestörte Zweisamkeit zu jeder Jahreszeit.</p>
             </div>
         </div>
 
-        <!-- Slide 4 -->
+        <!-- Slide 4: Bonn Glashaus -->
         <div class="h-slide">
-            <img src="images/hotel_suite_setup_1791424495952.jpg" alt="Geheime Hotel Suite Setup" class="h-bg" loading="lazy">
+            <img src="images/IMG_0627.jpg.jpeg" alt="Heiratsantrag im Glashaus in Bonn" class="h-bg" loading="lazy">
             <div class="h-num" aria-hidden="true">04 / 05</div>
             <div class="h-content">
-                <h2 class="h-title">Secreto</h2>
-                <p class="h-sub">Die geheime Suite</p>
-                <p class="h-desc">Während Sie essen, verwandeln wir Ihr Zimmer diskret in ein Paradies. Die Überraschung beim Öffnen der Tür: unbeschreiblich.</p>
+                <h2 class="h-title">Bonn</h2>
+                <p class="h-sub">Bonn · Privates Glashaus</p>
+                <p class="h-desc">Märchenhafte Glasarchitektur, edle Kerzenkandelaber, ein Meer aus frischen Blütenblättern und ein leuchtender Herzbogen für den perfekten Moment.</p>
             </div>
         </div>
 
-        <!-- Slide 5 -->
+        <!-- Slide 5: Köln Rooftop -->
         <div class="h-slide">
-            <img src="images/nacht_setup.jpg" alt="Rooftop Proposal bei Nacht" class="h-bg" loading="lazy">
+            <img src="images/IMG_1041.PNG" alt="Rooftop Heiratsantrag in Köln" class="h-bg" loading="lazy">
             <div class="h-num" aria-hidden="true">05 / 05</div>
             <div class="h-content">
-                <h2 class="h-title">Cielo</h2>
-                <p class="h-sub">Rooftop bei Nacht</p>
-                <p class="h-desc">Die Stadt als Kulisse, der Sternenhimmel als Dach. Lichterketten, Rosen und ein Moment, den sie ihr Leben lang nicht vergisst.</p>
+                <h2 class="h-title">Köln</h2>
+                <p class="h-sub">Köln · Über den Dächern</p>
+                <p class="h-desc">Über den Dächern der Stadt: Die funkelnde Metropolen-Skyline, personalisierte Antragstorte, Champagner und pure Romantik.</p>
             </div>
         </div>
     </div>
@@ -751,42 +786,73 @@
     <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 js-fade">
         <div>
             <span class="sec-label">02 — Instagram Portfolio</span>
-            <h2 class="font-display text-cream" style="font-size:clamp(1.6rem,4vw,3rem); letter-spacing:.08em;">@ketadecor_</h2>
+            <h2 class="font-display text-cream" style="font-size:clamp(1.6rem,4vw,3rem); letter-spacing:.08em;">@ketadecor</h2>
         </div>
-        <a href="https://www.instagram.com/ketadecor_/" target="_blank" rel="noopener noreferrer" style="cursor:none;"
+        <a href="https://www.instagram.com/ketadecor/" target="_blank" rel="noopener noreferrer" style="cursor:none;"
            class="text-gold hover:text-cream transition text-xs uppercase tracking-widest border-b border-gold hover:border-cream pb-px">
             Profil besuchen →
         </a>
     </div>
 
     <div class="gallery-grid max-w-7xl mx-auto px-6">
-        <div class="g-item js-fade">
-            <img src="images/kerzenmeer_setup_1791424478512.jpg" alt="Kerzenmeer Heiratsantrag Ketadecor" loading="lazy">
-            <div class="g-label"><p class="italic-serif text-cream text-sm">Ein Lichtermeer — Köln</p></div>
+        <!-- 1. Live-Antrag Kniefall im Glashaus -->
+        <div class="g-item js-fade" data-caption="Der Moment des Kniefalls — Köln">
+            <img src="images/IMG_1601.PNG" alt="Live Heiratsantrag Kniefall in Köln von Ketadecor" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Köln</p></div>
         </div>
-        <div class="g-item js-fade">
-            <img src="images/ring_close_up.jpg" alt="Luxus Verlobungsring auf Rose" loading="lazy">
-            <div class="g-label"><p class="italic-serif text-cream text-sm">Der Ring. Die Rose. Der Moment.</p></div>
+
+        <!-- 2. Glückstränen im leuchtenden Glas-Iglu -->
+        <div class="g-item js-fade" data-caption="Glückstränen im Luxus-Iglu — Köln">
+            <img src="images/IMG_0792.jpg.jpeg" alt="Glückliches Paar im beheizten Luxus-Glasiglu in Köln" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Köln</p></div>
         </div>
-        <div class="g-item js-fade">
-            <img src="images/blumenbogen_setup_1791424487109.jpg" alt="Premium Blumenbogen Setup" loading="lazy">
-            <div class="g-label"><p class="italic-serif text-cream text-sm">Botanical Architecture</p></div>
+
+        <!-- 3. Live-Antrag Seesteg mit Fontänen -->
+        <div class="g-item js-fade" data-caption="Live-Antrag am Steg mit Fontänen — Düsseldorf">
+            <img src="images/IMG_1551.PNG" alt="Live Heiratsantrag auf Steg mit Fontänen in Düsseldorf" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Düsseldorf</p></div>
         </div>
-        <div class="g-item js-fade">
-            <img src="images/champagner_setup.jpg" alt="Champagner Celebration" loading="lazy">
-            <div class="g-label"><p class="italic-serif text-cream text-sm">Auf eine gemeinsame Zukunft</p></div>
+
+        <!-- 4. Ring & Emotion am Rheinufer -->
+        <div class="g-item js-fade" data-caption="Der Verlobungsring im Sonnenuntergang — Köln">
+            <img src="images/IMG_0977.PNG" alt="Paar im Sonnenuntergang am Strand mit Ring in Köln" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Köln</p></div>
         </div>
-        <div class="g-item js-fade">
-            <img src="images/hotel_suite_setup_1791424495952.jpg" alt="Romantische Hotel Suite" loading="lazy">
-            <div class="g-label"><p class="italic-serif text-cream text-sm">Secret Suite — Düsseldorf</p></div>
+
+        <!-- 5. Sonnenblumen-Herzbogen am See -->
+        <div class="g-item js-fade" data-caption="Sonnenblumen-Herzbogen am See — Aachen">
+            <img src="images/IMG_1590.PNG" alt="Sonnenblumen Herz-Blumenbogen Heiratsantrag in Aachen" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Aachen</p></div>
         </div>
-        <div class="g-item js-fade">
-            <img src="images/tisch_deko_setup_1791424506090.jpg" alt="Luxus Picknick Setup" loading="lazy">
-            <div class="g-label"><p class="italic-serif text-cream text-sm">Luxury Picnic — Aachen</p></div>
+
+        <!-- 6. Holzpavillon bei Nacht -->
+        <div class="g-item js-fade" data-caption="Romantischer Pavillon bei Nacht — Bonn">
+            <img src="images/IMG_1552.PNG" alt="Romantischer Holzpavillon bei Nacht in Bonn" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Bonn</p></div>
         </div>
-        <div class="g-item g-wide js-fade">
-            <img src="images/nacht_setup.jpg" alt="Rooftop Proposal bei Nacht" loading="lazy" style="height:100%; object-fit:cover;">
-            <div class="g-label"><p class="italic-serif text-cream text-sm">Cielo — Rooftop Proposal</p></div>
+
+        <!-- 7. Brücken-Sonnenuntergang Herzbogen -->
+        <div class="g-item js-fade" data-caption="Sonnenuntergang am Wasser — Düsseldorf">
+            <img src="images/IMG_0702.PNG" alt="Sonnenuntergang mit rotem Rosenherz in Düsseldorf" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Düsseldorf</p></div>
+        </div>
+
+        <!-- 8. Candlelight-Dinner mit Champagner (wide) -->
+        <div class="g-item g-wide js-fade" data-caption="Intimes Candlelight-Dinner — Köln">
+            <img src="images/IMG_1549.PNG" alt="Romantischer Dinner-Tisch mit Kerzenmeer in Köln" loading="lazy" style="height:100%; object-fit:cover;">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Köln</p></div>
+        </div>
+
+        <!-- 9. Schlosskulisse Treppe & Riesenballon -->
+        <div class="g-item js-fade" data-caption="Märchenhafter Heiratsantrag — Düsseldorf">
+            <img src="images/IMG_1594.PNG" alt="Paar an historischer Schlosstreppe mit Ballon in Düsseldorf" loading="lazy">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Düsseldorf</p></div>
+        </div>
+
+        <!-- 10. Orangerie Glashaus mit Herzballons (wide) -->
+        <div class="g-item g-wide js-fade" data-caption="Glashaus mit Herzballons &amp; Rosenmeer — Köln">
+            <img src="images/IMG_1592.PNG" alt="Glashaus mit rotem Rosenherz und Ballons in Köln" loading="lazy" style="height:100%; object-fit:cover;">
+            <div class="g-label"><p class="italic-serif text-cream text-sm">Köln</p></div>
         </div>
     </div>
 </section>
@@ -825,7 +891,7 @@
                         Indoor &amp; Outdoor verfügbar
                     </li>
                 </ul>
-                <a href="https://wa.me/49123456789" class="mag-btn" style="font-size:.58rem; padding:.95rem 1.4rem;" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/4917657354779" class="mag-btn" style="font-size:.58rem; padding:.95rem 1.4rem;" target="_blank" rel="noopener noreferrer">
                     <span>Preis anfragen</span>
                 </a>
             </div>
@@ -840,7 +906,7 @@
                 </div>
                 <span class="sec-label" style="margin-bottom:.4rem;">Der Blumenbogen</span>
                 <h3 class="font-display text-cream mb-4" style="font-size:1.15rem; letter-spacing:.12em;">FLORA</h3>
-                <p class="text-muted mb-6 flex-grow" style="font-size:.74rem; line-height:1.9;">2,5 m Floral-Bogen, Neon-Sign, Lichterketten, Premium-Champagner-Setup mit Kristallgläsern.</p>
+                <p class="text-muted mb-6 flex-grow" style="font-size:.74rem; line-height:1.9;">Monumentaler 2,5 m Herz-Blumenbogen (Rote Samtrosen, Edle weiße Blüten oder Sonnenblumen-Traum), wählbares Leucht-Neonsign („Will you marry me?“ oder „Will you Complete My Deen?“), Kerzenmeer &amp; Champagner.</p>
                 <ul class="space-y-2 mb-8 text-muted" style="font-size:.68rem; line-height:1.8;">
                     <li class="flex items-center gap-2.5">
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -848,14 +914,14 @@
                     </li>
                     <li class="flex items-center gap-2.5">
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Champagner &amp; Dekoration inklusive
+                        Wunsch-Neonsign &amp; Blütenfarbe
                     </li>
                     <li class="flex items-center gap-2.5">
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Persönliche Beratung
+                        Champagner &amp; Kerzen inklusive
                     </li>
                 </ul>
-                <a href="https://wa.me/49123456789" class="mag-btn" style="font-size:.58rem; padding:.95rem 1.4rem;" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/4917657354779" class="mag-btn" style="font-size:.58rem; padding:.95rem 1.4rem;" target="_blank" rel="noopener noreferrer">
                     <span>Preis anfragen</span>
                 </a>
             </div>
@@ -867,24 +933,24 @@
                         <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
                     </svg>
                 </div>
-                <span class="sec-label" style="margin-bottom:.4rem;">Maßarbeit</span>
+                <span class="sec-label" style="margin-bottom:.4rem;">Maßarbeit &amp; Exklusive Locations</span>
                 <h3 class="font-display text-cream mb-4" style="font-size:1.15rem; letter-spacing:.12em;">BESPOKE</h3>
-                <p class="text-muted mb-6 flex-grow" style="font-size:.74rem; line-height:1.9;">Vollständig individuell konzipiert. Von der Location-Recherche bis zum Musik-Moment. Kein Limit, kein Template.</p>
+                <p class="text-muted mb-6 flex-grow" style="font-size:.74rem; line-height:1.9;">Exklusive Traumlocations (Panoramablick-Rooftop in Köln, Rheinstrand-Dinner, Glashaus-Orangerie oder beheiztes Glasiglu), Kaltfeuerwerk-Fontänen (Sparklers), Chandelier &amp; Komplettbetreuung.</p>
                 <ul class="space-y-2 mb-8 text-muted" style="font-size:.68rem; line-height:1.8;">
                     <li class="flex items-center gap-2.5">
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Individuelle Konzeption
+                        Exklusiv-Locations (Rooftop, Glashaus, Strand)
                     </li>
                     <li class="flex items-center gap-2.5">
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Location-Scouting inklusive
+                        Sparkler Fontänen &amp; Special Effects
                     </li>
                     <li class="flex items-center gap-2.5">
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Full-Service Rundum-Betreuung
+                        Full-Service VIP Rundumbetreuung
                     </li>
                 </ul>
-                <a href="https://wa.me/49123456789" class="mag-btn" style="font-size:.58rem; padding:.95rem 1.4rem;" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/4917657354779" class="mag-btn" style="font-size:.58rem; padding:.95rem 1.4rem;" target="_blank" rel="noopener noreferrer">
                     <span>Preis anfragen</span>
                 </a>
             </div>
@@ -905,13 +971,16 @@
                     </h2>
                     <div class="gold-line-left mt-8"></div>
                     <p class="text-muted mt-6" style="font-size:.74rem; line-height:1.9;">
-                        Diskretion und Perfektion sind keine Optionen — sie sind unser Standard. Hinter jedem unvergesslichen Moment steckt ein präziser Prozess.
+                        Diskretion und Perfektion sind keine Optionen — sie sind unser Standard. Hinter jedem unvergesslichen Moment steht ein präzises, eingespieltes Team.
                     </p>
-                    <!-- Champagne image -->
+                    <!-- Authentic fleet transport image -->
                     <div class="mt-10 overflow-hidden" style="aspect-ratio:4/3; border:1px solid #1E1E1E;">
-                        <img src="images/champagner_setup.jpg" alt="Champagner Celebration" loading="lazy"
-                             class="w-full h-full object-cover filter brightness-75 hover:brightness-100 transition duration-700">
+                        <img src="images/IMG_1596.PNG" alt="Ketadecor Event-Flotte vor Ort in NRW und Baden-Württemberg" loading="lazy"
+                             class="w-full h-full object-cover filter brightness-90 hover:brightness-100 transition duration-700">
                     </div>
+                    <p class="text-gold mt-3 text-center" style="font-size:.58rem; letter-spacing:.25em; text-transform:uppercase;">
+                        Eigene Ketadecor-Flotte vor Ort — Pünktlich &amp; diskret
+                    </p>
                 </div>
             </div>
 
@@ -921,7 +990,7 @@
                     <div class="font-display shrink-0" style="font-size:2.2rem; -webkit-text-stroke:1px #C9A86C; color:transparent; letter-spacing:.1em; line-height:1; min-width:2.5rem;">01</div>
                     <div>
                         <h3 class="font-display text-cream mb-3" style="font-size:1.05rem; letter-spacing:.1em;">Der Dialog</h3>
-                        <p class="text-muted" style="font-size:.74rem; line-height:1.9;">Sie kontaktieren uns per <a href="https://wa.me/49123456789" class="text-gold hover:underline">WhatsApp</a>, <a href="https://instagram.com/ketadecor_" target="_blank" class="text-gold hover:underline">Instagram DM</a> oder <a href="https://tiktok.com/@ketadecor_" target="_blank" class="text-gold hover:underline">TikTok</a>. Wir hören zu — Ihren Wünschen, Ihrer Geschichte und der Persönlichkeit Ihrer Partnerin.</p>
+                        <p class="text-muted" style="font-size:.74rem; line-height:1.9;">Sie kontaktieren uns per <a href="https://wa.me/4917657354779" class="text-gold hover:underline">WhatsApp (+49 176 57354779)</a>, <a href="https://instagram.com/ketadecor" target="_blank" class="text-gold hover:underline">Instagram DM (@ketadecor)</a> oder <a href="https://tiktok.com/@ketadecor" target="_blank" class="text-gold hover:underline">TikTok (@ketadecor)</a>. Wir hören zu — Ihren Wünschen, Ihrer Geschichte und der Persönlichkeit Ihrer Partnerin.</p>
                     </div>
                 </div>
                 <div class="js-fade flex gap-7 items-start">
@@ -1074,29 +1143,29 @@
         <p class="italic-serif text-gold mb-16" style="font-size:clamp(1.1rem,2.5vw,1.7rem);">Wählen Sie Ihren Weg zu uns.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-xl mx-auto">
-            <a href="https://wa.me/49123456789" target="_blank" rel="noopener noreferrer" style="cursor:none;"
+            <a href="https://wa.me/4917657354779" target="_blank" rel="noopener noreferrer" style="cursor:none;"
                class="pkg-card p-7 flex flex-col items-center gap-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
                 </svg>
                 <span class="text-cream text-xs uppercase tracking-widest">WhatsApp</span>
-                <span class="text-muted" style="font-size:.62rem; letter-spacing:.1em;">Direktnachricht</span>
+                <span class="text-gold" style="font-size:.68rem; letter-spacing:.08em;">+49 176 57354779</span>
             </a>
-            <a href="https://www.instagram.com/ketadecor_/" target="_blank" rel="noopener noreferrer" style="cursor:none;"
+            <a href="https://www.instagram.com/ketadecor/" target="_blank" rel="noopener noreferrer" style="cursor:none;"
                class="pkg-card p-7 flex flex-col items-center gap-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="1.3" stroke-linecap="round">
                     <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="#C9A86C"/>
                 </svg>
                 <span class="text-cream text-xs uppercase tracking-widest">Instagram</span>
-                <span class="text-muted" style="font-size:.62rem; letter-spacing:.1em;">DM @ketadecor_</span>
+                <span class="text-muted" style="font-size:.62rem; letter-spacing:.1em;">DM @ketadecor</span>
             </a>
-            <a href="https://www.tiktok.com/@ketadecor_" target="_blank" rel="noopener noreferrer" style="cursor:none;"
+            <a href="https://www.tiktok.com/@ketadecor" target="_blank" rel="noopener noreferrer" style="cursor:none;"
                class="pkg-card p-7 flex flex-col items-center gap-4">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A86C" stroke-width="1.3" stroke-linecap="round">
                     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
                 </svg>
                 <span class="text-cream text-xs uppercase tracking-widest">TikTok</span>
-                <span class="text-muted" style="font-size:.62rem; letter-spacing:.1em;">DM @ketadecor_</span>
+                <span class="text-muted" style="font-size:.62rem; letter-spacing:.1em;">DM @ketadecor</span>
             </a>
         </div>
     </div>
@@ -1111,13 +1180,13 @@
                 <div class="font-display text-cream tracking-[.3em] text-xl mb-5">KETADECOR</div>
                 <p class="text-muted" style="font-size:.7rem; line-height:1.9;">Haute Couture Event Design — Heiratsanträge &amp; Romantik-Setups in NRW, Baden-Württemberg und bald Bayern.</p>
                 <div class="flex gap-5 mt-6">
-                    <a href="https://www.instagram.com/ketadecor_/" target="_blank" rel="noopener" aria-label="Instagram" class="text-muted hover:text-gold transition" style="cursor:none;">
+                    <a href="https://www.instagram.com/ketadecor/" target="_blank" rel="noopener" aria-label="Instagram" class="text-muted hover:text-gold transition" style="cursor:none;">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
                     </a>
-                    <a href="https://www.tiktok.com/@ketadecor_" target="_blank" rel="noopener" aria-label="TikTok" class="text-muted hover:text-gold transition" style="cursor:none;">
+                    <a href="https://www.tiktok.com/@ketadecor" target="_blank" rel="noopener" aria-label="TikTok" class="text-muted hover:text-gold transition" style="cursor:none;">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
                     </a>
-                    <a href="https://wa.me/49123456789" target="_blank" rel="noopener" aria-label="WhatsApp" class="text-muted hover:text-gold transition" style="cursor:none;">
+                    <a href="https://wa.me/4917657354779" target="_blank" rel="noopener" aria-label="WhatsApp" class="text-muted hover:text-gold transition" style="cursor:none;">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/></svg>
                     </a>
                 </div>
@@ -1191,7 +1260,7 @@ if (window.matchMedia('(hover:hover)').matches) {
         gsap.to(dot,  { x: e.clientX, y: e.clientY, duration: .08 });
         gsap.to(ring, { x: e.clientX, y: e.clientY, duration: .38, ease: 'power2.out' });
     });
-    document.querySelectorAll('a, button, [onclick], .float-btn').forEach(el => {
+    document.querySelectorAll('a, button, [onclick], .float-btn, .g-item').forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('c-hover'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('c-hover'));
     });
@@ -1359,6 +1428,46 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         const el = document.querySelector(id);
         if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -80, duration: 1.6 }); }
     });
+});
+
+/* ── 12. Lightbox Modal for Real Photos ───────────────────── */
+const lbModal   = document.getElementById('lightbox-modal');
+const lbImg     = document.getElementById('lightbox-img');
+const lbCaption = document.getElementById('lightbox-caption');
+const lbClose   = document.getElementById('lightbox-close');
+
+function openLightbox(src, caption) {
+    if (!lbModal || !lbImg) return;
+    lbImg.src = src;
+    lbCaption.textContent = caption || '';
+    lbModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    if (!lbModal || !lbImg) return;
+    lbModal.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { lbImg.src = ''; }, 300);
+}
+
+document.querySelectorAll('.g-item').forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const caption = item.getAttribute('data-caption') || (img ? img.alt : '');
+        if (img) openLightbox(img.src, caption);
+    });
+});
+
+if (lbClose) lbClose.addEventListener('click', closeLightbox);
+if (lbModal) {
+    lbModal.addEventListener('click', e => {
+        if (e.target === lbModal || e.target === lbClose) closeLightbox();
+    });
+}
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lbModal && lbModal.classList.contains('active')) closeLightbox();
 });
 </script>
 </body>
