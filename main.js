@@ -401,16 +401,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* --- 5. Scroll Reveal Animationen --- */
-    const erscheinendeElemente = document.querySelectorAll('.erscheinen-element');
-    const scrollBeobachter = new IntersectionObserver((eintraege) => {
-        eintraege.forEach(eintrag => {
-            if(eintrag.isIntersecting) {
-                eintrag.target.classList.add('sichtbar');
-            }
-        });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    /* --- 5. Scroll Reveal Animationen (Alle Seiten & Komponenten) --- */
+    const animierbareElemente = document.querySelectorAll('.erscheinen-element, .reveal');
+    if (animierbareElemente.length > 0) {
+        const scrollBeobachter = new IntersectionObserver((eintraege) => {
+            eintraege.forEach(eintrag => {
+                if (eintrag.isIntersecting) {
+                    eintrag.target.classList.add('sichtbar', 'active');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
 
-    erscheinendeElemente.forEach(element => scrollBeobachter.observe(element));
+        animierbareElemente.forEach(element => scrollBeobachter.observe(element));
+
+        // Ausfallsichere Sofort-Aktivierung für sichtbaren Bereich
+        const sichereSichtbarkeit = () => {
+            animierbareElemente.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight + 100) {
+                    el.classList.add('sichtbar', 'active');
+                }
+            });
+        };
+        sichereSichtbarkeit();
+        setTimeout(sichereSichtbarkeit, 300);
+        setTimeout(sichereSichtbarkeit, 1000);
+    }
 
 });

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -532,7 +532,7 @@
     <!-- 2. HERO SECTION -->
     <header class="hero">
         <div class="hero-bg"></div>
-        <div class="hero-content reveal">
+        <div class="hero-content">
             <h1>Enterprise IT.<br>Ohne Kompromisse.</h1>
             <p>Ganzheitliche IT-Architektur, Cybersecurity und High-End Softwareentwicklung aus Ergolding. Für Unternehmen in ganz Deutschland, die auf Sicherheit und Performance setzen.</p>
             <div class="hero-ctas">
@@ -620,7 +620,7 @@
             
             <div class="card reveal">
                 <span class="badge">Web & Security</span>
-                <h3>ShineFactory by Arikan</h3>
+                <h3>ShineFactory</h3>
                 <p><strong>Rolle:</strong> Aufbereitung<br><br>Design und Entwicklung der neuen Website, tiefgreifende SEO-Optimierung und Einrichtung sicheren Mailverkehrs für erhöhte Kundenanfragen.</p>
             </div>
             
@@ -641,9 +641,9 @@
         
         <div class="grid-3">
             <div class="card reveal">
-                <p style="font-style: italic; margin-bottom: 1.5rem;">"Wir haben volvevent. mit dem kompletten Aufbau unserer IT-Infrastruktur betraut. Von der Firewall bis zum Microsoft 365-Setup – alles wurde präzise undTermintreu umgesetzt. Absolute Empfehlung für Unternehmen, die keine Kompromisse bei der IT-Sicherheit machen."</p>
+                <p style="font-style: italic; margin-bottom: 1.5rem;">"Wir haben volvevent. mit dem kompletten Aufbau unserer IT-Infrastruktur betraut. Von der Firewall bis zum Microsoft 365-Setup – alles wurde präzise und termintreu umgesetzt. Absolute Empfehlung für Unternehmen, die keine Kompromisse bei der IT-Sicherheit machen."</p>
                 <div style="margin-top: auto;">
-                    <strong>Ahmed</strong><br>
+                    <strong>Hüseyin G.</strong><br>
                     <span style="color: var(--text-muted); font-size: 0.85rem;">Geschäftsführer, MHA-Solutions</span>
                 </div>
             </div>
@@ -651,7 +651,7 @@
             <div class="card reveal">
                 <p style="font-style: italic; margin-bottom: 1.5rem;">"Unsere neue Webseite hat uns sofort mehr Kundenanfragen gebracht. Die SEO-Optimierung war ein Gamechanger. Muhammet hat jeden Wunsch professionell und ohne unnötige Rückfragen umgesetzt."</p>
                 <div style="margin-top: auto;">
-                    <strong>Arikan</strong><br>
+                    <strong>Dogukan A.</strong><br>
                     <span style="color: var(--text-muted); font-size: 0.85rem;">Inhaber, ShineFactory</span>
                 </div>
             </div>
@@ -659,8 +659,8 @@
             <div class="card reveal">
                 <p style="font-style: italic; margin-bottom: 1.5rem;">"Nach dem Relaunch durch volvevent. stehen wir bei Google-Suche auf Platz 1 für unser Kernkeyword. Das hat unsere Umsätze direkt messbar gesteigert. Hervorragende Arbeit!"</p>
                 <div style="margin-top: auto;">
-                    <strong>Inhaber</strong><br>
-                    <span style="color: var(--text-muted); font-size: 0.85rem;">latuning.de</span>
+                    <strong>Meike S.</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.85rem;">Inhaberin, latuning.de</span>
                 </div>
             </div>
         </div>
@@ -768,5 +768,25 @@
             &copy; 2026 volvevent. Inhaber: Muhammet Hasan G&uuml;rcan. Alle Rechte vorbehalten.
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: "0px 0px -20px 0px" });
+            reveals.forEach(el => observer.observe(el));
+            setTimeout(() => {
+                reveals.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 100) el.classList.add('active');
+                });
+            }, 200);
+        });
+    </script>
 </body>
 </html>
