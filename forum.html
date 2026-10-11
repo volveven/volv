@@ -1,57 +1,79 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Cybersecurity Forum | volvevent.</title>
-    <link rel="stylesheet" href="style.css?v=4.0">
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <script src="main.js?v=5.0" defer></script>
     <style>
         body {
             background-color: #0a0a0a;
             color: #f5f5f7;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            /* cursor managed by style.css */
             line-height: 1.6;
             overflow-x: hidden;
         }
         
-        /* Navbar */
-        nav {
+        /* Unified Navbar */
+        .nav-container {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.72);
+            background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .nav-inner {
+            max-width: 1240px;
+            margin: 0 auto;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s;
         }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
+        .logo { 
+            font-size: 1.35rem; 
+            font-weight: 700; 
+            color: #fff; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
         }
-        .nav-links a {
-            color: #f5f5f7;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s, opacity 0.3s;
+        .nav-links { 
+            display: flex; 
+            gap: 1.8rem; 
+            align-items: center; 
         }
-        .nav-links a:hover {
-            color: #2997FF;
+        .nav-links a { 
+            color: #86868b; 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 500; 
+            transition: color 0.2s; 
         }
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
-            color: #fff;
-            text-decoration: none;
+        .nav-links a:hover, 
+        .nav-links a.active { 
+            color: #fff; 
+        }
+        .nav-cta { 
+            background: #2997ff; 
+            color: #fff !important; 
+            padding: 0.5rem 1.15rem; 
+            border-radius: 980px; 
+            font-weight: 600 !important; 
+            text-decoration: none; 
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s; 
+        }
+        .nav-cta:hover { 
+            transform: scale(1.04); 
+            background: #0077ed; 
+            box-shadow: 0 0 16px rgba(41, 151, 255, 0.4); 
         }
 
         /* Hero */
@@ -360,7 +382,7 @@
         }
         .btn-whatsapp:hover { 
             background: #28b84d; 
-            transform: translateY(-2px);
+            transform: translateY(-2px); 
         }
         .btn-primary { 
             background: #2997FF; 
@@ -368,37 +390,74 @@
         }
         .btn-primary:hover { 
             background: #0077ed; 
-            transform: translateY(-2px);
-        }
-        .btn-nav {
-            background: #2997FF;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            margin-left: 1rem;
+            transform: translateY(-2px); 
         }
 
-        /* Footer */
-        footer {
-            background: #000;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding: 6rem 2rem 3rem;
+        /* Unified Footer */
+        footer { 
+            background: #050507; 
+            border-top: 1px solid rgba(255, 255, 255, 0.08); 
+            padding: 4rem 2rem 2.5rem; 
+            color: #86868b; 
         }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            color: #86868b;
+        .footer-inner { 
+            max-width: 1240px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 3rem; 
         }
-        .footer-content h4 { color: #fff; margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .footer-links { list-style: none; padding: 0; margin: 0; }
-        .footer-links li { margin-bottom: 1rem; }
-        .footer-links a { color: #86868b; text-decoration: none; transition: color 0.3s; }
-        .footer-links a:hover { color: #fff; }
-        .footer-logo { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+        .footer-brand h3 { 
+            color: #fff; 
+            font-size: 1.3rem; 
+            margin: 0 0 0.8rem; 
+        }
+        .footer-brand p { 
+            font-size: 0.9rem; 
+            line-height: 1.6; 
+            max-width: 320px; 
+        }
+        .footer-col h4 { 
+            color: #fff; 
+            font-size: 0.95rem; 
+            margin: 0 0 1.2rem; 
+            font-weight: 600; 
+        }
+        .footer-col ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+        .footer-col li { 
+            margin-bottom: 0.6rem; 
+        }
+        .footer-col a { 
+            color: #86868b; 
+            text-decoration: none; 
+            font-size: 0.88rem; 
+            transition: color 0.2s; 
+        }
+        .footer-col a:hover { 
+            color: #fff; 
+        }
+        .footer-bottom { 
+            max-width: 1240px; 
+            margin: 3rem auto 0; 
+            padding-top: 2rem; 
+            border-top: 1px solid rgba(255, 255, 255, 0.06); 
+            text-align: center; 
+            font-size: 0.82rem; 
+        }
         
+        @media (max-width: 900px) {
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+            .nav-links { gap: 1rem; }
+        }
+        @media (max-width: 600px) {
+            .footer-inner { grid-template-columns: 1fr; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -415,21 +474,22 @@
         .delay-5 { animation-delay: 0.5s; }
         .delay-6 { animation-delay: 0.6s; }
     </style>
-    <script src="main.js?v=4.0" defer></script>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="logo">volvevent.</a>
-        <div class="nav-links">
-            <a href="index.html">Start</a>
-            <a href="projekte.html">Projekte</a>
-            <a href="blog.html">News</a>
-            <a href="forum.html" style="color:#2997FF;">Forum</a>
-            <a href="kontakt.html">Kontakt</a>
-            <a href="termin.html" class="btn-nav">Termin buchen</a>
+    <header class="nav-container" id="navigationsleiste">
+        <div class="nav-inner">
+            <a href="index.html" class="logo interaktives-element">volvevent.</a>
+            <nav class="nav-links menue-liste">
+                <a href="index.html" class="menue-link interaktives-element">Start</a>
+                <a href="projekte.html" class="menue-link interaktives-element">Projekte</a>
+                <a href="blog.html" class="menue-link interaktives-element">News &amp; Insights</a>
+                <a href="forum.html" class="menue-link interaktives-element active">Forum</a>
+                <a href="kontakt.html" class="menue-link interaktives-element">Kontakt</a>
+                <a href="termin.html" class="nav-cta interaktives-element">Termin buchen</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <header class="hero">
         <div>
@@ -644,76 +704,77 @@
                         <span>15. September 2026</span>
                         <span>7 Min. Lesezeit</span>
                     </div>
-                <h2>Microsoft 365 absichern: 7 kritische Einstellungen</h2>
-                <p style="font-size: 1.15rem; color: #a1a1a6; margin-bottom: 3.5rem;">Standardmäßig priorisiert Microsoft bei M365 reibungslose Benutzerfreundlichkeit klar über strikte Sicherheit. Ein frischer Out-of-the-Box Tenant ist ein gefundenes Fressen für automatisierte Angreifer. Administratoren müssen hier zwingend und aktiv eingreifen. Setzen Sie diese 7 kritischen Konfigurationen umgehend um, um Ihr unternehmerisches Risiko drastisch zu minimieren.</p>
-                
-                <div class="checklist-item">
-                    <div class="check-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <h2>Microsoft 365 absichern: 7 kritische Einstellungen</h2>
+                    <p style="font-size: 1.15rem; color: #a1a1a6; margin-bottom: 3.5rem;">Standardmäßig priorisiert Microsoft bei M365 reibungslose Benutzerfreundlichkeit klar über strikte Sicherheit. Ein frischer Out-of-the-Box Tenant ist ein gefundenes Fressen für automatisierte Angreifer. Administratoren müssen hier zwingend und aktiv eingreifen. Setzen Sie diese 7 kritischen Konfigurationen umgehend um, um Ihr unternehmerisches Risiko drastisch zu minimieren.</p>
+                    
+                    <div class="checklist-item">
+                        <div class="check-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">MFA für alle Konten global erzwingen</h3>
+                            <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Der absolute und wichtigste Basis-Schutz überhaupt. Deaktivieren Sie das veraltete per-User MFA und erzwingen Sie es konsequent global über Conditional Access Policies. Ohne MFA bedeutet ein einziges geknacktes Passwort sofort den Vollzugriff auf sensible Unternehmensdaten und Mails.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">MFA für alle Konten global erzwingen</h3>
-                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Der absolute und wichtigste Basis-Schutz überhaupt. Deaktivieren Sie das veraltete per-User MFA und erzwingen Sie es konsequent global über Conditional Access Policies. Ohne MFA bedeutet ein einziges geknacktes Passwort sofort den Vollzugriff auf sensible Unternehmensdaten und Mails.</p>
+                    
+                    <div class="checklist-item">
+                        <div class="check-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Conditional Access Policies konfigurieren</h3>
+                            <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Binden Sie jeden Zugriff zwingend an harte Bedingungen. Blockieren Sie pauschal Logins aus Ländern, in denen Sie operativ keine Geschäfte machen. Erlauben Sie den Zugriff auf vertrauliche SharePoint-Seiten ausschließlich von durch Intune verwalteten und als konform markierten Firmen-Geräten.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="checklist-item">
-                    <div class="check-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    
+                    <div class="checklist-item">
+                        <div class="check-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Legacy-Authentifizierung hart blockieren</h3>
+                            <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Alte Protokolle (wie POP3, IMAP, SMTP oder veraltete Office-Clients) unterstützen moderne Authentifizierung und MFA schlichtweg nicht. Angreifer nutzen diese gezielt für großangelegte Brute-Force-Attacken. Blockieren Sie Legacy-Auth global via CA, um diese massive historische Lücke endgültig zu schließen.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Conditional Access Policies konfigurieren</h3>
-                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Binden Sie jeden Zugriff zwingend an harte Bedingungen. Blockieren Sie pauschal Logins aus Ländern, in denen Sie operativ keine Geschäfte machen. Erlauben Sie den Zugriff auf vertrauliche SharePoint-Seiten ausschließlich von durch Intune verwalteten und als konform markierten Firmen-Geräten.</p>
+                    
+                    <div class="checklist-item">
+                        <div class="check-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Admin-Rollen strikt trennen (PIM)</h3>
+                            <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Niemand benötigt 24/7 aktive globale Admin-Rechte auf dem Tenant. Richten Sie separate, unlizenzierte Admin-Accounts ein. Nutzen Sie Privileged Identity Management (PIM), sodass Admins ihre erweiterten Rechte nur bei konkretem Bedarf, streng zeitlich befristet und nach erneuter Überprüfung aktivieren können.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="checklist-item">
-                    <div class="check-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    
+                    <div class="checklist-item">
+                        <div class="check-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Defender for Office 365 ausreizen</h3>
+                            <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Verlassen Sie sich keinesfalls nur auf den einfachen Standard-Spamfilter. Konfigurieren Sie zwingend Safe Links für die dynamische URL-Prüfung beim Klick und Safe Attachments für das sichere Sandboxing von E-Mail-Anhängen, um hochentwickeltes Spear-Phishing abzufangen, bevor es Schaden anrichtet.</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Legacy-Authentifizierung hart blockieren</h3>
-                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Alte Protokolle (wie POP3, IMAP, SMTP oder veraltete Office-Clients) unterstützen moderne Authentifizierung und MFA schlichtweg nicht. Angreifer nutzen diese gezielt für großangelegte Brute-Force-Attacken. Blockieren Sie Legacy-Auth global via CA, um diese massive historische Lücke endgültig zu schließen.</p>
+                    
+                    <div class="checklist-item">
+                        <div class="check-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">DLP-Richtlinien aktiv einsetzen</h3>
+                            <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Data Loss Prevention (DLP) verhindert zuverlässig, dass Mitarbeiter versehentlich oder gar absichtlich Kreditkartennummern, Personaldaten oder als vertraulich markierte Dokumente nach extern freigeben. Klassifizieren Sie Ihre Datenstrukturen und setzen Sie unübersehbare Warnungen oder harte Blockaden für den Abfluss.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="checklist-item">
-                    <div class="check-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <div>
-                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Admin-Rollen strikt trennen (PIM)</h3>
-                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Niemand benötigt 24/7 aktive globale Admin-Rechte auf dem Tenant. Richten Sie separate, unlizenzierte Admin-Accounts ein. Nutzen Sie Privileged Identity Management (PIM), sodass Admins ihre erweiterten Rechte nur bei konkretem Bedarf, streng zeitlich befristet und nach erneuter Überprüfung aktivieren können.</p>
-                    </div>
-                </div>
-                
-                <div class="checklist-item">
-                    <div class="check-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <div>
-                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">Defender for Office 365 ausreizen</h3>
-                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Verlassen Sie sich keinesfalls nur auf den einfachen Standard-Spamfilter. Konfigurieren Sie zwingend Safe Links für die dynamische URL-Prüfung beim Klick und Safe Attachments für das sichere Sandboxing von E-Mail-Anhängen, um hochentwickeltes Spear-Phishing abzufangen, bevor es Schaden anrichtet.</p>
-                    </div>
-                </div>
-                
-                <div class="checklist-item">
-                    <div class="check-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <div>
-                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">DLP-Richtlinien aktiv einsetzen</h3>
-                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Data Loss Prevention (DLP) verhindert zuverlässig, dass Mitarbeiter versehentlich oder gar absichtlich Kreditkartennummern, Personaldaten oder als vertraulich markierte Dokumente nach extern freigeben. Klassifizieren Sie Ihre Datenstrukturen und setzen Sie unübersehbare Warnungen oder harte Blockaden für den Abfluss.</p>
-                    </div>
-                </div>
-                
-                <div class="checklist-item">
-                    <div class="check-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <div>
-                        <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">DKIM, DMARC und SPF perfektionieren</h3>
-                        <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Schützen Sie aktiv den wertvollen Ruf Ihrer eigenen E-Mail-Domain. Diese essenziellen DNS-Einträge stellen sicher, dass E-Mails authentisch sind. Ohne korrektes und striktes DMARC landen Ihre legitimen Mails oft im Spam, während externe Angreifer völlig ungestört unter Ihrem guten Namen Phishing betreiben.</p>
+                    
+                    <div class="checklist-item">
+                        <div class="check-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem;">DKIM, DMARC und SPF perfektionieren</h3>
+                            <p style="color: #a1a1a6; margin: 0; line-height: 1.6;">Schützen Sie aktiv den wertvollen Ruf Ihrer eigenen E-Mail-Domain. Diese essenziellen DNS-Einträge stellen sicher, dass E-Mails authentisch sind. Ohne korrektes und striktes DMARC landen Ihre legitimen Mails oft im Spam, während externe Angreifer völlig ungestört unter Ihrem guten Namen Phishing betreiben.</p>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -724,11 +785,11 @@
             <h2>Haben Sie eine konkrete Sicherheitsfrage?</h2>
             <p>Lassen Sie uns transparent und offen über Ihre aktuelle Infrastruktur sprechen. Unverbindlich, ehrlich und absolut auf Augenhöhe mit unseren technischen Experten.</p>
             <div class="cta-buttons">
-                <a href="https://wa.me/491727045269" target="_blank" class="btn btn-whatsapp">
+                <a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp interaktives-element">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                    WhatsApp
                 </a>
-                <a href="termin.html" class="btn btn-primary">
+                <a href="termin.html" class="btn btn-primary interaktives-element">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                    Termin buchen
                 </a>
@@ -737,43 +798,42 @@
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div>
-                <a href="index.html" class="logo footer-logo" style="display:block;">volvevent.</a>
-                <p>Enterprise IT Company.<br>Wir bauen sichere, skalierbare Infrastrukturen.</p>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>volvevent.</h3>
+                <p>Enterprise IT-Architektur, Security Audits, Virtualisierung &amp; Systemadministration. B&auml;ckerstr. 8a, 84030 Ergolding.</p>
             </div>
-            <div>
-                <h4>Kontakt</h4>
-                <ul class="footer-links">
-                    <li>Bäckerstr. 8a<br>84030 Ergolding</li>
-                    <li style="margin-top:1rem;">+49 172 7045269</li>
-                    <li>info@volvevent.de</li>
-                </ul>
-            </div>
-            <div>
+            <div class="footer-col">
                 <h4>Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html">Start</a></li>
-                    <li><a href="projekte.html">Projekte</a></li>
-                    <li><a href="blog.html">News & Insights</a></li>
-                    <li><a href="forum.html">Forum</a></li>
+                <ul>
+                    <li><a href="index.html" class="interaktives-element">Startseite</a></li>
+                    <li><a href="projekte.html" class="interaktives-element">Projekte &amp; Referenzen</a></li>
+                    <li><a href="blog.html" class="interaktives-element">News &amp; Security Audits</a></li>
+                    <li><a href="forum.html" class="interaktives-element">Cybersecurity Forum</a></li>
+                    <li><a href="termin.html" class="interaktives-element">Termin buchen</a></li>
                 </ul>
             </div>
-            <div>
+            <div class="footer-col">
                 <h4>Rechtliches</h4>
-                <ul class="footer-links">
-                    <li><a href="impressum.html">Impressum</a></li>
-                    <li><a href="datenschutz.html">Datenschutz</a></li>
-                    <li><a href="agb.html">AGB</a></li>
+                <ul>
+                    <li><a href="impressum.html" class="interaktives-element">Impressum</a></li>
+                    <li><a href="datenschutz.html" class="interaktives-element">Datenschutz</a></li>
+                    <li><a href="agb.html" class="interaktives-element">AGB</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Direktkontakt</h4>
+                <ul>
+                    <li><a href="tel:+491727045269" class="interaktives-element">+49 172 7045269</a></li>
+                    <li><a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="interaktives-element">WhatsApp Support</a></li>
+                    <li><a href="kontakt.html" class="interaktives-element">Kontaktformular</a></li>
                 </ul>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 4rem; color: #555; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
-            &copy; 2026 volvevent. Alle Rechte vorbehalten.
+        <div class="footer-bottom">
+            &copy; 2026 volvevent. Inhaber: Muhammet Hasan G&uuml;rcan. Alle Rechte vorbehalten.
         </div>
     </footer>
 
 </body>
 </html>
-
-

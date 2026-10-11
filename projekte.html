@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unsere Projekte | volvevent.</title>
-    <link rel="stylesheet" href="style.css?v=4.0">
+        <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <script src="main.js?v=5.0" defer></script>
     <style>
         :root {
             --bg-dark: #000000;
@@ -164,23 +168,19 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="logo">volvevent.</a>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html" class="nav-link">Start</a>
-            <a href="index.html" class="nav-link">Services</a>
-            <a href="projekte.html" class="nav-link">Projekte</a>
-            <a href="blog.html" class="nav-link">News</a>
-            <a href="forum.html" class="nav-link">Forum</a>
-            <a href="kontakt.html" class="nav-link">Kontakt</a>
-            <a href="termin.html" class="cta-btn">Termin buchen</a>
+    <header class="nav-container" id="navigationsleiste">
+        <div class="nav-inner">
+            <a href="index.html" class="logo interaktives-element">volvevent.</a>
+            <nav class="nav-links menue-liste">
+                <a href="index.html" class="menue-link interaktives-element">Start</a>
+                <a href="projekte.html" class="menue-link interaktives-element active">Projekte</a>
+                <a href="blog.html" class="menue-link interaktives-element">News &amp; Insights</a>
+                <a href="forum.html" class="menue-link interaktives-element">Forum</a>
+                <a href="kontakt.html" class="menue-link interaktives-element">Kontakt</a>
+                <a href="termin.html" class="nav-cta interaktives-element">Termin buchen</a>
+            </nav>
         </div>
-        <div class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+    </header>
 
     <header class="hero">
         <div class="hero-content reveal active">
@@ -341,51 +341,44 @@
         <a href="termin.html" class="cta-btn" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Termin buchen</a>
     </div>
 
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #fff;">volvevent.</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
-                    Enterprise IT-Architektur & High-End Softwareentwicklung aus Bayern.
-                </p>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>volvevent.</h3>
+                <p>Enterprise IT-Architektur, Security Audits, Virtualisierung &amp; Systemadministration. B&auml;ckerstr. 8a, 84030 Ergolding.</p>
             </div>
             <div class="footer-col">
                 <h4>Navigation</h4>
                 <ul>
-                    <li><a href="index.html">Start</a></li>
-                    <li><a href="index.html">Services</a></li>
-                    <li><a href="projekte.html">Projekte</a></li>
-                    <li><a href="blog.html">News</a></li>
-                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="index.html" class="interaktives-element">Startseite</a></li>
+                    <li><a href="projekte.html" class="interaktives-element">Projekte</a></li>
+                    <li><a href="blog.html" class="interaktives-element">News &amp; Insights</a></li>
+                    <li><a href="forum.html" class="interaktives-element">Forum</a></li>
+                    <li><a href="termin.html" class="interaktives-element">Termin buchen</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Rechtliches</h4>
                 <ul>
-                    <li><a href="impressum.html">Impressum</a></li>
-                    <li><a href="datenschutz.html">Datenschutz</a></li>
-                    <li><a href="agb.html">AGB</a></li>
+                    <li><a href="impressum.html" class="interaktives-element">Impressum</a></li>
+                    <li><a href="datenschutz.html" class="interaktives-element">Datenschutz</a></li>
+                    <li><a href="agb.html" class="interaktives-element">AGB</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Kontakt</h4>
+                <h4>Direktkontakt</h4>
                 <ul>
-                    <li style="color: var(--text-muted); font-size: 0.9rem;">Bäckerstr. 8a<br>84030 Ergolding</li>
-                    <li><a href="tel:+491727045269">+49 172 7045269</a></li>
-                    <li><a href="mailto:info@volvevent.de">info@volvevent.de</a></li>
+                    <li><a href="tel:+491727045269" class="interaktives-element">+49 172 7045269</a></li>
+                    <li><a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="interaktives-element">WhatsApp</a></li>
+                    <li><a href="kontakt.html" class="interaktives-element">Kontaktformular</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 volvevent. Muhammet Hasan Gürcan. Alle Rechte vorbehalten.
+            &copy; 2026 volvevent. Inhaber: Muhammet Hasan G&uuml;rcan. Alle Rechte vorbehalten.
         </div>
     </footer>
 
-    <a href="https://wa.me/491727045269" class="floating-whatsapp" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24"><path d="M12.01 2.014c-5.46 0-9.897 4.436-9.897 9.897 0 1.944.544 3.754 1.488 5.302L2.348 21.65l4.57-1.198c1.472.84 3.167 1.32 4.975 1.32 5.46 0 9.897-4.437 9.897-9.897s-4.437-9.897-9.897-9.897zm5.556 14.195c-.244.693-1.42 1.258-2.02 1.314-.542.05-1.194.137-3.61-.867-2.9-1.2-4.732-4.17-4.877-4.364-.145-.194-1.162-1.547-1.162-2.95 0-1.403.73-2.096.993-2.388.263-.292.573-.365.764-.365.19 0 .38.002.546.01.173.007.41-.065.642.494.244.59.833 2.03.905 2.176.072.146.12.316.024.51-.096.195-.145.317-.29.488-.145.17-.306.356-.437.478-.145.132-.303.277-.137.564.167.287.74 1.22 1.583 1.977.962.862 1.88 1.144 2.167 1.29.287.146.455.122.625-.073.17-.195.74-.853.94-1.145.192-.292.385-.244.646-.146.264.097 1.666.786 1.953.932.287.146.478.22.548.34.07.12.07.703-.174 1.396z"/></svg>
-    </a>
-
-    <script src="main.js?v=4.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const reveals = document.querySelectorAll('.reveal');
@@ -403,4 +396,3 @@
     </script>
 </body>
 </html>
-

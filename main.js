@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- 0.5 Mobile Navigation (Injected for all HTML files) --- */
     const navLeiste = document.getElementById('navigationsleiste');
     const menueListe = document.querySelector('.menue-liste');
-    if (navLeiste && menueListe) {
+    if (navLeiste && menueListe && !document.querySelector('.mobile-menue-knopf')) {
         const burgerKnopf = document.createElement('div');
         burgerKnopf.className = 'mobile-menue-knopf interaktives-element';
         burgerKnopf.innerHTML = '<svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
-        navLeiste.insertBefore(burgerKnopf, menueListe);
+        menueListe.parentNode.insertBefore(burgerKnopf, menueListe);
         
         burgerKnopf.addEventListener('click', () => {
             menueListe.classList.toggle('offen');

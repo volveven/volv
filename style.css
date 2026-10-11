@@ -417,3 +417,202 @@ select, option {
     color: #30d158;
     font-weight: 600;
 }
+
+/* ==========================================
+   UNIFIED NAVIGATION (All Pages)
+   ========================================== */
+.nav-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease;
+}
+.nav-container.versteckt {
+    transform: translateY(-100%);
+}
+.nav-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-container .logo {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+.nav-container .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+}
+.nav-container .nav-links a {
+    color: #86868b;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.nav-container .nav-links a:hover,
+.nav-container .nav-links a.active {
+    color: #fff;
+}
+.nav-cta {
+    background: #2997ff;
+    color: #fff !important;
+    padding: 0.5rem 1.15rem;
+    border-radius: 980px;
+    font-weight: 600 !important;
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.nav-cta:hover {
+    transform: scale(1.04);
+    background: #0077ed;
+    box-shadow: 0 0 16px rgba(41, 151, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .nav-container .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav-container .nav-links.offen {
+        display: flex;
+        max-height: 500px;
+    }
+    .nav-container .nav-links a {
+        padding: 1.2rem 2rem;
+        display: block;
+        width: 100%;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* ==========================================
+   UNIFIED FOOTER (All Pages)
+   ========================================== */
+footer {
+    background: #050507;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 4rem 2rem 2.5rem;
+    color: #86868b;
+}
+.footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+}
+.footer-brand h3 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin: 0 0 0.8rem;
+}
+.footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 320px;
+}
+.footer-col h4 {
+    color: #fff;
+    font-size: 0.95rem;
+    margin: 0 0 1.2rem;
+    font-weight: 600;
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-col li {
+    margin-bottom: 0.6rem;
+}
+.footer-col a {
+    color: #86868b;
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s;
+}
+.footer-col a:hover {
+    color: #fff;
+}
+.footer-bottom {
+    max-width: 1240px;
+    margin: 3rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    font-size: 0.82rem;
+    color: #86868b;
+}
+
+@media (max-width: 900px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 600px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   LEGAL PAGE STYLES
+   ========================================== */
+.legal-hero {
+    padding: 7rem 2rem 3rem;
+    text-align: center;
+    background: radial-gradient(circle at 50% 20%, rgba(41, 151, 255, 0.08), transparent 60%);
+}
+.legal-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 0.8rem;
+    letter-spacing: -1px;
+}
+.legal-hero p {
+    color: #86868b;
+    font-size: 1.1rem;
+}
+.legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    color: #d1d1d6;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+.legal-content h2 {
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.legal-content p {
+    margin: 0 0 1rem;
+}
