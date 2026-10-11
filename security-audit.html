@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Security-Audit &amp; Risk-Score | volvevent.</title>
+    <meta name="description" content="Interaktiver Enterprise IT-Sicherheits-Check. Ermitteln Sie in 2 Minuten Ihren konkreten IT-Risikoscore und identifizieren Sie Einfallstore für Ransomware und NIS2-Mängel.">
+    <link rel="canonical" href="https://www.volvevent.de/security-audit.html">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <script src="main.js?v=5.0" defer></script>
+</head>
+<body>
+    <header class="nav-container" id="navigationsleiste">
+        <div class="nav-inner">
+            <a href="index.html" class="logo interaktives-element">volvevent.</a>
+            <nav class="nav-links menue-liste">
+                <a href="index.html" class="menue-link interaktives-element">Start</a>
+                <a href="webdesign.html" class="menue-link interaktives-element">Webdesign</a>
+                <a href="projekte.html" class="menue-link interaktives-element">Projekte</a>
+                <a href="security-audit.html" class="menue-link interaktives-element active">Security-Audit</a>
+                <a href="blog.html" class="menue-link interaktives-element">News &amp; Insights</a>
+                <a href="forum.html" class="menue-link interaktives-element">Forum</a>
+                <a href="kontakt.html" class="menue-link interaktives-element">Kontakt</a>
+                <a href="termin.html" class="nav-cta interaktives-element">Termin buchen</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="sektions-abstand" style="padding-top: 6rem; padding-bottom: 3rem; text-align: center; background: radial-gradient(circle at 50% 15%, rgba(41, 151, 255, 0.1), transparent 60%);">
+            <div class="zentrierter-container">
+                <div class="tech-badge" style="margin-bottom: 1.5rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Interaktives Diagnose-Werkzeug &bull; Zero-Trust Framework
+                </div>
+                
+                <h1 class="haupt-ueberschrift" style="max-width: 900px; margin: 0 auto 1.2rem;">
+                    Enterprise Security-Audit.<br><span class="text-gradient">Wie angreifbar ist Ihre IT?</span>
+                </h1>
+                
+                <p class="fliesstext" style="max-width: 720px; margin: 0 auto 2.5rem; font-size: 1.2rem;">
+                    Beantworten Sie 5 kurze Architektur-Fragen zu Ihrer Infrastruktur. Unser Algorithmus analysiert Ihre Angriffsfläche, deckt kritische Schwachstellen auf und liefert sofort Ihren Sicherheits-Score.
+                </p>
+            </div>
+        </section>
+
+        <!-- AUDIT WIZARD -->
+        <section class="sektions-abstand" style="padding-top: 1rem; padding-bottom: 6rem;">
+            <div class="zentrierter-container audit-container">
+                <div class="audit-card spotlight-card">
+                    
+                    <!-- Frage 1 -->
+                    <div class="audit-question-block">
+                        <div class="audit-question-title">
+                            <span style="color:#2997ff; font-family:var(--schrift-code);">01</span>
+                            Identitätsabsicherung &amp; Multi-Faktor-Authentifizierung (MFA)
+                        </div>
+                        <div class="audit-question-desc">
+                            Passwörter allein bieten keinen Schutz vor Phishing. Wie ist die Authentifizierung für M365, VPN und interne Server geregelt?
+                        </div>
+                        <div class="audit-options">
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-mfa" value="none" style="accent-color:#2997ff;">
+                                <span>Kein MFA / Nur Passwörter</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-mfa" value="partial" style="accent-color:#2997ff;">
+                                <span>MFA nur für Administratoren</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-mfa" value="full" checked style="accent-color:#2997ff;">
+                                <span>Flächendeckend für alle Nutzer (App/FIDO2)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Frage 2 -->
+                    <div class="audit-question-block">
+                        <div class="audit-question-title">
+                            <span style="color:#2997ff; font-family:var(--schrift-code);">02</span>
+                            Netzwerk-Architektur &amp; Mikrosegmentierung (VLANs)
+                        </div>
+                        <div class="audit-question-desc">
+                            Kann sich ein Angreifer nach Kompromittierung eines einzigen Arbeitsplatzrechners frei zu Servern, Backups und VoIP bewegen?
+                        </div>
+                        <div class="audit-options">
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-vlan" value="flat" style="accent-color:#2997ff;">
+                                <span>Flaches Netzwerk (Alle im selben Subnetz)</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-vlan" value="basic" style="accent-color:#2997ff;">
+                                <span>VLANs vorhanden, aber offenes Inter-VLAN Routing</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-vlan" value="hardened" checked style="accent-color:#2997ff;">
+                                <span>Strikte Firewall-Segmentierung (Zero-Trust Zonen)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Frage 3 -->
+                    <div class="audit-question-block">
+                        <div class="audit-question-title">
+                            <span style="color:#2997ff; font-family:var(--schrift-code);">03</span>
+                            Backup-Resilienz &amp; Unveränderbarkeit (Immutable Storage)
+                        </div>
+                        <div class="audit-question-desc">
+                            Moderne Ransomware sucht gezielt nach Backup-Repositories und verschlüsselt diese zuerst. Wie sind Ihre Sicherungen geschützt?
+                        </div>
+                        <div class="audit-options">
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-backup" value="online" style="accent-color:#2997ff;">
+                                <span>Einfache NAS/Netzwerkfreigabe (Online beschreibbar)</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-backup" value="untested" style="accent-color:#2997ff;">
+                                <span>Backups vorhanden, aber keine regelmäßigen Restore-Tests</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-backup" value="immutable" checked style="accent-color:#2997ff;">
+                                <span>Air-Gapped / Immutable Backups (3-2-1-1 Regel)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Frage 4 -->
+                    <div class="audit-question-block">
+                        <div class="audit-question-title">
+                            <span style="color:#2997ff; font-family:var(--schrift-code);">04</span>
+                            Endpoint-Schutz &amp; Verhaltenserkennung (EDR/XDR)
+                        </div>
+                        <div class="audit-question-desc">
+                            Verlassen Sie sich auf herkömmliche signaturbasierte Virenscanner oder überwacht ein KI-gestütztes EDR-System verdächtige Verhaltensmuster im RAM?
+                        </div>
+                        <div class="audit-options">
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-edr" value="standard" style="accent-color:#2997ff;">
+                                <span>Klassischer Antivirus (Windows Defender Default / Signaturen)</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-edr" value="managed" checked style="accent-color:#2997ff;">
+                                <span>Aktives EDR/XDR mit Verhaltensanalyse &amp; Isolation</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Frage 5 -->
+                    <div class="audit-question-block" style="border-bottom: none; margin-bottom: 2rem;">
+                        <div class="audit-question-title">
+                            <span style="color:#2997ff; font-family:var(--schrift-code);">05</span>
+                            NIS2-Richtlinie &amp; Notfallwiederanlaufplan (Disaster Recovery)
+                        </div>
+                        <div class="audit-question-desc">
+                            Existiert ein schriftlicher, erprobter Notfallplan für den Totalausfall inklusive definierter Verantwortlichkeiten?
+                        </div>
+                        <div class="audit-options">
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-nis2" value="unprepared" style="accent-color:#2997ff;">
+                                <span>Kein formaler Plan / Bisher nicht mit NIS2 befasst</span>
+                            </label>
+                            <label class="audit-option-label interaktives-element">
+                                <input type="radio" name="audit-nis2" value="prepared" checked style="accent-color:#2997ff;">
+                                <span>Dokumentierter Notfallplan &amp; NIS2-Risikobewertung vorhanden</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button id="audit-calc-btn" class="absenden-knopf interaktives-element" style="font-size: 1.1rem; padding: 1.2rem;">
+                        Sicherheits-Score jetzt berechnen &rarr;
+                    </button>
+
+                    <!-- AUSWERTUNG RESULT BOX -->
+                    <div id="audit-result" class="audit-result-box">
+                        <div class="tech-badge" style="margin-bottom: 0.5rem;">Diagnose-Ergebnis</div>
+                        <div id="audit-score-num" class="score-display">--/100</div>
+                        <div id="audit-score-label" class="score-label">Berechnung läuft...</div>
+                        
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.5rem; text-align: left; max-width: 650px; margin: 0 auto 2rem;">
+                            <h4 style="color:#fff; font-size:1rem; margin-bottom:0.8rem;">Gefundene Schwachstellen &amp; Risiken:</h4>
+                            <ul id="audit-deductions" style="list-style:none; padding:0; margin:0; font-size:0.92rem; line-height:1.6;">
+                            </ul>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="termin.html?service=security" class="absenden-knopf interaktives-element" style="width: auto; padding: 1rem 2rem; text-decoration: none;">
+                                Audit mit Muhammet Gürcan besprechen
+                            </a>
+                            <a href="https://wa.me/491727045269?text=Hallo%20Muhammet,%20ich%20habe%20den%20Security-Audit%20gemacht%20und%20m%C3%B6chte%20meine%20Infrastruktur%20absichern." target="_blank" rel="noopener noreferrer" class="interaktives-element" style="background:#25d366; color:#fff; padding:1rem 1.8rem; border-radius:20px; font-weight:600; text-decoration:none;">
+                                WhatsApp Sofort-Check
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>volvevent.</h3>
+                <p>Enterprise IT-Architektur, High-End Webdesign, Security Audits &amp; Systemadministration. Bäckerstr. 8a, 84030 Ergolding.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html" class="interaktives-element">Startseite</a></li>
+                    <li><a href="webdesign.html" class="interaktives-element">Webdesign &amp; E-Commerce</a></li>
+                    <li><a href="projekte.html" class="interaktives-element">Projekte &amp; Referenzen</a></li>
+                    <li><a href="security-audit.html" class="interaktives-element" style="color:#2997ff;">Security-Audit Tool</a></li>
+                    <li><a href="blog.html" class="interaktives-element">News &amp; Security Audits</a></li>
+                    <li><a href="forum.html" class="interaktives-element">Cybersecurity Forum</a></li>
+                    <li><a href="termin.html" class="interaktives-element">Termin buchen</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Rechtliches</h4>
+                <ul>
+                    <li><a href="impressum.html" class="interaktives-element">Impressum</a></li>
+                    <li><a href="datenschutz.html" class="interaktives-element">Datenschutz</a></li>
+                    <li><a href="agb.html" class="interaktives-element">AGB</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Direktkontakt</h4>
+                <ul>
+                    <li><a href="tel:+491727045269" class="interaktives-element">+49 172 7045269</a></li>
+                    <li><a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="interaktives-element">WhatsApp Support</a></li>
+                    <li><a href="kontakt.html" class="interaktives-element">Kontaktformular</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 volvevent. Inhaber: Muhammet Hasan Gürcan. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+</body>
+</html>

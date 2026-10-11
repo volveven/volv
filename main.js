@@ -428,4 +428,136 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(sichereSichtbarkeit, 1000);
     }
 
+    /* --- 6. Dynamic Bento / Spotlight Cursor Illumination --- */
+    document.addEventListener('mousemove', (e) => {
+        const spotCards = document.querySelectorAll('.spotlight-card, .bento-card, .pricing-card');
+        if (spotCards.length > 0) {
+            spotCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            });
+        }
+    }, { passive: true });
+
+    /* --- 7. Interactive Live Terminal Engine --- */
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalBody = document.getElementById('terminal-body');
+    if (terminalInput && terminalBody) {
+        const commands = {
+            'help': 'Verfügbare Befehle:\n  status      - Zeigt Live-Status aller Systeme\n  audit       - Führt Schnellanalyse der Infrastruktur durch\n  ping        - Simuliert Ping zu DE-CIX Frankfurt (Latenz)\n  whoami      - Zeigt Informationen zu volvevent. & Gründer\n  services    - Listet Kernarchitekturen auf\n  webdesign   - Details zu High-End Webdesign & 15% Rabatt\n  contact     - Zeigt Direktkontakt & WhatsApp an\n  clear       - Bereinigt den Terminal-Bildschirm',
+            'status': '[OK] Core Gateway: ONLINE (Uptime 99.99%)\n[OK] Firewall Cluster: ACTIVE/STANDBY (pfSense CARP Sync)\n[OK] Proxmox VE Nodes: 3/3 Healthy (Ceph Quorum OK)\n[OK] Zero-Trust Enforcer: VERIFIED\n[OK] SSL/TLS: A+ Grade (HSTS & Strict SNI Enforced)',
+            'audit': 'Starte automatisches Security-Scanning...\n[+] TLS 1.3 Cipher Suite: TLS_AES_256_GCM_SHA384 (Sicher)\n[+] HTTP Security Header: CSP, X-Frame, HSTS aktiv\n[+] Vulnerabilities detected: 0\n[!] NIS2-Compliance: Prüfe NIS2-Konformität auf security-audit.html',
+            'ping': 'PING de-cix-fra.volvevent.net (80.81.192.1): 56 data bytes\n64 bytes: icmp_seq=1 ttl=58 time=4.12 ms\n64 bytes: icmp_seq=2 ttl=58 time=4.08 ms\n64 bytes: icmp_seq=3 ttl=58 time=4.15 ms\n--- Ping Statistik ---\n3 Pakete übertragen, 3 empfangen, 0% Paketverlust, Avg: 4.11 ms',
+            'whoami': 'volvevent. | Enterprise IT-Architektur & High-End Softwareentwicklung\nInhaber: Muhammet Hasan Gürcan (7+ Jahre Sysadmin & Enterprise DevOps)\nStandort: Bäckerstr. 8a, 84030 Ergolding (Deutschland)\nFokus: Kompromisslose IT-Sicherheit, Performance & maßgeschneiderter Code',
+            'services': '1. Enterprise Netzwerkarchitektur (Cisco, Aruba, VLAN-Segmentierung)\n2. Server & Virtualisierung (Proxmox VE, VMware, Hyper-V Clusters)\n3. Cybersecurity & Zero-Trust (Hardware-Firewalls, IDS/IPS, NIS2)\n4. High-End Webdesign & E-Commerce (100% Custom Code, Core Web Vitals)\n5. App & SaaS Entwicklung (Native Apps, sichere APIs)',
+            'webdesign': 'High-End Webdesign & Performance Webentwicklung:\n- 100% PageSpeed, Ladezeiten < 0.8s, keine WordPress-Bloatware\n- Aktionsrabatt: 15% Rabatt auf alle Pakete bis zum 30.10.!\n- Mehr erfahren auf: webdesign.html',
+            'contact': 'Telefon: +49 172 7045269\nWhatsApp: https://wa.me/491727045269\nE-Mail: kontakt@volvevent.de\nBüro: Bäckerstr. 8a, 84030 Ergolding',
+            'clear': 'CLEAR'
+        };
+
+        const printLine = (text, type = 'output') => {
+            if (text === 'CLEAR') {
+                terminalBody.innerHTML = '';
+                return;
+            }
+            const line = document.createElement('div');
+            line.className = `terminal-line ${type}`;
+            line.innerText = text;
+            terminalBody.appendChild(line);
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        };
+
+        terminalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const rawVal = terminalInput.value.trim().toLowerCase();
+                if (!rawVal) return;
+                
+                printLine(`admin@volvevent:~$ ${rawVal}`, 'highlight');
+                terminalInput.value = '';
+
+                if (commands[rawVal]) {
+                    printLine(commands[rawVal], rawVal === 'status' || rawVal === 'audit' ? 'success' : 'output');
+                } else {
+                    printLine(`Befehl '${rawVal}' nicht gefunden. Tippen Sie 'help' für eine Befehlsübersicht.`, 'warning');
+                }
+            }
+        });
+    }
+
+    /* --- 8. Interactive Security Audit Calculator --- */
+    const auditCalculateBtn = document.getElementById('audit-calc-btn');
+    if (auditCalculateBtn) {
+        auditCalculateBtn.addEventListener('click', () => {
+            let score = 100;
+            const deductionDetails = [];
+
+            // Identität
+            const mfaVal = document.querySelector('input[name="audit-mfa"]:checked')?.value;
+            if (mfaVal === 'none') { score -= 25; deductionDetails.push('Keine flächendeckende MFA (Kritisch: Einfallstor #1)'); }
+            else if (mfaVal === 'partial') { score -= 12; deductionDetails.push('MFA nur für Admins (Gefahr durch kompromittierte Mitarbeiter-Accounts)'); }
+
+            // Netzwerk
+            const vlanVal = document.querySelector('input[name="audit-vlan"]:checked')?.value;
+            if (vlanVal === 'flat') { score -= 20; deductionDetails.push('Flaches Netzwerk ohne VLAN-Segmentierung (Ransomware kann sich lateral frei ausbreiten)'); }
+            else if (vlanVal === 'basic') { score -= 8; deductionDetails.push('VLANs vorhanden, aber unzureichende Firewall-Regeln zwischen Zonen'); }
+
+            // Backup
+            const backupVal = document.querySelector('input[name="audit-backup"]:checked')?.value;
+            if (backupVal === 'online') { score -= 25; deductionDetails.push('Backups nicht unveränderbar (Immutable) / nicht Air-Gapped (Gefahr der Verschlüsselung)'); }
+            else if (backupVal === 'untested') { score -= 12; deductionDetails.push('Wiederanlauf / Restore-Tests werden nicht quartalsweise geprüft'); }
+
+            // Endpoint & EDR
+            const edrVal = document.querySelector('input[name="audit-edr"]:checked')?.value;
+            if (edrVal === 'standard') { score -= 15; deductionDetails.push('Klassischer Signatur-Virenschutz statt verhaltensbasiertem EDR/XDR'); }
+
+            // Compliance
+            const nis2Val = document.querySelector('input[name="audit-nis2"]:checked')?.value;
+            if (nis2Val === 'unprepared') { score -= 10; deductionDetails.push('NIS2-Vorgaben bisher nicht evaluiert (Haftungsrisiko für Geschäftsführung)'); }
+
+            if (score < 0) score = 0;
+
+            const resultBox = document.getElementById('audit-result');
+            const scoreNum = document.getElementById('audit-score-num');
+            const scoreLabel = document.getElementById('audit-score-label');
+            const auditDeductions = document.getElementById('audit-deductions');
+
+            if (resultBox && scoreNum && scoreLabel) {
+                resultBox.style.display = 'block';
+                scoreNum.textContent = `${score}/100`;
+
+                if (score >= 85) {
+                    scoreNum.style.color = '#30d158';
+                    scoreLabel.textContent = 'Hervorragend gehärtet (Enterprise-Standard)';
+                    scoreLabel.style.color = '#30d158';
+                } else if (score >= 60) {
+                    scoreNum.style.color = '#ff9f0a';
+                    scoreLabel.textContent = 'Erhöhtes Risiko (Handlungsbedarf vorhanden)';
+                    scoreLabel.style.color = '#ff9f0a';
+                } else {
+                    scoreNum.style.color = '#ff453a';
+                    scoreLabel.textContent = 'Kritischer Zustand (Akute Angriffsfläche!)';
+                    scoreLabel.style.color = '#ff453a';
+                }
+
+                if (auditDeductions) {
+                    auditDeductions.innerHTML = '';
+                    if (deductionDetails.length === 0) {
+                        auditDeductions.innerHTML = '<li style="color:#30d158;">Keine gravierenden strukturellen Mängel gefunden. Empfehlung: Regelmäßige Pentests.</li>';
+                    } else {
+                        deductionDetails.forEach(d => {
+                            const li = document.createElement('li');
+                            li.style.color = '#ff6961';
+                            li.style.marginBottom = '6px';
+                            li.textContent = `• ${d}`;
+                            auditDeductions.appendChild(li);
+                        });
+                    }
+                }
+
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+
 });
