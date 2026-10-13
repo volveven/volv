@@ -1423,20 +1423,16 @@ body.preloader-active {
 
 .preloader-stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 0.6rem;
     font-family: var(--schrift-code, monospace);
-    font-size: 0.78rem;
+    font-size: 0.85rem;
 }
 
 .preloader-counter {
     color: #2997ff;
     font-weight: 700;
-}
-
-.preloader-frames {
-    color: #86868b;
 }
 
 .preloader-skip-btn {
@@ -1497,72 +1493,6 @@ body.preloader-active {
     pointer-events: none;
     background: radial-gradient(circle at center, transparent 35%, rgba(0, 0, 0, 0.75) 100%),
                 linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, transparent 22%, transparent 68%, rgba(0, 0, 0, 0.85) 100%);
-}
-
-/* HUD Top Bar */
-.scrolly-hud {
-    position: absolute;
-    top: 5.5rem; /* Below sticky navbar */
-    left: 5%;
-    right: 5%;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    pointer-events: none;
-}
-
-.scrolly-hud-left, .scrolly-hud-right {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: rgba(10, 10, 15, 0.65);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
-    font-family: var(--schrift-code, monospace);
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-}
-
-.scrolly-live-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #30d158;
-    box-shadow: 0 0 8px #30d158;
-    animation: livePulse 2s infinite;
-}
-
-@keyframes livePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-.scrolly-hud-tag {
-    color: #d1d1d6;
-    font-weight: 500;
-}
-
-.scrolly-frame-indicator {
-    color: #2997ff;
-    font-weight: 600;
-}
-
-.scrolly-skip-link {
-    color: #86868b;
-    pointer-events: auto;
-    text-decoration: none;
-    transition: color 0.2s;
-    margin-left: 0.4rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.12);
-    padding-left: 0.6rem;
-}
-
-.scrolly-skip-link:hover {
-    color: #ffffff;
 }
 
 /* Narrative Story Cards */
@@ -1784,32 +1714,6 @@ body.preloader-active {
 @media (max-width: 768px) {
     .scrolly-container {
         height: 360vh; /* slightly shorter scroll on mobile for snappy feel */
-    }
-
-    .scrolly-hud {
-        top: 6.8rem; /* account for mobile subnav */
-        left: 4%;
-        right: 4%;
-    }
-
-    .scrolly-hud-left {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.68rem;
-    }
-
-    .scrolly-hud-right {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.68rem;
-    }
-
-    .scrolly-hud-tag {
-        display: none;
-    }
-
-    .scrolly-hud-left::after {
-        content: "DATACENTER";
-        color: #d1d1d6;
-        font-weight: 500;
     }
 
     .scrolly-stories {

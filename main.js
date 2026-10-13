@@ -622,11 +622,9 @@ function initScrollytelling() {
     const preloader = document.getElementById('scrolly-preloader');
     const preloaderBar = document.getElementById('preloader-bar-fill');
     const preloaderCounter = document.getElementById('preloader-counter');
-    const preloaderFrames = document.getElementById('preloader-frames');
     const preloaderStatusTitle = document.getElementById('preloader-status-title');
     const preloaderStatusSub = document.getElementById('preloader-status-sub');
     const preloaderSkipBtn = document.getElementById('preloader-skip-btn');
-    const frameIndicator = document.getElementById('scrolly-frame-indicator');
     const storyCards = document.querySelectorAll('.scrolly-card');
     const progressDots = document.querySelectorAll('.progress-dot');
 
@@ -657,14 +655,13 @@ function initScrollytelling() {
 
         if (preloader) {
             if (preloaderStatusTitle) preloaderStatusTitle.textContent = "SYSTEM STATUS: BEREIT";
-            if (preloaderStatusSub) preloaderStatusSub.textContent = "Datacenter visualisiert · 120 Frames synchronisiert";
+            if (preloaderStatusSub) preloaderStatusSub.textContent = "Datacenter visualisiert · Systeme bereit";
             if (preloaderBar) {
                 preloaderBar.style.width = '100%';
                 preloaderBar.style.backgroundColor = '#30d158';
                 preloaderBar.style.boxShadow = '0 0 20px rgba(48, 209, 88, 0.75)';
             }
             if (preloaderCounter) preloaderCounter.textContent = '100%';
-            if (preloaderFrames) preloaderFrames.textContent = `${TOTAL_FRAMES} / ${TOTAL_FRAMES} Frames`;
 
             setTimeout(() => {
                 preloader.classList.add('preloader-hidden');
@@ -737,10 +734,6 @@ function initScrollytelling() {
 
         ctx.drawImage(img, drawX, drawY, drawW, drawH);
         ctx.restore();
-
-        if (frameIndicator) {
-            frameIndicator.textContent = `FRAME ${String(frameIdx + 1).padStart(3, '0')} / ${TOTAL_FRAMES}`;
-        }
     }
 
     // Story phase manager
@@ -839,7 +832,6 @@ function initScrollytelling() {
             const pct = Math.floor((loadedCount / TOTAL_FRAMES) * 100);
             if (preloaderBar) preloaderBar.style.width = `${pct}%`;
             if (preloaderCounter) preloaderCounter.textContent = `${pct}%`;
-            if (preloaderFrames) preloaderFrames.textContent = `${loadedCount} / ${TOTAL_FRAMES} Frames`;
 
             // Render first frame immediately
             if (i === 0 && lastDrawnFrame === 0) {
