@@ -605,4 +605,269 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* --- 6. SCROLLYTELLING & PRELOADER INITIALIZATION --- */
+    initScrollytelling();
+
 });
+
+/**
+ * Enterprise Datacenter Scrollytelling Engine
+ * 120 Frames Lerp-Scrubbing, High-DPI Canvas, Progressive Preloader & Mobile Responsive
+ */
+function initScrollytelling() {
+    const scrollySection = document.getElementById('scrollytelling-section');
+    const canvas = document.getElementById('scrolly-canvas');
+    if (!scrollySection || !canvas) return;
+
+    const preloader = document.getElementById('scrolly-preloader');
+    const preloaderBar = document.getElementById('preloader-bar-fill');
+    const preloaderCounter = document.getElementById('preloader-counter');
+    const preloaderFrames = document.getElementById('preloader-frames');
+    const preloaderStatusTitle = document.getElementById('preloader-status-title');
+    const preloaderStatusSub = document.getElementById('preloader-status-sub');
+    const preloaderSkipBtn = document.getElementById('preloader-skip-btn');
+    const frameIndicator = document.getElementById('scrolly-frame-indicator');
+    const storyCards = document.querySelectorAll('.scrolly-card');
+    const progressDots = document.querySelectorAll('.progress-dot');
+
+    const TOTAL_FRAMES = 120;
+    const images = new Array(TOTAL_FRAMES);
+    let loadedCount = 0;
+    let lastDrawnFrame = 0;
+    let targetFrame = 0;
+    let currentFrame = 0;
+    let isPreloaderDismissed = false;
+
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    // Mark body as preloader active
+    if (preloader) {
+        document.body.classList.add('preloader-active');
+        // Show skip button after 2.2 seconds if user has slow connection
+        setTimeout(() => {
+            if (preloaderSkipBtn && !isPreloaderDismissed) {
+                preloaderSkipBtn.style.display = 'inline-block';
+            }
+        }, 2200);
+    }
+
+    function dismissPreloader() {
+        if (isPreloaderDismissed) return;
+        isPreloaderDismissed = true;
+
+        if (preloader) {
+            if (preloaderStatusTitle) preloaderStatusTitle.textContent = "SYSTEM STATUS: BEREIT";
+            if (preloaderStatusSub) preloaderStatusSub.textContent = "Datacenter visualisiert · 120 Frames synchronisiert";
+            if (preloaderBar) {
+                preloaderBar.style.width = '100%';
+                preloaderBar.style.backgroundColor = '#30d158';
+                preloaderBar.style.boxShadow = '0 0 20px rgba(48, 209, 88, 0.75)';
+            }
+            if (preloaderCounter) preloaderCounter.textContent = '100%';
+            if (preloaderFrames) preloaderFrames.textContent = `${TOTAL_FRAMES} / ${TOTAL_FRAMES} Frames`;
+
+            setTimeout(() => {
+                preloader.classList.add('preloader-hidden');
+                document.body.classList.remove('preloader-active');
+                renderCurrentFrame();
+                updateStories(0);
+            }, 450);
+        } else {
+            renderCurrentFrame();
+            updateStories(0);
+        }
+    }
+
+    if (preloaderSkipBtn) {
+        preloaderSkipBtn.addEventListener('click', dismissPreloader);
+    }
+
+    // Canvas resizing with high-DPI awareness
+    function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.round(rect.width || window.innerWidth);
+        const h = Math.round(rect.height || window.innerHeight);
+
+        if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+        }
+        renderCurrentFrame();
+    }
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    window.addEventListener('orientationchange', resizeCanvas, { passive: true });
+
+    // Render frame with object-fit: cover logic
+    function renderCurrentFrame() {
+        const frameIdx = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentFrame)));
+        let img = images[frameIdx];
+
+        if (!img || !img.complete || img.naturalWidth === 0) {
+            img = images[lastDrawnFrame];
+            if (!img || !img.complete || img.naturalWidth === 0) return;
+        } else {
+            lastDrawnFrame = frameIdx;
+        }
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = canvas.width / dpr;
+        const h = canvas.height / dpr;
+
+        ctx.save();
+        ctx.scale(dpr, dpr);
+
+        const imgW = img.naturalWidth;
+        const imgH = img.naturalHeight;
+        const imgRatio = imgW / imgH;
+        const canvasRatio = w / h;
+
+        let drawW, drawH, drawX, drawY;
+        if (canvasRatio > imgRatio) {
+            drawW = w;
+            drawH = w / imgRatio;
+            drawX = 0;
+            drawY = (h - drawH) / 2;
+        } else {
+            drawH = h;
+            drawW = h * imgRatio;
+            drawX = (w - drawW) / 2;
+            drawY = 0;
+        }
+
+        ctx.drawImage(img, drawX, drawY, drawW, drawH);
+        ctx.restore();
+
+        if (frameIndicator) {
+            frameIndicator.textContent = `FRAME ${String(frameIdx + 1).padStart(3, '0')} / ${TOTAL_FRAMES}`;
+        }
+    }
+
+    // Story phase manager
+    function updateStories(progress) {
+        let activePhase = 1;
+        if (progress >= 0.76) {
+            activePhase = 4;
+        } else if (progress >= 0.50) {
+            activePhase = 3;
+        } else if (progress >= 0.24) {
+            activePhase = 2;
+        } else {
+            activePhase = 1;
+        }
+
+        storyCards.forEach(card => {
+            const cardPhase = parseInt(card.getAttribute('data-phase'), 10);
+            if (cardPhase === activePhase) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+
+        progressDots.forEach(dot => {
+            const dotStep = parseInt(dot.getAttribute('data-step'), 10);
+            if (dotStep === activePhase) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    // Progress dot click to scroll
+    progressDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const step = parseInt(dot.getAttribute('data-step'), 10);
+            const totalScrollable = scrollySection.offsetHeight - window.innerHeight;
+            let targetScrollRatio = 0.05;
+            if (step === 2) targetScrollRatio = 0.35;
+            if (step === 3) targetScrollRatio = 0.62;
+            if (step === 4) targetScrollRatio = 0.90;
+
+            const scrollyTop = scrollySection.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: scrollyTop + totalScrollable * targetScrollRatio,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Scroll listener
+    function onScroll() {
+        const rect = scrollySection.getBoundingClientRect();
+        const totalScrollable = scrollySection.offsetHeight - window.innerHeight;
+        if (totalScrollable <= 0) return;
+
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+
+        targetFrame = progress * (TOTAL_FRAMES - 1);
+        updateStories(progress);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Lerp render loop (60fps / 120fps smooth cinematic scrubbing)
+    function animLoop() {
+        const diff = targetFrame - currentFrame;
+        if (Math.abs(diff) > 0.01) {
+            currentFrame += diff * 0.18;
+            renderCurrentFrame();
+        } else if (Math.round(currentFrame) !== Math.round(targetFrame)) {
+            currentFrame = targetFrame;
+            renderCurrentFrame();
+        }
+        requestAnimationFrame(animLoop);
+    }
+    requestAnimationFrame(animLoop);
+
+    // Initial canvas sizing
+    resizeCanvas();
+
+    // Start preloading images in parallel
+    const startTime = Date.now();
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+        const img = new Image();
+        const frameNum = String(i + 1).padStart(4, '0');
+        img.src = `images/scrollytelling/frame_${frameNum}.jpg`;
+
+        img.onload = () => {
+            loadedCount++;
+            images[i] = img;
+
+            // Update preloader UI
+            const pct = Math.floor((loadedCount / TOTAL_FRAMES) * 100);
+            if (preloaderBar) preloaderBar.style.width = `${pct}%`;
+            if (preloaderCounter) preloaderCounter.textContent = `${pct}%`;
+            if (preloaderFrames) preloaderFrames.textContent = `${loadedCount} / ${TOTAL_FRAMES} Frames`;
+
+            // Render first frame immediately
+            if (i === 0 && lastDrawnFrame === 0) {
+                renderCurrentFrame();
+            }
+
+            // Once all frames are loaded
+            if (loadedCount >= TOTAL_FRAMES) {
+                const elapsed = Date.now() - startTime;
+                const minDisplayTime = 1400; // Guarantee user enjoys the bootup visual
+                const remaining = Math.max(0, minDisplayTime - elapsed);
+                setTimeout(dismissPreloader, remaining);
+            }
+        };
+
+        img.onerror = () => {
+            loadedCount++;
+            if (loadedCount >= TOTAL_FRAMES) {
+                setTimeout(dismissPreloader, 400);
+            }
+        };
+    }
+
+    // Safety timeout: dismiss preloader after 4.5s even on slow network
+    setTimeout(() => {
+        if (!isPreloaderDismissed) {
+            dismissPreloader();
+        }
+    }, 4500);
+}
+

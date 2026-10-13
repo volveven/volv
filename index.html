@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -436,10 +436,52 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="style.css?v=5.0">
-    <script src="main.js?v=5.0" defer></script>
+    <link rel="stylesheet" href="style.css?v=6.0">
+    <script src="main.js?v=6.0" defer></script>
 </head>
 <body>
+
+    <!-- PRELOADER INITIALISIERUNG (Datacenter High-Tech Bootup) -->
+    <div id="scrolly-preloader" class="scrolly-preloader" aria-live="polite">
+        <div class="preloader-content">
+            <div class="preloader-brand">
+                <span class="preloader-logo">volvevent.</span>
+                <span class="preloader-tag">ENTERPRISE IT ARCHITEKTUR</span>
+            </div>
+            
+            <div class="preloader-visual" aria-hidden="true">
+                <div class="preloader-ring-outer"></div>
+                <div class="preloader-ring-inner"></div>
+                <div class="preloader-icon">
+                    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#2997ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                        <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                        <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="preloader-status-container">
+                <div class="preloader-status-title" id="preloader-status-title">DATACENTER ARCHITEKTUR WIRD INITIALISIERT</div>
+                <div class="preloader-status-subtitle" id="preloader-status-sub">Verbinde Rechenzentrum &bull; Streaminge visuelle Frame-Pipeline...</div>
+            </div>
+
+            <div class="preloader-bar-wrap">
+                <div class="preloader-bar-track">
+                    <div class="preloader-bar-fill" id="preloader-bar-fill"></div>
+                </div>
+                <div class="preloader-stats">
+                    <span class="preloader-counter" id="preloader-counter">0%</span>
+                    <span class="preloader-frames" id="preloader-frames">0 / 120 Frames</span>
+                </div>
+            </div>
+
+            <button id="preloader-skip-btn" class="preloader-skip-btn interaktives-element" type="button" style="display:none;">
+                Direkt zur Website &rarr;
+            </button>
+        </div>
+    </div>
 
     <!-- 1. NAVIGATION -->
         <header class="nav-container" id="navigationsleiste">
@@ -490,21 +532,83 @@
         <a href="webdesign.html" style="color: #2997ff; font-weight: 600; text-decoration: none; margin-left: 0.6rem;" class="interaktives-element">Pakete ansehen &rarr;</a>
     </div>
 
-    <!-- 2. HERO SECTION -->
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>Enterprise IT.<br>Ohne Kompromisse.</h1>
-            <p>Ganzheitliche IT-Architektur, Cybersecurity und High-End Softwareentwicklung aus Ergolding. Für Unternehmen in ganz Deutschland, die auf Sicherheit und Performance setzen.</p>
-            <div class="hero-ctas">
-                <a href="termin.html" class="cta-btn">Termin buchen</a>
-                <a href="projekte.html" class="cta-btn-outline">Unsere Projekte</a>
+    <!-- 2. SCROLLYTELLING INTERACTIVE HERO SECTION -->
+    <section id="scrollytelling-section" class="scrolly-container" aria-label="Interaktive Datacenter Tour">
+        <div class="scrolly-sticky">
+            <canvas id="scrolly-canvas" class="scrolly-canvas"></canvas>
+            <div class="scrolly-vignette" aria-hidden="true"></div>
+
+            <!-- HUD Overlay Bar -->
+            <div class="scrolly-hud">
+                <div class="scrolly-hud-left">
+                    <span class="scrolly-live-dot" aria-hidden="true"></span>
+                    <span class="scrolly-hud-tag">DATACENTER CLUSTER · ERGOLDING</span>
+                </div>
+                <div class="scrolly-hud-right">
+                    <span id="scrolly-frame-indicator" class="scrolly-frame-indicator">FRAME 001 / 120</span>
+                    <a href="#stats" class="scrolly-skip-link interaktives-element">Überspringen &darr;</a>
+                </div>
+            </div>
+
+            <!-- Scrolly Narrative Stories -->
+            <div class="scrolly-stories">
+                <!-- Phase 1: 0% - 22% -->
+                <div class="scrolly-card active" id="story-phase-1" data-phase="1">
+                    <div class="scrolly-pill">Cluster Node 01 &bull; Initialisiert</div>
+                    <h1 class="scrolly-heading">Enterprise IT.<br><span class="scrolly-accent">Ohne Kompromisse.</span></h1>
+                    <p class="scrolly-desc">Willkommen in unserer Hochleistungs-Infrastruktur. Wir planen, härten und betreiben Enterprise-IT-Systeme für höchste Ansprüche an Ausfallsicherheit und Speed.</p>
+                    <div class="scrolly-scroll-indicator" aria-hidden="true">
+                        <span class="mouse-icon"><span class="mouse-wheel"></span></span>
+                        <span class="scroll-text">Scrollen zum Erkunden des Rechenzentrums</span>
+                    </div>
+                </div>
+
+                <!-- Phase 2: 24% - 48% -->
+                <div class="scrolly-card" id="story-phase-2" data-phase="2">
+                    <div class="scrolly-pill security-pill">Zero-Trust &bull; Firewall &bull; Active Härtung</div>
+                    <h2 class="scrolly-heading">Kompromisslose<br><span class="scrolly-accent">Cybersecurity.</span></h2>
+                    <p class="scrolly-desc">Mikrosegmentierte VLANs, Next-Gen Hardware-Firewalls und proaktives SIEM/EDR-Monitoring. Minimale Angriffsfläche und lückenloser Schutz vor Ransomware.</p>
+                    <div class="scrolly-stat-strip">
+                        <div class="scrolly-mini-stat"><span class="mini-val">0</span><span class="mini-lbl">Sicherheitsvorfälle</span></div>
+                        <div class="scrolly-mini-stat"><span class="mini-val">24/7</span><span class="mini-lbl">Überwachung</span></div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: 50% - 74% -->
+                <div class="scrolly-card" id="story-phase-3" data-phase="3">
+                    <div class="scrolly-pill cluster-pill">Virtualisierung &bull; High Availability</div>
+                    <h2 class="scrolly-heading">Proxmox &amp; VMware<br><span class="scrolly-accent">Cluster-Systeme.</span></h2>
+                    <p class="scrolly-desc">Ausfallsichere Server-Landschaften mit Ceph-Speicher, unterbrechungsfreier Live-Migration und automatischer 3-2-1 Backup-Strategie für den Mittelstand.</p>
+                    <div class="scrolly-stat-strip">
+                        <div class="scrolly-mini-stat"><span class="mini-val">99.99%</span><span class="mini-lbl">Cluster Uptime</span></div>
+                        <div class="scrolly-mini-stat"><span class="mini-val">&lt; 15 Min</span><span class="mini-lbl">Disaster Recovery</span></div>
+                    </div>
+                </div>
+
+                <!-- Phase 4: 76% - 100% -->
+                <div class="scrolly-card" id="story-phase-4" data-phase="4">
+                    <div class="scrolly-pill partner-pill">Muhammet Hasan Gürcan &bull; volvevent.</div>
+                    <h2 class="scrolly-heading">Ihre Enterprise IT.<br><span class="scrolly-accent">Aus einer Hand.</span></h2>
+                    <p class="scrolly-desc">Persönliche Betreuung von der Switch-Konfiguration bis zum maßgeschneiderten Webauftritt. Für Bayern und ganz Deutschland.</p>
+                    <div class="scrolly-action-row">
+                        <a href="termin.html" class="cta-btn scrolly-cta-primary interaktives-element">Termin buchen &rarr;</a>
+                        <a href="#services" class="cta-btn-outline scrolly-cta-secondary interaktives-element">Services ansehen</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress dots in right sidebar (Desktop/Tablet) -->
+            <div class="scrolly-progress-dots" aria-hidden="true">
+                <span class="progress-dot active" data-step="1" title="Phase 1: Datacenter"></span>
+                <span class="progress-dot" data-step="2" title="Phase 2: Cybersecurity"></span>
+                <span class="progress-dot" data-step="3" title="Phase 3: Cluster"></span>
+                <span class="progress-dot" data-step="4" title="Phase 4: Partnerschaft"></span>
             </div>
         </div>
-    </header>
+    </section>
 
     <!-- 3. STATS STRIP -->
-    <div class="stats-strip reveal">
+    <div class="stats-strip reveal" id="stats">
         <div class="stat-item">
             <h3>7+ Jahre</h3>
             <p>Erfahrung in der IT</p>
