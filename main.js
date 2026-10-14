@@ -608,6 +608,9 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- 6. SCROLLYTELLING & PRELOADER INITIALIZATION --- */
     initScrollytelling();
 
+    /* --- 7. 3D CLOUD ARCHITECTURE VISUALIZER INITIALIZATION --- */
+    initCloudVisualizer();
+
 });
 
 /**
@@ -861,5 +864,198 @@ function initScrollytelling() {
             dismissPreloader();
         }
     }, 4500);
+}
+
+/**
+ * 3D Cloud & Network Architecture Visualizer Engine
+ * 120 AI-Enhanced Frames, Interactive Scrubbing, Timeline Tabs & High-DPI Canvas
+ */
+function initCloudVisualizer() {
+    const section = document.getElementById('cloud-architecture');
+    const canvas = document.getElementById('cloud-visualizer-canvas');
+    if (!section || !canvas) return;
+
+    const slider = document.getElementById('cloud-scrub-range');
+    const counter = document.getElementById('cloud-scrub-counter');
+    const tabs = document.querySelectorAll('.cloud-tab');
+    const badge = document.getElementById('cloud-node-badge');
+    const title = document.getElementById('cloud-node-title');
+    const desc = document.getElementById('cloud-node-desc');
+
+    const TOTAL_FRAMES = 120;
+    const images = new Array(TOTAL_FRAMES);
+    let lastDrawn = 0;
+    let currentFrame = 0;
+    let targetFrame = 0;
+    let isUserInteracting = false;
+    let userInteractTimeout = null;
+
+    const ctx = canvas.getContext('2d', { alpha: false });
+
+    // Preload cloud frames
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+        const img = new Image();
+        const num = String(i + 1).padStart(4, '0');
+        img.src = `images/cloud_architecture/frame_${num}.jpg`;
+        img.onload = () => {
+            images[i] = img;
+            if (i === 0 && lastDrawn === 0) {
+                render();
+            }
+        };
+    }
+
+    // High-DPI canvas resizing
+    function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.round(rect.width || 1200);
+        const h = Math.round(rect.height || 675);
+
+        if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+        }
+        render();
+    }
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    // Render frame with object-fit: cover
+    function render() {
+        const idx = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentFrame)));
+        let img = images[idx];
+        if (!img || !img.complete || img.naturalWidth === 0) {
+            img = images[lastDrawn];
+            if (!img || !img.complete || img.naturalWidth === 0) return;
+        } else {
+            lastDrawn = idx;
+        }
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = canvas.width / dpr;
+        const h = canvas.height / dpr;
+
+        ctx.save();
+        ctx.scale(dpr, dpr);
+
+        const imgW = img.naturalWidth;
+        const imgH = img.naturalHeight;
+        const imgRatio = imgW / imgH;
+        const canvasRatio = w / h;
+
+        let drawW, drawH, drawX, drawY;
+        if (canvasRatio > imgRatio) {
+            drawW = w;
+            drawH = w / imgRatio;
+            drawX = 0;
+            drawY = (h - drawH) / 2;
+        } else {
+            drawH = h;
+            drawW = h * imgRatio;
+            drawX = (w - drawW) / 2;
+            drawY = 0;
+        }
+
+        ctx.drawImage(img, drawX, drawY, drawW, drawH);
+        ctx.restore();
+
+        // Update counter & slider if not user dragging
+        if (counter) {
+            counter.textContent = `${String(idx + 1).padStart(2, '0')} / ${TOTAL_FRAMES}`;
+        }
+        if (slider && !isUserInteracting) {
+            slider.value = idx;
+        }
+
+        updateTelemetry(idx);
+    }
+
+    // Update Telemetry & Tabs based on frame index
+    function updateTelemetry(idx) {
+        let activeTabIndex = 0;
+        if (idx >= 95) {
+            activeTabIndex = 3;
+            if (badge) badge.textContent = "CLUSTER NODE 04: DEVOPS & TELEMETRIE";
+            if (title) title.textContent = "CI/CD Pipelines & 24/7 SIEM-Monitoring";
+            if (desc) desc.textContent = "Deterministische Deployments via Docker/Kubernetes und proaktive Anomalieerkennung mit Checkmk Enterprise verhindern Störungen im Vorfeld.";
+        } else if (idx >= 60) {
+            activeTabIndex = 2;
+            if (badge) badge.textContent = "CLUSTER NODE 03: ZERO-TRUST & WAN";
+            if (title) title.textContent = "Carrier-Grade Routing & Hardware-Firewalls";
+            if (desc) desc.textContent = "Mikrosegmentierte VLANs, redundante BGP/OSPF-Uplinks und Next-Gen Firewalls sichern jeden Datenpfad zwischen Cloud und On-Premises lückenlos.";
+        } else if (idx >= 30) {
+            activeTabIndex = 1;
+            if (badge) badge.textContent = "CLUSTER NODE 02: STORAGE & DATABASES";
+            if (title) title.textContent = "Ceph Block Storage & NVMe SAN Cluster";
+            if (desc) desc.textContent = "Synchrone Multi-Node Replikation, Sub-Millisekunden-Latenz und unzerstörbare Immutable-Backups schützen kritische Unternehmensdaten.";
+        } else {
+            activeTabIndex = 0;
+            if (badge) badge.textContent = "CLUSTER NODE 01: COMPUTE & MULTI-CLOUD";
+            if (title) title.textContent = "Virtual Machines & Container Orchestrierung";
+            if (desc) desc.textContent = "Hochverfügbare Proxmox- und VMware-Cluster mit dynamischer Lastverteilung und resilientem Failover für höchste Enterprise-Anforderungen.";
+        }
+
+        tabs.forEach((tab, i) => {
+            if (i === activeTabIndex) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+    }
+
+    // Tab buttons click
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            isUserInteracting = true;
+            clearTimeout(userInteractTimeout);
+            userInteractTimeout = setTimeout(() => { isUserInteracting = false; }, 2000);
+
+            const target = parseInt(tab.getAttribute('data-target-frame'), 10);
+            targetFrame = target;
+        });
+    });
+
+    // Slider input event
+    if (slider) {
+        slider.addEventListener('input', () => {
+            isUserInteracting = true;
+            clearTimeout(userInteractTimeout);
+            userInteractTimeout = setTimeout(() => { isUserInteracting = false; }, 2000);
+
+            targetFrame = parseInt(slider.value, 10);
+        });
+    }
+
+    // Scroll-scrubbing when section is in view
+    function onScroll() {
+        if (isUserInteracting) return;
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+        if (rect.top < vh && rect.bottom > 0) {
+            const scrollDistance = vh + rect.height;
+            const currentPosition = vh - rect.top;
+            const progress = Math.max(0, Math.min(1, currentPosition / scrollDistance));
+            targetFrame = progress * (TOTAL_FRAMES - 1);
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // 60fps lerp animation loop
+    function loop() {
+        const diff = targetFrame - currentFrame;
+        if (Math.abs(diff) > 0.02) {
+            currentFrame += diff * 0.16;
+            render();
+        } else if (Math.round(currentFrame) !== Math.round(targetFrame)) {
+            currentFrame = targetFrame;
+            render();
+        }
+        requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    // Initial sizing
+    resizeCanvas();
 }
 
