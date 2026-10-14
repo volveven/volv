@@ -436,8 +436,8 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="style.css?v=7.0">
-    <script src="main.js?v=7.0" defer></script>
+    <link rel="stylesheet" href="style.css?v=8.0">
+    <script src="main.js?v=8.0" defer></script>
 </head>
 <body>
 
@@ -721,78 +721,103 @@
         </div>
     </section>
 
-    <!-- 7. INTERACTIVE 3D CLOUD & NETWORK ARCHITECTURE -->
-    <section id="cloud-architecture" class="section" style="background: #000000; position: relative; overflow: hidden; border-top: 1px solid var(--card-border);">
-        <div style="text-align: center; max-width: 860px; margin: 0 auto 3.5rem;">
-            <span class="tech-badge success-badge" style="margin-bottom: 1rem;">Interaktive 3D-Architektur</span>
-            <h2 class="section-title reveal">Next-Gen Multi-Cloud &amp; Netzwerk-Infrastruktur</h2>
-            <p class="section-subtitle reveal" style="margin-bottom: 0;">
-                Erleben Sie die ganzheitliche Verzahnung moderner Enterprise-Systeme: Von mikrosegmentierten Hochgeschwindigkeits-Netzwerken über ausfallsichere Storage-Cluster bis hin zu automatisierten CI/CD-Pipelines und 24/7 SIEM-Telemetrie.
-            </p>
-        </div>
+    <!-- 7. INTERACTIVE 3D CLOUD & NETWORK ARCHITECTURE (FULLSCREEN SCROLLYTELLING) -->
+    <section id="cloud-architecture" class="cloud-scrolly-container" aria-label="3D Cloud &amp; Netzwerk-Infrastruktur Tour">
+        <div class="cloud-scrolly-sticky">
+            <canvas id="cloud-scrolly-canvas" class="cloud-scrolly-canvas"></canvas>
+            <div class="cloud-scrolly-vignette" aria-hidden="true"></div>
 
-        <!-- 3D Interactive Showcase Card -->
-        <div class="cloud-visualizer-container reveal">
-            <div class="cloud-visualizer-frame">
-                <canvas id="cloud-visualizer-canvas" class="cloud-canvas"></canvas>
-                <div class="cloud-canvas-gradient" aria-hidden="true"></div>
-
-                <!-- Floating Hotspot Readout / Telemetry Overlay -->
-                <div class="cloud-telemetry-overlay" id="cloud-telemetry">
-                    <div class="cloud-telemetry-badge" id="cloud-node-badge">CLUSTER NODE 01: COMPUTE &amp; MULTI-CLOUD</div>
-                    <div class="cloud-telemetry-title" id="cloud-node-title">Virtual Machines &amp; Container Orchestrierung</div>
-                    <div class="cloud-telemetry-desc" id="cloud-node-desc">Hochverfügbare Proxmox- und VMware-Cluster mit dynamischer Lastverteilung und resilientem Failover für höchste Enterprise-Anforderungen.</div>
+            <!-- Narrative Story Cards -->
+            <div class="cloud-scrolly-stories">
+                <!-- Phase 1: 0% - 24% -->
+                <div class="cloud-scrolly-card active" id="cloud-phase-1" data-phase="1">
+                    <div class="cloud-scrolly-pill">Cluster Node 01 &bull; Multi-Cloud Compute</div>
+                    <h2 class="cloud-scrolly-heading">Next-Gen Multi-Cloud.<br><span class="cloud-scrolly-accent">Skalierbar &amp; Resilient.</span></h2>
+                    <p class="cloud-scrolly-desc">Nahtlose Verzahnung von On-Premises-Infrastrukturen mit hyperskalierbaren Cloud-Umgebungen. Höchste Verfügbarkeit, garantierte Datenhoheit und dynamische Lastverteilung.</p>
+                    <div class="cloud-scrolly-stat-strip">
+                        <div class="cloud-scrolly-mini-stat"><span class="mini-val">0 ms</span><span class="mini-lbl">Failover Overhead</span></div>
+                        <div class="cloud-scrolly-mini-stat"><span class="mini-val">Multi-Region</span><span class="mini-lbl">Redundanz</span></div>
+                    </div>
                 </div>
 
-                <!-- Interactive Timeline Scrubbing Bar & Controls -->
-                <div class="cloud-controls-bar">
-                    <div class="cloud-domain-tabs" role="tablist" aria-label="Infrastruktur-Bereiche">
-                        <button class="cloud-tab active interaktives-element" data-target-frame="0" type="button">
-                            <span class="tab-dot" aria-hidden="true"></span>01. Overview &amp; Compute
-                        </button>
-                        <button class="cloud-tab interaktives-element" data-target-frame="35" type="button">
-                            <span class="tab-dot" aria-hidden="true"></span>02. Storage &amp; DB
-                        </button>
-                        <button class="cloud-tab interaktives-element" data-target-frame="68" type="button">
-                            <span class="tab-dot" aria-hidden="true"></span>03. Zero-Trust Security
-                        </button>
-                        <button class="cloud-tab interaktives-element" data-target-frame="105" type="button">
-                            <span class="tab-dot" aria-hidden="true"></span>04. Analytics &amp; DevOps
-                        </button>
+                <!-- Phase 2: 25% - 50% -->
+                <div class="cloud-scrolly-card" id="cloud-phase-2" data-phase="2">
+                    <div class="cloud-scrolly-pill storage-pill">Cluster Node 02 &bull; Distributed Storage</div>
+                    <h2 class="cloud-scrolly-heading">Ceph Block Storage &amp;<br><span class="cloud-scrolly-accent">NVMe SAN-Cluster.</span></h2>
+                    <p class="cloud-scrolly-desc">Hochperformante Speichernetzwerke mit synchroner Multi-Node-Replikation und Sub-Millisekunden-Latenz. Unveränderbare Immutable-Snapshots nach strenger 3-2-1-1-0 Backup-Architektur.</p>
+                    <div class="cloud-scrolly-stat-strip">
+                        <div class="cloud-scrolly-mini-stat"><span class="mini-val">100 Gbps</span><span class="mini-lbl">Backbone Throughput</span></div>
+                        <div class="cloud-scrolly-mini-stat"><span class="mini-val">3-2-1</span><span class="mini-lbl">Backup-Garantie</span></div>
                     </div>
+                </div>
 
-                    <div class="cloud-scrub-slider-wrap">
-                        <input type="range" id="cloud-scrub-range" min="0" max="119" value="0" step="1" class="cloud-scrub-slider interaktives-element" aria-label="3D-Architektur Scrubbing Timeline">
-                        <div class="cloud-scrub-hint">
-                            <span>Interaktiv ziehen oder durch die Sektion scrollen</span>
-                            <span id="cloud-scrub-counter" class="cloud-counter">01 / 120</span>
-                        </div>
+                <!-- Phase 3: 51% - 75% -->
+                <div class="cloud-scrolly-card" id="cloud-phase-3" data-phase="3">
+                    <div class="cloud-scrolly-pill security-pill">Cluster Node 03 &bull; Zero-Trust &amp; WAN</div>
+                    <h2 class="cloud-scrolly-heading">Carrier-Grade Routing &amp;<br><span class="cloud-scrolly-accent">Hardware-Firewalls.</span></h2>
+                    <p class="cloud-scrolly-desc">Mikrosegmentierte VLAN-Zonen, redundante BGP/OSPF-Carrier-Uplinks und Next-Gen Hardware-Firewalls sichern jeden Datenpfad zwischen Cloud, Edge und internem Unternehmensnetz.</p>
+                    <div class="cloud-scrolly-stat-strip">
+                        <div class="cloud-scrolly-mini-stat"><span class="mini-val">Zero-Trust</span><span class="mini-lbl">Mikrosegmentierung</span></div>
+                        <div class="cloud-scrolly-mini-stat"><span class="mini-val">BGP / MCLAG</span><span class="mini-lbl">Carrier-Uplinks</span></div>
+                    </div>
+                </div>
+
+                <!-- Phase 4: 76% - 100% -->
+                <div class="cloud-scrolly-card" id="cloud-phase-4" data-phase="4">
+                    <div class="cloud-scrolly-pill devops-pill">Cluster Node 04 &bull; DevOps &amp; SIEM</div>
+                    <h2 class="cloud-scrolly-heading">CI/CD Automatisierung &amp;<br><span class="cloud-scrolly-accent">24/7 SIEM-Monitoring.</span></h2>
+                    <p class="cloud-scrolly-desc">Deterministische Container-Deployments via Docker und Kubernetes, gepaart mit KI-gestützter Anomalieerkennung durch Checkmk Enterprise und Grafana für maximale Betriebssicherheit.</p>
+                    <div class="cloud-scrolly-action-row">
+                        <a href="termin.html" class="cta-btn scrolly-cta-primary interaktives-element">Architektur planen &rarr;</a>
+                        <a href="security-audit.html" class="cta-btn-outline scrolly-cta-secondary interaktives-element">Security-Audit anfragen</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Deep Technical Bento Grid -->
-            <div class="grid-4 cloud-bento-grid">
-                <div class="card spotlight-card">
-                    <span class="badge">Netzwerk &amp; Routing</span>
-                    <h3>Carrier-Grade Backbones</h3>
-                    <p>Konzeption hochredundanter Netze mit OSPF/BGP, Multi-Chassis Link Aggregation (MCLAG) und Hardware-Switching von Cisco, Aruba und Alcatel-Lucent.</p>
+            <!-- Right-Side Vertical Progress Bar ("Der Balken unten soll rechts sein, damit man sieht wie lang das geht") -->
+            <div class="cloud-scrolly-progress-sidebar" aria-label="Fortschritt der Architektur-Tour">
+                <div class="cloud-progress-track">
+                    <div class="cloud-progress-fill" id="cloud-progress-fill"></div>
                 </div>
-                <div class="card spotlight-card">
-                    <span class="badge" style="color: #30d158; background: rgba(48, 209, 88, 0.1);">Storage &amp; Failover</span>
-                    <h3>Ceph &amp; NVMe-Cluster</h3>
-                    <p>Verteilte Speichernetzwerke mit automatischer Replikation, Sub-Millisekunden-Latenz und unveränderbaren (immutable) Snapshots nach 3-2-1-Prinzip.</p>
+                <div class="cloud-progress-steps">
+                    <button class="cloud-progress-step active interaktives-element" data-step="1" title="Phase 1: Multi-Cloud Compute" aria-label="Phase 1"></button>
+                    <button class="cloud-progress-step interaktives-element" data-step="2" title="Phase 2: Storage &amp; Failover" aria-label="Phase 2"></button>
+                    <button class="cloud-progress-step interaktives-element" data-step="3" title="Phase 3: Zero-Trust &amp; Routing" aria-label="Phase 3"></button>
+                    <button class="cloud-progress-step interaktives-element" data-step="4" title="Phase 4: DevOps &amp; Monitoring" aria-label="Phase 4"></button>
                 </div>
-                <div class="card spotlight-card">
-                    <span class="badge" style="color: #ff9f0a; background: rgba(255, 159, 10, 0.1);">CI/CD &amp; Cloud</span>
-                    <h3>DevOps Automatisierung</h3>
-                    <p>Skalierbare Container-Landschaften mit Docker &amp; Kubernetes. Infrastructure-as-Code sorgt für deterministische Deployments und minimale Ausfallzeiten.</p>
-                </div>
-                <div class="card spotlight-card">
-                    <span class="badge" style="color: #bf5af2; background: rgba(191, 90, 242, 0.1);">Telemetrie &amp; SIEM</span>
-                    <h3>24/7 Echtzeit-Monitoring</h3>
-                    <p>Proaktive Anomalieerkennung mit Checkmk Enterprise und Grafana. Automatische Frühwarnung bei Hardware-Degradierung oder Lastspitzen.</p>
-                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7b. ENTERPRISE ARCHITEKTUR BENTO GRID -->
+    <section class="section" style="background: #000000; border-bottom: 1px solid var(--card-border); padding-top: 5rem; padding-bottom: 5rem;">
+        <div style="text-align: center; max-width: 860px; margin: 0 auto 3.5rem;">
+            <span class="tech-badge success-badge" style="margin-bottom: 1rem;">Enterprise Spezifikationen</span>
+            <h2 class="section-title reveal">Architektur-Bausteine im Detail</h2>
+            <p class="section-subtitle reveal" style="margin-bottom: 0;">
+                Maßgeschneiderte Hard- und Software-Kombinationen für ausfallsichere Systeme, maximale Skalierbarkeit und kompromisslose Datensicherheit.
+            </p>
+        </div>
+        <div class="grid-4 cloud-bento-grid" style="max-width: 1240px; margin: 0 auto;">
+            <div class="card spotlight-card">
+                <span class="badge">Netzwerk &amp; Routing</span>
+                <h3>Carrier-Grade Backbones</h3>
+                <p>Konzeption hochredundanter Netze mit OSPF/BGP, Multi-Chassis Link Aggregation (MCLAG) und Hardware-Switching von Cisco, Aruba und Alcatel-Lucent.</p>
+            </div>
+            <div class="card spotlight-card">
+                <span class="badge" style="color: #30d158; background: rgba(48, 209, 88, 0.1);">Storage &amp; Failover</span>
+                <h3>Ceph &amp; NVMe-Cluster</h3>
+                <p>Verteilte Speichernetzwerke mit automatischer Replikation, Sub-Millisekunden-Latenz und unveränderbaren (immutable) Snapshots nach 3-2-1-Prinzip.</p>
+            </div>
+            <div class="card spotlight-card">
+                <span class="badge" style="color: #ff9f0a; background: rgba(255, 159, 10, 0.1);">CI/CD &amp; Cloud</span>
+                <h3>DevOps Automatisierung</h3>
+                <p>Skalierbare Container-Landschaften mit Docker &amp; Kubernetes. Infrastructure-as-Code sorgt für deterministische Deployments und minimale Ausfallzeiten.</p>
+            </div>
+            <div class="card spotlight-card">
+                <span class="badge" style="color: #bf5af2; background: rgba(191, 90, 242, 0.1);">Telemetrie &amp; SIEM</span>
+                <h3>24/7 Echtzeit-Monitoring</h3>
+                <p>Proaktive Anomalieerkennung mit Checkmk Enterprise und Grafana. Automatische Frühwarnung bei Hardware-Degradierung oder Lastspitzen.</p>
             </div>
         </div>
     </section>

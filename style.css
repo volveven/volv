@@ -1772,29 +1772,30 @@ body.preloader-active {
 }
 
 /* =========================================================
-   3D CLOUD & NETWORK ARCHITECTURE VISUALIZER
+   3D CLOUD & NETWORK ARCHITECTURE (FULLSCREEN SCROLLYTELLING)
    ========================================================= */
-.cloud-visualizer-container {
-    max-width: 1240px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-}
-
-.cloud-visualizer-frame {
+.cloud-scrolly-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    min-height: 520px;
-    background: #06080d;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    height: 420vh; /* Scroll travel distance */
+    background: #000000;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.cloud-canvas {
+.cloud-scrolly-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cloud-scrolly-canvas {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1803,184 +1804,187 @@ body.preloader-active {
     z-index: 1;
 }
 
-.cloud-canvas-gradient {
+.cloud-scrolly-vignette {
     position: absolute;
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, transparent 25%, transparent 60%, rgba(6, 8, 13, 0.9) 100%);
+    background: radial-gradient(circle at center, transparent 32%, rgba(0, 0, 0, 0.78) 100%),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, transparent 22%, transparent 68%, rgba(0, 0, 0, 0.9) 100%);
 }
 
-/* Telemetry Overlay */
-.cloud-telemetry-overlay {
+/* Narrative Story Cards */
+.cloud-scrolly-stories {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
-    max-width: 480px;
-    z-index: 5;
-    background: rgba(10, 12, 18, 0.78);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 18px;
-    padding: 1.4rem 1.6rem;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    inset: 0;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6%;
     pointer-events: none;
 }
 
-.cloud-telemetry-badge {
-    display: inline-block;
-    font-family: var(--schrift-code, monospace);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: #2997ff;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-}
-
-.cloud-telemetry-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.25;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.01em;
-}
-
-.cloud-telemetry-desc {
-    font-size: 0.88rem;
-    color: #a1a1a6;
-    line-height: 1.5;
-}
-
-/* Controls Bar at bottom of frame */
-.cloud-controls-bar {
+.cloud-scrolly-card {
     position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    z-index: 6;
-    background: rgba(10, 12, 18, 0.82);
+    max-width: 680px;
+    width: 100%;
+    background: rgba(8, 10, 16, 0.8);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-    padding: 1rem 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 2.5rem 3rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(28px) scale(0.97);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s;
+    pointer-events: none;
 }
 
-.cloud-domain-tabs {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
+.cloud-scrolly-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
 }
 
-.cloud-tab {
+.cloud-scrolly-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 999px;
-    padding: 0.4rem 0.95rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #86868b;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.cloud-tab .tab-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #86868b;
-    transition: background-color 0.25s ease;
-}
-
-.cloud-tab:hover {
-    background: rgba(41, 151, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(41, 151, 255, 0.3);
-}
-
-.cloud-tab.active {
-    background: rgba(41, 151, 255, 0.18);
-    color: #ffffff;
-    border-color: #2997ff;
-    box-shadow: 0 0 12px rgba(41, 151, 255, 0.35);
-}
-
-.cloud-tab.active .tab-dot {
-    background: #2997ff;
-    box-shadow: 0 0 6px #2997ff;
-}
-
-.cloud-scrub-slider-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-
-.cloud-scrub-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 999px;
-    outline: none;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.cloud-scrub-slider:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.cloud-scrub-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #2997ff;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(41, 151, 255, 0.8);
-    transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-.cloud-scrub-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    background: #52a9ff;
-}
-
-.cloud-scrub-slider::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #2997ff;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(41, 151, 255, 0.8);
-}
-
-.cloud-scrub-hint {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.74rem;
-    color: #86868b;
     font-family: var(--schrift-code, monospace);
-}
-
-.cloud-counter {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(41, 151, 255, 0.12);
+    border: 1px solid rgba(41, 151, 255, 0.3);
     color: #2997ff;
     font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+.cloud-scrolly-pill.storage-pill {
+    background: rgba(48, 209, 88, 0.12);
+    border-color: rgba(48, 209, 88, 0.35);
+    color: #30d158;
+}
+
+.cloud-scrolly-pill.security-pill {
+    background: rgba(255, 69, 58, 0.12);
+    border-color: rgba(255, 69, 58, 0.35);
+    color: #ff453a;
+}
+
+.cloud-scrolly-pill.devops-pill {
+    background: rgba(191, 90, 242, 0.12);
+    border-color: rgba(191, 90, 242, 0.35);
+    color: #bf5af2;
+}
+
+.cloud-scrolly-heading {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.cloud-scrolly-accent {
+    background: linear-gradient(135deg, #2997ff 0%, #30d158 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cloud-scrolly-desc {
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    color: #a1a1a6;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+}
+
+.cloud-scrolly-stat-strip {
+    display: flex;
+    gap: 1.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.4rem;
+}
+
+.cloud-scrolly-mini-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.cloud-scrolly-action-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* =========================================================
+   RIGHT-SIDE VERTICAL PROGRESS BAR (Cloud Scrolly Progress)
+   ========================================================= */
+.cloud-scrolly-progress-sidebar {
+    position: absolute;
+    right: 2.5%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.cloud-progress-track {
+    width: 5px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 99px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cloud-progress-fill {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, #2997ff 0%, #30d158 100%);
+    border-radius: 99px;
+    box-shadow: 0 0 14px rgba(41, 151, 255, 0.85);
+    transition: height 0.08s ease-out;
+}
+
+.cloud-progress-steps {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 180px;
+}
+
+.cloud-progress-step {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+}
+
+.cloud-progress-step.active {
+    height: 24px;
+    border-radius: 6px;
+    background: #30d158;
+    border-color: #30d158;
+    box-shadow: 0 0 12px rgba(48, 209, 88, 0.7);
 }
 
 /* 4-Column Bento Grid */
@@ -1991,43 +1995,57 @@ body.preloader-active {
 }
 
 /* Responsive Overrides */
-@media (max-width: 900px) {
-    .cloud-visualizer-frame {
-        min-height: 440px;
+@media (max-width: 768px) {
+    .cloud-scrolly-container {
+        height: 360vh;
     }
-    .cloud-telemetry-overlay {
-        top: 1rem;
-        left: 1rem;
-        right: 1rem;
-        max-width: none;
-        padding: 1rem 1.2rem;
-    }
-    .cloud-telemetry-title {
-        font-size: 1.1rem;
-    }
-    .cloud-telemetry-desc {
-        font-size: 0.82rem;
-    }
-    .cloud-controls-bar {
-        bottom: 1rem;
-        left: 1rem;
-        right: 1rem;
-        padding: 0.8rem 1rem;
-    }
-    .cloud-domain-tabs {
-        gap: 0.4rem;
-    }
-    .cloud-tab {
-        font-size: 0.72rem;
-        padding: 0.3rem 0.7rem;
-    }
-}
 
-@media (max-width: 600px) {
-    .cloud-visualizer-frame {
-        min-height: 380px;
+    .cloud-scrolly-stories {
+        padding: 0 4%;
+        align-items: flex-end;
+        bottom: 2rem;
     }
-    .cloud-telemetry-overlay {
-        display: none; /* Keep mobile clean and focused on 3D view */
+
+    .cloud-scrolly-card {
+        padding: 1.4rem 1.3rem;
+        border-radius: 20px;
+        max-width: 95vw;
+        background: rgba(6, 8, 12, 0.88);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+
+    .cloud-scrolly-heading {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .cloud-scrolly-desc {
+        font-size: 0.86rem;
+        margin-bottom: 1rem;
+        line-height: 1.45;
+    }
+
+    .cloud-scrolly-stat-strip {
+        gap: 1.2rem;
+        padding-top: 0.9rem;
+    }
+
+    .cloud-scrolly-action-row {
+        gap: 0.6rem;
+    }
+
+    .cloud-scrolly-progress-sidebar {
+        right: 0.8rem;
+        gap: 0;
+    }
+
+    .cloud-progress-track {
+        height: 130px;
+        width: 4px;
+    }
+
+    .cloud-progress-steps {
+        display: none;
     }
 }

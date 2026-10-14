@@ -867,68 +867,53 @@ function initScrollytelling() {
 }
 
 /**
- * 3D Cloud & Network Architecture Visualizer Engine
- * 120 AI-Enhanced Frames, Interactive Scrubbing, Timeline Tabs & High-DPI Canvas
+ * 3D Cloud & Network Architecture Scrollytelling Engine
+ * 120 Frames Fullscreen Sticky Canvas, Smooth Lerp Scrubbing, Right-Side Vertical Progress Bar & Zero Frame Counts
  */
 function initCloudVisualizer() {
-    const section = document.getElementById('cloud-architecture');
-    const canvas = document.getElementById('cloud-visualizer-canvas');
-    if (!section || !canvas) return;
+    const cloudSection = document.getElementById('cloud-architecture');
+    const canvas = document.getElementById('cloud-scrolly-canvas');
+    if (!cloudSection || !canvas) return;
 
-    const slider = document.getElementById('cloud-scrub-range');
-    const counter = document.getElementById('cloud-scrub-counter');
-    const tabs = document.querySelectorAll('.cloud-tab');
-    const badge = document.getElementById('cloud-node-badge');
-    const title = document.getElementById('cloud-node-title');
-    const desc = document.getElementById('cloud-node-desc');
+    const storyCards = cloudSection.querySelectorAll('.cloud-scrolly-card');
+    const progressFill = document.getElementById('cloud-progress-fill');
+    const stepButtons = cloudSection.querySelectorAll('.cloud-progress-step');
 
     const TOTAL_FRAMES = 120;
     const images = new Array(TOTAL_FRAMES);
-    let lastDrawn = 0;
-    let currentFrame = 0;
+    let loadedCount = 0;
+    let lastDrawnFrame = 0;
     let targetFrame = 0;
-    let isUserInteracting = false;
-    let userInteractTimeout = null;
+    let currentFrame = 0;
 
     const ctx = canvas.getContext('2d', { alpha: false });
 
-    // Preload cloud frames
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
-        const img = new Image();
-        const num = String(i + 1).padStart(4, '0');
-        img.src = `images/cloud_architecture/frame_${num}.jpg`;
-        img.onload = () => {
-            images[i] = img;
-            if (i === 0 && lastDrawn === 0) {
-                render();
-            }
-        };
-    }
-
-    // High-DPI canvas resizing
+    // High-DPI Canvas Resizing to Full Viewport
     function resizeCanvas() {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         const rect = canvas.getBoundingClientRect();
-        const w = Math.round(rect.width || 1200);
-        const h = Math.round(rect.height || 675);
+        const w = Math.round(rect.width || window.innerWidth);
+        const h = Math.round(rect.height || window.innerHeight);
 
         if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
             canvas.width = w * dpr;
             canvas.height = h * dpr;
         }
-        render();
+        renderCurrentFrame();
     }
     window.addEventListener('resize', resizeCanvas, { passive: true });
+    window.addEventListener('orientationchange', resizeCanvas, { passive: true });
 
-    // Render frame with object-fit: cover
-    function render() {
-        const idx = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentFrame)));
-        let img = images[idx];
+    // Render current frame with seamless object-fit: cover
+    function renderCurrentFrame() {
+        const frameIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(currentFrame)));
+        let img = images[frameIndex];
+
         if (!img || !img.complete || img.naturalWidth === 0) {
-            img = images[lastDrawn];
+            img = images[lastDrawnFrame];
             if (!img || !img.complete || img.naturalWidth === 0) return;
         } else {
-            lastDrawn = idx;
+            lastDrawnFrame = frameIndex;
         }
 
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -958,104 +943,115 @@ function initCloudVisualizer() {
 
         ctx.drawImage(img, drawX, drawY, drawW, drawH);
         ctx.restore();
-
-        // Update counter & slider if not user dragging
-        if (counter) {
-            counter.textContent = `${String(idx + 1).padStart(2, '0')} / ${TOTAL_FRAMES}`;
-        }
-        if (slider && !isUserInteracting) {
-            slider.value = idx;
-        }
-
-        updateTelemetry(idx);
     }
 
-    // Update Telemetry & Tabs based on frame index
-    function updateTelemetry(idx) {
-        let activeTabIndex = 0;
-        if (idx >= 95) {
-            activeTabIndex = 3;
-            if (badge) badge.textContent = "CLUSTER NODE 04: DEVOPS & TELEMETRIE";
-            if (title) title.textContent = "CI/CD Pipelines & 24/7 SIEM-Monitoring";
-            if (desc) desc.textContent = "Deterministische Deployments via Docker/Kubernetes und proaktive Anomalieerkennung mit Checkmk Enterprise verhindern Störungen im Vorfeld.";
-        } else if (idx >= 60) {
-            activeTabIndex = 2;
-            if (badge) badge.textContent = "CLUSTER NODE 03: ZERO-TRUST & WAN";
-            if (title) title.textContent = "Carrier-Grade Routing & Hardware-Firewalls";
-            if (desc) desc.textContent = "Mikrosegmentierte VLANs, redundante BGP/OSPF-Uplinks und Next-Gen Firewalls sichern jeden Datenpfad zwischen Cloud und On-Premises lückenlos.";
-        } else if (idx >= 30) {
-            activeTabIndex = 1;
-            if (badge) badge.textContent = "CLUSTER NODE 02: STORAGE & DATABASES";
-            if (title) title.textContent = "Ceph Block Storage & NVMe SAN Cluster";
-            if (desc) desc.textContent = "Synchrone Multi-Node Replikation, Sub-Millisekunden-Latenz und unzerstörbare Immutable-Backups schützen kritische Unternehmensdaten.";
+    // Story Phase & Step Updater
+    function updateStories(progress) {
+        let activePhase = 1;
+        if (progress >= 0.75) {
+            activePhase = 4;
+        } else if (progress >= 0.50) {
+            activePhase = 3;
+        } else if (progress >= 0.25) {
+            activePhase = 2;
         } else {
-            activeTabIndex = 0;
-            if (badge) badge.textContent = "CLUSTER NODE 01: COMPUTE & MULTI-CLOUD";
-            if (title) title.textContent = "Virtual Machines & Container Orchestrierung";
-            if (desc) desc.textContent = "Hochverfügbare Proxmox- und VMware-Cluster mit dynamischer Lastverteilung und resilientem Failover für höchste Enterprise-Anforderungen.";
+            activePhase = 1;
         }
 
-        tabs.forEach((tab, i) => {
-            if (i === activeTabIndex) {
-                tab.classList.add('active');
+        storyCards.forEach(card => {
+            const cardPhase = parseInt(card.getAttribute('data-phase'), 10);
+            if (cardPhase === activePhase) {
+                card.classList.add('active');
             } else {
-                tab.classList.remove('active');
+                card.classList.remove('active');
+            }
+        });
+
+        stepButtons.forEach(btn => {
+            const btnStep = parseInt(btn.getAttribute('data-step'), 10);
+            if (btnStep === activePhase) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
             }
         });
     }
 
-    // Tab buttons click
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            isUserInteracting = true;
-            clearTimeout(userInteractTimeout);
-            userInteractTimeout = setTimeout(() => { isUserInteracting = false; }, 2000);
+    // Interactive step clicks
+    stepButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const step = parseInt(btn.getAttribute('data-step'), 10);
+            const totalScrollable = cloudSection.offsetHeight - window.innerHeight;
+            let targetScrollRatio = 0.05;
+            if (step === 2) targetScrollRatio = 0.35;
+            if (step === 3) targetScrollRatio = 0.62;
+            if (step === 4) targetScrollRatio = 0.90;
 
-            const target = parseInt(tab.getAttribute('data-target-frame'), 10);
-            targetFrame = target;
+            const sectionTop = cloudSection.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({
+                top: sectionTop + totalScrollable * targetScrollRatio,
+                behavior: 'smooth'
+            });
         });
     });
 
-    // Slider input event
-    if (slider) {
-        slider.addEventListener('input', () => {
-            isUserInteracting = true;
-            clearTimeout(userInteractTimeout);
-            userInteractTimeout = setTimeout(() => { isUserInteracting = false; }, 2000);
-
-            targetFrame = parseInt(slider.value, 10);
-        });
-    }
-
-    // Scroll-scrubbing when section is in view
+    // Scroll scrubbing listener
     function onScroll() {
-        if (isUserInteracting) return;
-        const rect = section.getBoundingClientRect();
-        const vh = window.innerHeight;
-        if (rect.top < vh && rect.bottom > 0) {
-            const scrollDistance = vh + rect.height;
-            const currentPosition = vh - rect.top;
-            const progress = Math.max(0, Math.min(1, currentPosition / scrollDistance));
-            targetFrame = progress * (TOTAL_FRAMES - 1);
+        const rect = cloudSection.getBoundingClientRect();
+        const totalScrollable = cloudSection.offsetHeight - window.innerHeight;
+        if (totalScrollable <= 0) return;
+
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+
+        targetFrame = progress * (TOTAL_FRAMES - 1);
+
+        // Update right-side vertical progress bar fill
+        if (progressFill) {
+            progressFill.style.height = `${(progress * 100).toFixed(1)}%`;
         }
+
+        updateStories(progress);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // 60fps lerp animation loop
-    function loop() {
+    // 60fps/120fps Cinematic Lerp Loop
+    function animLoop() {
         const diff = targetFrame - currentFrame;
-        if (Math.abs(diff) > 0.02) {
-            currentFrame += diff * 0.16;
-            render();
+        if (Math.abs(diff) > 0.01) {
+            currentFrame += diff * 0.18;
+            renderCurrentFrame();
         } else if (Math.round(currentFrame) !== Math.round(targetFrame)) {
             currentFrame = targetFrame;
-            render();
+            renderCurrentFrame();
         }
-        requestAnimationFrame(loop);
+        requestAnimationFrame(animLoop);
     }
-    requestAnimationFrame(loop);
+    requestAnimationFrame(animLoop);
 
-    // Initial sizing
+    // Initial canvas sizing
     resizeCanvas();
+
+    // Preload all 120 frames
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+        const img = new Image();
+        const frameNum = String(i + 1).padStart(4, '0');
+        img.src = `images/cloud_architecture/frame_${frameNum}.jpg`;
+
+        img.onload = () => {
+            loadedCount++;
+            images[i] = img;
+
+            // Render first frame immediately
+            if (i === 0 && lastDrawnFrame === 0) {
+                renderCurrentFrame();
+                updateStories(0);
+            }
+        };
+
+        img.onerror = () => {
+            loadedCount++;
+        };
+    }
 }
 
