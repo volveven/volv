@@ -351,7 +351,7 @@
   if (tIn && tBody && tForm) {
     var commands = {
       help: "Verfügbare Befehle:\n  status      Status der Demo-Umgebung\n  audit       Schnellanalyse (Beispiel)\n  ping        Ping-Beispiel (DE-CIX Frankfurt)\n  whoami      Informationen zu volvevent.\n  services    Leistungsübersicht\n  webdesign   Webdesign-Pakete und Aktion\n  contact     Direktkontakt\n  clear       Ausgabe leeren",
-      status: "[OK] Core Gateway: ONLINE (Uptime 99.99%)\n[OK] Firewall Cluster: ACTIVE/STANDBY (pfSense CARP Sync)\n[OK] Proxmox VE Nodes: 3/3 Healthy (Ceph Quorum OK)\n[OK] Zero-Trust Enforcer: VERIFIED\n[OK] SSL/TLS: A+ Grade (HSTS & Strict SNI Enforced)",
+      status: "[OK] Core Gateway: ONLINE\n[OK] Firewall Cluster: ACTIVE/STANDBY (pfSense CARP Sync)\n[OK] Proxmox VE Nodes: 3/3 Healthy (Ceph Quorum OK)\n[OK] Zero-Trust Enforcer: VERIFIED\n[OK] SSL/TLS: HSTS aktiv",
       audit: "Starte Security-Scan (Beispielausgabe) …\n[+] TLS 1.3 Cipher Suite: TLS_AES_256_GCM_SHA384 (sicher)\n[+] HTTP Security Header: CSP, X-Frame, HSTS aktiv\n[+] Vulnerabilities detected: 0\n[!] NIS2: Selbstcheck unter security-audit.html",
       ping: "PING de-cix-fra.volvevent.net (80.81.192.1): 56 data bytes\n64 bytes: icmp_seq=1 ttl=58 time=4.12 ms\n64 bytes: icmp_seq=2 ttl=58 time=4.08 ms\n64 bytes: icmp_seq=3 ttl=58 time=4.15 ms\n--- Ping-Statistik ---\n3 Pakete übertragen, 3 empfangen, 0 % Paketverlust, Avg: 4.11 ms",
       whoami: "volvevent. | IT-Architektur und Softwareentwicklung\nInhaber: Muhammet Hasan Gürcan (7+ Jahre Systemadministration & DevOps)\nStandort: Bäckerstr. 8a, 84030 Ergolding",

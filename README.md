@@ -22,7 +22,6 @@ Statische Website von volvevent. (Inhaber: Muhammet Hasan Gürcan, Ergolding), a
 | `assets/fonts/` | Inter und Inter Tight (woff2, SIL Open Font License) |
 | `assets/img/` | Favicon, Logo, Open-Graph-Bild |
 | `images/` | Fotos und Bildsequenzen (`images/scrollytelling/…`, `images/cloud_architecture/…`) |
-| `volvevent-agency/`, `mha-solutions/`, `ketadecor/` | Eigenständige Unterprojekte (vom Redesign bewusst ausgenommen, eigene Styles) |
 
 ## Grundsätze
 
