@@ -36,9 +36,13 @@ foreach ($art in $articles) {
         </article>
 "@)
 
+    $by = ""
+    if ($art.PSObject.Properties.Name -contains "author" -and $art.author) {
+        $by = "<span>" + (Enc ([string]$art.author)) + "</span>"
+    }
     [void]$posts.AppendLine(@"
       <article class="post" id="$id" aria-labelledby="$id-t">
-        <p class="post__meta"><span class="cat">$c</span><span>$d</span><span>$r Lesezeit</span></p>
+        <p class="post__meta"><span class="cat">$c</span><span>$d</span>$by<span>$r Lesezeit</span></p>
         <h2 class="post__title" id="$id-t">$t</h2>
         <div class="figure"><img class="mono-img" src="$img" alt="" loading="lazy" decoding="async"></div>
         <div class="post__body prose">$content</div>
