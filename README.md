@@ -26,7 +26,7 @@ Statische Website von volvevent. (Inhaber: Muhammet Hasan Gürcan, Ergolding), a
 ## Grundsätze
 
 - **Keine externen Ressourcen zur Laufzeit:** Schriften, Skripte und Styles liegen im Repository. Es werden keine Cookies gesetzt und keine Tracking-Dienste geladen. Externe Verbindungen entstehen nur beim Absenden eines Formulars (Web3Forms) oder beim Klick auf WhatsApp.
-- **Bilder bleiben Originale:** Die Graustufen-Darstellung erfolgt ausschließlich per CSS (`filter: grayscale(1)`). Bilddateien bitte nicht umbenennen oder verschieben, da sie über feste Pfade eingebunden sind.
+- **Bilder bleiben Originale:** Fotos und Bildsequenzen werden in Originalfarben gezeigt; nur die Oberfläche (Text, Buttons, Linien) ist schwarz-weiß. Bilddateien bitte nicht umbenennen oder verschieben, da sie über feste Pfade eingebunden sind.
 - **Barrierefreiheit:** Skip-Link, `<main>`, sichtbare Fokuszustände, Burger-Menü mit `aria-expanded`, Escape und Fokusfalle. Bei `prefers-reduced-motion` und ohne JavaScript ist die Startseite vollständig statisch lesbar.
 - **Bewegung nur auf der Startseite.** Unterseiten verzichten bewusst auf Scroll-Effekte.
 

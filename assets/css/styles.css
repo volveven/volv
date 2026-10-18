@@ -1,7 +1,7 @@
 /* ==========================================================================
    volvevent. – Stylesheet (alle Seiten)
    Monochrom, ohne externe Abhängigkeiten. Schriften lokal (assets/fonts).
-   Bilder werden per CSS-Filter in Graustufen dargestellt; die Dateien bleiben unverändert.
+   Bilder werden in Originalfarben und unverändert dargestellt.
    ========================================================================== */
 
 /* Fonts ------------------------------------------------------------------ */
@@ -266,8 +266,6 @@ button { font: inherit; color: inherit; }
 .page-head__figure { margin-top: clamp(32px, 4vw, 56px); }
 @media (max-width: 520px) { .page-head__actions .btn { flex: 1 1 100%; } }
 
-/* Bilder: Dateien unverändert, Darstellung per CSS in Graustufen ---------- */
-.mono-img { filter: grayscale(1) contrast(1.05); }
 .figure { position: relative; overflow: hidden; background: #e9e9e9; }
 .figure img { width: 100%; height: 100%; object-fit: cover; }
 .figure--wide { aspect-ratio: 21 / 9; }
