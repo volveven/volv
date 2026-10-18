@@ -1,45 +1,56 @@
+# Erzeugt blog.html aus blog_template.html und all_articles_clean.json.
+# Aufruf im Repository-Ordner:  powershell -ExecutionPolicy Bypass -File .\generate_blog.ps1
+# Das Markup entspricht dem Python-Generator, mit dem die Seite im Redesign erzeugt wurde.
 $ErrorActionPreference = "Stop"
+Add-Type -AssemblyName System.Web
 
-$template = [System.IO.File]::ReadAllText("c:\volvevent\blog_template.html", [System.Text.Encoding]::UTF8)
-$jsonRaw = [System.IO.File]::ReadAllText("c:\volvevent\all_articles_clean.json", [System.Text.Encoding]::UTF8)
+$root = $PSScriptRoot
+$utf8 = New-Object System.Text.UTF8Encoding($false)
+$template = [System.IO.File]::ReadAllText((Join-Path $root "blog_template.html"), $utf8)
+$jsonRaw  = [System.IO.File]::ReadAllText((Join-Path $root "all_articles_clean.json"), $utf8)
 $articles = $jsonRaw | ConvertFrom-Json
 
 Write-Host "Loaded $($articles.Count) articles."
 
-$cardsHtml = New-Object System.Text.StringBuilder
+function Enc([string]$s) { return [System.Web.HttpUtility]::HtmlEncode($s) }
+
+$cards = New-Object System.Text.StringBuilder
+$posts = New-Object System.Text.StringBuilder
 
 foreach ($art in $articles) {
-    $secClass = if ($art.category -eq 'Security Audit') { ' badge-sec' } else { '' }
-    $titleSafe = [System.Web.HttpUtility]::HtmlEncode($art.title)
-    $excerptSafe = [System.Web.HttpUtility]::HtmlEncode($art.excerpt)
-    $catSafe = [System.Web.HttpUtility]::HtmlEncode($art.category)
-    $dateSafe = [System.Web.HttpUtility]::HtmlEncode($art.date)
-    $readSafe = [System.Web.HttpUtility]::HtmlEncode($art.readTime)
+    $t = Enc $art.title
+    $c = Enc $art.category
+    $d = Enc $art.date
+    $r = Enc $art.readTime
+    $e = Enc $art.excerpt
+    $id = $art.id
+    $img = $art.image
+    $content = $art.content.Replace("<h2>", "<h3>").Replace("</h2>", "</h3>")
 
-    $card = @"
-                <article class="artikel-karte" data-category="$catSafe" onclick="openArticle('$($art.id)')">
-                    <div class="card-img-wrap">
-                        <img src="$($art.image)" alt="$titleSafe" loading="lazy">
-                        <span class="card-cat-badge$secClass">$catSafe</span>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            <span>$dateSafe &bull; $readSafe</span>
-                        </div>
-                        <h3 class="card-title">$titleSafe</h3>
-                        <p class="card-excerpt">$excerptSafe</p>
-                        <div class="card-footer">
-                            <span class="read-more-btn interaktives-element">Vollst&auml;ndigen Artikel lesen &rarr;</span>
-                        </div>
-                    </div>
-                </article>
-"@
-    [void]$cardsHtml.AppendLine($card)
+    [void]$cards.AppendLine(@"
+        <article class="post-card" data-cats="$c">
+          <h3 class="post-card__title"><a href="#$id" data-open="$id">$t</a></h3>
+          <div class="figure"><img class="mono-img" src="$img" alt="" loading="lazy" decoding="async"></div>
+          <p class="post-card__meta"><span class="cat">$c</span><span>$d</span><span>$r</span></p>
+          <p class="post-card__text">$e</p>
+        </article>
+"@)
+
+    [void]$posts.AppendLine(@"
+      <article class="post" id="$id" aria-labelledby="$id-t">
+        <p class="post__meta"><span class="cat">$c</span><span>$d</span><span>$r Lesezeit</span></p>
+        <h2 class="post__title" id="$id-t">$t</h2>
+        <div class="figure"><img class="mono-img" src="$img" alt="" loading="lazy" decoding="async"></div>
+        <div class="post__body prose">$content</div>
+        <p class="post__back"><a class="link" href="#beitraege" data-close>Zurück zur Übersicht</a></p>
+      </article>
+"@)
 }
 
-$finalHtml = $template.Replace("<!-- CARDS_PLACEHOLDER -->", $cardsHtml.ToString())
-$finalHtml = $finalHtml.Replace("ARTICLE_DATA_PLACEHOLDER", $jsonRaw)
+$final = $template.Replace("<!-- CARDS_PLACEHOLDER -->", $cards.ToString().TrimEnd())
+$final = $final.Replace("<!-- ARTICLES_PLACEHOLDER -->", $posts.ToString().TrimEnd())
+# Vorlage ist noindex; die erzeugte Seite bekommt die kanonische Adresse
+$final = $final.Replace('<meta name="robots" content="noindex">', '<link rel="canonical" href="https://volvevent.de/blog.html">')
 
-[System.IO.File]::WriteAllText("c:\volvevent\blog.html", $finalHtml, [System.Text.Encoding]::UTF8)
-Write-Host "Successfully generated c:\volvevent\blog.html! Total length: $($finalHtml.Length) bytes."
+[System.IO.File]::WriteAllText((Join-Path $root "blog.html"), $final, $utf8)
+Write-Host "Generated blog.html ($($final.Length) chars)."

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.volvevent.de/sitemap.xml
+Sitemap: https://volvevent.de/sitemap.xml

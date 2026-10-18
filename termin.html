@@ -1,453 +1,189 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategiegespräch buchen | volvevent.</title>
-        <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="stylesheet" href="style.css?v=8.0">
-    <script src="main.js?v=8.0" defer></script>
-    <style>
-        :root {
-            --bg-dark: #000000;
-            --bg-darker: #0a0a0a;
-            --card-bg: rgba(255,255,255,0.04);
-            --card-border: rgba(255,255,255,0.08);
-            --accent-blue: #2997FF;
-            --success-green: #30d158;
-            --warning-red: #ff453a;
-            --text-main: #f5f5f7;
-            --text-muted: #86868b;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        /* NAVIGATION */
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            z-index: 1000; border-bottom: 1px solid var(--card-border);
-        }
-        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-link { font-size: 0.9rem; transition: color 0.3s; }
-        .nav-link:hover { color: var(--accent-blue); }
-        .cta-btn {
-            background-color: var(--accent-blue); color: #fff; padding: 0.5rem 1.2rem;
-            border-radius: 20px; font-size: 0.9rem; font-weight: 500;
-            transition: background-color 0.3s, transform 0.2s; border: none; cursor: pointer; display: inline-block;
-        }
-        .cta-btn:hover { background-color: #0071e3; transform: scale(1.05); }
-        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-        .hamburger span { width: 25px; height: 2px; background-color: var(--text-main); transition: 0.3s; }
-        
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none; position: absolute; top: 70px; left: 0; width: 100%;
-                background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px);
-                flex-direction: column; padding: 2rem 0; border-bottom: 1px solid var(--card-border);
-            }
-            .nav-links.active { display: flex; }
-            .hamburger { display: flex; }
-        }
-
-        /* HERO */
-        .hero {
-            position: relative; min-height: 40vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 120px 5% 50px; background: var(--bg-dark); border-bottom: 1px solid var(--card-border);
-        }
-        .hero h1 {
-            font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-inline: auto; }
-
-        /* TRUST STRIP */
-        .trust-strip {
-            display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
-            padding: 2rem 5%; background: var(--bg-darker); border-bottom: 1px solid var(--card-border);
-        }
-        .trust-item { display: flex; align-items: center; gap: 0.5rem; color: var(--text-main); font-weight: 500; font-size: 0.95rem; }
-        .trust-icon { color: var(--success-green); width: 20px; height: 20px; }
-
-        /* SECTIONS */
-        .section { padding: 5rem 5%; }
-        .section-title { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
-        
-        /* SERVICES */
-        .service-card {
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 16px; padding: 2rem; transition: transform 0.3s;
-        }
-        .service-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.06); }
-        .service-icon { width: 35px; height: 35px; fill: var(--accent-blue); margin-bottom: 1rem; }
-        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
-        .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-        /* FORM */
-        .form-container {
-            background: var(--bg-darker); border: 1px solid var(--card-border);
-            border-radius: 16px; padding: 3rem; max-width: 800px; margin: 0 auto;
-        }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.95rem; color: var(--text-main); }
-        .form-control {
-            width: 100%; padding: 1rem; background: var(--card-bg); border: 1px solid var(--card-border);
-            border-radius: 12px; color: var(--text-main); font-family: inherit; font-size: 1rem; outline: none; transition: border-color 0.3s;
-        }
-        .form-control:focus { border-color: var(--accent-blue); }
-        textarea.form-control { resize: vertical; min-height: 120px; }
-        select.form-control { appearance: none; cursor: pointer; }
-        .submit-btn {
-            background: var(--accent-blue); color: #fff; width: 100%; padding: 1.2rem;
-            border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600;
-            cursor: pointer; transition: background 0.3s; margin-top: 1rem;
-        }
-        .submit-btn:hover { background: #0071e3; }
-
-        /* CONTACT ALTS */
-        .contact-alts { text-align: center; margin-top: 4rem; }
-        .contact-alts p { margin-bottom: 1.5rem; color: var(--text-muted); }
-        .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-        .contact-link {
-            display: flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem;
-            border-radius: 30px; border: 1px solid var(--card-border); transition: background 0.3s;
-        }
-        .contact-link.wa { border-color: var(--success-green); color: var(--success-green); }
-        .contact-link.wa:hover { background: rgba(48, 209, 88, 0.1); }
-        .contact-link.tel { border-color: var(--accent-blue); color: var(--accent-blue); }
-        .contact-link.tel:hover { background: rgba(41, 151, 255, 0.1); }
-
-        /* FOOTER */
-        .footer { background-color: var(--bg-darker); border-top: 1px solid var(--card-border); padding: 4rem 5% 2rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
-        .footer-col h4 { margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 0.8rem; }
-        .footer-col ul li a { color: var(--text-muted); transition: color 0.3s; font-size: 0.9rem; }
-        .footer-col ul li a:hover { color: var(--text-main); }
-        .footer-bottom { border-top: 1px solid var(--card-border); padding-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
-
-        /* FLOATINGWhatsApp */
-        .floating-whatsapp {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background-color: var(--success-green); border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(48, 209, 88, 0.4);
-            z-index: 1000; transition: transform 0.3s;
-        }
-        .floating-whatsapp:hover { transform: scale(1.1); }
-        .floating-whatsapp svg { width: 35px; height: 35px; fill: #fff; }
-
-        /* REVEAL */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Strategiegespräch buchen | volvevent.</title>
+  <meta name="description" content="Kostenloses und unverbindliches Strategiegespräch mit volvevent. zu Netzwerk, Server, Cybersecurity, Systemadministration, Webdesign oder App- und SaaS-Entwicklung.">
+  <link rel="canonical" href="https://volvevent.de/termin.html">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="volvevent.">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Strategiegespräch buchen | volvevent.">
+  <meta property="og:description" content="Kostenloses und unverbindliches Strategiegespräch mit volvevent. zu Netzwerk, Server, Cybersecurity, Systemadministration, Webdesign oder App- und SaaS-Entwicklung.">
+  <meta property="og:url" content="https://volvevent.de/termin.html">
+  <meta property="og:image" content="https://volvevent.de/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/app.js" defer></script>
 </head>
 <body>
-
-        <header class="nav-container" id="navigationsleiste">
-        <div class="nav-inner">
-            <a href="index.html" class="logo interaktives-element">volvevent.</a>
-
-            <div class="nav-mobile-actions">
-                <a href="termin.html" class="nav-mobile-cta interaktives-element">Termin</a>
-                <button class="mobile-menue-knopf interaktives-element" id="mobile-menue-toggle" aria-label="Men&uuml; &ouml;ffnen" aria-expanded="false">
-                    <span class="burger-bar"></span>
-                    <span class="burger-bar"></span>
-                    <span class="burger-bar"></span>
-                </button>
-            </div>
-
-            <nav class="nav-links menue-liste">
-                <a href="index.html" class="menue-link interaktives-element">Start</a>
-                <a href="webdesign.html" class="menue-link interaktives-element">Webdesign <span class="nav-badge-mini">-15%</span></a>
-                <a href="projekte.html" class="menue-link interaktives-element">Projekte</a>
-                <a href="architektur.html" class="menue-link interaktives-element">Architektur</a>
-                <a href="security-audit.html" class="menue-link interaktives-element">Security-Audit</a>
-                <a href="blog.html" class="menue-link interaktives-element">News &amp; Insights</a>
-                <a href="forum.html" class="menue-link interaktives-element">Forum</a>
-                <a href="kontakt.html" class="menue-link interaktives-element">Kontakt</a>
-                <a href="termin.html" class="nav-cta interaktives-element active">Termin buchen</a>
-            </nav>
-        </div>
-
-        <!-- Horizontale Schnell-Men&uuml;leiste f&uuml;r Mobilger&auml;te (Android &amp; iOS) -->
-        <div class="mobile-subnav-leiste" id="mobile-subnav" aria-label="Schnellnavigation">
-            <div class="subnav-scroll-container">
-                <a href="index.html" class="subnav-pill">Start</a>
-                <a href="webdesign.html" class="subnav-pill highlight-pill">Webdesign <span class="pill-badge">-15%</span></a>
-                <a href="projekte.html" class="subnav-pill">Projekte</a>
-                <a href="architektur.html" class="subnav-pill">Architektur</a>
-                <a href="security-audit.html" class="subnav-pill">Security-Audit</a>
-                <a href="blog.html" class="subnav-pill">News</a>
-                <a href="forum.html" class="subnav-pill">Forum</a>
-                <a href="kontakt.html" class="subnav-pill">Kontakt</a>
-            </div>
-        </div>
-    </header>
-
-    <header class="hero">
-        <div class="hero-content reveal active">
-            <h1>Strategiegespräch buchen</h1>
-            <p>Ihr Enterprise IT-Projekt verdient mehr als ein Standard-Angebot. Schildern Sie uns Ihre Herausforderung – wir liefern die Architektur.</p>
-        </div>
-    </header>
-
-    <div class="trust-strip reveal">
-        <div class="trust-item">
-            <svg class="trust-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg>
-            Kostenlos & unverbindlich
-        </div>
-        <div class="trust-item">
-            <svg class="trust-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg>
-            Zertifizierter Experte
-        </div>
-        <div class="trust-item">
-            <svg class="trust-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg>
-            Remote & Vor Ort
-        </div>
-        <div class="trust-item">
-            <svg class="trust-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z"/></svg>
-            Antwort in 24h
-        </div>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+<header class="site-header" id="top">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="index.html" aria-label="volvevent. – zur Startseite">volvevent.</a>
+    <a class="btn btn--sm header-cta" href="termin.html" aria-current="page">Termin</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+        <span class="nav__label">Menü</span><span class="nav__icon" aria-hidden="true"></span>
+      </button>
+      <div class="nav__panel" id="nav-panel">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Start</a></li>
+          <li><a class="nav__link" href="webdesign.html">Webdesign <span class="nav__tag" aria-label="Aktion: 15 Prozent Rabatt">−15&nbsp;%</span></a></li>
+          <li><a class="nav__link" href="projekte.html">Projekte</a></li>
+          <li><a class="nav__link" href="architektur.html">Architektur</a></li>
+          <li><a class="nav__link" href="security-audit.html">Security-Audit</a></li>
+          <li><a class="nav__link" href="blog.html">News</a></li>
+          <li><a class="nav__link" href="forum.html">Forum</a></li>
+          <li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+          <li class="nav__cta"><a class="btn btn--sm" href="termin.html" aria-current="page">Termin buchen</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="subnav" aria-label="Schnellnavigation">
+    <div class="subnav__track">
+      <a href="index.html">Start</a>
+      <a href="webdesign.html">Webdesign −15&nbsp;%</a>
+      <a href="projekte.html">Projekte</a>
+      <a href="architektur.html">Architektur</a>
+      <a href="security-audit.html">Security-Audit</a>
+      <a href="blog.html">News</a>
+      <a href="forum.html">Forum</a>
+      <a href="kontakt.html">Kontakt</a>
     </div>
-
-    <section class="section">
-        <h2 class="section-title reveal">Unsere Expertise</h2>
-        <div class="grid-2">
-            <div class="service-card reveal">
-                <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                <h3>Enterprise Netzwerkarchitektur</h3>
-                <p>Umfassendes VLAN-Design, Konfiguration von Core-Switches (Cisco, Aruba, Alcatel-Lucent, Brocade), Implementierung sicherer Routing-Protokolle, nahtlose Firewall-Integration sowie detaillierte Netzwerk-Dokumentation. Profitieren Sie von zertifiziertem Expertenwissen (CCNA & weitere), um eine hochverfügbare, skalierbare und ausfallsichere Infrastruktur aufzubauen.</p>
-            </div>
-            
-            <div class="service-card reveal">
-                <svg class="service-icon" viewBox="0 0 24 24"><path d="M19 15v4H5v-4h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 18.5c-.82 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM19 5v4H5V5h14m1-2H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 8.5c-.82 0-1.5-.67-1.5-1.5S6.18 5.5 7 5.5s1.5.67 1.5 1.5S7.83 8.5 7 8.5z"/></svg>
-                <h3>Server & Virtualisierung</h3>
-                <p>Planung und Aufbau robuster Proxmox VE Cluster, VMware vSphere und Microsoft Hyper-V Umgebungen. Bereitstellung performanter Storage-Konzepte (Ceph, NFS, iSCSI), Konfiguration von High Availability (HA) und Backup-Integrationen sowie die reibungslose Migration von Legacy-Systemen in moderne Virtualisierungslandschaften.</p>
-            </div>
-            
-            <div class="service-card reveal">
-                <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-                <h3>Cybersecurity & Zero-Trust</h3>
-                <p>Design und Implementierung kompromissloser Zero-Trust Architectures. Einsatz von Hardware-Firewalls (pfSense, FortiGate), IDS/IPS-Systemen und sicheren VPN-Lösungen (IPSec, WireGuard). Wir führen Security Audits und Penetration Testing durch und unterstützen Sie bei der Einhaltung aktueller Compliance-Vorgaben wie NIS2.</p>
-            </div>
-            
-            <div class="service-card reveal">
-                <svg class="service-icon" viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
-                <h3>IT-Systemadministration</h3>
-                <p>Zuverlässige Verwaltung und Pflege Ihrer Serverlandschaft. Von Windows Server und Active Directory bis hin zu Linux Systemen (Ubuntu, Debian). Wir bieten umfassende Microsoft 365 Administration, professionellen Helpdesk & Support, kontinuierliches Monitoring und strukturiertes Patch Management.</p>
-            </div>
-            
-            <div class="service-card reveal">
-                <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                <h3>High-End Webdesign & E-Commerce</h3>
-                <p>Entwicklung maßgeschneiderter Webseiten in purem HTML/CSS/JS – ohne überladene Page Builder. Fokus auf extreme Performance (Core Web Vitals), solide SEO-Architektur, Entwicklung von Corporate Websites und leistungsstarken E-Commerce Shops, inklusive durchgängiger SSL-Absicherung.</p>
-            </div>
-            
-            <div class="service-card reveal">
-                <svg class="service-icon" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-                <h3>App & SaaS Entwicklung</h3>
-                <p>Konzeption und Realisierung von Native iOS/Android Apps sowie modernen Web-Apps (React/Vue). Wir bauen hochskalierbare SaaS-Plattformen mit robustem Datenbankdesign, sicherer API-Integration und kümmern uns um den gesamten Lifecycle von Deployment bis Hosting.</p>
-            </div>
+  </nav>
+</header>
+<main id="inhalt">
+  <div class="page-head">
+    <div class="container">
+      <p class="eyebrow">Strategiegespräch</p>
+      <h1 class="page-head__title">Strategiegespräch buchen.</h1>
+      <p class="lead page-head__lead">Ihr IT-Projekt verdient mehr als ein Standardangebot. Schildern Sie uns Ihre Herausforderung – wir entwerfen die passende Architektur.</p>
+      <ul class="case__tags" style="margin-top:28px" aria-label="Rahmen">
+        <li class="tag">Kostenlos &amp; unverbindlich</li><li class="tag">Zertifizierter Experte</li><li class="tag">Remote &amp; vor Ort</li><li class="tag">Antwort in 24&nbsp;h</li>
+      </ul>
+    </div>
+  </div>
+  <section class="section section--flush" aria-labelledby="anfrage-title">
+    <div class="container">
+      <div class="split">
+        <div>
+          <h2 class="section__title" id="anfrage-title">Projektanfrage starten</h2>
+          <form class="form" action="https://api.web3forms.com/submit" method="POST" id="termin-formular" data-protect>
+          <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
+          <input type="hidden" name="subject" value="Terminanfrage via volvevent.de" data-base="Terminanfrage via volvevent.de">
+          <input type="hidden" name="redirect" value="https://volvevent.de/?success=true">
+          <div class="hp" aria-hidden="true"><label for="termin-botcheck">Nicht ausfüllen</label><input type="checkbox" name="botcheck" id="termin-botcheck" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="Paket" id="termin-paket" value="">
+          <p class="notice" id="termin-paket-info" hidden>Gewähltes Paket: <strong></strong></p>
+          <div class="form__row">
+          <div class="field"><label for="termin-name">Vollständiger Name</label><input class="input" type="text" id="termin-name" name="Name" required autocomplete="name" data-subject-name></div>
+          <div class="field"><label for="termin-firma">Unternehmen / Organisation <span class="opt">(optional)</span></label><input class="input" type="text" id="termin-firma" name="Unternehmen" autocomplete="organization"></div>
+          </div>
+          <div class="form__row">
+          <div class="field"><label for="termin-email">E-Mail</label><input class="input" type="email" id="termin-email" name="Email" required autocomplete="email"></div>
+          <div class="field"><label for="termin-telefon">Telefonnummer <span class="opt">(optional)</span></label><input class="input" type="tel" id="termin-telefon" name="Telefon" autocomplete="tel"></div>
+          </div>
+          <div class="form__row">
+          <div class="field"><label for="termin-dienstleistung">Dienstleistung <span class="opt">(optional)</span></label><select class="input" id="termin-dienstleistung" name="Dienstleistung"><option value="">Bitte wählen …</option><option value="Enterprise Netzwerkarchitektur">Enterprise Netzwerkarchitektur</option><option value="Server &amp; Virtualisierung">Server &amp; Virtualisierung</option><option value="Cybersecurity &amp; Zero-Trust">Cybersecurity &amp; Zero-Trust</option><option value="IT-Systemadministration">IT-Systemadministration</option><option value="High-End Webdesign &amp; E-Commerce">High-End Webdesign &amp; E-Commerce</option><option value="App &amp; SaaS Entwicklung">App &amp; SaaS Entwicklung</option></select></div>
+          <div class="field"><label for="termin-groesse">Unternehmensgröße <span class="opt">(optional)</span></label><select class="input" id="termin-groesse" name="Unternehmensgroesse"><option value="">Bitte wählen …</option><option value="1-10 Mitarbeiter">1-10 Mitarbeiter</option><option value="11-50 Mitarbeiter">11-50 Mitarbeiter</option><option value="51-200 Mitarbeiter">51-200 Mitarbeiter</option><option value="200+ Mitarbeiter">200+ Mitarbeiter</option></select></div>
+          </div>
+          <div class="field"><label for="termin-infra">Bestehende IT-Infrastruktur <span class="opt">(optional)</span></label><textarea class="input" id="termin-infra" name="Infrastruktur" placeholder="Kurz Ihr aktuelles Setup, z. B. M365, eigene Server, bestehende Probleme"></textarea></div>
+          <div class="field"><label for="termin-ziel">Projektziel / Herausforderung</label><textarea class="input" id="termin-ziel" name="Herausforderung" required placeholder="Was möchten Sie erreichen? Wo liegen die größten Probleme?"></textarea></div>
+          <div class="form__row">
+          <div class="field"><label for="termin-kontaktweg">Bevorzugter Kontaktweg <span class="opt">(optional)</span></label><select class="input" id="termin-kontaktweg" name="Kontaktweg"><option value="E-Mail">E-Mail</option><option value="Telefon">Telefon</option><option value="WhatsApp">WhatsApp</option><option value="Video-Call">Video-Call</option></select></div>
+          <div class="field"><label for="termin-zeitrahmen">Zeitrahmen <span class="opt">(optional)</span></label><select class="input" id="termin-zeitrahmen" name="Zeitrahmen"><option value="So bald wie möglich">So bald wie möglich</option><option value="Innerhalb 1 Monat">Innerhalb 1 Monat</option><option value="Innerhalb 3 Monate">Innerhalb 3 Monate</option><option value="Planung/Anfrage">Planung/Anfrage</option></select></div>
+          </div>
+        <div class="verify" id="verify-termin">
+          <span class="field__label" id="verify-termin-label">Bestätigung (Schutz vor automatisierten Anfragen)</span>
+          <div class="verify__track">
+            <div class="verify__fill"></div>
+            <div class="verify__text" aria-hidden="true">Zum Bestätigen nach rechts schieben</div>
+            <button type="button" class="verify__thumb" role="checkbox" aria-checked="false" aria-labelledby="verify-termin-label" aria-describedby="verify-termin-help">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <p class="verify__help" id="verify-termin-help">Regler nach rechts ziehen – oder mit der Tastatur auswählen und Leertaste drücken.</p>
         </div>
-    </section>
-
-    <section class="section" style="background: var(--bg-darker);">
-        <div class="form-container reveal">
-            <h2 class="section-title" style="margin-bottom: 2rem;">Projektanfrage starten</h2>
-            <form action="https://api.web3forms.com/submit" method="POST" id="termin-formular">
-                <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
-                <input type="checkbox" name="botcheck" style="display: none;">
-                <input type="hidden" name="subject" id="termin-hidden-subject" value="Terminanfrage via volvevent.de">
-                <input type="hidden" name="redirect" value="https://www.volvevent.de/?success=true">
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label class="form-label">Vollständiger Name *</label>
-                        <input type="text" name="Name" id="termin-name" class="form-control interaktives-element" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Unternehmen / Organisation</label>
-                        <input type="text" name="Unternehmen" class="form-control">
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label class="form-label">E-Mail *</label>
-                        <input type="email" name="Email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Telefonnummer</label>
-                        <input type="tel" name="Telefon" class="form-control">
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label class="form-label">Dienstleistung</label>
-                        <select name="Dienstleistung" id="termin-dienstleistung" class="form-control interaktives-element">
-                            <option value="">Bitte wählen...</option>
-                            <option value="Enterprise Netzwerkarchitektur">Enterprise Netzwerkarchitektur</option>
-                            <option value="Server & Virtualisierung">Server & Virtualisierung</option>
-                            <option value="Cybersecurity & Zero-Trust">Cybersecurity & Zero-Trust</option>
-                            <option value="IT-Systemadministration">IT-Systemadministration</option>
-                            <option value="High-End Webdesign & E-Commerce">High-End Webdesign & E-Commerce</option>
-                            <option value="App & SaaS Entwicklung">App & SaaS Entwicklung</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Unternehmensgröße</label>
-                        <select name="Unternehmensgroesse" class="form-control">
-                            <option value="">Bitte wählen...</option>
-                            <option value="1-10 Mitarbeiter">1-10 Mitarbeiter</option>
-                            <option value="11-50 Mitarbeiter">11-50 Mitarbeiter</option>
-                            <option value="51-200 Mitarbeiter">51-200 Mitarbeiter</option>
-                            <option value="200+ Mitarbeiter">200+ Mitarbeiter</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Bestehende IT-Infrastruktur</label>
-                    <textarea name="Infrastruktur" class="form-control" placeholder="Beschreiben Sie kurz Ihr aktuelles Setup (z.B. M365, On-Premise Server, bestehende Probleme)..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Projektziel / Herausforderung *</label>
-                    <textarea name="Herausforderung" class="form-control" required placeholder="Was möchten Sie erreichen? Wo liegen aktuell die größten Schmerzpunkte?"></textarea>
-                </div>
-
-                <div class="grid-2">
-                    <div class="form-group">
-                        <label class="form-label">Bevorzugter Kontaktweg</label>
-                        <select name="Kontaktweg" class="form-control">
-                            <option value="E-Mail">E-Mail</option>
-                            <option value="Telefon">Telefon</option>
-                            <option value="WhatsApp">WhatsApp</option>
-                            <option value="Video-Call">Video-Call</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Zeitrahmen</label>
-                        <select name="Zeitrahmen" class="form-control">
-                            <option value="So bald wie möglich">So bald wie möglich</option>
-                            <option value="Innerhalb 1 Monat">Innerhalb 1 Monat</option>
-                            <option value="Innerhalb 3 Monate">Innerhalb 3 Monate</option>
-                            <option value="Planung/Anfrage">Planung/Anfrage</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group" style="margin-top: 2rem;">
-                    <!-- SECURITY SLIDER -->
-                    <div class="security-modul">
-                        <div class="label-text" style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Sicherheitsüberprüfung</div>
-                        <div class="slide-captcha-container" id="slide-captcha-termin">
-                            <div class="slide-captcha-track" id="slide-track-termin"></div>
-                            <div class="slide-captcha-text" id="slide-text-termin">Zum Verifizieren schieben</div>
-                            <div class="slide-captcha-thumb" id="slide-thumb-termin">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="termin-formular-status"></div>
-
-                <button type="submit" class="submit-btn interaktives-element" id="termin-absenden">Anfrage verschlüsselt senden</button>
-            </form>
+          <p class="form__hint">Ihre Angaben werden zur Bearbeitung der Anfrage über den Formulardienst Web3Forms an uns übermittelt. Details in der <a href="datenschutz.html#formulare">Datenschutzerklärung</a>.</p>
+          <p class="form__status" id="termin-formular-status" role="status"></p>
+          <div><button class="btn" type="submit" id="termin-absenden">Anfrage senden</button></div>
+          </form>
         </div>
-
-        <div class="contact-alts reveal">
-            <p>Sie möchten direkt sprechen?</p>
-            <div class="contact-links">
-                <a href="https://wa.me/491727045269?text=Ich%20m%C3%B6chte%20ein%20Strategiegespr%C3%A4ch%20buchen" class="contact-link wa">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.01 2.014c-5.46 0-9.897 4.436-9.897 9.897 0 1.944.544 3.754 1.488 5.302L2.348 21.65l4.57-1.198c1.472.84 3.167 1.32 4.975 1.32 5.46 0 9.897-4.437 9.897-9.897s-4.437-9.897-9.897-9.897zm5.556 14.195c-.244.693-1.42 1.258-2.02 1.314-.542.05-1.194.137-3.61-.867-2.9-1.2-4.732-4.17-4.877-4.364-.145-.194-1.162-1.547-1.162-2.95 0-1.403.73-2.096.993-2.388.263-.292.573-.365.764-.365.19 0 .38.002.546.01.173.007.41-.065.642.494.244.59.833 2.03.905 2.176.072.146.12.316.024.51-.096.195-.145.317-.29.488-.145.17-.306.356-.437.478-.145.132-.303.277-.137.564.167.287.74 1.22 1.583 1.977.962.862 1.88 1.144 2.167 1.29.287.146.455.122.625-.073.17-.195.74-.853.94-1.145.192-.292.385-.244.646-.146.264.097 1.666.786 1.953.932.287.146.478.22.548.34.07.12.07.703-.174 1.396z"/></svg>
-                   WhatsApp Chat
-                </a>
-                <a href="tel:+491727045269" class="contact-link tel">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    +49 172 7045269
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <h3>volvevent.</h3>
-                <p>Enterprise IT-Architektur, Security Audits, Virtualisierung &amp; Systemadministration. B&auml;ckerstr. 8a, 84030 Ergolding.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html" class="interaktives-element">Startseite</a></li>
-                    <li><a href="webdesign.html" class="interaktives-element">Webdesign &amp; E-Commerce</a></li>
-                    <li><a href="projekte.html" class="interaktives-element">Projekte &amp; Referenzen</a></li>
-                    <li><a href="architektur.html" class="interaktives-element">Architektur &amp; CLI</a></li>
-                    <li><a href="security-audit.html" class="interaktives-element">Security-Audit Tool</a></li>
-                    <li><a href="blog.html" class="interaktives-element">News &amp; Insights</a></li>
-                    <li><a href="forum.html" class="interaktives-element">Forum</a></li>
-                    <li><a href="termin.html" class="interaktives-element">Termin buchen</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Rechtliches</h4>
-                <ul>
-                    <li><a href="impressum.html" class="interaktives-element">Impressum</a></li>
-                    <li><a href="datenschutz.html" class="interaktives-element">Datenschutz</a></li>
-                    <li><a href="agb.html" class="interaktives-element">AGB</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Direktkontakt</h4>
-                <ul>
-                    <li><a href="tel:+491727045269" class="interaktives-element">+49 172 7045269</a></li>
-                    <li><a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="interaktives-element">WhatsApp</a></li>
-                    <li><a href="kontakt.html" class="interaktives-element">Kontaktformular</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 volvevent. Inhaber: Muhammet Hasan G&uuml;rcan. Alle Rechte vorbehalten.
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, revealOptions);
-            reveals.forEach(reveal => revealOnScroll.observe(reveal));
-        });
-    </script>
+        <aside class="split__aside" aria-labelledby="sprechen-title">
+          <h2 class="list-title" id="sprechen-title">Lieber direkt sprechen?</h2>
+          <dl class="contact-list">
+            <div><dt>Telefon</dt><dd><a href="tel:+491727045269">+49 172 7045269</a></dd></div>
+            <div><dt>WhatsApp</dt><dd><a href="https://wa.me/491727045269" rel="noopener">Chat starten</a></dd></div>
+            <div><dt>E-Mail</dt><dd><a data-mail data-u="kontakt" data-d="volvevent.de" href="kontakt.html">kontakt [at] volvevent.de</a></dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="expertise-title">
+    <div class="container grid">
+      <div class="section__head"><p class="eyebrow">Expertise</p></div>
+      <div class="section__body"><h2 class="section__title" id="expertise-title">Unsere Expertise.</h2></div>
+      <ol class="cards" data-span>
+          <li class="card"><p class="card__num">01</p><h3 class="card__title">Enterprise Netzwerkarchitektur</h3><p class="card__text">Umfassendes VLAN-Design, Konfiguration von Core-Switches (Cisco, Aruba, Alcatel-Lucent, Brocade), sichere Routing-Protokolle, Firewall-Integration und detaillierte Netzwerkdokumentation – auf Basis zertifizierten Fachwissens (CCNA und weitere) für eine hochverfügbare, skalierbare und ausfallsichere Infrastruktur.</p></li>
+          <li class="card"><p class="card__num">02</p><h3 class="card__title">Server &amp; Virtualisierung</h3><p class="card__text">Planung und Aufbau robuster Proxmox-VE-Cluster, VMware-vSphere- und Microsoft-Hyper-V-Umgebungen. Performante Storage-Konzepte (Ceph, NFS, iSCSI), Hochverfügbarkeit (HA), Backup-Integration sowie die Migration von Altsystemen in moderne Virtualisierungsumgebungen.</p></li>
+          <li class="card"><p class="card__num">03</p><h3 class="card__title">Cybersecurity &amp; Zero-Trust</h3><p class="card__text">Konzeption und Umsetzung von Zero-Trust-Architekturen. Einsatz von Hardware-Firewalls (pfSense, FortiGate), IDS/IPS-Systemen und sicheren VPN-Lösungen (IPsec, WireGuard). Wir führen Security-Audits und Penetrationstests durch und unterstützen bei Compliance-Vorgaben wie NIS2.</p></li>
+          <li class="card"><p class="card__num">04</p><h3 class="card__title">IT-Systemadministration</h3><p class="card__text">Zuverlässige Verwaltung und Pflege Ihrer Serverlandschaft – von Windows Server und Active Directory bis zu Linux-Systemen (Ubuntu, Debian). Dazu Microsoft-365-Administration, Helpdesk und Support, kontinuierliches Monitoring und strukturiertes Patch-Management.</p></li>
+          <li class="card"><p class="card__num">05</p><h3 class="card__title">Webdesign &amp; E-Commerce</h3><p class="card__text">Individuelle Websites in reinem HTML/CSS/JS – ohne überladene Page-Builder. Schwerpunkte: Performance (Core Web Vitals), solide SEO-Architektur, Unternehmenswebsites und leistungsfähige Onlineshops, durchgängig per SSL abgesichert.</p></li>
+          <li class="card"><p class="card__num">06</p><h3 class="card__title">App- &amp; SaaS-Entwicklung</h3><p class="card__text">Konzeption und Umsetzung nativer iOS-/Android-Apps sowie moderner Web-Apps (React/Vue). Skalierbare SaaS-Plattformen mit robustem Datenbankdesign und sicherer API-Integration – über den gesamten Lebenszyklus von Deployment bis Hosting.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__inner grid">
+    <div class="footer__brand">
+      <a class="wordmark" href="index.html">volvevent.</a>
+      <p>IT-Architektur, Webdesign, Security-Audits und Systemadministration. Bäckerstr. 8a, 84030 Ergolding.</p>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Navigation</h2>
+      <ul class="footer__list">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="webdesign.html">Webdesign &amp; E-Commerce</a></li>
+        <li><a href="projekte.html">Projekte &amp; Referenzen</a></li>
+        <li><a href="architektur.html">Architektur</a></li>
+        <li><a href="security-audit.html">Security-Audit</a></li>
+        <li><a href="blog.html">News &amp; Security-Audits</a></li>
+        <li><a href="forum.html">Forum</a></li>
+        <li><a href="termin.html" aria-current="page">Termin buchen</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Rechtliches</h2>
+      <ul class="footer__list">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="agb.html">AGB</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Direktkontakt</h2>
+      <ul class="footer__list">
+        <li><a href="tel:+491727045269">+49 172 7045269</a></li>
+        <li><a href="https://wa.me/491727045269" rel="noopener">WhatsApp</a></li>
+        <li><a href="kontakt.html">Kontaktformular</a></li>
+      </ul>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 volvevent. Inhaber: Muhammet Hasan Gürcan</span>
+      <a href="#top">Nach oben</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

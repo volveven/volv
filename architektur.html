@@ -1,328 +1,218 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Architektur-Blueprints &amp; Live-CLI | volvevent.</title>
-    <meta name="description" content="Interaktive Enterprise Netzwerk-Topologie und Architektur-Blueprints von volvevent. Erleben Sie Hochverfügbarkeit, VLAN-Mikrosegmentierung und testen Sie unsere Live-Konsole.">
-    <link rel="canonical" href="https://www.volvevent.de/architektur.html">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    
-    <link rel="stylesheet" href="style.css?v=8.0">
-    <script src="main.js?v=8.0" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Architektur-Blueprints &amp; Demo-Terminal | volvevent.</title>
+  <meta name="description" content="Interaktive Referenzarchitektur von volvevent.: Topologie-Simulator für WAN-Failover und Ransomware-Isolation sowie ein Demo-Terminal.">
+  <link rel="canonical" href="https://volvevent.de/architektur.html">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="volvevent.">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Architektur-Blueprints &amp; Demo-Terminal | volvevent.">
+  <meta property="og:description" content="Interaktive Referenzarchitektur von volvevent.: Topologie-Simulator für WAN-Failover und Ransomware-Isolation sowie ein Demo-Terminal.">
+  <meta property="og:url" content="https://volvevent.de/architektur.html">
+  <meta property="og:image" content="https://volvevent.de/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/app.js" defer></script>
 </head>
 <body>
-        <header class="nav-container" id="navigationsleiste">
-        <div class="nav-inner">
-            <a href="index.html" class="logo interaktives-element">volvevent.</a>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+<header class="site-header" id="top">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="index.html" aria-label="volvevent. – zur Startseite">volvevent.</a>
+    <a class="btn btn--sm header-cta" href="termin.html">Termin</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+        <span class="nav__label">Menü</span><span class="nav__icon" aria-hidden="true"></span>
+      </button>
+      <div class="nav__panel" id="nav-panel">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Start</a></li>
+          <li><a class="nav__link" href="webdesign.html">Webdesign <span class="nav__tag" aria-label="Aktion: 15 Prozent Rabatt">−15&nbsp;%</span></a></li>
+          <li><a class="nav__link" href="projekte.html">Projekte</a></li>
+          <li><a class="nav__link" href="architektur.html" aria-current="page">Architektur</a></li>
+          <li><a class="nav__link" href="security-audit.html">Security-Audit</a></li>
+          <li><a class="nav__link" href="blog.html">News</a></li>
+          <li><a class="nav__link" href="forum.html">Forum</a></li>
+          <li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+          <li class="nav__cta"><a class="btn btn--sm" href="termin.html">Termin buchen</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="subnav" aria-label="Schnellnavigation">
+    <div class="subnav__track">
+      <a href="index.html">Start</a>
+      <a href="webdesign.html">Webdesign −15&nbsp;%</a>
+      <a href="projekte.html">Projekte</a>
+      <a href="architektur.html" aria-current="page">Architektur</a>
+      <a href="security-audit.html">Security-Audit</a>
+      <a href="blog.html">News</a>
+      <a href="forum.html">Forum</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </nav>
+</header>
+<main id="inhalt">
+  <div class="page-head">
+    <div class="container">
+      <p class="eyebrow">Topologie-Blueprints · Praxis</p>
+      <h1 class="page-head__title">Enterprise-Architektur. Hochverfügbar ausgelegt.</h1>
+      <p class="lead page-head__lead">Gute Unternehmens-IT ist so aufgebaut, dass kein einzelner Fehler (Single Point of Failure) den Betrieb stoppt. Sehen Sie sich unsere Referenzarchitektur an und spielen Sie Ausfallszenarien durch.</p>
+    </div>
+  </div>
 
-            <div class="nav-mobile-actions">
-                <a href="termin.html" class="nav-mobile-cta interaktives-element">Termin</a>
-                <button class="mobile-menue-knopf interaktives-element" id="mobile-menue-toggle" aria-label="Men&uuml; &ouml;ffnen" aria-expanded="false">
-                    <span class="burger-bar"></span>
-                    <span class="burger-bar"></span>
-                    <span class="burger-bar"></span>
-                </button>
-            </div>
-
-            <nav class="nav-links menue-liste">
-                <a href="index.html" class="menue-link interaktives-element">Start</a>
-                <a href="webdesign.html" class="menue-link interaktives-element">Webdesign <span class="nav-badge-mini">-15%</span></a>
-                <a href="projekte.html" class="menue-link interaktives-element">Projekte</a>
-                <a href="architektur.html" class="menue-link interaktives-element active">Architektur</a>
-                <a href="security-audit.html" class="menue-link interaktives-element">Security-Audit</a>
-                <a href="blog.html" class="menue-link interaktives-element">News &amp; Insights</a>
-                <a href="forum.html" class="menue-link interaktives-element">Forum</a>
-                <a href="kontakt.html" class="menue-link interaktives-element">Kontakt</a>
-                <a href="termin.html" class="nav-cta interaktives-element">Termin buchen</a>
-            </nav>
+  <section class="section section--flush sim" aria-labelledby="sim-title">
+    <div class="container grid">
+      <div class="section__head"><p class="eyebrow"><span class="num">01</span> Simulator</p></div>
+      <div class="section__body">
+        <h2 class="section__title" id="sim-title">Topologie-Simulator: Zero-Trust-Referenzarchitektur</h2>
+        <p class="lead section__intro">Wählen Sie ein Szenario, um die Ausfallsicherung zu testen.</p>
+        <div class="sim__controls" id="topo-controls" role="group" aria-label="Szenario wählen">
+          <button class="filter" type="button" data-mode="normal" aria-pressed="true">Normalbetrieb (Dual-WAN)</button>
+          <button class="filter" type="button" data-mode="failover" aria-pressed="false">Ausfall WAN 1 simulieren</button>
+          <button class="filter" type="button" data-mode="isolate" aria-pressed="false">Ransomware-Isolation</button>
         </div>
-
-        <!-- Horizontale Schnell-Men&uuml;leiste f&uuml;r Mobilger&auml;te (Android &amp; iOS) -->
-        <div class="mobile-subnav-leiste" id="mobile-subnav" aria-label="Schnellnavigation">
-            <div class="subnav-scroll-container">
-                <a href="index.html" class="subnav-pill">Start</a>
-                <a href="webdesign.html" class="subnav-pill highlight-pill">Webdesign <span class="pill-badge">-15%</span></a>
-                <a href="projekte.html" class="subnav-pill">Projekte</a>
-                <a href="architektur.html" class="subnav-pill active">Architektur</a>
-                <a href="security-audit.html" class="subnav-pill">Security-Audit</a>
-                <a href="blog.html" class="subnav-pill">News</a>
-                <a href="forum.html" class="subnav-pill">Forum</a>
-                <a href="kontakt.html" class="subnav-pill">Kontakt</a>
-            </div>
+        <div class="sim__canvas">
+        <svg viewBox="0 0 880 440" id="topo-svg" role="img" aria-labelledby="topo-title topo-desc">
+          <title id="topo-title">Referenzarchitektur</title>
+          <desc id="topo-desc">Zwei WAN-Anschlüsse führen zu einem hochverfügbaren Firewall-Cluster (CARP), dahinter ein Core-Switch-Stack mit fünf getrennten Zonen: Management, DMZ-Server, Arbeitsplätze, Proxmox-Cluster und unveränderbares Backup.</desc>
+          <line class="l l--wan" id="line-wan1" x1="150" y1="90" x2="260" y2="150"/>
+          <line class="l l--wan" id="line-wan2" x1="150" y1="210" x2="260" y2="150"/>
+          <line class="l is-active" x1="380" y1="150" x2="480" y2="150"/>
+          <line class="l" x1="600" y1="150" x2="720" y2="70"/>
+          <line class="l" x1="600" y1="150" x2="720" y2="150"/>
+          <line class="l" id="line-clients" x1="600" y1="150" x2="720" y2="230"/>
+          <line class="l" x1="600" y1="150" x2="720" y2="310"/>
+          <line class="l" x1="600" y1="150" x2="720" y2="390"/>
+          <g class="n" transform="translate(40, 65)">
+            <rect width="110" height="50"/>
+            <text class="t1" x="55.0" y="23.0" text-anchor="middle">WAN 1: Glasfaser</text><text class="t2" x="55.0" y="36.0" text-anchor="middle" id="status-wan1">ONLINE (1 Gbit/s)</text>
+          </g>
+          <g class="n" transform="translate(40, 185)">
+            <rect width="110" height="50"/>
+            <text class="t1" x="55.0" y="23.0" text-anchor="middle">WAN 2: Redundant</text><text class="t2" x="55.0" y="36.0" text-anchor="middle" id="status-wan2">STANDBY / CARP</text>
+          </g>
+          <g class="n n--core" transform="translate(260, 115)">
+            <rect width="120" height="70"/>
+            <text class="t1" x="60.0" y="29.0" text-anchor="middle">CARP-Cluster</text><text class="t2" x="60.0" y="43.0" text-anchor="middle">pfSense HA Firewalls</text><text class="t2" x="60.0" y="55.0" text-anchor="middle">SYNCED // ZERO-TRUST</text>
+          </g>
+          <g class="n n--core" transform="translate(480, 115)">
+            <rect width="120" height="70"/>
+            <text class="t1" x="60.0" y="29.0" text-anchor="middle">Core Stack</text><text class="t2" x="60.0" y="43.0" text-anchor="middle">10GbE Cisco / Aruba</text><text class="t2" x="60.0" y="55.0" text-anchor="middle">L3 MIKROSEGMENTIERT</text>
+          </g>
+          <g class="n" transform="translate(720, 50)">
+            <rect width="140" height="40"/>
+            <text class="t1" x="12" y="18.0">VLAN 10: Management</text><text class="t2" x="12" y="31.0">Out-of-Band / MFA only</text>
+          </g>
+          <g class="n" transform="translate(720, 130)">
+            <rect width="140" height="40"/>
+            <text class="t1" x="12" y="18.0">VLAN 20: DMZ Server</text><text class="t2" x="12" y="31.0">Web / Reverse Proxies</text>
+          </g>
+          <g class="n" transform="translate(720, 210)" id="node-clients">
+            <rect width="140" height="40"/>
+            <text class="t1" x="12" y="18.0">VLAN 30: Workstations</text><text class="t2" x="12" y="31.0" id="sub-clients">EDR überwacht // OK</text>
+          </g>
+          <g class="n" transform="translate(720, 290)">
+            <rect width="140" height="40"/>
+            <text class="t1" x="12" y="18.0">VLAN 40: Proxmox Cluster</text><text class="t2" x="12" y="31.0">Ceph HA Pool / NVMe</text>
+          </g>
+          <g class="n" transform="translate(720, 370)">
+            <rect width="140" height="40"/>
+            <text class="t1" x="12" y="18.0">VLAN 50: Immutable Backup</text><text class="t2" x="12" y="31.0">Air-Gapped / unveränderbar</text>
+          </g>
+        </svg>
         </div>
-    </header>
+        <p class="sim__status" id="sim-status-text" role="status">[STATUS] Normalbetrieb: Beide WAN-Anschlüsse verbunden, alle VLANs strikt getrennt.</p>
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <section class="sektions-abstand" style="padding-top: 6rem; padding-bottom: 3rem; text-align: center; background: radial-gradient(circle at 50% 15%, rgba(41, 151, 255, 0.12), transparent 65%);">
-            <div class="zentrierter-container">
-                <div class="tech-badge" style="margin-bottom: 1.5rem;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-                    Topologie-Blueprints &bull; Hands-On Engineering
-                </div>
-                
-                <h1 class="haupt-ueberschrift" style="max-width: 900px; margin: 0 auto 1.2rem;">
-                    Enterprise Architektur.<br><span class="text-gradient">Kompromisslose Hochverfügbarkeit.</span>
-                </h1>
-                
-                <p class="fliesstext" style="max-width: 760px; margin: 0 auto 2.5rem; font-size: 1.2rem;">
-                    Echte Enterprise-IT zeichnet sich dadurch aus, dass kein Einzelfehler (Single Point of Failure) den Betrieb stoppen kann. Untersuchen Sie unseren interaktiven Architektur-Schaltplan und simulieren Sie Ausfallszenarien.
-                </p>
-            </div>
-        </section>
-
-        <!-- INTERAKTIVER BLUEPRINT SIMULATOR -->
-        <section class="sektions-abstand" style="padding-top: 1rem; padding-bottom: 4rem;">
-            <div class="zentrierter-container">
-                
-                <div class="spotlight-card" style="padding: 2rem; margin-bottom: 3rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1.5rem;">
-                        <div>
-                            <h3 style="color:#fff; font-size:1.3rem; margin:0 0 0.3rem;">Topologie-Simulator: Zero-Trust Referenzarchitektur</h3>
-                            <p style="color:#86868b; font-size:0.88rem; margin:0;">Wählen Sie ein Szenario, um die Ausfallsicherung live zu testen:</p>
-                        </div>
-                        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;" id="topo-controls">
-                            <button class="filter-btn active interaktives-element" id="sim-btn-normal" onclick="setSimMode('normal')">Normalbetrieb (Dual-Active)</button>
-                            <button class="filter-btn interaktives-element" id="sim-btn-failover" onclick="setSimMode('failover')">WAN-1 Ausfall simulieren</button>
-                            <button class="filter-btn interaktives-element" id="sim-btn-isolate" onclick="setSimMode('isolate')">Ransomware-Isolation</button>
-                        </div>
-                    </div>
-
-                    <!-- SVG BLUEPRINT -->
-                    <div style="background: #09090c; border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 2rem; overflow-x: auto;">
-                        <svg viewBox="0 0 880 440" width="100%" height="auto" style="min-width: 700px; display: block;" id="topo-svg">
-                            <!-- Background Grid Lines -->
-                            <defs>
-                                <pattern id="topoGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-                                </pattern>
-                            </defs>
-                            <rect width="880" height="440" fill="url(#topoGrid)" rx="10"/>
-
-                            <!-- Connections -->
-                            <!-- WAN to Firewall -->
-                            <line id="line-wan1" x1="120" y1="90" x2="260" y2="150" stroke="#30d158" stroke-width="3" stroke-dasharray="6,4"/>
-                            <line id="line-wan2" x1="120" y1="210" x2="260" y2="150" stroke="#30d158" stroke-width="3" stroke-dasharray="6,4"/>
-
-                            <!-- Firewall to Core Switch -->
-                            <line id="line-fw-core" x1="380" y1="150" x2="480" y2="150" stroke="#2997ff" stroke-width="4"/>
-
-                            <!-- Core Switch to Zones -->
-                            <line id="line-vlan10" x1="600" y1="150" x2="720" y2="70" stroke="#2997ff" stroke-width="2.5"/>
-                            <line id="line-vlan20" x1="600" y1="150" x2="720" y2="150" stroke="#2997ff" stroke-width="2.5"/>
-                            <line id="line-vlan30" x1="600" y1="150" x2="720" y2="230" stroke="#30d158" stroke-width="2.5" id="line-clients"/>
-                            <line id="line-vlan40" x1="600" y1="150" x2="720" y2="310" stroke="#ffd60a" stroke-width="2.5"/>
-                            <line id="line-vlan50" x1="600" y1="150" x2="720" y2="390" stroke="#bf5af2" stroke-width="2.5"/>
-
-                            <!-- Nodes -->
-                            <!-- WAN 1 -->
-                            <g transform="translate(40, 65)">
-                                <rect width="110" height="50" rx="8" fill="#141418" stroke="#30d158" stroke-width="1.5"/>
-                                <text x="55" y="24" fill="#fff" font-size="11" font-weight="700" text-anchor="middle" font-family="sans-serif">WAN 1: Glasfaser</text>
-                                <text x="55" y="38" fill="#30d158" font-size="9" text-anchor="middle" font-family="monospace" id="status-wan1">ONLINE (1 Gbit/s)</text>
-                            </g>
-
-                            <!-- WAN 2 -->
-                            <g transform="translate(40, 185)">
-                                <rect width="110" height="50" rx="8" fill="#141418" stroke="#30d158" stroke-width="1.5"/>
-                                <text x="55" y="24" fill="#fff" font-size="11" font-weight="700" text-anchor="middle" font-family="sans-serif">WAN 2: Redundant</text>
-                                <text x="55" y="38" fill="#86868b" font-size="9" text-anchor="middle" font-family="monospace" id="status-wan2">STANDBY / CARP</text>
-                            </g>
-
-                            <!-- CARP HA Firewall -->
-                            <g transform="translate(260, 115)">
-                                <rect width="120" height="70" rx="10" fill="#141824" stroke="#2997ff" stroke-width="2"/>
-                                <text x="60" y="28" fill="#2997ff" font-size="12" font-weight="800" text-anchor="middle" font-family="sans-serif">CARP CLUSTER</text>
-                                <text x="60" y="44" fill="#fff" font-size="10" text-anchor="middle" font-family="sans-serif">pfSense HA Firewalls</text>
-                                <text x="60" y="58" fill="#30d158" font-size="9" text-anchor="middle" font-family="monospace">SYNCED // ZERO-TRUST</text>
-                            </g>
-
-                            <!-- Core Switch Stack -->
-                            <g transform="translate(480, 115)">
-                                <rect width="120" height="70" rx="10" fill="#141418" stroke="#2997ff" stroke-width="2"/>
-                                <text x="60" y="28" fill="#fff" font-size="12" font-weight="700" text-anchor="middle" font-family="sans-serif">CORE STACK</text>
-                                <text x="60" y="44" fill="#a1a1a6" font-size="10" text-anchor="middle" font-family="sans-serif">10GbE Cisco / Aruba</text>
-                                <text x="60" y="58" fill="#2997ff" font-size="9" text-anchor="middle" font-family="monospace">L3 MIKROSEGMENTIERT</text>
-                            </g>
-
-                            <!-- VLAN 10 -->
-                            <g transform="translate(720, 50)">
-                                <rect width="140" height="40" rx="6" fill="#141418" stroke="#2997ff" stroke-width="1.2"/>
-                                <text x="12" y="20" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">VLAN 10: Management</text>
-                                <text x="12" y="32" fill="#86868b" font-size="8" font-family="monospace">Out-of-Band / MFA Only</text>
-                            </g>
-
-                            <!-- VLAN 20 -->
-                            <g transform="translate(720, 130)">
-                                <rect width="140" height="40" rx="6" fill="#141418" stroke="#2997ff" stroke-width="1.2"/>
-                                <text x="12" y="20" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">VLAN 20: DMZ Server</text>
-                                <text x="12" y="32" fill="#86868b" font-size="8" font-family="monospace">Web / Reverse Proxies</text>
-                            </g>
-
-                            <!-- VLAN 30 -->
-                            <g transform="translate(720, 210)" id="node-clients">
-                                <rect width="140" height="40" rx="6" fill="#141418" stroke="#30d158" stroke-width="1.2" id="rect-clients"/>
-                                <text x="12" y="20" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif" id="title-clients">VLAN 30: Workstations</text>
-                                <text x="12" y="32" fill="#30d158" font-size="8" font-family="monospace" id="sub-clients">EDR Überwacht // OK</text>
-                            </g>
-
-                            <!-- VLAN 40 -->
-                            <g transform="translate(720, 290)">
-                                <rect width="140" height="40" rx="6" fill="#141418" stroke="#ffd60a" stroke-width="1.2"/>
-                                <text x="12" y="20" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">VLAN 40: Proxmox Cluster</text>
-                                <text x="12" y="32" fill="#ffd60a" font-size="8" font-family="monospace">Ceph HA Pool / NVMe</text>
-                            </g>
-
-                            <!-- VLAN 50 -->
-                            <g transform="translate(720, 370)">
-                                <rect width="140" height="40" rx="6" fill="#141418" stroke="#bf5af2" stroke-width="1.2"/>
-                                <text x="12" y="20" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">VLAN 50: Immutable Backup</text>
-                                <text x="12" y="32" fill="#bf5af2" font-size="8" font-family="monospace">Air-Gapped / Unveränderbar</text>
-                            </g>
-                        </svg>
-                    </div>
-
-                    <div id="sim-status-text" style="margin-top: 1.5rem; font-family: var(--schrift-code); font-size: 0.9rem; color: #30d158; text-align: center; background: rgba(48,209,88,0.06); padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(48,209,88,0.2);">
-                        [STATUS] Normalbetrieb aktiv: Beide WAN-Links verbunden. Alle VLANs strikt isoliert.
-                    </div>
-                </div>
-
-                <!-- 2. LIVE INTERACTIVE TERMINAL -->
-                <div style="margin-top: 5rem;">
-                    <div style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
-                        <div class="tech-badge" style="margin-bottom: 0.8rem;">Live CLI Console</div>
-                        <h2 style="color:#fff; font-size:1.8rem; margin:0 0 0.5rem;">Interaktives Admin-Terminal</h2>
-                        <p style="color:#86868b; font-size:0.95rem; margin:0;">Tippen Sie Befehle ein wie <code style="color:#2997ff;">status</code>, <code style="color:#2997ff;">ping</code>, <code style="color:#2997ff;">audit</code> oder <code style="color:#2997ff;">help</code>.</p>
-                    </div>
-
-                    <div class="terminal-window" style="max-width: 820px; margin: 0 auto;">
-                        <div class="terminal-header">
-                            <div class="terminal-dots">
-                                <span class="terminal-dot red"></span>
-                                <span class="terminal-dot yellow"></span>
-                                <span class="terminal-dot green"></span>
-                            </div>
-                            <span class="terminal-title">volvevent-gateway-console // v2.6.4</span>
-                            <span style="font-size:0.75rem; color:#48484a; font-family:monospace;">SSH-2.0</span>
-                        </div>
-                        <div class="terminal-body" id="terminal-body">
-                            <div class="terminal-line output">Willkommen im interaktiven volvevent. Diagnosesystem.</div>
-                            <div class="terminal-line output">Systemzeit: <span style="color:#fff;">2026-10-11 // Ergolding Gateway</span></div>
-                            <div class="terminal-line output">Tippen Sie '<span style="color:#2997ff; font-weight:700;">help</span>' f&uuml;r eine Liste aller verf&uuml;gbaren Befehle.</div>
-                            <div class="terminal-line success">[READY] Verbindung zu den Kernsystemen stabil (Latenz 4.1 ms).</div>
-                        </div>
-                        <div style="background:#131317; padding:0.8rem 1.5rem; border-top:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; gap:0.6rem;">
-                            <span class="terminal-prompt">admin@volvevent:~$</span>
-                            <input type="text" id="terminal-input" class="terminal-input" placeholder="Befehl eingeben (z.B. status, ping, webdesign)..." autocomplete="off" spellcheck="false">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <h3>volvevent.</h3>
-                <p>Enterprise IT-Architektur, High-End Webdesign, Security Audits &amp; Systemadministration. Bäckerstr. 8a, 84030 Ergolding.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html" class="interaktives-element">Startseite</a></li>
-                    <li><a href="webdesign.html" class="interaktives-element">Webdesign &amp; E-Commerce</a></li>
-                    <li><a href="projekte.html" class="interaktives-element">Projekte &amp; Referenzen</a></li>
-                    <li><a href="architektur.html" class="interaktives-element" style="color:#2997ff;">Architektur-Blueprints</a></li>
-                    <li><a href="security-audit.html" class="interaktives-element">Security-Audit Tool</a></li>
-                    <li><a href="blog.html" class="interaktives-element">News &amp; Security Audits</a></li>
-                    <li><a href="forum.html" class="interaktives-element">Cybersecurity Forum</a></li>
-                    <li><a href="termin.html" class="interaktives-element">Termin buchen</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Rechtliches</h4>
-                <ul>
-                    <li><a href="impressum.html" class="interaktives-element">Impressum</a></li>
-                    <li><a href="datenschutz.html" class="interaktives-element">Datenschutz</a></li>
-                    <li><a href="agb.html" class="interaktives-element">AGB</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Direktkontakt</h4>
-                <ul>
-                    <li><a href="tel:+491727045269" class="interaktives-element">+49 172 7045269</a></li>
-                    <li><a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="interaktives-element">WhatsApp Support</a></li>
-                    <li><a href="kontakt.html" class="interaktives-element">Kontaktformular</a></li>
-                </ul>
-            </div>
+  <section class="section" aria-labelledby="term-title">
+    <div class="container grid">
+      <div class="section__head"><p class="eyebrow"><span class="num">02</span> Konsole</p></div>
+      <div class="section__body">
+        <h2 class="section__title" id="term-title">Demo-Terminal</h2>
+        <p class="lead section__intro">Eine kleine Demo-Konsole mit simulierten Ausgaben. Geben Sie einen Befehl ein, etwa <code>status</code>, <code>ping</code>, <code>audit</code> oder <code>help</code> – oder wählen Sie ihn unten aus.</p>
+        <div class="terminal">
+          <div class="terminal__bar"><span>volvevent-gateway-console // Demo</span><span>simulierte Ausgabe</span></div>
+          <div class="terminal__body" id="terminal-body" role="log" aria-live="polite" tabindex="0" aria-label="Terminal-Ausgabe">
+            <div class="terminal__line terminal__line--out">Willkommen im volvevent.-Demo-Terminal.</div>
+            <div class="terminal__line terminal__line--out">'help' zeigt eine Liste aller Befehle.</div>
+          </div>
+          <form class="terminal__form" id="terminal-form" autocomplete="off">
+            <label class="terminal__prompt" for="terminal-input">admin@volvevent:~$</label>
+            <input class="terminal__input" type="text" id="terminal-input" placeholder="Befehl eingeben, z. B. status" spellcheck="false" autocapitalize="off">
+          </form>
         </div>
-        <div class="footer-bottom">
-            &copy; 2026 volvevent. Inhaber: Muhammet Hasan Gürcan. Alle Rechte vorbehalten.
+        <div class="cmds" aria-label="Befehle"><button class="cmd" type="button" data-cmd="help">help</button><button class="cmd" type="button" data-cmd="status">status</button><button class="cmd" type="button" data-cmd="ping">ping</button><button class="cmd" type="button" data-cmd="audit">audit</button><button class="cmd" type="button" data-cmd="whoami">whoami</button><button class="cmd" type="button" data-cmd="services">services</button><button class="cmd" type="button" data-cmd="webdesign">webdesign</button><button class="cmd" type="button" data-cmd="contact">contact</button><button class="cmd" type="button" data-cmd="clear">clear</button></div>
+        <noscript><p class="small muted" style="margin-top:12px">Simulator und Terminal benötigen JavaScript.</p></noscript>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" aria-labelledby="arch-cta">
+    <div class="container grid">
+      <div class="section__head"><p class="eyebrow">Nächster Schritt</p></div>
+      <div class="section__body">
+        <h2 class="contact__title" id="arch-cta">Ihre Architektur planen.</h2>
+        <p class="contact__text">Wir prüfen Ihre bestehende Infrastruktur und entwerfen eine passende Zielarchitektur.</p>
+        <div class="contact__actions">
+          <a class="btn btn--light" href="termin.html?service=netzwerk">Termin buchen</a>
+          <a class="btn btn--light btn--ghost" href="security-audit.html">Security-Audit starten</a>
         </div>
-    </footer>
-
-    <!-- Script für Topologie Simulator -->
-    <script>
-        function setSimMode(mode) {
-            document.querySelectorAll('#topo-controls button').forEach(b => b.classList.remove('active'));
-            const statusText = document.getElementById('sim-status-text');
-            const lineWan1 = document.getElementById('line-wan1');
-            const lineWan2 = document.getElementById('line-wan2');
-            const statusWan1 = document.getElementById('status-wan1');
-            const statusWan2 = document.getElementById('status-wan2');
-            const rectClients = document.getElementById('rect-clients');
-            const lineClients = document.getElementById('line-clients');
-            const subClients = document.getElementById('sub-clients');
-
-            if (mode === 'normal') {
-                document.getElementById('sim-btn-normal').classList.add('active');
-                lineWan1.setAttribute('stroke', '#30d158');
-                lineWan2.setAttribute('stroke', '#86868b');
-                statusWan1.textContent = 'ONLINE (1 Gbit/s)';
-                statusWan1.setAttribute('fill', '#30d158');
-                statusWan2.textContent = 'STANDBY / CARP';
-                statusWan2.setAttribute('fill', '#86868b');
-                
-                rectClients.setAttribute('stroke', '#30d158');
-                lineClients.setAttribute('stroke', '#30d158');
-                subClients.textContent = 'EDR Überwacht // OK';
-                subClients.setAttribute('fill', '#30d158');
-
-                statusText.style.color = '#30d158';
-                statusText.style.borderColor = 'rgba(48,209,88,0.3)';
-                statusText.style.background = 'rgba(48,209,88,0.06)';
-                statusText.textContent = '[STATUS] Normalbetrieb: WAN 1 aktiv, CARP synchronisiert, alle Zonen isoliert.';
-            } else if (mode === 'failover') {
-                document.getElementById('sim-btn-failover').classList.add('active');
-                lineWan1.setAttribute('stroke', '#ff453a');
-                lineWan2.setAttribute('stroke', '#30d158');
-                statusWan1.textContent = 'OFFLINE (Störung)';
-                statusWan1.setAttribute('fill', '#ff453a');
-                statusWan2.textContent = 'ACTIVE (Failover in 450ms)';
-                statusWan2.setAttribute('fill', '#30d158');
-
-                statusText.style.color = '#ff9f0a';
-                statusText.style.borderColor = 'rgba(255,159,10,0.3)';
-                statusText.style.background = 'rgba(255,159,10,0.06)';
-                statusText.textContent = '[FAILOVER ERFOLGREICH] WAN 1 ausgefallen. Backup-Leitung hat nahtlos ohne Paketverlust übernommen.';
-            } else if (mode === 'isolate') {
-                document.getElementById('sim-btn-isolate').classList.add('active');
-                rectClients.setAttribute('stroke', '#ff453a');
-                lineClients.setAttribute('stroke', '#ff453a');
-                subClients.textContent = 'QUARANTÄNE // BLOCKIERT';
-                subClients.setAttribute('fill', '#ff453a');
-
-                statusText.style.color = '#ff453a';
-                statusText.style.borderColor = 'rgba(255,69,58,0.3)';
-                statusText.style.background = 'rgba(255,69,58,0.06)';
-                statusText.textContent = '[ISOLATION AKTIV] Verdächtige Aktivität auf Client: Firewall kappt sofort Zugriff auf Server & Backup. Keine laterale Ausbreitung möglich!';
-            }
-        }
-    </script>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__inner grid">
+    <div class="footer__brand">
+      <a class="wordmark" href="index.html">volvevent.</a>
+      <p>IT-Architektur, Webdesign, Security-Audits und Systemadministration. Bäckerstr. 8a, 84030 Ergolding.</p>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Navigation</h2>
+      <ul class="footer__list">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="webdesign.html">Webdesign &amp; E-Commerce</a></li>
+        <li><a href="projekte.html">Projekte &amp; Referenzen</a></li>
+        <li><a href="architektur.html" aria-current="page">Architektur</a></li>
+        <li><a href="security-audit.html">Security-Audit</a></li>
+        <li><a href="blog.html">News &amp; Security-Audits</a></li>
+        <li><a href="forum.html">Forum</a></li>
+        <li><a href="termin.html">Termin buchen</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Rechtliches</h2>
+      <ul class="footer__list">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="agb.html">AGB</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Direktkontakt</h2>
+      <ul class="footer__list">
+        <li><a href="tel:+491727045269">+49 172 7045269</a></li>
+        <li><a href="https://wa.me/491727045269" rel="noopener">WhatsApp</a></li>
+        <li><a href="kontakt.html">Kontaktformular</a></li>
+      </ul>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 volvevent. Inhaber: Muhammet Hasan Gürcan</span>
+      <a href="#top">Nach oben</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
-

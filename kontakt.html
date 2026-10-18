@@ -1,248 +1,157 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt | volvevent. Enterprise IT Architektur</title>
-    <meta name="description" content="Kontaktieren Sie volvevent. f&uuml;r ein unverbindliches Strategiegespr&auml;ch.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.volvevent.de/kontakt.html">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="stylesheet" href="style.css?v=8.0">
-    <script src="main.js?v=8.0" defer></script>
-    <style>
-        .kontakt-hero {
-            padding: 7rem 2rem 3rem;
-            text-align: center;
-            background: radial-gradient(circle at 50% 20%, rgba(41, 151, 255, 0.06), transparent 60%);
-        }
-        .kontakt-hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            color: #fff;
-            margin: 0 0 1rem;
-            letter-spacing: -1px;
-        }
-        .kontakt-hero p {
-            color: #86868b;
-            font-size: 1.15rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .kontakt-grid {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 3rem 2rem 5rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        @media (max-width: 768px) {
-            .kontakt-grid { grid-template-columns: 1fr; }
-        }
-        .kontakt-form-wrapper {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 2.5rem;
-        }
-        .kontakt-form-wrapper h2 {
-            color: #fff;
-            font-size: 1.3rem;
-            margin: 0 0 1.5rem;
-        }
-        .kontakt-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .info-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 1.5rem;
-        }
-        .info-card h3 {
-            color: #fff;
-            font-size: 1.05rem;
-            margin: 0 0 0.6rem;
-        }
-        .info-card p, .info-card a {
-            color: #86868b;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .info-card a {
-            color: #2997ff;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .info-card a:hover { color: #fff; }
-        .wa-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: #25d366;
-            color: #fff;
-            padding: 0.7rem 1.4rem;
-            border-radius: 980px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            margin-top: 0.8rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .wa-btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 0 16px rgba(37, 211, 102, 0.4);
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontakt | volvevent. IT-Architektur aus Ergolding</title>
+  <meta name="description" content="Kontakt zu volvevent.: Bäckerstr. 8a, 84030 Ergolding · Telefon +49 172 7045269 · WhatsApp · Kontaktformular.">
+  <link rel="canonical" href="https://volvevent.de/kontakt.html">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="volvevent.">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Kontakt | volvevent. IT-Architektur aus Ergolding">
+  <meta property="og:description" content="Kontakt zu volvevent.: Bäckerstr. 8a, 84030 Ergolding · Telefon +49 172 7045269 · WhatsApp · Kontaktformular.">
+  <meta property="og:url" content="https://volvevent.de/kontakt.html">
+  <meta property="og:image" content="https://volvevent.de/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/app.js" defer></script>
 </head>
 <body>
-        <header class="nav-container" id="navigationsleiste">
-        <div class="nav-inner">
-            <a href="index.html" class="logo interaktives-element">volvevent.</a>
-
-            <div class="nav-mobile-actions">
-                <a href="termin.html" class="nav-mobile-cta interaktives-element">Termin</a>
-                <button class="mobile-menue-knopf interaktives-element" id="mobile-menue-toggle" aria-label="Men&uuml; &ouml;ffnen" aria-expanded="false">
-                    <span class="burger-bar"></span>
-                    <span class="burger-bar"></span>
-                    <span class="burger-bar"></span>
-                </button>
-            </div>
-
-            <nav class="nav-links menue-liste">
-                <a href="index.html" class="menue-link interaktives-element">Start</a>
-                <a href="webdesign.html" class="menue-link interaktives-element">Webdesign <span class="nav-badge-mini">-15%</span></a>
-                <a href="projekte.html" class="menue-link interaktives-element">Projekte</a>
-                <a href="architektur.html" class="menue-link interaktives-element">Architektur</a>
-                <a href="security-audit.html" class="menue-link interaktives-element">Security-Audit</a>
-                <a href="blog.html" class="menue-link interaktives-element">News &amp; Insights</a>
-                <a href="forum.html" class="menue-link interaktives-element">Forum</a>
-                <a href="kontakt.html" class="menue-link interaktives-element active">Kontakt</a>
-                <a href="termin.html" class="nav-cta interaktives-element">Termin buchen</a>
-            </nav>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+<header class="site-header" id="top">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="index.html" aria-label="volvevent. – zur Startseite">volvevent.</a>
+    <a class="btn btn--sm header-cta" href="termin.html">Termin</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+        <span class="nav__label">Menü</span><span class="nav__icon" aria-hidden="true"></span>
+      </button>
+      <div class="nav__panel" id="nav-panel">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Start</a></li>
+          <li><a class="nav__link" href="webdesign.html">Webdesign <span class="nav__tag" aria-label="Aktion: 15 Prozent Rabatt">−15&nbsp;%</span></a></li>
+          <li><a class="nav__link" href="projekte.html">Projekte</a></li>
+          <li><a class="nav__link" href="architektur.html">Architektur</a></li>
+          <li><a class="nav__link" href="security-audit.html">Security-Audit</a></li>
+          <li><a class="nav__link" href="blog.html">News</a></li>
+          <li><a class="nav__link" href="forum.html">Forum</a></li>
+          <li><a class="nav__link" href="kontakt.html" aria-current="page">Kontakt</a></li>
+          <li class="nav__cta"><a class="btn btn--sm" href="termin.html">Termin buchen</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <nav class="subnav" aria-label="Schnellnavigation">
+    <div class="subnav__track">
+      <a href="index.html">Start</a>
+      <a href="webdesign.html">Webdesign −15&nbsp;%</a>
+      <a href="projekte.html">Projekte</a>
+      <a href="architektur.html">Architektur</a>
+      <a href="security-audit.html">Security-Audit</a>
+      <a href="blog.html">News</a>
+      <a href="forum.html">Forum</a>
+      <a href="kontakt.html" aria-current="page">Kontakt</a>
+    </div>
+  </nav>
+</header>
+<main id="inhalt">
+  <div class="page-head">
+    <div class="container">
+      <p class="eyebrow">Kontakt</p>
+      <h1 class="page-head__title">Schreiben Sie uns.</h1>
+      <p class="lead page-head__lead">Sie möchten kein Strategiegespräch über den Kalender buchen? Dann stellen Sie hier eine Kontaktanfrage. Alle Anfragen werden vertraulich behandelt.</p>
+    </div>
+  </div>
+  <section class="section section--flush">
+    <div class="container">
+      <div class="split">
+        <div>
+          <h2 class="list-title">Nachricht senden</h2>
+          <form class="form" action="https://api.web3forms.com/submit" method="POST" id="kontakt-formular" data-protect>
+          <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
+          <input type="hidden" name="subject" value="Kontaktanfrage via volvevent.de" data-base="Kontaktanfrage via volvevent.de">
+          <input type="hidden" name="redirect" value="https://volvevent.de/?success=true">
+          <div class="hp" aria-hidden="true"><label for="kontakt-botcheck">Nicht ausfüllen</label><input type="checkbox" name="botcheck" id="kontakt-botcheck" tabindex="-1" autocomplete="off"></div>
+          <div class="field"><label for="kontakt-name">Name / Unternehmen</label><input class="input" type="text" id="kontakt-name" name="Name" required autocomplete="name" data-subject-name></div>
+          <div class="field"><label for="kontakt-email">E-Mail-Adresse</label><input class="input" type="email" id="kontakt-email" name="Email" required autocomplete="email"></div>
+          <div class="field"><label for="kontakt-betreff">Betreff</label><input class="input" type="text" id="kontakt-betreff" name="Betreff" required></div>
+          <div class="field"><label for="kontakt-nachricht">Ihre Nachricht</label><textarea class="input" id="kontakt-nachricht" name="Nachricht" required></textarea></div>
+        <div class="verify" id="verify-kontakt">
+          <span class="field__label" id="verify-kontakt-label">Bestätigung (Schutz vor automatisierten Anfragen)</span>
+          <div class="verify__track">
+            <div class="verify__fill"></div>
+            <div class="verify__text" aria-hidden="true">Zum Bestätigen nach rechts schieben</div>
+            <button type="button" class="verify__thumb" role="checkbox" aria-checked="false" aria-labelledby="verify-kontakt-label" aria-describedby="verify-kontakt-help">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <p class="verify__help" id="verify-kontakt-help">Regler nach rechts ziehen – oder mit der Tastatur auswählen und Leertaste drücken.</p>
         </div>
-
-        <!-- Horizontale Schnell-Men&uuml;leiste f&uuml;r Mobilger&auml;te (Android &amp; iOS) -->
-        <div class="mobile-subnav-leiste" id="mobile-subnav" aria-label="Schnellnavigation">
-            <div class="subnav-scroll-container">
-                <a href="index.html" class="subnav-pill">Start</a>
-                <a href="webdesign.html" class="subnav-pill highlight-pill">Webdesign <span class="pill-badge">-15%</span></a>
-                <a href="projekte.html" class="subnav-pill">Projekte</a>
-                <a href="architektur.html" class="subnav-pill">Architektur</a>
-                <a href="security-audit.html" class="subnav-pill">Security-Audit</a>
-                <a href="blog.html" class="subnav-pill">News</a>
-                <a href="forum.html" class="subnav-pill">Forum</a>
-                <a href="kontakt.html" class="subnav-pill active">Kontakt</a>
-            </div>
+          <p class="form__hint">Ihre Angaben werden zur Bearbeitung der Anfrage über den Formulardienst Web3Forms an uns übermittelt. Details in der <a href="datenschutz.html#formulare">Datenschutzerklärung</a>.</p>
+          <p class="form__status" id="kontakt-status" role="status"></p>
+          <div><button class="btn" type="submit" id="kontakt-absenden">Nachricht senden</button></div>
+          </form>
         </div>
-    </header>
-
-    <main>
-        <section class="kontakt-hero">
-            <h1>Sichere Verbindung.</h1>
-            <p>Wenn Sie kein direktes Strategiegespr&auml;ch &uuml;ber den Kalender buchen m&ouml;chten, k&ouml;nnen Sie hier eine regul&auml;re Kontaktanfrage stellen. Alle Anfragen werden vertraulich behandelt.</p>
-        </section>
-
-        <div class="kontakt-grid">
-            <div class="kontakt-form-wrapper">
-                <h2>Nachricht senden</h2>
-                <form action="https://api.web3forms.com/submit" method="POST" id="kontakt-formular">
-                    <input type="hidden" name="access_key" value="f6a3cdad-537c-4def-8b11-af7a1db3c74a">
-                    <input type="hidden" name="redirect" value="https://www.volvevent.de/?success=true">
-                    <input type="hidden" name="subject" id="kontakt-hidden-subject" value="Kontaktanfrage">
-                    <input type="checkbox" name="botcheck" style="display: none;">
-
-                    <input type="text" name="Name" id="kontakt-name" class="formular-feld interaktives-element" placeholder="Vollst&auml;ndiger Name / Unternehmen" required>
-                    <input type="email" name="Email" id="kontakt-email" class="formular-feld interaktives-element" placeholder="E-Mail-Adresse" required>
-                    <input type="text" name="Betreff" id="kontakt-betreff" class="formular-feld interaktives-element" placeholder="Betreff" required>
-                    <textarea name="Nachricht" id="kontakt-nachricht" class="formular-feld interaktives-element" placeholder="Ihre detaillierte Nachricht..." required></textarea>
-
-                    <div class="security-modul">
-                        <span class="label-text" style="margin-bottom: 0.8rem; color: #2997ff; display: block; font-size: 0.85rem;">Verifizierung (Bot-Schutz)</span>
-                        <div class="slide-captcha-container interaktives-element" id="slide-captcha-kontakt">
-                            <div class="slide-captcha-track" id="slide-track-kontakt"></div>
-                            <div class="slide-captcha-text" id="slide-text-kontakt">Nachricht verifizieren <span style="font-family: var(--schrift-code); opacity: 0.6; margin-left: 8px;">[Slide]</span></div>
-                            <div class="slide-captcha-thumb" id="slide-thumb-kontakt">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" id="kontakt-absenden" class="absenden-knopf interaktives-element">Nachricht verschl&uuml;sselt senden</button>
-                    <div id="kontakt-status" style="margin-top: 1rem; font-size: 0.9rem; text-align: center;"></div>
-                </form>
-            </div>
-
-            <div class="kontakt-info">
-                <div class="info-card">
-                    <h3>Adresse</h3>
-                    <p>volvevent.<br>B&auml;ckerstr. 8a<br>84030 Ergolding</p>
-                </div>
-                <div class="info-card">
-                    <h3>Telefon</h3>
-                    <p><a href="tel:+491727045269">+49 172 7045269</a></p>
-                </div>
-                <div class="info-card">
-                    <h3>E-Mail</h3>
-                    <p><a href="mailto:kontakt@volvevent.de">kontakt@volvevent.de</a></p>
-                </div>
-                <div class="info-card">
-                    <h3>WhatsApp</h3>
-                    <p>Direkt und unkompliziert erreichbar.</p>
-                    <a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="wa-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Chat starten
-                    </a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <h3>volvevent.</h3>
-                <p>Enterprise IT-Architektur, Security Audits, Virtualisierung &amp; Systemadministration. B&auml;ckerstr. 8a, 84030 Ergolding.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="index.html" class="interaktives-element">Startseite</a></li>
-                    <li><a href="webdesign.html" class="interaktives-element">Webdesign &amp; E-Commerce</a></li>
-                    <li><a href="projekte.html" class="interaktives-element">Projekte &amp; Referenzen</a></li>
-                    <li><a href="architektur.html" class="interaktives-element">Architektur &amp; CLI</a></li>
-                    <li><a href="security-audit.html" class="interaktives-element">Security-Audit Tool</a></li>
-                    <li><a href="blog.html" class="interaktives-element">News &amp; Insights</a></li>
-                    <li><a href="forum.html" class="interaktives-element">Forum</a></li>
-                    <li><a href="termin.html" class="interaktives-element">Termin buchen</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Rechtliches</h4>
-                <ul>
-                    <li><a href="impressum.html" class="interaktives-element">Impressum</a></li>
-                    <li><a href="datenschutz.html" class="interaktives-element">Datenschutz</a></li>
-                    <li><a href="agb.html" class="interaktives-element">AGB</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Direktkontakt</h4>
-                <ul>
-                    <li><a href="tel:+491727045269" class="interaktives-element">+49 172 7045269</a></li>
-                    <li><a href="https://wa.me/491727045269" target="_blank" rel="noopener noreferrer" class="interaktives-element">WhatsApp</a></li>
-                    <li><a href="kontakt.html" class="interaktives-element">Kontaktformular</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 volvevent. Inhaber: Muhammet Hasan G&uuml;rcan. Alle Rechte vorbehalten.
-        </div>
-    </footer>
+        <aside class="split__aside" aria-labelledby="direkt-title">
+          <h2 class="list-title" id="direkt-title">Direktkontakt</h2>
+          <dl class="contact-list">
+            <div><dt>Adresse</dt><dd><address style="font-style:normal">volvevent.<br>Bäckerstr. 8a<br>84030 Ergolding</address></dd></div>
+            <div><dt>Telefon</dt><dd><a href="tel:+491727045269">+49 172 7045269</a></dd></div>
+            <div><dt>E-Mail</dt><dd><a data-mail data-u="kontakt" data-d="volvevent.de" href="kontakt.html">kontakt [at] volvevent.de</a></dd></div>
+            <div><dt>WhatsApp</dt><dd><a href="https://wa.me/491727045269" rel="noopener">Chat starten</a><br><span class="small muted">Direkt und unkompliziert erreichbar.</span></dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__inner grid">
+    <div class="footer__brand">
+      <a class="wordmark" href="index.html">volvevent.</a>
+      <p>IT-Architektur, Webdesign, Security-Audits und Systemadministration. Bäckerstr. 8a, 84030 Ergolding.</p>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Navigation</h2>
+      <ul class="footer__list">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="webdesign.html">Webdesign &amp; E-Commerce</a></li>
+        <li><a href="projekte.html">Projekte &amp; Referenzen</a></li>
+        <li><a href="architektur.html">Architektur</a></li>
+        <li><a href="security-audit.html">Security-Audit</a></li>
+        <li><a href="blog.html">News &amp; Security-Audits</a></li>
+        <li><a href="forum.html">Forum</a></li>
+        <li><a href="termin.html">Termin buchen</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Rechtliches</h2>
+      <ul class="footer__list">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+        <li><a href="agb.html">AGB</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__heading">Direktkontakt</h2>
+      <ul class="footer__list">
+        <li><a href="tel:+491727045269">+49 172 7045269</a></li>
+        <li><a href="https://wa.me/491727045269" rel="noopener">WhatsApp</a></li>
+        <li><a href="kontakt.html" aria-current="page">Kontaktformular</a></li>
+      </ul>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 volvevent. Inhaber: Muhammet Hasan Gürcan</span>
+      <a href="#top">Nach oben</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
-

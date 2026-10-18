@@ -1,0 +1,15 @@
+GSAP 3.15.0 (gsap.min.js, ScrollTrigger.min.js)
+Copyright 2026, GreenSock. All rights reserved.
+https://gsap.com
+
+Licensed under the GSAP Standard "No Charge" License:
+https://gsap.com/standard-license
+(Effective date: April 30, 2025 / Last modified: May 30, 2025)
+
+Summary: Webflow grants a non-exclusive, worldwide license to use, reproduce,
+display and implement GSAP products on any website, web application or digital
+interface ("Permitted Uses"), including commercial projects, at no charge.
+Not permitted: use in tools that let users build visual animations without code
+in competition with Webflow's visual animation builder; reverse engineering to
+create competitive products; removing or altering proprietary notices.
+The full and binding text is available at the URL above.
