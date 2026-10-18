@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 <head>
-    <title>Live-Preiskonfigurator | KETADECOR — NRW & Stuttgart</title>
-    <meta name="description" content="Berechne dein persönliches Event-Setup in Echtzeit: Region NRW oder Stuttgart, Anlass, Farbkonzept, Extras & Fahrtkosten (0,70 €/km) mit 1-Klick WhatsApp Buchung.">
+    <title>Event- &amp; Paket-Konfigurator | KETADECOR — NRW &amp; Stuttgart</title>
+    <meta name="description" content="Konfiguriere dein exklusives Event-Setup: Region NRW oder Stuttgart, Kulissen-Art, Basis-Set, Farbkonzept, Extras &amp; faire Fahrtkilometer (0,70 €/km). Erhalte dein individuelles Angebot sofort mit 1 Klick per WhatsApp.">
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -196,9 +196,11 @@
     <!-- HEADER STRIP -->
     <section class="pt-36 pb-12 px-6 lg:px-12 bg-linen border-b border-stoneborder">
         <div class="max-w-[1550px] mx-auto text-center">
-            <span class="text-xs uppercase tracking-[0.25em] text-gold-darker font-semibold">100% Kostentransparenz</span>
-            <h1 class="font-serif text-3xl sm:text-5xl text-stone-950 mt-2 mb-3 font-normal">Live-Event- &amp; Preiskonfigurator</h1>
-            <p class="text-stone-600 text-sm max-w-2xl mx-auto font-light">Stelle dein Wunsch-Setup zusammen, addiere magische Extras und berechne faire Fahrtkosten in Echtzeit.</p>
+            <span class="text-xs uppercase tracking-[0.25em] text-gold-darker font-semibold">Individuelle Maßanfertigung</span>
+            <h1 class="font-serif text-3xl sm:text-5xl text-stone-950 mt-2 mb-3 font-normal">Live-Event- &amp; Paket-Konfigurator</h1>
+            <p class="text-stone-600 text-sm max-w-2xl mx-auto font-light leading-relaxed">
+                Stelle dein Wunsch-Setup zusammen, wähle deine Kulisse und berechne deine faire Fahrtkostenpauschale (0,70 € / km). Da jede Location individuell abgestimmt wird, erhältst du dein persönliches Angebot sofort per WhatsApp.
+            </p>
         </div>
     </section>
 
@@ -209,13 +211,13 @@
             <!-- LEFT COLUMN: 5 SCHRITTE (7 Spalten) -->
             <div class="lg:col-span-7 space-y-10">
                 
-                <!-- SCHRITT 1: REGION & STADT -->
+                <!-- SCHRITT 1: REGION, STADT & KULISSE -->
                 <div class="bg-white p-8 rounded-2xl border border-stoneborder shadow-sm">
                     <div class="flex items-center justify-between mb-4">
                         <span class="text-xs font-mono uppercase tracking-widest text-gold-darker font-bold">Schritt 01 / 05</span>
-                        <span class="text-xs text-stone-500">Standort &amp; Logistik</span>
+                        <span class="text-xs text-stone-500">Standort &amp; Kulisse</span>
                     </div>
-                    <h2 class="font-serif text-2xl text-stone-950 mb-5">Einsatzregion &amp; Stadt wählen</h2>
+                    <h2 class="font-serif text-2xl text-stone-950 mb-5">Einsatzregion &amp; Location-Art wählen</h2>
                     
                     <!-- Region Toggle Buttons -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -236,20 +238,30 @@
                     </div>
 
                     <!-- City Chips -->
-                    <div>
+                    <div class="mb-6">
                         <span class="text-xs uppercase tracking-wider text-stone-600 block mb-2 font-medium">Schnellwahl Stadt (stellt Fahrtkilometer automatisch ein):</span>
                         <div id="city-chips" class="flex flex-wrap gap-2 text-xs">
-                            <!-- NRW Cities -->
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-gold bg-gold text-white font-medium" onclick="setCity('Düsseldorf', 15)">Düsseldorf (15 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Köln', 25)">Köln (25 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Dortmund', 55)">Dortmund (55 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Essen', 35)">Essen (35 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Duisburg', 20)">Duisburg (20 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Bonn', 45)">Bonn (45 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Wuppertal', 30)">Wuppertal (30 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Münster', 90)">Münster (90 km)</button>
-                            <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Aachen', 85)">Aachen (85 km)</button>
+                            <!-- Populated dynamically via JS -->
                         </div>
+                    </div>
+
+                    <!-- Location-Type Selector -->
+                    <div class="pt-6 border-t border-stone-200">
+                        <span class="text-xs uppercase tracking-wider text-stone-700 block mb-2 font-semibold">Art der Wunsch-Kulisse / Location:</span>
+                        <select id="sel-loc-type" class="w-full p-3.5 rounded-xl border border-stoneborder bg-stone-50 text-stone-900 text-xs sm:text-sm font-medium focus:border-gold outline-none" onchange="setLocationType(this.value)">
+                            <option value="Märchenhaftes Schloss / Historisches Anwesen">Märchenhaftes Schloss / Historisches Anwesen</option>
+                            <option value="Exklusives Rooftop &amp; Penthouse im Hochhaus">Exklusives Rooftop &amp; Penthouse im Hochhaus</option>
+                            <option value="Romantisches Uferplateau mit Skyline-Blick">Romantisches Uferplateau mit Skyline-Blick</option>
+                            <option value="Malerische Weinberge mit Panoramablick">Malerische Weinberge mit Panoramablick</option>
+                            <option value="5-Sterne-Hotelsuite">5-Sterne-Hotelsuite</option>
+                            <option value="Private Location / Eigener Garten / Zuhause">Private Location / Eigener Garten / Zuhause</option>
+                            <option value="Standesamt / Historisches Rathaus">Standesamt / Historisches Rathaus</option>
+                            <option value="Festsaal / Hochzeitssaal">Festsaal / Hochzeitssaal</option>
+                            <option value="Geheime Romantik-Oase (Outdoor)">Geheime Romantik-Oase (Outdoor)</option>
+                        </select>
+                        <p class="text-[10px] text-stone-500 mt-2 italic leading-relaxed">
+                            🔒 Zum Schutz unserer exklusiven Kulissen halten wir die genauen Adressen diskret. Du wählst die Art der Kulisse – die ideale geheime Location stimmen wir persönlich mit dir ab.
+                        </p>
                     </div>
                 </div>
 
@@ -259,35 +271,35 @@
                         <span class="text-xs font-mono uppercase tracking-widest text-gold-darker font-bold">Schritt 02 / 05</span>
                         <span class="text-xs text-stone-500">Basis-Arrangement</span>
                     </div>
-                    <h2 class="font-serif text-2xl text-stone-950 mb-5">Anlass &amp; Paket wählen</h2>
+                    <h2 class="font-serif text-2xl text-stone-950 mb-5">Anlass &amp; Setup-Kollektion wählen</h2>
 
                     <div class="space-y-3" id="package-list">
-                        <!-- Packages Radio Group -->
+                        <!-- Packages Radio Group (Prices anonymized to individual offer) -->
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="400" data-pkg-name="Antrag Set 1 – Pure Romance" class="accent-gold w-4 h-4" onchange="selectPackage('Antrag Set 1 – Pure Romance', 400)">
+                                <input type="radio" name="pkg" value="pure_romance" data-pkg-name="Heiratsantrag: Set 1 – Pure Romance" class="accent-gold w-4 h-4" onchange="selectPackage('Heiratsantrag: Set 1 – Pure Romance', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Heiratsantrag Set 1: Pure Romance</div>
                                     <div class="text-xs text-stone-500">Bogen, Teppich, Marry Me Schrift, 30 Kerzen</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">400 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="550" data-pkg-name="Antrag Set 2 – Candlelight Dream" class="accent-gold w-4 h-4" onchange="selectPackage('Antrag Set 2 – Candlelight Dream', 550)">
+                                <input type="radio" name="pkg" value="candlelight_dream" data-pkg-name="Heiratsantrag: Set 2 – Candlelight Dream" class="accent-gold w-4 h-4" onchange="selectPackage('Heiratsantrag: Set 2 – Candlelight Dream', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Heiratsantrag Set 2: Candlelight Dream</div>
                                     <div class="text-xs text-stone-500">XXL-Bogen, 3D Buchstaben, 60 Kerzen, Musikbox</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">550 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border-2 border-gold bg-gold/10 cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="700" data-pkg-name="Antrag Set 3 – Sparkle & Glow (Bestseller)" checked class="accent-gold w-4 h-4" onchange="selectPackage('Antrag Set 3 – Sparkle & Glow (Bestseller)', 700)">
+                                <input type="radio" name="pkg" value="sparkle_glow" data-pkg-name="Heiratsantrag: Set 3 – Sparkle & Glow (Bestseller)" checked class="accent-gold w-4 h-4" onchange="selectPackage('Heiratsantrag: Set 3 – Sparkle & Glow (Bestseller)', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950 flex items-center gap-2">
                                         <span>Heiratsantrag Set 3: Sparkle &amp; Glow</span>
@@ -296,96 +308,96 @@
                                     <div class="text-xs text-stone-500">Set 2 + 2x Cold Sparklers Funkenfontänen, 80 Kerzen</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">700 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="850" data-pkg-name="Antrag Set 4 – Golden Elegance" class="accent-gold w-4 h-4" onchange="selectPackage('Antrag Set 4 – Golden Elegance', 850)">
+                                <input type="radio" name="pkg" value="golden_elegance" data-pkg-name="Heiratsantrag: Set 4 – Golden Elegance" class="accent-gold w-4 h-4" onchange="selectPackage('Heiratsantrag: Set 4 – Golden Elegance', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Heiratsantrag Set 4: Golden Elegance</div>
                                     <div class="text-xs text-stone-500">4x Funken, Bodennebel, 100 Kerzen, 50 echte Rosen</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">850 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="1100" data-pkg-name="Antrag Set 5 – Royal Cinema" class="accent-gold w-4 h-4" onchange="selectPackage('Antrag Set 5 – Royal Cinema', 1100)">
+                                <input type="radio" name="pkg" value="royal_cinema" data-pkg-name="Heiratsantrag: Set 5 – Royal Cinema" class="accent-gold w-4 h-4" onchange="selectPackage('Heiratsantrag: Set 5 – Royal Cinema', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Heiratsantrag Set 5: Royal Cinema</div>
                                     <div class="text-xs text-stone-500">6x Funken, Bodennebel, Champagnertisch, Foto/Video inkl.</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">1.100 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="1490" data-pkg-name="Antrag Set 6 – ketadecor Signature VIP" class="accent-gold w-4 h-4" onchange="selectPackage('Antrag Set 6 – ketadecor Signature VIP', 1490)">
+                                <input type="radio" name="pkg" value="signature_vip" data-pkg-name="Heiratsantrag: Set 6 – ketadecor Signature VIP" class="accent-gold w-4 h-4" onchange="selectPackage('Heiratsantrag: Set 6 – ketadecor Signature VIP', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Heiratsantrag Set 6: Signature VIP</div>
                                     <div class="text-xs text-stone-500">8x Funken, 101 Rosen, Live-Violinist, 4K-Kamera &amp; Drohne</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">1.490 €</span>
+                            <span class="px-3 py-1 rounded-full bg-stone-950 text-gold text-[10px] uppercase font-bold tracking-wider border border-gold/50">Individuelles Angebot</span>
                         </label>
 
-                        <!-- Verlobung & Standesamt -->
+                        <!-- Verlobung, Standesamt & Events -->
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="350" data-pkg-name="Verlobung Set Intimate Home" class="accent-gold w-4 h-4" onchange="selectPackage('Verlobung Set Intimate Home', 350)">
+                                <input type="radio" name="pkg" value="verlobung_home" data-pkg-name="Verlobung: Intimate Home (Söz & Nişan)" class="accent-gold w-4 h-4" onchange="selectPackage('Verlobung: Intimate Home (Söz & Nişan)', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Verlobung: Intimate Home (Söz &amp; Nişan)</div>
                                     <div class="text-xs text-stone-500">Ringbogen, Söz-Tablett, Damat Kahvesi, Schere</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">350 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="550" data-pkg-name="Verlobung Set Couture Chiara Walls" class="accent-gold w-4 h-4" onchange="selectPackage('Verlobung Set Couture Chiara Walls', 550)">
+                                <input type="radio" name="pkg" value="verlobung_chiara" data-pkg-name="Verlobung: Couture Chiara Walls" class="accent-gold w-4 h-4" onchange="selectPackage('Verlobung: Couture Chiara Walls', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Verlobung: Couture Chiara Walls</div>
                                     <div class="text-xs text-stone-500">Gestaffelte Bogenwände, Acrylschild, Söz-Tablett</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">550 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="550" data-pkg-name="Standesamt Sektempfang Deluxe" class="accent-gold w-4 h-4" onchange="selectPackage('Standesamt Sektempfang Deluxe', 550)">
+                                <input type="radio" name="pkg" value="standesamt_deluxe" data-pkg-name="Standesamt: Sektempfang Deluxe" class="accent-gold w-4 h-4" onchange="selectPackage('Standesamt: Sektempfang Deluxe', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Standesamt: Sektempfang Deluxe</div>
                                     <div class="text-xs text-stone-500">Herz-Bogen, Stehtische mit Hussen, 40 Gläser Sekt</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">550 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="650" data-pkg-name="Henna Night (Kına Gecesi) Komplett-Set" class="accent-gold w-4 h-4" onchange="selectPackage('Henna Night (Kına Gecesi) Komplett-Set', 650)">
+                                <input type="radio" name="pkg" value="henna_night" data-pkg-name="Henna Night: Kına Gecesi Komplett" class="accent-gold w-4 h-4" onchange="selectPackage('Henna Night: Kına Gecesi Komplett', this)">
                                 <div>
-                                    <div class="text-sm font-semibold text-stone-950">Henna Night (Kına Gecesi) Komplett</div>
+                                    <div class="text-sm font-semibold text-stone-950">Henna Night: Kına Gecesi Komplett</div>
                                     <div class="text-xs text-stone-500">Königlicher Thron, Baldachin, Henna-Tablett, 6 Nedime-Sets</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">650 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
 
                         <label class="pkg-radio-label flex items-center justify-between p-4 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="pkg" value="690" data-pkg-name="Brauttisch Sweetheart Luxury" class="accent-gold w-4 h-4" onchange="selectPackage('Brauttisch Sweetheart Luxury', 690)">
+                                <input type="radio" name="pkg" value="brauttisch_sweetheart" data-pkg-name="Brauttisch: Sweetheart Luxury (Festsaal)" class="accent-gold w-4 h-4" onchange="selectPackage('Brauttisch: Sweetheart Luxury (Festsaal)', this)">
                                 <div>
                                     <div class="text-sm font-semibold text-stone-950">Brauttisch Sweetheart Luxury (Festsaal)</div>
                                     <div class="text-xs text-stone-500">Designer-Brautsofa, 4m Blumenkaskade, Schwimmkerzen</div>
                                 </div>
                             </div>
-                            <span class="font-serif font-bold text-stone-950 text-base">690 €</span>
+                            <span class="px-3 py-1 rounded-full bg-gold/15 text-gold-darker text-[10px] uppercase font-bold tracking-wider border border-gold/30">Individuelles Angebot</span>
                         </label>
                     </div>
                 </div>
@@ -436,112 +448,112 @@
                         <span class="text-xs font-mono uppercase tracking-widest text-gold-darker font-bold">Schritt 04 / 05</span>
                         <span class="text-xs text-stone-500">Magische Show-Effekte</span>
                     </div>
-                    <h2 class="font-serif text-2xl text-stone-950 mb-5">Extras &amp; Kamerateam addieren</h2>
+                    <h2 class="font-serif text-2xl text-stone-950 mb-5">Extras &amp; Kamerateam wählen</h2>
 
                     <div class="space-y-3">
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="2x Cold Sparklers Funkenfontänen" data-extra-price="100" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="2x Cold Sparklers (Funkenfontänen per Funk)" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">2x Cold Sparklers (Funkenfontänen per Funk)</div>
                                     <div class="text-[10px] text-stone-500">Zündet im exakten Moment des Kniefalls oder Auszugs</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+100 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="4x Cold Sparklers Funkenfontänen" data-extra-price="180" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="4x Cold Sparklers (synchronisierte Funken)" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">4x Cold Sparklers (synchronisierte Funken)</div>
                                     <div class="text-[10px] text-stone-500">Atemberaubende Kulisse für Film &amp; Foto</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+180 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="Schwerer Bodennebel (Dancing on Clouds)" data-extra-price="150" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="Schwerer Bodennebel (Dancing on Clouds)" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">Schwerer Bodennebel ("Dancing on the Clouds")</div>
                                     <div class="text-[10px] text-stone-500">Dichter, bodennaher Wolkenteppich</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+150 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="Foto- & 4K-Highlight-Video Begleitung" data-extra-price="300" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="Foto- & 4K-Video Begleitung (inkl. Reel)" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">Foto- &amp; 4K-Video Begleitung (inkl. Reel)</div>
                                     <div class="text-[10px] text-stone-500">1–2 Std. Foto + geschnittenes Reel für Social Media</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+300 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="Drohnen-Aufnahmen 4K" data-extra-price="150" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="4K-Drohnen-Luftaufnahmen" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">4K-Drohnen-Luftaufnahmen</div>
                                     <div class="text-[10px] text-stone-500">Spektakuläre Vogelperspektive</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+150 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="50 echte rote Premium-Rosen" data-extra-price="120" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="50 echte rote Premium-Rosen (Strauß)" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">50 echte rote Premium-Rosen (großer Strauß)</div>
                                     <div class="text-[10px] text-stone-500">Frisch vom Floristen gebunden</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+120 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="101 echte rote Luxus-Rosen" data-extra-price="220" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="101 echte rote Luxus-Rosen (Mega-Strauß)" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">101 echte rote Luxus-Rosen (Mega-Strauß)</div>
                                     <div class="text-[10px] text-stone-500">Das ultimative florale Liebesbekenntnis</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+220 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
 
                         <label class="flex items-center justify-between p-3.5 rounded-xl border border-stoneborder hover:border-gold cursor-pointer transition">
                             <div class="flex items-center gap-3">
-                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="Live-Violinist vor Ort (30 Min.)" data-extra-price="290" onchange="updateTotal()">
+                                <input type="checkbox" class="extra-cb accent-gold w-4 h-4" data-extra-name="Live-Violinist oder Saxofonist (30 Min.)" onchange="updateTotal()">
                                 <div>
                                     <div class="text-xs font-semibold text-stone-950">Live-Violinist oder Saxofonist (30 Min.)</div>
                                     <div class="text-[10px] text-stone-500">Euer Wunschlied live beim Kniefall gespielt</div>
                                 </div>
                             </div>
-                            <span class="text-xs font-semibold text-gold-darker">+290 €</span>
+                            <span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-700 text-[10px] uppercase font-semibold">Zubuchbar</span>
                         </label>
                     </div>
                 </div>
 
-                <!-- SCHRITT 5: FAHRTKOSTEN-SLIDER -->
+                <!-- SCHRITT 5: FAHRTKOSTEN-SLIDER (TRANSPARENTE KILOMETERPAUSCHALE) -->
                 <div class="bg-white p-8 rounded-2xl border border-stoneborder shadow-sm">
                     <div class="flex items-center justify-between mb-4">
                         <span class="text-xs font-mono uppercase tracking-widest text-gold-darker font-bold">Schritt 05 / 05</span>
                         <span class="text-xs text-stone-500">Transparente Anfahrt</span>
                     </div>
                     <h2 class="font-serif text-2xl text-stone-950 mb-2">Fahrtkosten-Rechner (0,70 € / km)</h2>
-                    <p class="text-stone-600 text-xs mb-6">Nur einfache Hinfahrt ab Standort – Rückfahrt ist 100% kostenlos!</p>
+                    <p class="text-stone-600 text-xs mb-6">Nur einfache Hinfahrt ab Standort berechnet – Rückfahrt unseres Teams ist zu 100% kostenlos!</p>
 
                     <div class="space-y-4">
                         <div class="flex justify-between items-center text-sm">
                             <span class="text-stone-700 font-medium">Entfernung: <strong id="slider-km-val" class="text-gold-darker">15 km</strong></span>
-                            <span class="text-stone-700 font-medium">Berechnete Fahrtkosten: <strong id="slider-cost-val" class="text-gold-darker">11 €</strong></span>
+                            <span class="text-stone-700 font-medium">Berechnete Fahrtkostenpauschale: <strong id="slider-cost-val" class="text-gold-darker">11 €</strong></span>
                         </div>
                         <input type="range" id="km-slider" min="0" max="180" value="15" step="5" class="w-full" oninput="updateKmSlider(this.value)">
                         <div class="flex justify-between text-[10px] text-stone-400 uppercase tracking-widest">
@@ -554,13 +566,13 @@
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: STICKY LIVE SUMMARY (5 Spalten) -->
+            <!-- RIGHT COLUMN: STICKY LIVE SUMMARY & 1-CLICK WHATSAPP (5 Spalten) -->
             <div class="lg:col-span-5 sticky top-28 space-y-6">
                 <div class="bg-stone-950 text-white p-8 rounded-3xl border border-gold/40 shadow-2xl">
                     <div class="flex items-center justify-between pb-6 border-b border-stone-800">
                         <div>
                             <span class="text-[10px] uppercase tracking-widest text-gold font-bold">Ihre Konfiguration</span>
-                            <h3 class="font-serif text-2xl text-white">Live-Kalkulation</h3>
+                            <h3 class="font-serif text-2xl text-white">Zusammenfassung</h3>
                         </div>
                         <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
                     </div>
@@ -569,14 +581,19 @@
                     <div class="py-6 space-y-4 text-xs border-b border-stone-800">
                         <div>
                             <span class="text-stone-400 uppercase tracking-wider block mb-1">Region &amp; Einsatzort:</span>
-                            <div id="sum-region" class="font-medium text-white">NRW (Nordrhein-Westfalen) – Düsseldorf (15 km)</div>
+                            <div id="sum-region" class="font-medium text-white">NRW (Nordrhein-Westfalen) – Düsseldorf</div>
+                        </div>
+
+                        <div>
+                            <span class="text-stone-400 uppercase tracking-wider block mb-1">Wunsch-Kulisse (Location-Art):</span>
+                            <div id="sum-loc-type" class="text-gold font-medium">Märchenhaftes Schloss / Historisches Anwesen</div>
                         </div>
 
                         <div>
                             <span class="text-stone-400 uppercase tracking-wider block mb-1">Gewähltes Basis-Paket:</span>
                             <div class="flex justify-between text-stone-200">
-                                <span id="sum-pkg-name">Antrag Set 3 – Sparkle &amp; Glow</span>
-                                <strong id="sum-pkg-price" class="text-gold">700 €</strong>
+                                <span id="sum-pkg-name">Heiratsantrag: Set 3 – Sparkle &amp; Glow (Bestseller)</span>
+                                <span class="text-gold font-medium">Preis nach Location</span>
                             </div>
                         </div>
 
@@ -593,28 +610,33 @@
                         </div>
 
                         <div class="flex justify-between text-stone-300 pt-2 border-t border-stone-800/80">
-                            <span>Fahrtkosten (<span id="sum-km-text">15 km × 0,70 €</span>):</span>
+                            <span>Fahrtkostenpauschale (<span id="sum-km-text">15 km × 0,70 €</span>):</span>
                             <strong id="sum-km-cost" class="text-gold">11 €</strong>
                         </div>
                     </div>
 
-                    <!-- Total Price -->
-                    <div class="py-6 flex items-baseline justify-between">
-                        <div>
-                            <span class="text-xs uppercase tracking-widest text-stone-400 block">Kalkulierter Gesamtpreis</span>
-                            <span class="text-[10px] text-stone-500">Inkl. 100% Sorglos Auf- &amp; Abbau</span>
+                    <!-- Total / Pricing Status -->
+                    <div class="py-6 border-b border-stone-800">
+                        <div class="flex items-baseline justify-between mb-2">
+                            <div>
+                                <span class="text-xs uppercase tracking-widest text-stone-400 block">Setup-Kalkulation</span>
+                                <span class="text-[10px] text-stone-500">Inkl. 100% Sorglos Auf- &amp; Abbau</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-serif text-xl sm:text-2xl text-gold font-bold">Angebot auf Anfrage</span>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <span id="sum-total-price" class="font-serif text-3xl sm:text-4xl text-gold font-bold">711 €</span>
+                        <div class="p-3.5 rounded-xl bg-gold/10 border border-gold/25 text-[11px] text-stone-300 leading-relaxed">
+                            ✦ Jedes Setup wird exklusiv für deine Wunsch-Location kalkuliert. Du erhältst dein persönliches Gesamtangebot direkt mit 1 Klick per WhatsApp.
                         </div>
                     </div>
 
                     <!-- Contact Input Fields for instant WhatsApp preparation -->
-                    <div class="space-y-3 pt-2 pb-6 border-t border-stone-800 text-xs">
-                        <span class="text-stone-400 uppercase tracking-wider block">Deine Angaben für die Anfrage:</span>
+                    <div class="space-y-3 pt-6 pb-6 text-xs">
+                        <span class="text-stone-400 uppercase tracking-wider block font-semibold">Deine Angaben für das Angebot:</span>
                         <input type="text" id="cust-name" placeholder="Dein Vor- und Nachname" class="w-full p-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder-stone-500 focus:border-gold outline-none">
                         <input type="text" id="cust-date" placeholder="Wunschdatum (z.B. 14. November 2026)" class="w-full p-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder-stone-500 focus:border-gold outline-none">
-                        <input type="text" id="cust-location" placeholder="Wunschort / Location (z.B. Rheinufer oder privat)" class="w-full p-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder-stone-500 focus:border-gold outline-none">
+                        <input type="text" id="cust-location-details" placeholder="Ort / Notiz zur Location (z.B. Düsseldorf oder Stuttgart)" class="w-full p-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder-stone-500 focus:border-gold outline-none">
                         <textarea id="cust-notes" rows="2" placeholder="Besondere Wünsche oder Fragen..." class="w-full p-3 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder-stone-500 focus:border-gold outline-none"></textarea>
                     </div>
 
@@ -623,7 +645,7 @@
                         <i class="fa-brands fa-whatsapp text-xl"></i>
                         <span>Konfiguration jetzt per WhatsApp anfragen</span>
                     </button>
-                    <p class="text-[10px] text-center text-stone-500 mt-3">Unverbindliche Terminanfrage. Wir prüfen die Verfügbarkeit sofort.</p>
+                    <p class="text-[10px] text-center text-stone-500 mt-3">Unverbindliche Terminanfrage. Du erhältst dein Angebot &amp; die Verfügbarkeit sofort.</p>
                 </div>
             </div>
         </div>
@@ -740,10 +762,10 @@
         const state = {
             region: 'NRW (Nordrhein-Westfalen)',
             city: 'Düsseldorf',
+            locationType: 'Märchenhaftes Schloss / Historisches Anwesen',
             km: 15,
             kmRate: 0.70,
-            packageName: 'Antrag Set 3 – Sparkle & Glow (Bestseller)',
-            packagePrice: 700,
+            packageName: 'Heiratsantrag: Set 3 – Sparkle & Glow (Bestseller)',
             color: 'Classic Red Romance (Tiefrot & Kerzengold)',
             extras: []
         };
@@ -769,6 +791,7 @@
                     <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Bonn', 45)">Bonn (45 km)</button>
                     <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Wuppertal', 30)">Wuppertal (30 km)</button>
                     <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Münster', 90)">Münster (90 km)</button>
+                    <button type="button" class="city-chip px-3 py-1.5 rounded-lg border border-stoneborder bg-stone-50 hover:border-gold" onclick="setCity('Aachen', 85)">Aachen (85 km)</button>
                 `;
                 setCity('Düsseldorf', 15);
             } else {
@@ -808,13 +831,17 @@
             updateTotal();
         }
 
-        function selectPackage(name, price) {
+        function setLocationType(locVal) {
+            state.locationType = locVal;
+            document.getElementById('sum-loc-type').textContent = locVal;
+        }
+
+        function selectPackage(name, radioElem) {
             state.packageName = name;
-            state.packagePrice = price;
 
             document.querySelectorAll('.pkg-radio-label').forEach(lbl => {
                 const input = lbl.querySelector('input');
-                if (input && input.getAttribute('data-pkg-name') === name) {
+                if (input && input === radioElem) {
                     lbl.className = 'pkg-radio-label flex items-center justify-between p-4 rounded-xl border-2 border-gold bg-gold/10 cursor-pointer transition';
                     input.checked = true;
                 } else {
@@ -842,26 +869,20 @@
         }
 
         function updateTotal() {
-            // Calculate extras
+            // Collect checked extras
             state.extras = [];
-            let extrasTotal = 0;
             document.querySelectorAll('.extra-cb:checked').forEach(cb => {
                 const name = cb.getAttribute('data-extra-name');
-                const price = Number(cb.getAttribute('data-extra-price'));
-                state.extras.push({ name, price });
-                extrasTotal += price;
+                state.extras.push(name);
             });
 
             const kmCost = Math.round(state.km * state.kmRate);
-            const total = state.packagePrice + extrasTotal + kmCost;
 
-            // Update UI
-            document.getElementById('sum-region').textContent = `${state.region} – ${state.city} (${state.km} km)`;
+            // Update UI elements
+            document.getElementById('sum-region').textContent = `${state.region} – ${state.city}`;
             document.getElementById('sum-pkg-name').textContent = state.packageName;
-            document.getElementById('sum-pkg-price').textContent = `${state.packagePrice} €`;
             document.getElementById('sum-km-text').textContent = `${state.km} km × 0,70 €`;
             document.getElementById('sum-km-cost').textContent = `${kmCost} €`;
-            document.getElementById('sum-total-price').textContent = `${total.toLocaleString('de-DE')} €`;
 
             const extrasDiv = document.getElementById('sum-extras');
             if (state.extras.length === 0) {
@@ -869,8 +890,8 @@
             } else {
                 extrasDiv.innerHTML = state.extras.map(e => `
                     <div class="flex justify-between items-center text-stone-300">
-                        <span>✦ ${e.name}</span>
-                        <strong class="text-gold">+${e.price} €</strong>
+                        <span>✦ ${e}</span>
+                        <span class="text-gold text-[10px] uppercase font-semibold">Zubuchbar</span>
                     </div>
                 `).join('');
             }
@@ -879,42 +900,40 @@
         function sendWhatsAppBooking() {
             const name = document.getElementById('cust-name').value.trim() || 'Nicht angegeben';
             const date = document.getElementById('cust-date').value.trim() || 'Nach Absprache';
-            const loc = document.getElementById('cust-location').value.trim() || `${state.city} (${state.region})`;
+            const locDetails = document.getElementById('cust-location-details').value.trim() || `${state.city} (${state.region})`;
             const notes = document.getElementById('cust-notes').value.trim();
 
             const kmCost = Math.round(state.km * state.kmRate);
-            const extrasTotal = state.extras.reduce((a, b) => a + b.price, 0);
-            const total = state.packagePrice + extrasTotal + kmCost;
 
             const extrasText = state.extras.length > 0 
-                ? state.extras.map(e => `  • ${e.name} (+${e.price} €)`).join('\n')
+                ? state.extras.map(e => `  • ${e}`).join('\n')
                 : '  • Keine zusätzlichen Extras gewählt';
 
             const notesText = notes ? `\n📝 *Besondere Wünsche:* ${notes}` : '';
 
             const msg = 
-`✨ *EVENT-ANFRAGE VIA KETADECOR PREISKONFIGURATOR* ✨
+`✨ *EVENT-ANFRAGE VIA KETADECOR KONFIGURATOR* ✨
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 *Kunde:* ${name}
+👤 *Name:* ${name}
 📅 *Wunschtermin:* ${date}
-📍 *Location / Ort:* ${loc}
-🗺️ *Region:* ${state.region}
-🚗 *Fahrtstrecke:* ${state.km} km (einfach: ${kmCost} €)
+🏰 *Wunsch-Kulisse (Art):* ${state.locationType}
+📍 *Ort / Region:* ${locDetails} (${state.region})
+🚗 *Fahrtstrecke:* ${state.km} km (Fahrtkostenpauschale: ${kmCost} €)
 
-💍 *GEWÄHLTES BASIS-PAKET:*
-${state.packageName} (${state.packagePrice} €)
+💍 *GEWÄHLTES BASIS-SETUP:*
+${state.packageName}
 
 🎨 *FARBKONZEPT:*
 ${state.color}
 
-🌟 *ZUSÄTZLICHE EXTRAS:*
+🌟 *GEWÄHLTE EXTRAS:*
 ${extrasText}
 ${notesText}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💎 *KALKULIERTER GESAMTPREIS:* *${total.toLocaleString('de-DE')} €*
-(Inkl. 100% Sorglos-Service: Lieferung, Auf- & Abbau)
+💎 *STATUS:* Bitte um individuelles Angebot nach Location & Termin
+(Inkl. 100% Sorglos-Service: Lieferung, bezugsfertiger Auf- & Abbau)
 
-Hallo KETADECOR! Ist dieser Wunschtermin zu den berechneten Konditionen noch frei?`;
+Hallo KETADECOR! Ich habe mir folgendes Wunsch-Setup zusammengestellt. Könnt ihr mir hierfür ein individuelles Angebot erstellen und die Verfügbarkeit meines Wunschtermins mitteilen?`;
 
             const url = `https://wa.me/4917657354779?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank', 'noopener,noreferrer');
@@ -922,14 +941,15 @@ Hallo KETADECOR! Ist dieser Wunschtermin zu den berechneten Konditionen noch fre
 
         // Check URL parameters for preselected package
         window.addEventListener('DOMContentLoaded', () => {
+            setRegion('NRW (Nordrhein-Westfalen)');
+
             const params = new URLSearchParams(window.location.search);
             const pkgParam = params.get('package');
-            const priceParam = params.get('price');
-            if (pkgParam && priceParam) {
-                const matchInput = document.querySelector(`input[name="pkg"][value="${priceParam}"]`);
+            if (pkgParam) {
+                const matchInput = document.querySelector(`input[name="pkg"][value="${pkgParam}"]`);
                 if (matchInput) {
                     const name = matchInput.getAttribute('data-pkg-name');
-                    selectPackage(name, Number(priceParam));
+                    selectPackage(name, matchInput);
                 }
             }
             updateTotal();
