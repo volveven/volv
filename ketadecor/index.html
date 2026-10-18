@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de" class="scroll-smooth">
 <head>
-    <title>KETADECOR | Luxury Event & Wedding Design in ganz NRW & Raum Stuttgart</title>
-    <meta name="description" content="ketadecor – Exklusive Event- & Hochzeitsdekoration in ganz NRW und Raum Stuttgart. Heiratsanträge, Verlobung (Söz & Nişan), Standesamt, Henna Night & Hochzeiten inkl. Auf- & Abbau.">
+    <title>ketadecor — Luxury Event &amp; Wedding Design | NRW &amp; Stuttgart</title>
+    <meta name="description" content="Exklusive Event- &amp; Hochzeitsdekoration in ganz NRW und im Raum Stuttgart. Heiratsanträge, Verlobung (Söz &amp; Nişan), Standesamt, Henna &amp; Traumhochzeiten mit 100% Sorglos-Service inkl. Auf- &amp; Abbau.">
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     boxShadow: {
-                        'luxury': '0 10px 30px -10px rgba(22, 19, 17, 0.05), 0 2px 10px -2px rgba(22, 19, 17, 0.02)',
+                        'luxury': '0 4px 20px -2px rgba(22, 19, 17, 0.04)',
                         'gold': '0 8px 25px -5px rgba(198, 161, 91, 0.35)',
                         'card': '0 15px 40px -15px rgba(22, 19, 17, 0.06)'
                     }
@@ -49,12 +49,12 @@
             color: #161311;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            padding-bottom: 72px; /* room for mobile bottom bar */
         }
-        .glass-nav {
-            background: rgba(250, 247, 242, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(230, 223, 211, 0.85);
+        @media (min-width: 1280px) {
+            body {
+                padding-bottom: 0;
+            }
         }
         .gold-btn {
             background: linear-gradient(135deg, #C6A15B 0%, #A6823C 100%);
@@ -75,116 +75,211 @@
             transform: translateY(-4px);
             box-shadow: 0 20px 45px -15px rgba(198, 161, 91, 0.15);
         }
-        .nav-item {
+        .nav-link {
             position: relative;
-            padding-bottom: 3px;
+            padding: 6px 0;
+            letter-spacing: 0.2em;
+            transition: color 0.3s ease;
         }
-        .nav-item::after {
+        .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
+            left: 0;
             width: 0;
             height: 1.5px;
             background: #C6A15B;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+            transition: width 0.3s ease;
         }
-        .nav-item:hover::after, .nav-item.active::after {
+        .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
-        .nav-item.active {
-            color: #A6823C;
+        .nav-link.active {
+            color: #876527;
             font-weight: 600;
         }
     </style>
 
 </head>
-<body>
+<body class="bg-alabaster">
     
     <!-- ==========================================
-         SPACIOUS LUXURY GLASS NAVBAR (WIDE & BREATHABLE)
+         FULL-WIDTH EDITORIAL HAUTE COUTURE HEADER
     =========================================== -->
-    <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-4 transition-all duration-300" id="main-nav">
-        <nav class="max-w-[1550px] mx-auto glass-nav text-stone-900 rounded-2xl px-6 sm:px-8 py-4 shadow-luxury flex items-center justify-between transition-all">
-            <!-- Brand Logo + Dual Hub Badge -->
-            <a href="index.html" class="flex items-center gap-3.5 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold via-gold-dark to-gold-darker flex items-center justify-center text-white font-serif font-bold text-xl shadow-gold group-hover:scale-105 transition">
-                    K
-                </div>
-                <div>
-                    <div class="flex items-center gap-2.5">
-                        <span class="font-serif text-2xl tracking-[0.2em] font-semibold text-stone-950 uppercase">ketadecor</span>
-                        <span class="hidden md:inline-flex items-center px-2 py-0.5 text-[9px] uppercase tracking-widest font-semibold bg-gold/15 text-gold-darker border border-gold/30 rounded-full">
-                            NRW · STUTTGART
-                        </span>
-                    </div>
-                    <p class="text-[9px] uppercase tracking-[0.25em] text-stone-500 -mt-0.5 font-medium">Luxury Event & Wedding Design</p>
-                </div>
-            </a>
-
-            <!-- Desktop Menu Links with Generous Spacing -->
-            <div class="hidden xl:flex items-center gap-7 2xl:gap-8 text-[11px] uppercase tracking-[0.18em] font-medium text-stone-700">
-                <a href="index.html" class="nav-item hover:text-gold-dark transition active">Startseite</a>
-                <a href="heiratsantrag.html" class="nav-item hover:text-gold-dark transition ">Heiratsantrag</a>
-                <a href="verlobung.html" class="nav-item hover:text-gold-dark transition ">Verlobung & Söz</a>
-                <a href="standesamt.html" class="nav-item hover:text-gold-dark transition ">Standesamt</a>
-                <a href="hochzeit.html" class="nav-item hover:text-gold-dark transition ">Hochzeit & Henna</a>
-                <a href="extras.html" class="nav-item hover:text-gold-dark transition ">Extras & Kamera</a>
-                <a href="regionen.html" class="nav-item hover:text-gold-dark transition ">Regionen</a>
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="main-nav">
+        <!-- TOP ANNOUNCEMENT STRIP (Full Width) -->
+        <div class="w-full bg-[#EFE8DC]/90 backdrop-blur-sm border-b border-[#E6DFD3] px-6 lg:px-12 py-1.5 text-[10px] tracking-[0.22em] uppercase font-semibold text-stone-600 hidden sm:flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-gold">✦</span>
+                <span>DUAL-HUB NRW &amp; RAUM STUTTGART | 100% SORGLOS-SERVICE INKL. PÜNKTLICHEM AUF- &amp; ABBAU</span>
             </div>
-
-            <!-- Right Actions: Live Konfigurator + WhatsApp -->
-            <div class="flex items-center gap-3.5">
-                <a href="konfigurator.html" class="hidden sm:inline-flex items-center gap-2 gold-btn text-white font-medium text-xs px-5 py-2.5 rounded-xl shadow-gold hover:scale-[1.02] transition">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                    <span>Preiskonfigurator</span>
-                </a>
-                <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20m%C3%B6chte%20ein%20Event-Setup%20anfragen." target="_blank" rel="noopener noreferrer"
-                   class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium px-4 py-2.5 rounded-xl transition shadow-sm"
-                   title="WhatsApp: KETADECOR">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-                    <span>KETADECOR</span>
-                </a>
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="xl:hidden w-10 h-10 rounded-xl border border-stone-300 flex items-center justify-center text-stone-800 hover:border-gold transition" aria-label="Menü">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
+            <div class="flex items-center gap-5 text-stone-700">
+                <a href="tel:+4917657354779" class="hover:text-gold transition">Hotline: +49 176 57354779</a>
+                <span class="opacity-40">|</span>
+                <span>Mo–So 09:00 – 22:00 Uhr</span>
             </div>
-        </nav>
+        </div>
 
-        <!-- Mobile Dropdown -->
-        <div id="mobile-menu" class="hidden xl:hidden max-w-[1550px] mx-auto mt-2 glass-nav text-stone-900 rounded-2xl p-6 shadow-2xl border border-gold/30">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs uppercase tracking-widest font-medium">
-                <a href="index.html" class="p-3 rounded-xl hover:bg-gold/15 transition flex items-center gap-3"><span class="text-gold">✦</span> Startseite</a>
-                <a href="heiratsantrag.html" class="p-3 rounded-xl hover:bg-gold/15 transition flex items-center gap-3"><span class="text-gold">💍</span> Heiratsantrag (6 Sets)</a>
-                <a href="verlobung.html" class="p-3 rounded-xl hover:bg-gold/15 transition flex items-center gap-3"><span class="text-gold">🥂</span> Verlobung & Söz</a>
-                <a href="standesamt.html" class="p-3 rounded-xl hover:bg-gold/15 transition flex items-center gap-3"><span class="text-gold">🏛️</span> Standesamt-Empfang</a>
-                <a href="hochzeit.html" class="p-3 rounded-xl hover:bg-gold/15 transition flex items-center gap-3"><span class="text-gold">👑</span> Hochzeit & Henna</a>
-                <a href="extras.html" class="p-3 rounded-xl hover:bg-gold/15 transition flex items-center gap-3"><span class="text-gold">🎥</span> Extras & Kamera</a>
-                <a href="regionen.html" class="p-3 rounded-xl hover:bg-gold/15 transition flex items-center gap-3"><span class="text-gold">📍</span> Regionen (NRW & Stuttgart)</a>
-                <a href="konfigurator.html" class="p-3 rounded-xl bg-gold/20 text-gold-dark font-semibold transition flex items-center gap-3"><span class="text-gold">⚡</span> Preiskonfigurator</a>
+        <!-- MAIN NAVIGATION (100% Full Width, Spacious & Breathable) -->
+        <div class="w-full bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E6DFD3] px-6 lg:px-12 py-4">
+            <div class="w-full flex items-center justify-between">
+                
+                <!-- BRAND LOGO (Pure Haute Couture Typography) -->
+                <a href="index.html" class="flex flex-col group py-0.5">
+                    <span class="font-serif text-2xl sm:text-3xl tracking-[0.25em] font-semibold text-stone-950 uppercase group-hover:text-gold transition">ketadecor</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-stone-500 font-medium -mt-1">Luxury Event &amp; Wedding Design</span>
+                </a>
+
+                <!-- DESKTOP EDITORIAL MENU LINKS (Generous Spacing Across Screen) -->
+                <nav class="hidden xl:flex items-center gap-7 2xl:gap-9 text-[11px] uppercase tracking-[0.2em] font-medium text-stone-700">
+                    <a href="index.html" class="nav-link active">Startseite</a>
+                    <a href="heiratsantrag.html" class="nav-link ">Heiratsantrag</a>
+                    <a href="verlobung.html" class="nav-link ">Verlobung &amp; Söz</a>
+                    <a href="standesamt.html" class="nav-link ">Standesamt</a>
+                    <a href="hochzeit.html" class="nav-link ">Hochzeit &amp; Henna</a>
+                    <a href="extras.html" class="nav-link ">Extras &amp; Kamera</a>
+                    <a href="regionen.html" class="nav-link ">Regionen</a>
+                </nav>
+
+                <!-- RIGHT ACTION CTAS -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <a href="konfigurator.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gold text-gold-darker hover:bg-gold hover:text-white font-medium text-xs tracking-wider transition shadow-sm">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        <span>Preiskonfigurator</span>
+                    </a>
+                    
+                    <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20moechte%20ein%20Event-Setup%20anfragen." target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 sm:px-5 py-2.5 rounded-full transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>WhatsApp</span>
+                    </a>
+
+                    <!-- MOBILE HAMBURGER BUTTON -->
+                    <button id="mobile-menu-open-btn" class="xl:hidden w-11 h-11 rounded-full border border-stone-300 flex items-center justify-center text-stone-800 hover:border-gold hover:text-gold transition" aria-label="Menü öffnen">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
-    
 
-    <!-- CINEMATIC HERO SECTION -->
-    <section class="relative min-h-[92vh] flex items-center justify-center pt-32 pb-20 px-6 lg:px-12 bg-obsidian text-alabaster overflow-hidden">
-        <!-- Background Video & Luxury Gradients -->
-        <div class="absolute inset-0 z-0">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-35 scale-105">
-                <source src="videos/video-output-6FAEDBDF-B332-4537-AB48-3E5E8BFB623F.mov" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-obsidian/60 to-obsidian"></div>
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(198,161,91,0.25)_0%,transparent_70%)]"></div>
+    <!-- ==========================================
+         FULLSCREEN LUXURY MOBILE DRAWER
+    =========================================== -->
+    <div id="mobile-drawer" class="fixed inset-0 z-50 bg-[#FAF7F2] text-stone-900 flex flex-col justify-between p-6 sm:p-10 overflow-y-auto transform translate-x-full transition-transform duration-500 ease-in-out xl:hidden">
+        <!-- Top Drawer Bar -->
+        <div class="flex items-center justify-between pb-6 border-b border-[#E6DFD3]">
+            <a href="index.html" class="flex flex-col">
+                <span class="font-serif text-2xl tracking-[0.25em] font-semibold text-stone-950 uppercase">ketadecor</span>
+                <span class="text-[9px] uppercase tracking-[0.3em] text-stone-500 font-medium -mt-1">Luxury Event &amp; Wedding Design</span>
+            </a>
+            <button id="mobile-menu-close-btn" class="w-11 h-11 rounded-full border border-stone-300 flex items-center justify-center text-stone-800 hover:border-gold transition text-lg" aria-label="Menü schließen">
+                ✕
+            </button>
         </div>
 
-        <div class="relative z-10 max-w-5xl mx-auto text-center my-auto pt-8">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-gold/40 text-gold-light text-xs tracking-wider uppercase mb-6 shadow-sm">
-                <span>★★★★★ 5.0 Sterne</span>
-                <span class="text-white/40">|</span>
-                <span>Aktiv in ganz <strong>NRW</strong> &amp; im <strong>Raum Stuttgart</strong></span>
+        <!-- Links Navigation List (Large, Touch-Friendly 52px+ Targets) -->
+        <div class="py-8 space-y-4">
+            <a href="index.html" class="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gold/10 transition group">
+                <div>
+                    <div class="font-serif text-xl text-stone-950 group-hover:text-gold transition">Startseite</div>
+                    <div class="text-[10px] uppercase tracking-wider text-stone-500">Das Scrollytelling-Erlebnis</div>
+                </div>
+                <span class="text-gold text-lg">→</span>
+            </a>
+            <a href="heiratsantrag.html" class="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gold/10 transition group">
+                <div>
+                    <div class="font-serif text-xl text-stone-950 group-hover:text-gold transition">Heiratsantrag</div>
+                    <div class="text-[10px] uppercase tracking-wider text-stone-500">6 Sets mit Kerzenmeer &amp; Funkenmagie</div>
+                </div>
+                <span class="text-gold text-lg">→</span>
+            </a>
+            <a href="verlobung.html" class="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gold/10 transition group">
+                <div>
+                    <div class="font-serif text-xl text-stone-950 group-hover:text-gold transition">Verlobung &amp; Söz</div>
+                    <div class="text-[10px] uppercase tracking-wider text-stone-500">Chiara-Wände, Söz-Tablett &amp; Kaffeeset</div>
+                </div>
+                <span class="text-gold text-lg">→</span>
+            </a>
+            <a href="standesamt.html" class="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gold/10 transition group">
+                <div>
+                    <div class="font-serif text-xl text-stone-950 group-hover:text-gold transition">Standesamt-Empfang</div>
+                    <div class="text-[10px] uppercase tracking-wider text-stone-500">Blumenbogen, Sektempfang &amp; Kristallgläser</div>
+                </div>
+                <span class="text-gold text-lg">→</span>
+            </a>
+            <a href="hochzeit.html" class="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gold/10 transition group">
+                <div>
+                    <div class="font-serif text-xl text-stone-950 group-hover:text-gold transition">Hochzeit &amp; Henna Night</div>
+                    <div class="text-[10px] uppercase tracking-wider text-stone-500">Brauttisch, Henna-Thron &amp; Saaldekor</div>
+                </div>
+                <span class="text-gold text-lg">→</span>
+            </a>
+            <a href="extras.html" class="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gold/10 transition group">
+                <div>
+                    <div class="font-serif text-xl text-stone-950 group-hover:text-gold transition">Extras &amp; Kamerateam</div>
+                    <div class="text-[10px] uppercase tracking-wider text-stone-500">Funkenfontänen, Bodennebel &amp; Drohne</div>
+                </div>
+                <span class="text-gold text-lg">→</span>
+            </a>
+            <a href="regionen.html" class="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gold/10 transition group">
+                <div>
+                    <div class="font-serif text-xl text-stone-950 group-hover:text-gold transition">Regionen &amp; Fahrtkosten</div>
+                    <div class="text-[10px] uppercase tracking-wider text-stone-500">Ganz NRW &amp; Raum Stuttgart (0,70 €/km)</div>
+                </div>
+                <span class="text-gold text-lg">→</span>
+            </a>
+        </div>
+
+        <!-- Drawer Bottom Actions -->
+        <div class="pt-6 border-t border-[#E6DFD3] space-y-3">
+            <a href="konfigurator.html" class="w-full py-4 rounded-xl gold-btn text-white text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-gold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                <span>Live-Preiskonfigurator starten</span>
+            </a>
+            <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20moechte%20ein%20Event-Setup%20anfragen." target="_blank" rel="noopener noreferrer"
+               class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Direkt per WhatsApp anfragen</span>
+            </a>
+            <p class="text-[10px] text-center text-stone-500 pt-2">
+                Hotline: +49 176 57354779 · Mo–So 09:00 – 22:00 Uhr
+            </p>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         STICKY MOBILE BOTTOM CONCIERGE BAR
+         (Thumb-Friendly 1-Tap Access on all Smartphones)
+    =========================================== -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#FAF7F2]/95 backdrop-blur-md border-t border-[#E6DFD3] p-2.5 px-4 flex items-center justify-between gap-3 xl:hidden shadow-lg">
+        <a href="konfigurator.html" class="flex-1 py-3 px-3 rounded-xl border border-gold/60 bg-gold/10 text-stone-900 text-center font-medium text-xs tracking-wider flex items-center justify-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-gold-darker" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span>Konfigurator</span>
+        </a>
+        <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20moechte%20ein%20Event-Setup%20anfragen." target="_blank" rel="noopener noreferrer"
+           class="flex-1 py-3 px-3 rounded-xl bg-emerald-600 text-white text-center font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 shadow-md">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WhatsApp Anfrage</span>
+        </a>
+    </div>
+    
+
+    <!-- HERO SECTION (Cinematic Hero Video) -->
+    <section class="relative min-h-[92vh] flex items-center justify-center px-6 lg:px-12 bg-obsidian text-alabaster overflow-hidden pt-32 pb-24">
+        <!-- Background Video -->
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40">
+                <source src="videos/v1.mov" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-obsidian/80 to-obsidian"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center pt-8">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/15 border border-gold/30 text-gold-light text-xs uppercase tracking-widest mb-6">
+                <span>✦ Exklusive Event-Dekoration ✦</span>
+                <span class="opacity-50">|</span>
+                <span>Ganz NRW &amp; Raum Stuttgart</span>
             </div>
 
             <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.08] font-normal tracking-tight text-white mb-6">
@@ -197,10 +292,10 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#erlebniswelten" class="w-full sm:w-auto gold-btn text-white font-semibold text-xs uppercase tracking-widest px-8 py-4 rounded-xl shadow-gold">
-                    Erlebniswelten entdecken ↓
+                <a href="#erlebniswelten" class="w-full sm:w-auto gold-btn text-white font-semibold text-xs uppercase tracking-widest px-8 py-4 rounded-full shadow-gold">
+                    Kollektionen entdecken ↓
                 </a>
-                <a href="konfigurator.html" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-gold/50 bg-white/5 hover:bg-gold/20 text-gold-light transition text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2">
+                <a href="konfigurator.html" class="w-full sm:w-auto px-8 py-4 rounded-full border border-gold/50 bg-white/5 hover:bg-gold/20 text-gold-light transition text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
                     <span>Event live konfigurieren →</span>
                 </a>
@@ -208,238 +303,271 @@
         </div>
     </section>
 
-    <!-- TRUST STRIP -->
+    <!-- TRUST METRICS STRIP -->
     <section class="bg-stone-900 border-y border-stone-800 py-6 px-6">
         <div class="max-w-[1550px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 text-center text-xs text-stone-300 uppercase tracking-widest font-medium">
-            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">✦</span> 100% Sorglos-Service (Auf- &amp; Abbau)</div>
-            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">★</span> 5.0 Sterne Kundenbewertungen</div>
-            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">📍</span> Dual-Hub: Ganz NRW &amp; Raum Stuttgart</div>
-            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">🎥</span> 4K-Kamerateam, Drohne &amp; Effekte</div>
+            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">✦</span> 100% Sorglos Auf- &amp; Abbau</div>
+            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">★</span> 5.0 Sterne Kundenzufriedenheit</div>
+            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">📍</span> Dual-Hub: NRW &amp; Stuttgart</div>
+            <div class="flex items-center justify-center gap-3"><span class="text-gold text-lg">🎥</span> 4K-Kamerateam &amp; Spezialeffekte</div>
         </div>
     </section>
 
-    <!-- 5 ERLEBNISWELTEN OVERVIEW -->
+    <!-- DIE 5 GROSSEN ERLEBNISWELTEN -->
     <section id="erlebniswelten" class="py-24 px-6 lg:px-12 max-w-[1550px] mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-xs uppercase tracking-[0.25em] text-gold-darker font-semibold">Exklusive Bereiche</span>
-            <h2 class="font-serif text-3xl sm:text-5xl text-stone-950 mt-2 mb-4 font-normal">Unsere 5 Erlebniswelten</h2>
-            <p class="text-stone-600 text-sm sm:text-base font-light">Wähle deinen Anlass und entdecke detaillierte Setups, Preise und Impressionen auf den jeweiligen Einzelseiten.</p>
+            <span class="text-xs uppercase tracking-[0.25em] text-gold-darker font-semibold">Exklusive Anlässe</span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-stone-950 mt-2 mb-4 font-normal">Wähle deinen besonderen Moment</h2>
+            <p class="text-stone-600 text-sm sm:text-base font-light">Jede Lebensphase verdient eine eigene, unvergessliche Kulisse. Entdecke unsere spezialisierten Kollektionen:</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Card 1: Heiratsantrag -->
-            <a href="heiratsantrag.html" class="luxury-card rounded-2xl overflow-hidden group flex flex-col justify-between">
+            <div class="luxury-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                 <div>
                     <div class="relative h-72 overflow-hidden">
-                        <img src="images/IMG_1601.PNG" alt="Heiratsantrag Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent"></div>
-                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">6 exklusive Kollektionen</span>
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Kapitel 01</span>
-                            <h3 class="font-serif text-2xl text-white">Heiratsantrag</h3>
-                        </div>
+                        <img src="images/3.jpg" alt="Heiratsantrag Setups" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">6 Sets Kollektion</span>
+                        <div class="absolute bottom-4 right-4 bg-white/95 text-stone-950 font-serif font-medium text-xs uppercase tracking-wider px-4 py-2 rounded-xl shadow-lg border border-gold/30">Individuelles Angebot</div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-stone-600 text-xs leading-relaxed mb-4">Ein Kniefall im Kerzenmeer mit monumentalen Blumenbögen, XXL-Leuchtbuchstaben und Cold Sparklers beim Ja-Wort.</p>
-                        <span class="text-gold-dark font-medium text-xs uppercase tracking-wider group-hover:underline">Alle 6 Antrag-Sets ansehen →</span>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl text-stone-950 mb-2">Heiratsantrag</h3>
+                        <p class="text-stone-600 text-xs leading-relaxed mb-6">Kniefall im Kerzenmeer, monumentale Blumenbögen, leuchtende Marry Me Buchstaben &amp; zündende Funkenfontänen.</p>
                     </div>
                 </div>
-            </a>
+                <div class="p-7 pt-0">
+                    <a href="heiratsantrag.html" class="block w-full text-center py-3.5 rounded-full border border-gold text-gold-darker hover:bg-gold hover:text-white transition font-medium text-xs uppercase tracking-wider">
+                        Alle 6 Antrag-Sets ansehen →
+                    </a>
+                </div>
+            </div>
 
-            <!-- Card 2: Verlobung & Söz -->
-            <a href="verlobung.html" class="luxury-card rounded-2xl overflow-hidden group flex flex-col justify-between">
+            <!-- Card 2: Verlobung -->
+            <div class="luxury-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                 <div>
                     <div class="relative h-72 overflow-hidden">
-                        <img src="images/blumenbogen_setup_1791424487109.jpg" alt="Verlobung Söz Nişan Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent"></div>
-                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Individuelles Angebot</span>
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Kapitel 02</span>
-                            <h3 class="font-serif text-2xl text-white">Verlobung &amp; Söz / Nişan</h3>
-                        </div>
+                        <img src="images/8.jpg" alt="Verlobung Söz & Nişan" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Söz &amp; Nişan</span>
+                        <div class="absolute bottom-4 right-4 bg-white/95 text-stone-950 font-serif font-medium text-xs uppercase tracking-wider px-4 py-2 rounded-xl shadow-lg border border-gold/30">Individuelles Angebot</div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-stone-600 text-xs leading-relaxed mb-4">Elegante Chiara-Wände, Sequin Walls, Scheren-Tablett, Damat Kahvesi &amp; Ringkissen für Zuhause oder Festsäle.</p>
-                        <span class="text-gold-dark font-medium text-xs uppercase tracking-wider group-hover:underline">Verlobungs-Sets entdecken →</span>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl text-stone-950 mb-2">Verlobung (Söz &amp; Nişan)</h3>
+                        <p class="text-stone-600 text-xs leading-relaxed mb-6">Couture Chiara-Bogenwände, Schimmerwände, traditionelles Söz-Tablett, Damat Kahvesi &amp; personalisierte Acrylschilder.</p>
                     </div>
                 </div>
-            </a>
+                <div class="p-7 pt-0">
+                    <a href="verlobung.html" class="block w-full text-center py-3.5 rounded-full border border-gold text-gold-darker hover:bg-gold hover:text-white transition font-medium text-xs uppercase tracking-wider">
+                        Verlobungs-Sets entdecken →
+                    </a>
+                </div>
+            </div>
 
             <!-- Card 3: Standesamt -->
-            <a href="standesamt.html" class="luxury-card rounded-2xl overflow-hidden group flex flex-col justify-between">
+            <div class="luxury-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                 <div>
                     <div class="relative h-72 overflow-hidden">
-                        <img src="images/champagner_setup.jpg" alt="Standesamt Sektempfang Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent"></div>
-                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Individuelles Angebot</span>
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Kapitel 03</span>
-                            <h3 class="font-serif text-2xl text-white">Standesamt-Empfang</h3>
-                        </div>
+                        <img src="images/11.jpg" alt="Standesamt Sektempfang" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Sektempfang</span>
+                        <div class="absolute bottom-4 right-4 bg-white/95 text-stone-950 font-serif font-medium text-xs uppercase tracking-wider px-4 py-2 rounded-xl shadow-lg border border-gold/30">Individuelles Angebot</div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-stone-600 text-xs leading-relaxed mb-4">Empfang vor dem Standesamt mit Blumenbogen, Stehtischen, Hussen, gekühltem Sekt, Seifenblasen &amp; Spalierrosen.</p>
-                        <span class="text-gold-dark font-medium text-xs uppercase tracking-wider group-hover:underline">Standesamt-Pakete ansehen →</span>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl text-stone-950 mb-2">Standesamt-Empfang</h3>
+                        <p class="text-stone-600 text-xs leading-relaxed mb-6">Großer Blumenbogen am Rathaus-Ausgang, gekühlter Sektempfang, Kristallgläser, Stehtische &amp; Seifenblasen.</p>
                     </div>
                 </div>
-            </a>
+                <div class="p-7 pt-0">
+                    <a href="standesamt.html" class="block w-full text-center py-3.5 rounded-full border border-gold text-gold-darker hover:bg-gold hover:text-white transition font-medium text-xs uppercase tracking-wider">
+                        Standesamt-Pakete ansehen →
+                    </a>
+                </div>
+            </div>
 
             <!-- Card 4: Hochzeit & Henna -->
-            <a href="hochzeit.html" class="luxury-card rounded-2xl overflow-hidden group flex flex-col justify-between">
+            <div class="luxury-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                 <div>
                     <div class="relative h-72 overflow-hidden">
-                        <img src="images/hotel_suite_setup_1791424495952.jpg" alt="Hochzeitssaal und Henna Night" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent"></div>
-                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Individuelles Angebot</span>
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Kapitel 04 &amp; 05</span>
-                            <h3 class="font-serif text-2xl text-white">Hochzeit &amp; Henna Night</h3>
-                        </div>
+                        <img src="images/13.jpg" alt="Henna Night & Kına" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Kına &amp; Hochzeit</span>
+                        <div class="absolute bottom-4 right-4 bg-white/95 text-stone-950 font-serif font-medium text-xs uppercase tracking-wider px-4 py-2 rounded-xl shadow-lg border border-gold/30">Individuelles Angebot</div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-stone-600 text-xs leading-relaxed mb-4">Königlicher Henna-Thron (Kına Gecesi), Sweetheart Brauttisch, Kandelaber-Centerpieces, Bodennebel &amp; Baby Showers.</p>
-                        <span class="text-gold-dark font-medium text-xs uppercase tracking-wider group-hover:underline">Saal- &amp; Henna-Konzepte ansehen →</span>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl text-stone-950 mb-2">Hochzeit &amp; Henna Night</h3>
+                        <p class="text-stone-600 text-xs leading-relaxed mb-6">Prunkvoller Kına-Thron mit Baldachin, Designer-Brauttisch (Sweetheart Table) &amp; opulente Gästetisch-Dekoration.</p>
                     </div>
                 </div>
-            </a>
+                <div class="p-7 pt-0">
+                    <a href="hochzeit.html" class="block w-full text-center py-3.5 rounded-full border border-gold text-gold-darker hover:bg-gold hover:text-white transition font-medium text-xs uppercase tracking-wider">
+                        Hochzeit &amp; Henna ansehen →
+                    </a>
+                </div>
+            </div>
 
             <!-- Card 5: Extras & Kamera -->
-            <a href="extras.html" class="luxury-card rounded-2xl overflow-hidden group flex flex-col justify-between">
+            <div class="luxury-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                 <div>
                     <div class="relative h-72 overflow-hidden">
-                        <img src="images/tisch_deko_setup_1791424506090.jpg" alt="Kamerateam und Spezialeffekte" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent"></div>
-                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Flexible Add-ons</span>
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Special Effects</span>
-                            <h3 class="font-serif text-2xl text-white">Extras &amp; Kamerateam</h3>
-                        </div>
+                        <img src="images/4.jpg" alt="Extras & Kamerateam" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <span class="absolute top-4 left-4 bg-stone-900/80 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stone-700">Show &amp; Film</span>
+                        <div class="absolute bottom-4 right-4 bg-white/95 text-stone-950 font-serif font-medium text-xs uppercase tracking-wider px-4 py-2 rounded-xl shadow-lg border border-gold/30">Flexible Add-ons</div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-stone-600 text-xs leading-relaxed mb-4">4K-Foto &amp; Film, Drohnenflüge, Cold Sparklers, Bodennebel, XXL-Buchstaben, 101 Rosen, Musiker &amp; 360° Spin.</p>
-                        <span class="text-gold-dark font-medium text-xs uppercase tracking-wider group-hover:underline">Alle zubuchbaren Extras ansehen →</span>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl text-stone-950 mb-2">Extras &amp; Kamerateam</h3>
+                        <p class="text-stone-600 text-xs leading-relaxed mb-6">Synchronisierte Funkenfontänen per Funk, dichter Bodennebel, 4K-Kamera Begleitung, Drohne, 101 Rosen &amp; Musiker.</p>
                     </div>
                 </div>
-            </a>
+                <div class="p-7 pt-0">
+                    <a href="extras.html" class="block w-full text-center py-3.5 rounded-full border border-gold text-gold-darker hover:bg-gold hover:text-white transition font-medium text-xs uppercase tracking-wider">
+                        Extras &amp; Effekte ansehen →
+                    </a>
+                </div>
+            </div>
 
-            <!-- Card 6: Live Preiskonfigurator -->
-            <a href="konfigurator.html" class="luxury-card rounded-2xl overflow-hidden group flex flex-col justify-between border-2 border-gold bg-gradient-to-br from-white via-stone-50 to-amber-50/20">
+            <!-- Card 6: Live Konfigurator -->
+            <div class="luxury-card rounded-2xl overflow-hidden flex flex-col justify-between bg-gradient-to-br from-white via-linen to-cashmere/50 border-2 border-gold group">
                 <div>
-                    <div class="relative h-72 overflow-hidden bg-stone-900 flex items-center justify-center p-8 text-center">
-                        <div class="w-20 h-20 rounded-2xl bg-gold/20 border border-gold/40 flex items-center justify-center text-gold text-4xl mb-3 shadow-gold">
-                            ⚡
-                        </div>
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <span class="text-[10px] uppercase tracking-widest text-gold font-medium">Interaktives Tool</span>
-                            <h3 class="font-serif text-2xl text-white">Live-Preiskonfigurator</h3>
+                    <div class="relative h-72 overflow-hidden bg-stone-950 flex items-center justify-center p-6 text-center">
+                        <div class="space-y-3">
+                            <span class="w-14 h-14 rounded-full bg-gold/20 border border-gold flex items-center justify-center text-gold mx-auto text-2xl">⚡</span>
+                            <h4 class="font-serif text-2xl text-white">Live-Konfigurator</h4>
+                            <p class="text-stone-400 text-xs max-w-xs">Fahrtkostenpauschale (0,70 €/km) live berechnen &amp; Setup per WhatsApp anfragen.</p>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-stone-600 text-xs leading-relaxed mb-4">Wähle Region, Anlass, Extras und berechne deine fairen Fahrtkosten (0,70 € / km) mit 1-Klick WhatsApp Buchung.</p>
-                        <span class="text-gold-dark font-semibold text-xs uppercase tracking-wider group-hover:underline">Jetzt live konfigurieren →</span>
+                    <div class="p-7">
+                        <h3 class="font-serif text-2xl text-stone-950 mb-2">Dein Traum-Setup erstellen</h3>
+                        <p class="text-stone-600 text-xs leading-relaxed mb-6">Wähle Region, Anlass, Extras und erhalte dein persönliches Angebot sofort mit 1 Klick per WhatsApp.</p>
                     </div>
                 </div>
-            </a>
+                <div class="p-7 pt-0">
+                    <a href="konfigurator.html" class="block w-full text-center py-3.5 rounded-full gold-btn text-white transition font-semibold text-xs uppercase tracking-wider shadow-gold">
+                        Zum Preiskonfigurator →
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- DUAL REGION TEASER -->
-    <section class="bg-linen py-20 px-6 lg:px-12 border-y border-stoneborder">
-        <div class="max-w-[1550px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div class="max-w-xl">
-                <span class="text-xs uppercase tracking-widest text-gold-darker font-semibold">Dual-Hub Logistik</span>
-                <h2 class="font-serif text-3xl sm:text-4xl text-stone-950 mt-2 mb-4 font-normal">Aktiv in ganz NRW &amp; im Raum Stuttgart</h2>
-                <p class="text-stone-600 text-sm font-light leading-relaxed mb-6">
-                    Mit unseren zwei festen Teams in Nordrhein-Westfalen (Düsseldorf, Köln, Dortmund, Essen etc.) und Baden-Württemberg (Stuttgart, Ludwigsburg, Esslingen, Heilbronn etc.) garantieren wir pünktliche Anfahrt, ortskundige Beratung und faire Fahrtkosten von nur <strong>0,70 € pro Kilometer</strong> (nur einfache Hinfahrt – Rückfahrt kostenlos).
+    <!-- NEW VIDEO REELS SHOWCASE (Incorporating the 3 New Videos) -->
+    <section class="bg-obsidian py-24 px-6 lg:px-12 text-white">
+        <div class="max-w-[1550px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-[0.25em] text-gold font-semibold">Cinematische Einblicke</span>
+                <h2 class="font-serif text-3xl sm:text-5xl text-white mt-2 mb-4 font-normal">Authentische Momente in Bewegung</h2>
+                <p class="text-stone-400 text-sm sm:text-base font-light">Echte Momente unserer Paare in Nordrhein-Westfalen und im Großraum Stuttgart.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Video Reel 1 (New Video 1: v3.mov) -->
+                <div class="rounded-2xl overflow-hidden border border-stone-800 bg-stone-950 relative group">
+                    <div class="aspect-[9/16] w-full overflow-hidden">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                            <source src="videos/v3.mov" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent absolute bottom-0 left-0 right-0">
+                        <span class="text-gold text-[10px] uppercase tracking-widest font-semibold block mb-1">Heiratsantrag Highlight</span>
+                        <h4 class="font-serif text-lg text-white font-normal">Funkenfontänen &amp; Kniefall</h4>
+                    </div>
+                </div>
+
+                <!-- Video Reel 2 (New Video 2: v4.mp4) -->
+                <div class="rounded-2xl overflow-hidden border border-stone-800 bg-stone-950 relative group">
+                    <div class="aspect-[9/16] w-full overflow-hidden">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                            <source src="videos/v4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent absolute bottom-0 left-0 right-0">
+                        <span class="text-gold text-[10px] uppercase tracking-widest font-semibold block mb-1">Abend-Inszenierung</span>
+                        <h4 class="font-serif text-lg text-white font-normal">Kerzenmeer &amp; Lichtkulisse</h4>
+                    </div>
+                </div>
+
+                <!-- Video Reel 3 (New Video 3: v5.mov Köln Kurzreel) -->
+                <div class="rounded-2xl overflow-hidden border border-stone-800 bg-stone-950 relative group">
+                    <div class="aspect-[9/16] w-full overflow-hidden">
+                        <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                            <source src="videos/v5.mov" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-5 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent absolute bottom-0 left-0 right-0">
+                        <span class="text-gold text-[10px] uppercase tracking-widest font-semibold block mb-1">Event-Transformation</span>
+                        <h4 class="font-serif text-lg text-white font-normal">Live-Aufbau vor Ort</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DUAL-HUB REGIONEN BANNER -->
+    <section class="py-20 px-6 lg:px-12 max-w-[1550px] mx-auto">
+        <div class="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white rounded-3xl p-10 md:p-16 border border-gold/30 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-10">
+            <div class="max-w-2xl space-y-4">
+                <span class="text-gold text-xs uppercase tracking-widest font-semibold">Dual-Hub Logistik</span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal">Aktiv in ganz NRW &amp; im Raum Stuttgart</h3>
+                <p class="text-stone-300 text-sm font-light leading-relaxed">
+                    Mit unseren zwei festen Teams in Nordrhein-Westfalen und Baden-Württemberg garantieren wir pünktliche Lieferung, bezugsfertigen Aufbau und faire Fahrtkosten von <strong>0,70 € pro Kilometer</strong>.
                 </p>
-                <a href="regionen.html" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-gold-darker hover:underline">
-                    <span>Alle Städte, Kulissen &amp; Schlechtwetter-Garantie ansehen</span>
-                    <span>→</span>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                <a href="regionen.html" class="px-8 py-4 rounded-full border border-gold text-gold hover:bg-gold hover:text-white transition text-xs uppercase tracking-widest font-semibold text-center">
+                    Regionen &amp; Anfahrt →
                 </a>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full lg:max-w-xl">
-                <div class="bg-white p-6 rounded-2xl border border-stoneborder shadow-sm">
-                    <h3 class="font-serif text-xl text-stone-950 mb-2">📍 Hub Nordrhein-Westfalen</h3>
-                    <p class="text-stone-600 text-xs leading-relaxed">Düsseldorf, Köln, Dortmund, Essen, Duisburg, Bonn, Wuppertal, Münster, Aachen, Bielefeld u.v.m.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-stoneborder shadow-sm">
-                    <h3 class="font-serif text-xl text-stone-950 mb-2">📍 Hub Raum Stuttgart</h3>
-                    <p class="text-stone-600 text-xs leading-relaxed">Stuttgart, Ludwigsburg, Esslingen, Sindelfingen, Böblingen, Heilbronn, Waiblingen, Göppingen u.v.m.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CALL TO ACTION -->
-    <section class="py-24 px-6 lg:px-12 max-w-[1550px] mx-auto text-center">
-        <div class="bg-stone-950 text-white rounded-3xl p-10 md:p-16 border border-gold/30 shadow-2xl relative overflow-hidden">
-            <div class="relative z-10 max-w-2xl mx-auto">
-                <span class="text-gold text-xs uppercase tracking-widest font-semibold">Direkter Kontakt</span>
-                <h2 class="font-serif text-3xl sm:text-5xl mt-2 mb-6 font-normal">Lass uns deinen Augenblick erschaffen.</h2>
-                <p class="text-stone-300 text-sm font-light leading-relaxed mb-8">
-                    Ob romantischer Heiratsantrag, familiäre Verlobung oder großer Festsaal – wir beraten dich persönlich, diskret und absolut unverbindlich.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20m%C3%B6chte%20ein%20Event-Setup%20anfragen." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-3 transition shadow-lg">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
-                        <span>WhatsApp Anfrage: KETADECOR</span>
-                    </a>
-                    <a href="konfigurator.html" class="w-full sm:w-auto px-8 py-4 rounded-xl gold-btn text-white text-xs uppercase tracking-widest font-semibold">
-                        Preiskonfigurator öffnen →
-                    </a>
-                </div>
+                <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20moechte%20eine%20Terminanfrage%20stellen." target="_blank" rel="noopener noreferrer"
+                   class="px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>WhatsApp Termin-Check</span>
+                </a>
             </div>
         </div>
     </section>
 
     
     <!-- ==========================================
-         LUXURY FOOTER & FLOATING WHATSAPP BUTTON
+         LUXURY FOOTER
     =========================================== -->
-    <footer class="bg-stone-900 text-stone-300 pt-20 pb-12 px-6 lg:px-12 border-t border-stone-800">
+    <footer class="bg-stone-900 text-stone-300 pt-20 pb-16 px-6 lg:px-12 border-t border-stone-800">
         <div class="max-w-[1550px] mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
                 <!-- Col 1: Brand -->
                 <div class="lg:col-span-2 space-y-5">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-gold flex items-center justify-center text-white font-serif font-bold text-lg">K</div>
-                        <span class="font-serif text-2xl tracking-[0.2em] font-semibold text-white uppercase">ketadecor</span>
+                        <span class="font-serif text-3xl tracking-[0.2em] font-semibold text-white uppercase">ketadecor</span>
                     </div>
                     <p class="text-stone-400 text-sm font-light leading-relaxed max-w-sm">
                         Wir dekorieren keine Orte. Wir erschaffen Augenblicke für die Ewigkeit. Exklusive Luxus-Setups für Heiratsanträge, Verlobungen, Standesamt und Hochzeiten in ganz NRW und im Raum Stuttgart.
                     </p>
                     <div class="flex items-center gap-4 pt-2">
-                        <a href="https://instagram.com/ketadecor" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-stone-800 hover:bg-gold text-stone-300 hover:text-white flex items-center justify-center transition" title="Instagram @ketadecor">
+                        <a href="https://instagram.com/ketadecor" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-gold text-stone-300 hover:text-white flex items-center justify-center transition" title="Instagram @ketadecor">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
-                        <a href="https://tiktok.com/@ketadecor" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-stone-800 hover:bg-gold text-stone-300 hover:text-white flex items-center justify-center transition" title="TikTok @ketadecor">
+                        <a href="https://tiktok.com/@ketadecor" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-gold text-stone-300 hover:text-white flex items-center justify-center transition" title="TikTok @ketadecor">
                             <i class="fa-brands fa-tiktok"></i>
                         </a>
-                        <a href="https://wa.me/4917657354779" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-stone-800 hover:bg-emerald-600 text-stone-300 hover:text-white flex items-center justify-center transition" title="WhatsApp: KETADECOR">
+                        <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20moechte%20ein%20Event-Setup%20anfragen." target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-stone-800 hover:bg-emerald-600 text-stone-300 hover:text-white flex items-center justify-center transition" title="WhatsApp: KETADECOR">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Col 2: Erlebnisbereiche -->
+                <!-- Col 2: Kollektionen -->
                 <div>
-                    <h4 class="font-serif text-white uppercase tracking-widest text-sm mb-5 font-semibold">Anlässe & Setups</h4>
+                    <h4 class="font-serif text-white uppercase tracking-widest text-sm mb-5 font-semibold">Anlässe &amp; Setups</h4>
                     <ul class="space-y-3 text-xs uppercase tracking-wider text-stone-400">
                         <li><a href="heiratsantrag.html" class="hover:text-gold transition">Heiratsantrag (6 Sets)</a></li>
-                        <li><a href="verlobung.html" class="hover:text-gold transition">Verlobung & Söz / Nişan</a></li>
+                        <li><a href="verlobung.html" class="hover:text-gold transition">Verlobung &amp; Söz / Nişan</a></li>
                         <li><a href="standesamt.html" class="hover:text-gold transition">Standesamt-Empfang</a></li>
-                        <li><a href="hochzeit.html" class="hover:text-gold transition">Hochzeit & Henna Night</a></li>
-                        <li><a href="extras.html" class="hover:text-gold transition">Kamerateam & Spezialeffekte</a></li>
+                        <li><a href="hochzeit.html" class="hover:text-gold transition">Hochzeit &amp; Henna Night</a></li>
+                        <li><a href="extras.html" class="hover:text-gold transition">Kamerateam &amp; Spezialeffekte</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 3: Standorte -->
                 <div>
                     <h4 class="font-serif text-white uppercase tracking-widest text-sm mb-5 font-semibold">Einsatzgebiete</h4>
-                    <ul class="space-y-3 text-xs text-stone-400">
+                    <ul class="space-y-3 text-xs text-stone-400 leading-relaxed">
                         <li><strong class="text-white uppercase tracking-wider">Region NRW:</strong> Düsseldorf, Köln, Dortmund, Essen, Duisburg, Bonn, Münster, Wuppertal, Aachen</li>
                         <li class="pt-2"><strong class="text-white uppercase tracking-wider">Raum Stuttgart (BW):</strong> Stuttgart, Ludwigsburg, Esslingen, Sindelfingen, Böblingen, Heilbronn</li>
-                        <li class="pt-2"><a href="regionen.html" class="text-gold hover:underline">Alle Städte & Fahrtkosten ansehen →</a></li>
+                        <li class="pt-2"><a href="regionen.html" class="text-gold hover:underline">Alle Städte &amp; Fahrtkosten (0,70 €/km) →</a></li>
                     </ul>
                 </div>
 
@@ -448,10 +576,10 @@
                     <h4 class="font-serif text-white uppercase tracking-widest text-sm mb-5 font-semibold">Direktkontakt</h4>
                     <p class="text-xs text-stone-400 leading-relaxed mb-4">
                         Mo–So: 09:00 – 22:00 Uhr<br>
-                        WhatsApp: <a href="https://wa.me/4917657354779" class="text-gold font-medium">+49 176 57354779</a><br>
+                        WhatsApp: <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20moechte%20ein%20Event-Setup%20anfragen." class="text-gold font-medium">+49 176 57354779</a><br>
                         E-Mail: <a href="mailto:anfrage@ketadecor.de" class="text-gold">anfrage@ketadecor.de</a>
                     </p>
-                    <a href="konfigurator.html" class="inline-flex items-center gap-2 gold-btn text-white text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl font-medium">
+                    <a href="konfigurator.html" class="inline-flex items-center gap-2 gold-btn text-white text-xs uppercase tracking-wider px-5 py-2.5 rounded-full font-medium shadow-sm">
                         <span>Preiskonfigurator</span>
                         <span>→</span>
                     </a>
@@ -460,7 +588,7 @@
 
             <!-- Bottom Line -->
             <div class="pt-8 border-t border-stone-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-                <p>&copy; 2026 KETADECOR. Alle Rechte vorbehalten. 100% Sorglos-Eventdekoration in NRW & Baden-Württemberg.</p>
+                <p>&copy; 2026 KETADECOR. Alle Rechte vorbehalten. 100% Sorglos-Eventdekoration in NRW &amp; Baden-Württemberg.</p>
                 <div class="flex items-center gap-6">
                     <a href="impressum.html" class="hover:text-stone-300 transition">Impressum</a>
                     <a href="datenschutz.html" class="hover:text-stone-300 transition">Datenschutz</a>
@@ -470,28 +598,21 @@
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Quick Contact (Unten rechts - Nur KETADECOR) -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <a href="https://wa.me/4917657354779?text=Hallo%20ketadecor-Team%2C%20ich%20m%C3%B6chte%20ein%20Event-Setup%20anfragen." 
-           target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-3 px-5 py-3.5 rounded-full bg-emerald-600 text-white font-medium text-xs sm:text-sm shadow-xl hover:bg-emerald-500 hover:scale-105 transition-all duration-300 border border-emerald-400/30 group">
-            <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-100"></span>
-            </span>
-            <span class="tracking-widest uppercase font-serif font-semibold">KETADECOR</span>
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
-        </a>
-    </div>
-
-    <!-- Mobile Navigation Toggle Script -->
+    <!-- Mobile Drawer Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            if (btn && menu) {
-                btn.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
+            const openBtn = document.getElementById('mobile-menu-open-btn');
+            const closeBtn = document.getElementById('mobile-menu-close-btn');
+            const drawer = document.getElementById('mobile-drawer');
+
+            if (openBtn && drawer) {
+                openBtn.addEventListener('click', () => {
+                    drawer.classList.remove('translate-x-full');
+                });
+            }
+            if (closeBtn && drawer) {
+                closeBtn.addEventListener('click', () => {
+                    drawer.classList.add('translate-x-full');
                 });
             }
         });
