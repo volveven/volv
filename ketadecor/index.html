@@ -1,1274 +1,588 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ketadecor | Luxury Event &amp; Wedding Design – NRW &amp; Raum Stuttgart</title>
-    <meta name="description" content="Exklusive Eventdekoration &amp; Hochzeitsdesign in ganz NRW und im Raum Stuttgart. Heiratsanträge, Verlobungsfeiern, Standesamt und Traumhochzeiten mit 100% Sorglos-Service inkl. Auf- &amp; Abbau.">
-    
-    <!-- Google Fonts: Cormorant Garamond, Outfit, Playfair Display (exact Lara Event aesthetic) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        surface: '#FFF9F3',
-                        alabaster: '#FAF7F2',
-                        cashmere: '#EFE8DC',
-                        noir: '#2A2520',
-                        espresso: '#1A1C1C',
-                        taupe: '#7E7576',
-                        gold: '#C4A265',
-                        goldDark: '#B38E4F',
-                        hairline: 'rgba(237, 232, 223, 0.8)'
-                    },
-                    fontFamily: {
-                        display: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
-                        editorial: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-                        body: ['"Outfit"', '"Helvetica Neue"', 'sans-serif'],
-                        sans: ['"Outfit"', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        ::selection { background: #E8D5C8; color: #2A2520; }
-        body {
-            font-family: 'Outfit', 'Helvetica Neue', sans-serif;
-            color: #3D3832;
-            background: #FFF9F3;
-            overflow-x: hidden;
-            padding-bottom: 70px;
-        }
-        @media (min-width: 1024px) {
-            body { padding-bottom: 0; }
-        }
-        
-        /* LARA EVENT NAVBAR STYLING */
-        .nav-scrolled {
-            background: rgba(255, 249, 243, 0.96) !important;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(237, 232, 223, 0.8);
-            padding-top: 14px !important;
-            padding-bottom: 14px !important;
-            box-shadow: 0 10px 30px -10px rgba(42, 37, 32, 0.05);
-        }
-        
-        /* BUTTONS (EXACT LARA EVENT DESIGN) */
-        .btn-primary {
-            background: #2A2520;
-            color: #FAF7F2;
-            border: none;
-            border-radius: 32px;
-            padding: 16px 36px;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .btn-primary:hover {
-            background: #C4A265;
-            color: #FAF7F2;
-            transform: translateY(-1px);
-        }
-        
-        .btn-gold {
-            background: #C4A265;
-            color: #FAF7F2;
-            border: none;
-            border-radius: 32px;
-            padding: 16px 36px;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .btn-gold:hover {
-            background: #B38E4F;
-            transform: translateY(-1px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #2A2520;
-            color: #2A2520;
-            border-radius: 32px;
-            padding: 15px 35px;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .btn-outline:hover {
-            background: #2A2520;
-            color: #FAF7F2;
-            transform: translateY(-1px);
-        }
-
-        /* LUXURY CARDS (LARA EVENT DESIGN) */
-        .luxury-card {
-            background: #FFFFFF;
-            border: 1px solid rgba(237, 232, 223, 0.8);
-            border-radius: 20px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-        .luxury-card:hover {
-            transform: translateY(-4px);
-            border-color: #C4A265;
-            box-shadow: 0 20px 48px rgba(42, 37, 32, 0.08);
-        }
-
-        /* SECTION LABELS WITH DELICATE HAIRLINE RULE */
-        .section-label {
-            font-size: 11px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: #C4A265;
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-        .section-label::before {
-            content: '';
-            width: 36px;
-            height: 1px;
-            background: #C4A265;
-            display: inline-block;
-        }
-        .section-label.centered {
-            justify-content: center;
-        }
-        .section-label.centered::after {
-            content: '';
-            width: 36px;
-            height: 1px;
-            background: #C4A265;
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KETADECOR — Haute Couture Event- &amp; Hochzeitsdekoration</title>
+  <meta name="description" content="Exklusive Dekoration für Heiratsanträge, Verlobungsfeiern, Standesamt und Traumhochzeiten. 100% Sorglos-Service inkl. Auf- und Abbau an Ihrer Wunsch-Location.">
+  <link rel="stylesheet" href="assets/css/lara-luxury.css">
 </head>
-<body class="bg-surface text-noir">
+<body>
 
-    <!-- =====================================================================
-         TOP ANNOUNCEMENT BAR (SUBTLE & EXCLUSIVE)
-         ===================================================================== -->
-    <div class="w-full bg-[#EFE8DC]/80 border-b border-hairline py-2 px-6 lg:px-12 text-[10px] uppercase tracking-[0.25em] text-[#7E7576] hidden sm:flex justify-between items-center z-50 relative">
-        <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-[#C4A265]"></span>
-            <span>DUAL-HUB NRW &amp; RAUM STUTTGART · 100% SORGLOS-SERVICE INKL. PÜNKTLICHEM AUF- &amp; ABBAU</span>
-        </div>
-        <div class="flex items-center gap-6">
-            <a href="tel:+4917657354779" class="hover:text-gold transition">Hotline: +49 176 57354779</a>
-            <span class="opacity-40">|</span>
-            <span>Mo–So 09:00 – 22:00 Uhr</span>
-        </div>
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <span>EXKLUSIVER VOR-ORT-SERVICE</span> &middot; 100% SORGLOS-SERVICE INKL. AUF- &amp; ABBAU &middot; <span>WUNSCH-LOCATION</span>
+  </div>
+
+  <!-- HAUTE COUTURE NAVBAR -->
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="nav-logo">
+      <span>KETA<b>DECOR</b></span>
+      <span class="logo-dot"></span>
+    </a>
+    
+    <div class="nav-links">
+      <a href="index.html" class="active">Startseite</a>
+      <a href="gallery.html" >Setups & Galerie</a>
+      <a href="heiratsantrag.html" >Heiratsantrag</a>
+      <a href="verlobung.html" >Verlobung</a>
+      <a href="standesamt.html" >Standesamt</a>
+      <a href="hochzeit.html" >Traumhochzeit</a>
+      <a href="extras.html" >Extras</a>
+      <a href="faq.html" >FAQ</a>
+      <a href="about.html" >Über uns</a>
+      <a href="inquiry.html" class="nav-cta">
+        <span>Anfragen</span>
+        <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
 
-    <!-- =====================================================================
-         NAVIGATION (EXACT LARA EVENT COM & DE DESIGN)
-         ===================================================================== -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 sm:px-12 py-5 sm:py-6 transition-all duration-400 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="index.html" class="flex flex-col group">
-            <span class="font-display text-2xl sm:text-3xl tracking-[4px] uppercase text-noir font-normal">ketadecor</span>
-            <span class="text-[9px] uppercase tracking-[3px] text-taupe font-normal -mt-0.5">Luxury Event &amp; Wedding Design</span>
-        </a>
+    <button class="nav-menu-btn" id="drawerOpenBtn" aria-label="Menü öffnen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
 
-        <!-- Desktop Navigation Links -->
-        <div class="hidden lg:flex items-center gap-8 xl:gap-10 text-[11px] uppercase tracking-[2px] text-noir font-normal">
-            <a href="#leistungen" class="hover:text-gold transition">Leistungen</a>
-            <a href="#pakete" class="hover:text-gold transition">Pakete</a>
-            <a href="#ablauf" class="hover:text-gold transition">Ablauf</a>
-            <a href="#einsatzgebiet" class="hover:text-gold transition">Einsatzgebiet</a>
-            <a href="#galerie" class="hover:text-gold transition">Galerie</a>
-            <a href="#warum-wir" class="hover:text-gold transition">Über uns</a>
-            <a href="#kontakt" class="hover:text-gold transition">Kontakt</a>
+  <!-- MOBILE DRAWER BACKDROP -->
+  <div class="mobile-drawer-backdrop" id="drawerBackdrop"></div>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="nav-logo">
+        <span>KETA<b>DECOR</b></span>
+        <span class="logo-dot"></span>
+      </div>
+      <button class="nav-menu-btn" id="drawerCloseBtn" aria-label="Menü schließen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="drawer-links">
+      <a href="index.html" class="active"><span>Startseite</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="gallery.html" ><span>Setups & Galerie</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="heiratsantrag.html" ><span>Heiratsantrag</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="verlobung.html" ><span>Verlobung</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="standesamt.html" ><span>Standesamt</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="hochzeit.html" ><span>Traumhochzeit</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="extras.html" ><span>Extras</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="faq.html" ><span>FAQ</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="about.html" ><span>Über uns</span><svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="inquiry.html" class="nav-cta" style="margin-top: 16px; justify-content: center;">
+        <span>Jetzt Anfragen</span>
+        <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="drawer-footer">
+      <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8C8276; margin-bottom: 8px;">Direktkontakt</div>
+      <a href="https://wa.me/4917642055627?text=Hallo%20Ketadecor%20Team%2C%20ich%20moechte%20eine%20exklusive%20Dekoration%20anfragen." target="_blank" style="display: flex; align-items: center; color: #2A2520; font-weight: 500; font-size: 14px; margin-bottom: 6px;">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.952 1.18-.175.2-.351.226-.652.075-.301-.15-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.675-2.085-.175-.3-.019-.462.131-.612.136-.135.301-.351.452-.527.15-.175.2-.3.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.632-.927-2.233-.244-.585-.492-.506-.677-.515l-.577-.01c-.2 0-.526.075-.802.376s-1.053 1.028-1.053 2.508c0 1.48 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.279.495 1.716.634.721.229 1.377.197 1.895.12.578-.087 1.78-.727 2.031-1.429.25-.702.25-1.304.175-1.429-.075-.125-.276-.2-.577-.35zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.174L2 22l4.981-1.405A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.167c-1.644 0-3.17-.492-4.453-1.336l-.32-.209-2.956.833.847-2.882-.228-.337A8.134 8.134 0 013.833 12c0-4.502 3.665-8.167 8.167-8.167 4.502 0 8.167 3.665 8.167 8.167 0 4.502-3.665 8.167-8.167 8.167z"/></svg> <span>WhatsApp Concierge</span>
+      </a>
+      <a href="tel:+4917642055627" style="display: flex; align-items: center; color: #8C8276; font-size: 13px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> <span>+49 176 42055627</span>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- SPLIT HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-label">
+          <span></span>
+          Exklusives Eventdesign
         </div>
-
-        <!-- Right Header Action -->
-        <div class="flex items-center gap-4">
-            <a href="#kontakt" class="hidden sm:inline-flex btn-primary !py-2.5 !px-6 text-[10px]">
-                <span>Wunschtermin anfragen</span>
-            </a>
-            
-            <button onclick="openWhatsApp('Allgemeine Anfrage')" class="w-10 h-10 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition shadow-sm" title="Direkt per WhatsApp anfragen" aria-label="WhatsApp">
-                <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            </button>
-
-            <!-- Mobile Hamburger Button -->
-            <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-full border border-hairline flex items-center justify-center text-noir hover:border-gold transition" aria-label="Menü öffnen">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7h16M4 12h16M4 17h16"/></svg>
-            </button>
+        <h1>
+          Romantische Momente, <em>maßgeschneidert</em> für Ihre Liebesgeschichte
+        </h1>
+        <p class="hero-p">
+          Wir verwandeln Ihre Vision in eine atemberaubende Kulisse. Mit handgefertigten Blütenarrangements, stimmungsvollem Kerzenmeer und meisterhafter Lichtarchitektur &ndash; inklusive verlässlichem Auf- und Abbau direkt an Ihrer Wunsch-Location.
+        </p>
+        <div class="hero-btns">
+          <a href="inquiry.html" class="btn-primary">
+            <span>Verfügbarkeit anfragen</span>
+            <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="gallery.html" class="btn-secondary">
+            <span>Setups entdecken</span>
+          </a>
         </div>
-    </nav>
-
-    <!-- MOBILE FULLSCREEN DRAWER -->
-    <div id="mobileDrawer" class="fixed inset-0 z-50 bg-surface flex flex-col justify-between p-8 transform translate-x-full transition-transform duration-500 ease-in-out lg:hidden overflow-y-auto">
-        <div class="flex items-center justify-between pb-6 border-b border-hairline">
-            <a href="index.html" class="flex flex-col">
-                <span class="font-display text-2xl tracking-[3px] uppercase text-noir">ketadecor</span>
-                <span class="text-[9px] uppercase tracking-[2px] text-taupe font-normal">Luxury Event Design</span>
-            </a>
-            <button id="closeMobileDrawerBtn" class="w-10 h-10 rounded-full border border-hairline flex items-center justify-center text-noir" aria-label="Menü schließen">
-                <svg class="w-5 h-5 text-[#2A2520]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-val">100+</div>
+            <div class="hero-stat-label">Perfekte Momente</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">5.0</div>
+            <div class="hero-stat-label">Kundenzufriedenheit</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">100%</div>
+            <div class="hero-stat-label">Sorglos-Garantie</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">24/7</div>
+            <div class="hero-stat-label">Concierge Service</div>
+          </div>
         </div>
+      </div>
 
-        <div class="py-8 space-y-6 text-center text-sm uppercase tracking-[3px] font-normal text-noir">
-            <div><a href="#leistungen" class="mobile-nav-link hover:text-gold transition block py-2">Leistungen</a></div>
-            <div><a href="#pakete" class="mobile-nav-link hover:text-gold transition block py-2">Pakete &amp; Investment</a></div>
-            <div><a href="#ablauf" class="mobile-nav-link hover:text-gold transition block py-2">Ablauf</a></div>
-            <div><a href="#einsatzgebiet" class="mobile-nav-link hover:text-gold transition block py-2">Einsatzgebiet</a></div>
-            <div><a href="#galerie" class="mobile-nav-link hover:text-gold transition block py-2">Galerie</a></div>
-            <div><a href="#warum-wir" class="mobile-nav-link hover:text-gold transition block py-2">Über uns</a></div>
-            <div><a href="#kontakt" class="mobile-nav-link hover:text-gold transition block py-2">Kontakt</a></div>
+      <div>
+        <div class="hero-img">
+          <img src="images/32.jpg" alt="Exklusive Ketadecor Kulisse mit Cold Sparklers und Kerzenmeer" loading="eager">
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="pt-6 border-t border-hairline space-y-3">
-            <a href="#kontakt" class="btn-primary w-full text-center mobile-nav-link">
-                <span>Wunschtermin anfragen</span>
-            </a>
-            <button onclick="openWhatsApp('Mobile Drawer Anfrage')" class="w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs uppercase tracking-[2px] font-medium flex items-center justify-center gap-2 transition">
-                <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                <span>Direkt per WhatsApp</span>
-            </button>
-            <p class="text-[11px] text-center text-taupe pt-2">
-                Hotline: +49 176 57354779 · Mo–So 09:00 – 22:00 Uhr
+  <!-- LEISTUNGEN ÜBERSICHT -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label center">
+        <span></span>
+        Unsere Kollektionen
+        <span></span>
+      </div>
+      <h2 class="section-title">Momente erschaffen, die <em>für immer</em> bleiben</h2>
+      <p class="section-sub">
+        Jedes Ereignis trägt eine eigene Seele. Wählen Sie Ihren Anlass und entdecken Sie maßgeschneiderte Designkonzepte.
+      </p>
+
+      <div class="services-grid">
+        <!-- Service 1: Heiratsantrag -->
+        <div class="service-card">
+          <div>
+            <div class="service-card-img">
+              <img src="images/11.jpg" alt="Exklusiver Heiratsantrag im Blütenherz" loading="lazy">
+            </div>
+            <h3 class="service-name">Heiratsantrag</h3>
+            <p class="service-desc">
+              Vom intimen Kerzenmeer im Salon bis zur grandiosen Outdoor-Inszenierung mit Riesenherz, Leuchtbuchstaben und Funkenfontänen.
             </p>
+          </div>
+          <a href="heiratsantrag.html" class="service-link">
+            <span>Details &amp; Konzepte</span>
+            <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
+
+        <!-- Service 2: Verlobungsfeier -->
+        <div class="service-card">
+          <div>
+            <div class="service-card-img">
+              <img src="images/9.jpg" alt="Edle Verlobungsfeier im Salon" loading="lazy">
+            </div>
+            <h3 class="service-name">Verlobungsfeier</h3>
+            <p class="service-desc">
+              Elegante Kulissen für das Versprechen fürs Leben. Florale Rundbögen, Acrylsäulen, Ringtabletts und harmonische Beleuchtung.
+            </p>
+          </div>
+          <a href="verlobung.html" class="service-link">
+            <span>Details &amp; Konzepte</span>
+            <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Service 3: Standesamt -->
+        <div class="service-card">
+          <div>
+            <div class="service-card-img">
+              <img src="images/37.jpg" alt="Standesamt Empfang mit weißem Blütenbogen" loading="lazy">
+            </div>
+            <h3 class="service-name">Standesamt &amp; Empfang</h3>
+            <p class="service-desc">
+              Der erste feierliche Schritt als Ehepaar. Romantische Freitreppen-Arrangements, Stehtisch-Hussen und eleganter Sektempfang.
+            </p>
+          </div>
+          <a href="standesamt.html" class="service-link">
+            <span>Details &amp; Konzepte</span>
+            <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Service 4: Hochzeit -->
+        <div class="service-card">
+          <div>
+            <div class="service-card-img">
+              <img src="images/36.jpg" alt="Traumhochzeit Freitreppe mit Blütenbäumen" loading="lazy">
+            </div>
+            <h3 class="service-name">Traumhochzeit &amp; Brauttisch</h3>
+            <p class="service-desc">
+              Monumentale Brauttisch-Inszenierungen, florale Raumkonzepte, Centerpieces und ein Lichtermeer für Ihren schönsten Tag.
+            </p>
+          </div>
+          <a href="hochzeit.html" class="service-link">
+            <span>Details &amp; Konzepte</span>
+            <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Service 5: Henna-Abend -->
+        <div class="service-card">
+          <div>
+            <div class="service-card-img">
+              <img src="images/18.jpg" alt="Traditioneller Henna-Abend mit Baldachin" loading="lazy">
+            </div>
+            <h3 class="service-name">Traditionelle Feierlichkeiten</h3>
+            <p class="service-desc">
+              Prachtvolle Thron-Baldachine, edle Samtkissen, orientalische Windlichter und maßgeschneiderte traditionelle Veredelungen.
+            </p>
+          </div>
+          <a href="verlobung.html" class="service-link">
+            <span>Details &amp; Konzepte</span>
+            <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Service 6: Spezialeffekte -->
+        <div class="service-card">
+          <div>
+            <div class="service-card-img">
+              <img src="images/38.jpg" alt="Spezialeffekte und VIP Transporter" loading="lazy">
+            </div>
+            <h3 class="service-name">Spezialeffekte &amp; Extras</h3>
+            <p class="service-desc">
+              Schwerer Bodennebel wie auf Wolken, pyrotechnische Cold Sparkler Fontänen, XXL Rosenherzen und VIP Champagner-Service.
+            </p>
+          </div>
+          <a href="extras.html" class="service-link">
+            <span>Details &amp; Konzepte</span>
+            <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- =====================================================================
-         1. HERO SECTION (EXACT LARA EVENT COM SPLIT-GRID WITH STATS)
-         ===================================================================== -->
-    <header class="min-h-screen flex items-center bg-surface relative pt-32 pb-20 px-6 sm:px-12 overflow-hidden">
-        <div class="max-w-[1240px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
-            <!-- Left Editorial Text -->
-            <div class="lg:col-span-7 space-y-7">
-                <div class="section-label">
-                    <span>DUAL-HUB NRW &amp; RAUM STUTTGART</span>
-                </div>
-                
-                <h1 class="font-display text-4xl sm:text-6xl xl:text-7xl leading-[1.1] text-noir font-normal">
-                    Romantische Momente, <em class="font-editorial italic text-taupe">maßgeschneidert</em> für eure Liebesgeschichte.
-                </h1>
-                
-                <p class="text-base sm:text-lg font-light text-taupe leading-relaxed max-w-xl">
-                    Wir erschaffen unvergessliche Augenblicke in ganz <strong class="text-noir font-normal">Nordrhein-Westfalen</strong> und im <strong class="text-noir font-normal">Großraum Stuttgart</strong> — von intimen Kulissen im Kerzenmeer bis hin zu opulenten Schlosshochzeiten. Inklusive 100% Sorglos-Service mit pünktlicher Anlieferung, bezugsfertigem Aufbau und diskretem Abbau.
-                </p>
+  <!-- 4 SCHRITTE ABLAUF (laraevent.de Struktur) -->
+  <section class="section alt-bg">
+    <div class="section-inner">
+      <div class="section-label center">
+        <span></span>
+        Der Ablauf
+        <span></span>
+      </div>
+      <h2 class="section-title">Vier Schritte zu Ihrem <em>perfekten</em> Moment</h2>
+      <p class="section-sub">
+        Planung sollte pure Vorfreude sein. Wir übernehmen die vollständige logistische und gestalterische Verantwortung.
+      </p>
 
-                <div class="flex flex-wrap items-center gap-4 pt-2">
-                    <a href="#kontakt" class="btn-primary">
-                        <span>Jetzt anfragen</span>
-                    </a>
-                    <a href="#leistungen" class="text-xs uppercase tracking-[2px] text-taupe hover:text-gold transition inline-flex items-center gap-1 group py-3">
-                        <span>Unsere Leistungen entdecken</span>
-                        <svg class="w-3.5 h-3.5 inline-block ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                    </a>
-                </div>
-
-                <!-- Stats Counter (Lara Event COM Exact Component) -->
-                <div class="pt-8 mt-6 border-t border-hairline grid grid-cols-2 sm:grid-cols-4 gap-6">
-                    <div>
-                        <div class="font-display text-3xl sm:text-4xl text-noir font-normal">100+</div>
-                        <div class="text-[10px] uppercase tracking-[2.5px] text-taupe mt-1">Events &amp; Anträge</div>
-                    </div>
-                    <div>
-                        <div class="font-display text-3xl sm:text-4xl text-noir font-normal flex items-center gap-1">
-                            5.0 <svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        </div>
-                        <div class="text-[10px] uppercase tracking-[2.5px] text-taupe mt-1">Kundenzufriedenheit</div>
-                    </div>
-                    <div>
-                        <div class="font-display text-3xl sm:text-4xl text-noir font-normal">24/7</div>
-                        <div class="text-[10px] uppercase tracking-[2.5px] text-taupe mt-1">WhatsApp Service</div>
-                    </div>
-                    <div>
-                        <div class="font-display text-3xl sm:text-4xl text-noir font-normal">100%</div>
-                        <div class="text-[10px] uppercase tracking-[2.5px] text-taupe mt-1">Sorglos-Garantie</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right 3/4 Luxury Portrait Image Card (Lara Event COM Style) -->
-            <div class="lg:col-span-5">
-                <div class="w-full rounded-[24px] overflow-hidden shadow-[0_24px_64px_rgba(42,37,32,0.12)] border border-hairline bg-white relative group">
-                    <img src="images/32.jpg" alt="ketadecor Luxury Eventdekoration mit Cold Sparklers und Kerzenmeer" class="w-full h-auto aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-hairline shadow-sm">
-                        <div class="text-[10px] uppercase tracking-[2px] text-gold font-medium">Bestseller Inszenierung</div>
-                        <div class="font-display text-lg text-noir font-normal">Signature Sparkle &amp; Glow</div>
-                        <div class="text-xs text-taupe font-light mt-0.5">Blumenbogen, 60x Kerzenmeer &amp; Cold Sparklers Funken</div>
-                    </div>
-                </div>
-            </div>
-
+      <div class="process-grid">
+        <div class="process-item">
+          <div class="process-num">01</div>
+          <div class="process-title">Unverbindliche Anfrage</div>
+          <p class="process-desc">
+            Teilen Sie uns Ihren Wunsch-Anlass, das Datum und Ihre Vorstellungen mit &ndash; ganz unkompliziert per Formular oder direkt via WhatsApp.
+          </p>
         </div>
-    </header>
 
-    <!-- =====================================================================
-         2. UNSERE LEISTUNGEN (LARA EVENT DE FORMAT WITH KETADECOR ASSETS)
-         ===================================================================== -->
-    <section id="leistungen" class="py-24 sm:py-32 px-6 sm:px-12 bg-white border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="text-center max-w-2xl mx-auto mb-16 sm:mb-24">
-                <div class="section-label centered">
-                    <span>UNSERE LEISTUNGEN</span>
-                </div>
-                <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal mb-4">
-                    Augenblicke erschaffen, die für immer bleiben
-                </h2>
-                <p class="text-base text-taupe font-light leading-relaxed">
-                    Jeder Anlass verdient eine unverwechselbare Atmosphäre. Mit klaren Linien, opulenter Floristik und sanftem Kerzenschein erschaffen wir die perfekte Kulisse für eure Meilensteine.
-                </p>
-            </div>
-
-            <!-- 6 Service Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-                
-                <!-- 1. Heiratsantrag -->
-                <div class="luxury-card overflow-hidden flex flex-col justify-between group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="images/32.jpg" alt="Heiratsantrag im Kerzenmeer mit Blumenbogen und Funken" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-noir text-[10px] uppercase tracking-[2px] px-3.5 py-1.5 rounded-full border border-hairline font-medium">
-                            Romantik
-                        </span>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[2.5px] text-gold font-medium mb-1.5">01 / Der Kniefall</div>
-                            <h3 class="font-display text-2xl text-noir font-normal mb-3">Heiratsantrag &amp; Kniefall</h3>
-                            <p class="text-sm text-taupe font-light leading-relaxed mb-6">
-                                Maßgeschneiderte Antrags-Kulissen mit Rund- oder Herz-Blumenbogen, romantischem Kerzenmeer in Glaszylindern, Leuchtschrift MARRY ME, zartem Rosenblütenpfad und zündenden Funkenfontänen.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-hairline flex items-center justify-between">
-                            <span class="text-xs text-taupe">ab 349 € inkl. Auf- &amp; Abbau</span>
-                            <button onclick="openWhatsApp('Heiratsantrag Anfrage')" class="text-xs uppercase tracking-[1.5px] text-noir font-medium hover:text-gold transition inline-flex items-center gap-1 group">
-                                <span>Anfragen</span>
-                                <svg class="w-3.5 h-3.5 inline-block ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. Verlobung -->
-                <div class="luxury-card overflow-hidden flex flex-col justify-between group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="images/9.jpg" alt="Verlobungsfeier im Salon mit floraler Kulisse und Dinnertafel" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-noir text-[10px] uppercase tracking-[2px] px-3.5 py-1.5 rounded-full border border-hairline font-medium">
-                            Eleganz
-                        </span>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[2.5px] text-gold font-medium mb-1.5">02 / Festliche Feier</div>
-                            <h3 class="font-display text-2xl text-noir font-normal mb-3">Verlobungsfeiern</h3>
-                            <p class="text-sm text-taupe font-light leading-relaxed mb-6">
-                                Stilvolle Kulissen für Zuhause oder im Saal: Couture Chiara-Bogenwände, Acrylsäulen, festlich gedeckte Dinnertafeln mit Kristallgläsern, Ringtablett und traditionelles Bräutigam-Kaffeeset.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-hairline flex items-center justify-between">
-                            <span class="text-xs text-taupe">Individuelles Angebot</span>
-                            <button onclick="openWhatsApp('Verlobungsfeier Anfrage')" class="text-xs uppercase tracking-[1.5px] text-noir font-medium hover:text-gold transition inline-flex items-center gap-1 group">
-                                <span>Anfragen</span>
-                                <svg class="w-3.5 h-3.5 inline-block ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Standesamt -->
-                <div class="luxury-card overflow-hidden flex flex-col justify-between group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="images/37.jpg" alt="Standesamt Empfang mit weißem Blütenbogen und Stehtischen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-noir text-[10px] uppercase tracking-[2px] px-3.5 py-1.5 rounded-full border border-hairline font-medium">
-                            Feierlich
-                        </span>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[2.5px] text-gold font-medium mb-1.5">03 / Der Auszug</div>
-                            <h3 class="font-display text-2xl text-noir font-normal mb-3">Standesamt-Empfang</h3>
-                            <p class="text-sm text-taupe font-light leading-relaxed mb-6">
-                                Kleiner Rahmen, großer Moment: Weißer Blütenbogen vor dem Standesamt, personalisiertes Willkommensschild auf Holzstaffelei, Stehtische mit Stretchhussen, Sektkühler &amp; Kristall-Sektgläser.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-hairline flex items-center justify-between">
-                            <span class="text-xs text-taupe">ab 299 € inkl. Service</span>
-                            <button onclick="openWhatsApp('Standesamt Empfang Anfrage')" class="text-xs uppercase tracking-[1.5px] text-noir font-medium hover:text-gold transition inline-flex items-center gap-1 group">
-                                <span>Anfragen</span>
-                                <svg class="w-3.5 h-3.5 inline-block ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Hochzeit -->
-                <div class="luxury-card overflow-hidden flex flex-col justify-between group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="images/36.jpg" alt="Traumhochzeit Freitreppe mit Brautpaar und floralen Bäumen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-noir text-[10px] uppercase tracking-[2px] px-3.5 py-1.5 rounded-full border border-hairline font-medium">
-                            Grand Luxury
-                        </span>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[2.5px] text-gold font-medium mb-1.5">04 / Der Große Tag</div>
-                            <h3 class="font-display text-2xl text-noir font-normal mb-3">Traumhochzeit &amp; Brauttisch</h3>
-                            <p class="text-sm text-taupe font-light leading-relaxed mb-6">
-                                Monumentale Brauttische mit opulenten floralen Kaskaden, Lichterhimmel, goldene Platzteller, Kerzenleuchter, Servietten-Inszenierung und vollflächiges Saaldekor für unvergessliche Hochzeitsfeste.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-hairline flex items-center justify-between">
-                            <span class="text-xs text-taupe">Maßgeschneidert</span>
-                            <button onclick="openWhatsApp('Hochzeitsdekor Anfrage')" class="text-xs uppercase tracking-[1.5px] text-noir font-medium hover:text-gold transition inline-flex items-center gap-1 group">
-                                <span>Anfragen</span>
-                                <svg class="w-3.5 h-3.5 inline-block ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Henna -->
-                <div class="luxury-card overflow-hidden flex flex-col justify-between group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="images/18.jpg" alt="Traditioneller Henna-Abend mit Thron Baldachin und Samtkissen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-noir text-[10px] uppercase tracking-[2px] px-3.5 py-1.5 rounded-full border border-hairline font-medium">
-                            Tradition
-                        </span>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[2.5px] text-gold font-medium mb-1.5">05 / Festlicher Abend</div>
-                            <h3 class="font-display text-2xl text-noir font-normal mb-3">Traditioneller Henna-Abend</h3>
-                            <p class="text-sm text-taupe font-light leading-relaxed mb-6">
-                                Prunkvolle Inszenierung mit edlem Henna-Thron, Baldachin, weichen Samtkissen, orientalischen Teppichen, Bodenlaternen, warmem Kerzenlicht und Funkenfontänen für einen atemberaubenden Einzug.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-hairline flex items-center justify-between">
-                            <span class="text-xs text-taupe">Individuelle Absprache</span>
-                            <button onclick="openWhatsApp('Henna-Abend Anfrage')" class="text-xs uppercase tracking-[1.5px] text-noir font-medium hover:text-gold transition inline-flex items-center gap-1 group">
-                                <span>Anfragen</span>
-                                <svg class="w-3.5 h-3.5 inline-block ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. Extras -->
-                <div class="luxury-card overflow-hidden flex flex-col justify-between group">
-                    <div class="relative overflow-hidden aspect-[4/3]">
-                        <img src="images/38.jpg" alt="Ketadecor Transporter mit riesigem Rosenstrauß und Spezialeffekten" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-noir text-[10px] uppercase tracking-[2px] px-3.5 py-1.5 rounded-full border border-hairline font-medium">
-                            Spezialeffekte
-                        </span>
-                    </div>
-                    <div class="p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[10px] uppercase tracking-[2.5px] text-gold font-medium mb-1.5">06 / Spezialeffekte &amp; Foto</div>
-                            <h3 class="font-display text-2xl text-noir font-normal mb-3">Extras, Funkenmagie &amp; 4K-Film</h3>
-                            <p class="text-sm text-taupe font-light leading-relaxed mb-6">
-                                Rauchfreie Cold Sparklers Funkenfontänen per Funk, schwerer Bodennebel („Dancing on Clouds“), XXL-Rosensträuße mit 101 echten Rosen und unser professionelles 4K-Kamerateam inkl. Drohnenbegleitung.
-                            </p>
-                        </div>
-                        <div class="pt-4 border-t border-hairline flex items-center justify-between">
-                            <span class="text-xs text-taupe">Zubuchbar zu jedem Setup</span>
-                            <button onclick="openWhatsApp('Extras & Kamerateam Anfrage')" class="text-xs uppercase tracking-[1.5px] text-noir font-medium hover:text-gold transition inline-flex items-center gap-1 group">
-                                <span>Anfragen</span>
-                                <svg class="w-3.5 h-3.5 inline-block ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="process-item">
+          <div class="process-num">02</div>
+          <div class="process-title">Individuelles Konzept</div>
+          <p class="process-desc">
+            Wir stimmen Farbtöne, Blütenpracht und Lichtelemente exakt auf Ihre Wunsch-Location ab und erstellen ein maßgeschneidertes Angebot.
+          </p>
         </div>
-    </section>
 
-    <!-- =====================================================================
-         3. INVESTMENT & PAKETE (EXACT LARA EVENT COM PRICING CARDS - NO CALCULATOR!)
-         ===================================================================== -->
-    <section id="pakete" class="py-24 sm:py-32 px-6 sm:px-12 bg-surface border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="text-center max-w-2xl mx-auto mb-16 sm:mb-24">
-                <div class="section-label centered">
-                    <span>INVESTMENT &amp; PAKETE</span>
-                </div>
-                <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal mb-4">
-                    Jede Liebesgeschichte verdient ihre perfekte Kulisse
-                </h2>
-                <p class="text-base text-taupe font-light leading-relaxed">
-                    Transparente Grundpakete inklusive 100% Sorglos-Service (Lieferung, pünktlicher bezugsfertiger Auf- und Abbau). Faire Fahrtkostenpauschale von nur 0,70 €/km ab Düsseldorf bzw. Stuttgart.
-                </p>
-            </div>
-
-            <!-- 3 Pricing Cards (Lara Event COM Format) -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 items-stretch">
-                
-                <!-- Package 1: Intimate -->
-                <div class="luxury-card p-8 sm:p-10 flex flex-col justify-between">
-                    <div>
-                        <div class="text-[10px] uppercase tracking-[3px] text-taupe font-medium mb-2">Kollektion 01</div>
-                        <h3 class="font-display text-3xl text-noir font-normal mb-3">Intimate Romance</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed mb-6">
-                            Eine intime, private Kulisse im zarten Kerzenschein. Perfekt für Wohnzimmer, Hotelsuiten oder ruhige Gartenpavillons.
-                        </p>
-                        
-                        <div class="font-display text-4xl text-noir font-normal mb-8 pb-6 border-b border-hairline">
-                            ab 349 €
-                            <span class="text-xs font-sans text-taupe block font-light mt-1">inkl. Auf- &amp; Abbau vor Ort</span>
-                        </div>
-
-                        <ul class="space-y-3.5 text-xs text-noir mb-8">
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>30x LED-Kerzen in gestaffelten Glaszylindern</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Zarter Teppichläufer (Cremeweiß oder Rot)</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Romantischer Pfad aus echten Rosenblättern</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Romantische Leuchtschrift ("MARRY ME" oder "LOVE")</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Bluetooth-Soundbox für euren Lieblingssong</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>100% Sorglos-Service: Pünktlicher Auf- &amp; Abbau</span></li>
-                        </ul>
-                    </div>
-
-                    <button onclick="openWhatsApp('Buchung Intimate Romance (349 EUR)')" class="btn-outline w-full text-center">
-                        <span>Paket anfragen</span>
-                    </button>
-                </div>
-
-                <!-- Package 2: Signature (Bestseller / Elevated) -->
-                <div class="luxury-card p-8 sm:p-10 flex flex-col justify-between border-2 !border-gold relative shadow-xl lg:-translate-y-3 bg-white">
-                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-noir text-gold text-[9px] uppercase tracking-[3px] px-4 py-1.5 rounded-full font-medium shadow-sm">
-                        Beliebtestes Paket · Bestseller
-                    </div>
-                    
-                    <div>
-                        <div class="text-[10px] uppercase tracking-[3px] text-gold font-medium mb-2 mt-2">Kollektion 02</div>
-                        <h3 class="font-display text-3xl text-noir font-normal mb-3">Signature Sparkle &amp; Glow</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed mb-6">
-                            Unser gefeiertes Aushängeschild: Atemberaubender Blumenbogen, üppiges Kerzenmeer und zündende Funkenfontänen.
-                        </p>
-                        
-                        <div class="font-display text-4xl text-noir font-normal mb-8 pb-6 border-b border-hairline">
-                            ab 549 €
-                            <span class="text-xs font-sans text-taupe block font-light mt-1">inkl. Auf- &amp; Abbau vor Ort</span>
-                        </div>
-
-                        <ul class="space-y-3.5 text-xs text-noir mb-8">
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Großer Blumenbogen oder Blumenherz</strong> (Weiß oder Rot)</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>60x LED-Kerzen</strong> in edlen Glaszylindern</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>2x Cold Sparklers Funkenfontänen</strong> per Funk (rauchfrei)</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Dichter Teppich aus frischen Rosenblättern</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Leuchtbuchstaben &amp; Laternen im Kerzenschein</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Bluetooth-Soundbox &amp; Vorbereitung des Kniefalls</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>100% Sorglos-Service: Kompletter Auf- &amp; Abbau</span></li>
-                        </ul>
-                    </div>
-
-                    <button onclick="openWhatsApp('Buchung Signature Sparkle & Glow (549 EUR)')" class="btn-gold w-full text-center">
-                        <span>Paket anfragen</span>
-                    </button>
-                </div>
-
-                <!-- Package 3: Royal Grand Luxury -->
-                <div class="luxury-card p-8 sm:p-10 flex flex-col justify-between">
-                    <div>
-                        <div class="text-[10px] uppercase tracking-[3px] text-taupe font-medium mb-2">Kollektion 03</div>
-                        <h3 class="font-display text-3xl text-noir font-normal mb-3">Royal Grand Luxury</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed mb-6">
-                            Die maximale VIP-Inszenierung: Vollflächige Blütenarchitektur, 4x Funkenfontänen, dichter Bodennebel und Champagnertafel.
-                        </p>
-                        
-                        <div class="font-display text-4xl text-noir font-normal mb-8 pb-6 border-b border-hairline">
-                            ab 849 €
-                            <span class="text-xs font-sans text-taupe block font-light mt-1">inkl. Auf- &amp; Abbau vor Ort</span>
-                        </div>
-
-                        <ul class="space-y-3.5 text-xs text-noir mb-8">
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Monumentale Blütenkulisse</strong> mit opulenter Floristik</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>80x Kerzenmeer</strong> &amp; Bodenlaternen gestaffelt</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>4x Cold Sparklers Funkenfontänen</strong> synchron per Funk</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Schwerer Bodennebel</strong> („Dancing on Clouds“)</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Edle Champagnertafel mit Platztellern &amp; Kristallgläsern</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>Optional: 4K-Foto- &amp; Videoteam mit Drohne zubuchbar</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0 mr-2.5 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span>100% Sorglos-Service: Kompletter VIP-Auf- &amp; Abbau</span></li>
-                        </ul>
-                    </div>
-
-                    <button onclick="openWhatsApp('Buchung Royal Grand Luxury (849 EUR)')" class="btn-outline w-full text-center">
-                        <span>Paket anfragen</span>
-                    </button>
-                </div>
-
-            </div>
-
-            <!-- Guarantee Note under Pricing -->
-            <div class="mt-12 text-center text-xs text-taupe max-w-xl mx-auto leading-relaxed">
-                <svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C16 16.5 19 13 19 9.5C19 5.36 15.87 2 12 2C8.13 2 5 5.36 5 9.5C5 13 8 16.5 12 21Z"/><circle cx="12" cy="9.5" r="3" fill="currentColor"/></svg> <strong class="text-noir font-medium">Transparente Anfahrt:</strong> Wir berechnen lediglich 0,70 € pro gefahrenem Kilometer (einfache Strecke ab Düsseldorf oder Stuttgart). Die Rückfahrt und der Abbau sind für euch immer kostenfrei.
-            </div>
-
+        <div class="process-item">
+          <div class="process-num">03</div>
+          <div class="process-title">Meisterhafter Aufbau</div>
+          <p class="process-desc">
+            Unser professionelles Dekorationsteam reist pünktlich an und baut alles millimetergenau und stimmungsvoll auf &ndash; 100% stressfrei für Sie.
+          </p>
         </div>
-    </section>
 
-    <!-- =====================================================================
-         4. SO FUNKTIONIERT ES (VIER SCHRITTE – DIRECTLY FROM LARA EVENT DE)
-         ===================================================================== -->
-    <section id="ablauf" class="py-24 sm:py-32 px-6 sm:px-12 bg-white border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="text-center max-w-2xl mx-auto mb-16 sm:mb-24">
-                <div class="section-label centered">
-                    <span>SO FUNKTIONIERT ES</span>
-                </div>
-                <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal mb-4">
-                    Vier Schritte zu deinem perfekten Moment
-                </h2>
-                <p class="text-base text-taupe font-light leading-relaxed">
-                    Die Vorbereitung soll Vorfreude wecken – nicht überfordern. Wir begleiten euch Schritt für Schritt bis zum strahlenden Kniefall oder Festtag.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                
-                <!-- Step 1 -->
-                <div class="p-8 rounded-2xl bg-surface border border-hairline flex flex-col justify-between">
-                    <div>
-                        <div class="font-display text-4xl text-gold font-normal mb-4">01</div>
-                        <h3 class="font-display text-2xl text-noir font-normal mb-3">Teile deine Vision</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Schreib uns unkompliziert per WhatsApp oder über das Kontaktformular. Verrate uns deinen Wunschtermin, den gewünschten Anlass und deine Location-Idee.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="p-8 rounded-2xl bg-surface border border-hairline flex flex-col justify-between">
-                    <div>
-                        <div class="font-display text-4xl text-gold font-normal mb-4">02</div>
-                        <h3 class="font-display text-2xl text-noir font-normal mb-3">Wir planen es</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Wir beraten dich persönlich und stimmen Farbpalette, Bogenform und Beleuchtung exakt auf deine Location (Schloss, Suite, Seeufer oder Garten) ab.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="p-8 rounded-2xl bg-surface border border-hairline flex flex-col justify-between">
-                    <div>
-                        <div class="font-display text-4xl text-gold font-normal mb-4">03</div>
-                        <h3 class="font-display text-2xl text-noir font-normal mb-3">Wir kümmern uns um alles</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Unser Team liefert pünktlich an, arrangiert jedes einzelne Rosenblatt, platziert die Kerzen und bereitet alle Spezialeffekte bezugsfertig vor.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="p-8 rounded-2xl bg-surface border border-hairline flex flex-col justify-between">
-                    <div>
-                        <div class="font-display text-4xl text-gold font-normal mb-4">04</div>
-                        <h3 class="font-display text-2xl text-noir font-normal mb-3">Genieße den Moment</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Ihr erlebt euren unvergesslichen Augenblick ohne jeden Stress. Nach der Feier übernehmen wir den diskreten, besenreinen Abbau.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
+        <div class="process-item">
+          <div class="process-num">04</div>
+          <div class="process-title">Ihr magischer Moment</div>
+          <p class="process-desc">
+            Sie genießen das pure Glück und die Freudentränen. Nach Ihrem Event übernehmen wir den leisen und rückstandslosen Abbau.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- =====================================================================
-         5. EINSATZGEBIET & DUAL-HUB (LARA EVENT DE GEOGRAPHIC STRUCTURE)
-         ===================================================================== -->
-    <section id="einsatzgebiet" class="py-24 sm:py-32 px-6 sm:px-12 bg-surface border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="section-label">
-                        <span>EINSATZGEBIETE</span>
-                    </div>
-                    <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal leading-[1.15]">
-                        Eventdekoration in ganz NRW &amp; im Raum Stuttgart
-                    </h2>
-                    <p class="text-base text-taupe font-light leading-relaxed">
-                        Durch unsere beiden voll ausgestatteten Logistik-Hubs garantieren wir kurze Anfahrtswege, höchste Pünktlichkeit und ein faires Kilometer-Modell.
-                    </p>
+  <!-- PORTFOLIO VORSCHAU -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label center">
+        <span></span>
+        Portfolio &amp; Ästhetik
+        <span></span>
+      </div>
+      <h2 class="section-title">Jede Kulisse erzählt eine <em>eigene Geschichte</em></h2>
+      <p class="section-sub">
+        Lassen Sie sich von echten Dekorationen inspirieren. Jedes Bild steht für echte Handarbeit und kompromisslose Perfektion.
+      </p>
 
-                    <div class="p-6 rounded-2xl bg-white border border-hairline space-y-3">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-6 h-6 text-[#C4A265] inline-block shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                            <span class="text-xs uppercase tracking-[2px] text-noir font-medium">Transparente Fahrtkosten-Garantie</span>
-                        </div>
-                        <p class="text-xs text-taupe leading-relaxed">
-                            Wir berechnen lediglich <strong class="text-noir font-medium">0,70 € pro gefahrenem Kilometer für die einfache Hinfahrt</strong> ab unserem jeweiligen Hub. Die Rückfahrt und der Abbau sind immer 100% kostenlos.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    
-                    <!-- Hub 1: NRW -->
-                    <div class="p-8 rounded-2xl bg-white border border-hairline space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] uppercase tracking-[2px] text-gold font-medium">Hub 01</span>
-                            <span class="text-xs text-taupe">Startpunkt Düsseldorf</span>
-                        </div>
-                        <h3 class="font-display text-2xl text-noir font-normal">Region Nordrhein-Westfalen</h3>
-                        <p class="text-xs text-taupe leading-relaxed">
-                            Wir dekorieren in Düsseldorf, Köln, Dortmund, Essen, Duisburg, Bonn, Münster, Wuppertal, Aachen, Krefeld, Mönchengladbach, Bochum, Gelsenkirchen, Leverkusen und Umgebung.
-                        </p>
-                        <div class="pt-2 text-xs text-noir font-medium flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C16 16.5 19 13 19 9.5C19 5.36 15.87 2 12 2C8.13 2 5 5.36 5 9.5C5 13 8 16.5 12 21Z"/><circle cx="12" cy="9.5" r="3" fill="currentColor"/></svg> <span>0,70 € / km ab Düsseldorf</span>
-                        </div>
-                    </div>
-
-                    <!-- Hub 2: Stuttgart -->
-                    <div class="p-8 rounded-2xl bg-white border border-hairline space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] uppercase tracking-[2px] text-gold font-medium">Hub 02</span>
-                            <span class="text-xs text-taupe">Startpunkt Stuttgart</span>
-                        </div>
-                        <h3 class="font-display text-2xl text-noir font-normal">Raum Stuttgart &amp; BaWü</h3>
-                        <p class="text-xs text-taupe leading-relaxed">
-                            Wir dekorieren in Stuttgart, Ludwigsburg, Esslingen am Neckar, Sindelfingen, Böblingen, Heilbronn, Waiblingen, Göppingen, Tübingen, Reutlingen, Pforzheim und Umgebung.
-                        </p>
-                        <div class="pt-2 text-xs text-noir font-medium flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C16 16.5 19 13 19 9.5C19 5.36 15.87 2 12 2C8.13 2 5 5.36 5 9.5C5 13 8 16.5 12 21Z"/><circle cx="12" cy="9.5" r="3" fill="currentColor"/></svg> <span>0,70 € / km ab Stuttgart</span>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+      <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <div class="gallery-item" style="grid-column: span 2; grid-row: span 2; aspect-ratio: auto; border-radius: 16px; overflow: hidden;">
+          <img src="images/32.jpg" alt="Cold Sparkler und Kerzenmeer Heiratsantrag" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
-    </section>
-
-    <!-- =====================================================================
-         6. PORTFOLIO / GALERIE (LARA EVENT COM & DE AUTHENTIC ASSET GRID)
-         ===================================================================== -->
-    <section id="galerie" class="py-24 sm:py-32 px-6 sm:px-12 bg-white border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                <div>
-                    <div class="section-label">
-                        <span>UNSERE ARBEIT</span>
-                    </div>
-                    <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal">
-                        Jedes Setup erzählt eine Liebesgeschichte
-                    </h2>
-                </div>
-                <div class="text-xs uppercase tracking-[2px] text-taupe font-normal">
-                    <span>100+ Erfolgreich realisierte Anträge &amp; Events</span>
-                </div>
-            </div>
-
-            <!-- 8 Image Masonry / Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/11.jpg" alt="Pure Romance Blumenherz in Orangerie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">Orangerie Setup</span>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/2.jpg" alt="Candlelight Dream Kamin-Salon mit Kerzenmeer" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">Kerzenmeer im Kamin-Salon</span>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/30.jpg" alt="Designer-Brauttisch mit Kristallgläsern" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">Designer-Brauttisch</span>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/35.jpg" alt="Signature VIP XXL Rosenherz mit 101 Rosen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">XXL Rosenherz &amp; 101 Rosen</span>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/19.jpg" alt="Standesamt Empfang mit weißem Blütenbogen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">Standesamt Rathaus-Auszug</span>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/14.jpg" alt="Romantische Dinnertafel mit Lichterhimmel" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">Gartentafel &amp; Lichterhimmel</span>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/21.jpg" alt="Standesamt Sektempfang mit Kristall-Sektgläsern" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">Gekühlter Sektempfang</span>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl overflow-hidden aspect-[3/4] relative group border border-hairline">
-                    <img src="images/5.jpg" alt="Champagner Toast auf Rosenblättern" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-noir/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex items-end">
-                        <span class="text-white text-xs uppercase tracking-[2px]">Champagner Toast</span>
-                    </div>
-                </div>
-
-            </div>
-
+        <div class="gallery-item" style="border-radius: 16px; overflow: hidden;">
+          <img src="images/2.jpg" alt="Kamin-Salon mit Kerzenmeer" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1;">
         </div>
-    </section>
-
-    <!-- =====================================================================
-         7. KUNDENSTIMMEN / TESTIMONIALS (EXACT LARA EVENT COM FORMAT)
-         ===================================================================== -->
-    <section class="py-24 sm:py-32 px-6 sm:px-12 bg-surface border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <div class="section-label centered">
-                    <span>KUNDENERFAHRUNGEN</span>
-                </div>
-                <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal mb-4">
-                    In ihren eigenen Worten
-                </h2>
-                <div class="flex justify-center mt-3">
-                    <div class="flex items-center gap-1 text-[#C4A265]"><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="luxury-card p-8 sm:p-10 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-1 text-[#C4A265]"><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                        <p class="text-sm font-light text-noir italic leading-relaxed my-6">
-                            „Ich war unfassbar nervös vor dem Antrag. Aber ketadecor hat alles absolut perfekt aufgebaut. Als meine Verlobte um die Ecke bog und das Kerzenmeer mit den Funkenfontänen sah, sind direkt Freudentränen geflossen. Sie hat sofort JA gesagt!“
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-hairline">
-                        <div class="font-medium text-xs text-noir">Maximilian &amp; Laura</div>
-                        <div class="text-[10px] text-taupe uppercase tracking-wider mt-0.5">Düsseldorf · Signature Sparkle</div>
-                    </div>
-                </div>
-
-                <div class="luxury-card p-8 sm:p-10 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-1 text-[#C4A265]"><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                        <p class="text-sm font-light text-noir italic leading-relaxed my-6">
-                            „Unser Standesamt-Empfang in Stuttgart war ein Traum! Der weiße Blütenbogen und die Sektempfang-Tische sahen so edel aus. Alle Gäste waren begeistert und wir hatten null Stress mit Auf- oder Abbau.“
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-hairline">
-                        <div class="font-medium text-xs text-noir">Tim &amp; Sarah</div>
-                        <div class="text-[10px] text-taupe uppercase tracking-wider mt-0.5">Stuttgart · Standesamt Deluxe</div>
-                    </div>
-                </div>
-
-                <div class="luxury-card p-8 sm:p-10 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-1 text-[#C4A265]"><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="w-4 h-4 text-[#C4A265] fill-current inline-block align-middle shrink-0" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                        <p class="text-sm font-light text-noir italic leading-relaxed my-6">
-                            „Die Verlobungsfeier im Garten war wie aus einem Modemagazin. Die Blumenwände, die Kristallgläser und die Lichterketten haben eine unglaubliche Stimmung gezaubert. Tausend Dank an das ganze Team!“
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-hairline">
-                        <div class="font-medium text-xs text-noir">Denis &amp; Aylin</div>
-                        <div class="text-[10px] text-taupe uppercase tracking-wider mt-0.5">Köln · Verlobungsevent</div>
-                    </div>
-                </div>
-
-            </div>
-
+        <div class="gallery-item" style="border-radius: 16px; overflow: hidden;">
+          <img src="images/30.jpg" alt="Brauttisch mit Kristallgläsern" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1;">
         </div>
-    </section>
-
-    <!-- =====================================================================
-         8. WARUM WIR / UNSERE GARANTIEN (LARA EVENT COM FORMAT)
-         ===================================================================== -->
-    <section id="warum-wir" class="py-24 sm:py-32 px-6 sm:px-12 bg-white border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="section-label">
-                        <span>WARUM KETADECOR</span>
-                    </div>
-                    <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal leading-[1.15]">
-                        Planung soll Vorfreude wecken, nicht überfordern.
-                    </h2>
-                    <p class="text-base text-taupe font-light leading-relaxed">
-                        Wir haben ketadecor gegründet, weil ein Heiratsantrag oder eine Hochzeit pure Magie sein muss — frei von Hektik, Schleppen oder Aufbau-Stress.
-                    </p>
-                </div>
-
-                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    
-                    <div class="space-y-3">
-                        <div class="font-display text-2xl text-gold font-normal">01</div>
-                        <h3 class="font-display text-xl text-noir font-normal">Maßgeschneidert auf euch</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Jedes Detail spiegelt eure persönliche Geschichte wider. Keine billigen Standard-Sets, sondern echte Meisterfloristik und hochwertige Requisiten.
-                        </p>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="font-display text-2xl text-gold font-normal">02</div>
-                        <h3 class="font-display text-xl text-noir font-normal">Völlig stressfrei (100% Service)</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Wir übernehmen die gesamte Logistik: pünktliche Anfahrt, bezugsfertiger Aufbau, Entzünden der Kerzen und diskreter Abbau nach dem Event.
-                        </p>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="font-display text-2xl text-gold font-normal">03</div>
-                        <h3 class="font-display text-xl text-noir font-normal">Schlechtwetter-Garantie</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Sollte bei einem geplanten Outdoor-Antrag Regen drohen, verschieben wir euren Termin kostenfrei oder ziehen spontan in eine elegante Indoor-Location um.
-                        </p>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="font-display text-2xl text-gold font-normal">04</div>
-                        <h3 class="font-display text-xl text-noir font-normal">100% Geheimhaltung &amp; Diskretion</h3>
-                        <p class="text-xs sm:text-sm text-taupe font-light leading-relaxed">
-                            Absolute Verschwiegenheit bei Überraschungsanträgen. Unser Team agiert diskret vor Ort, sodass eure Partnerin bis zur letzten Sekunde nichts ahnt.
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="gallery-item" style="border-radius: 16px; overflow: hidden;">
+          <img src="images/35.jpg" alt="Signature VIP XXL Rosenherz" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1;">
         </div>
-    </section>
-
-    <!-- =====================================================================
-         9. KONTAKT / LASSEN SIE UNS SPRECHEN (LARA EVENT DE & COM FUSION)
-         ===================================================================== -->
-    <section id="kontakt" class="py-24 sm:py-32 px-6 sm:px-12 bg-surface border-t border-hairline">
-        <div class="max-w-[1240px] mx-auto">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                
-                <!-- Left Contact Info -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="section-label">
-                        <span>KONTAKT</span>
-                    </div>
-                    <h2 class="font-display text-3xl sm:text-5xl text-noir font-normal leading-[1.15]">
-                        Lassen Sie uns sprechen
-                    </h2>
-                    <p class="text-base text-taupe font-light leading-relaxed">
-                        Ein paar Zeilen genügen. Schreibt uns unkompliziert per WhatsApp oder über das Formular — wir melden uns innerhalb weniger Stunden mit einem maßgeschneiderten Vorschlag bei euch.
-                    </p>
-
-                    <div class="pt-4 space-y-4 text-sm text-noir">
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-emerald-600/10 text-emerald-600 flex items-center justify-center">
-                                <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                            </span>
-                            <div>
-                                <span class="text-[10px] uppercase tracking-wider text-taupe block">WhatsApp Concierge</span>
-                                <a href="tel:+4917657354779" class="font-medium hover:text-gold transition">+49 176 57354779</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-noir/5 text-noir flex items-center justify-center">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            </span>
-                            <div>
-                                <span class="text-[10px] uppercase tracking-wider text-taupe block">E-Mail Anfrage</span>
-                                <a href="mailto:anfrage@ketadecor.de" class="font-medium hover:text-gold transition">anfrage@ketadecor.de</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-noir/5 text-noir flex items-center justify-center">
-                                <svg class="w-4 h-4 text-[#C4A265] inline-block align-middle shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C16 16.5 19 13 19 9.5C19 5.36 15.87 2 12 2C8.13 2 5 5.36 5 9.5C5 13 8 16.5 12 21Z"/><circle cx="12" cy="9.5" r="3" fill="currentColor"/></svg>
-                            </span>
-                            <div>
-                                <span class="text-[10px] uppercase tracking-wider text-taupe block">Einsatzgebiete</span>
-                                <span class="font-medium">Dual-Hub NRW (Düsseldorf) &amp; Raum Stuttgart</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-4">
-                        <button onclick="openWhatsApp('Allgemeine Beratung')" class="btn-gold !w-full sm:!w-auto">
-                            <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                            <span>Jetzt per WhatsApp schreiben</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Right Clean Form -->
-                <div class="lg:col-span-7">
-                    <form onsubmit="handleFormSubmit(event)" class="luxury-card p-8 sm:p-12 space-y-6">
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="formName" class="block text-xs uppercase tracking-[2px] text-taupe mb-2">Dein Name *</label>
-                                <input type="text" id="formName" required placeholder="Vor- und Nachname" class="w-full px-4 py-3.5 rounded-xl border border-hairline bg-surface text-noir text-sm focus:outline-none focus:border-gold">
-                            </div>
-                            <div>
-                                <label for="formPhone" class="block text-xs uppercase tracking-[2px] text-taupe mb-2">Telefon / WhatsApp *</label>
-                                <input type="tel" id="formPhone" required placeholder="+49 176 ..." class="w-full px-4 py-3.5 rounded-xl border border-hairline bg-surface text-noir text-sm focus:outline-none focus:border-gold">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="formOccasion" class="block text-xs uppercase tracking-[2px] text-taupe mb-2">Anlass *</label>
-                                <select id="formOccasion" class="w-full px-4 py-3.5 rounded-xl border border-hairline bg-surface text-noir text-sm focus:outline-none focus:border-gold">
-                                    <option value="Heiratsantrag">Heiratsantrag &amp; Kniefall</option>
-                                    <option value="Verlobungsfeier">Verlobungsfeier</option>
-                                    <option value="Standesamt">Standesamt-Empfang</option>
-                                    <option value="Hochzeit">Traumhochzeit &amp; Brauttisch</option>
-                                    <option value="Henna-Abend">Traditioneller Henna-Abend</option>
-                                    <option value="Extras / Sonstiges">Extras / Sonstiges</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="formLocation" class="block text-xs uppercase tracking-[2px] text-taupe mb-2">Wunschort / Region *</label>
-                                <input type="text" id="formLocation" required placeholder="z.B. Düsseldorf, Köln oder Stuttgart" class="w-full px-4 py-3.5 rounded-xl border border-hairline bg-surface text-noir text-sm focus:outline-none focus:border-gold">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="formDate" class="block text-xs uppercase tracking-[2px] text-taupe mb-2">Wunschdatum (optional)</label>
-                            <input type="date" id="formDate" class="w-full px-4 py-3.5 rounded-xl border border-hairline bg-surface text-noir text-sm focus:outline-none focus:border-gold">
-                        </div>
-
-                        <div>
-                            <label for="formMessage" class="block text-xs uppercase tracking-[2px] text-taupe mb-2">Deine Nachricht &amp; Wünsche</label>
-                            <textarea id="formMessage" rows="4" placeholder="Erzähle uns kurz von deinen Vorstellungen oder Fragen..." class="w-full px-4 py-3.5 rounded-xl border border-hairline bg-surface text-noir text-sm focus:outline-none focus:border-gold"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-primary w-full text-center">
-                            <span>Anfrage absenden</span>
-                        </button>
-
-                        <p class="text-[11px] text-center text-taupe font-light">
-                            Unverbindliche Terminanfrage. Wir melden uns umgehend bei dir.
-                        </p>
-                    </form>
-                </div>
-
-            </div>
-
+        <div class="gallery-item" style="border-radius: 16px; overflow: hidden;">
+          <img src="images/19.jpg" alt="Standesamt Blütenbogen" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1/1;">
         </div>
-    </section>
+      </div>
 
-    <!-- =====================================================================
-         10. HAUTE COUTURE FOOTER (EXACT LARA EVENT COM & DE DESIGN)
-         ===================================================================== -->
-    <footer class="bg-noir text-[#D4C9BC] pt-20 pb-14 px-6 sm:px-12 border-t border-hairline/20">
-        <div class="max-w-[1240px] mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                
-                <div class="space-y-4">
-                    <div class="flex flex-col">
-                        <span class="font-display text-2xl tracking-[4px] uppercase text-white">ketadecor</span>
-                        <span class="text-[9px] uppercase tracking-[3px] text-gold font-normal mt-0.5">Luxury Event &amp; Wedding Design</span>
-                    </div>
-                    <p class="text-xs font-light text-[#A89D8F] leading-relaxed max-w-xs">
-                        Wir dekorieren keine Orte. Wir erschaffen Augenblicke für die Ewigkeit. Exklusive Eventdekoration in ganz NRW und im Raum Stuttgart.
-                    </p>
-                    <div class="flex items-center gap-3 pt-2">
-                        <a href="https://instagram.com/ketadecor" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/5 hover:bg-gold text-white hover:text-noir flex items-center justify-center transition" title="Instagram" aria-label="Instagram">
-                            <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="https://tiktok.com/@ketadecor" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full bg-white/5 hover:bg-gold text-white hover:text-noir flex items-center justify-center transition" title="TikTok" aria-label="TikTok">
-                            <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.71 1.49-.1 2.74-1.15 3.02-2.61.16-.62.17-1.28.16-1.92V.02z"/></svg>
-                        </a>
-                        <button onclick="openWhatsApp('Footer WhatsApp')" class="w-9 h-9 rounded-full bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white flex items-center justify-center transition" title="WhatsApp" aria-label="WhatsApp">
-                            <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div>
-                    <h4 class="font-display text-white uppercase tracking-[2px] text-xs mb-5 font-normal">Erlebniswelten</h4>
-                    <ul class="space-y-2.5 text-xs text-[#A89D8F] font-light">
-                        <li><a href="heiratsantrag.html" class="hover:text-gold transition">Heiratsantrag &amp; Kniefall</a></li>
-                        <li><a href="verlobung.html" class="hover:text-gold transition">Verlobungsfeiern</a></li>
-                        <li><a href="standesamt.html" class="hover:text-gold transition">Standesamt-Empfang</a></li>
-                        <li><a href="hochzeit.html" class="hover:text-gold transition">Traumhochzeit &amp; Brauttisch</a></li>
-                        <li><a href="extras.html" class="hover:text-gold transition">Extras &amp; Funkenfontänen</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-display text-white uppercase tracking-[2px] text-xs mb-5 font-normal">Standorte</h4>
-                    <ul class="space-y-2.5 text-xs text-[#A89D8F] font-light leading-relaxed">
-                        <li><strong class="text-white font-normal">Hub 01: Region NRW</strong><br>Düsseldorf, Köln, Dortmund, Essen, Duisburg, Bonn, Münster, Aachen</li>
-                        <li class="pt-2"><strong class="text-white font-normal">Hub 02: Raum Stuttgart</strong><br>Stuttgart, Ludwigsburg, Esslingen, Sindelfingen, Böblingen, Heilbronn</li>
-                        <li class="pt-2 text-gold">Fahrtkostenpauschale: 0,70 € / km</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-display text-white uppercase tracking-[2px] text-xs mb-5 font-normal">Direktkontakt</h4>
-                    <p class="text-xs text-[#A89D8F] font-light leading-relaxed mb-4">
-                        Mo–So: 09:00 – 22:00 Uhr<br>
-                        WhatsApp &amp; Tel: <a href="tel:+4917657354779" class="text-gold font-normal">+49 176 57354779</a><br>
-                        E-Mail: <a href="mailto:anfrage@ketadecor.de" class="text-gold">anfrage@ketadecor.de</a>
-                    </p>
-                    <a href="#kontakt" class="btn-gold !py-2.5 !px-5 text-[10px]">
-                        <span>Wunschtermin anfragen</span>
-                    </a>
-                </div>
-
-            </div>
-
-            <div class="pt-8 border-t border-hairline/20 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#7E7576]">
-                <p>&copy; 2026 KETADECOR. Alle Rechte vorbehalten. 100% Sorglos-Eventdekoration.</p>
-                <div class="flex items-center gap-6">
-                    <a href="impressum.html" class="hover:text-white transition">Impressum</a>
-                    <a href="datenschutz.html" class="hover:text-white transition">Datenschutz</a>
-                    <a href="agb.html" class="hover:text-white transition">AGB</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- =====================================================================
-         STICKY MOBILE CONCIERGE BAR
-         ===================================================================== -->
-    <div class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-hairline p-3 px-5 flex items-center justify-between gap-3 lg:hidden shadow-lg">
-        <a href="#kontakt" class="flex-1 py-3 px-3 rounded-full border border-noir bg-noir text-white text-center font-medium text-xs tracking-wider flex items-center justify-center gap-2">
-            <span>Termin anfragen</span>
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="gallery.html" class="btn-primary">
+          <span>Gesamte Galerie öffnen</span>
+          <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <button onclick="openWhatsApp('Mobile Sticky Bar Anfrage')" class="flex-1 py-3 px-3 rounded-full bg-emerald-600 text-white text-center font-medium text-xs tracking-wider flex items-center justify-center gap-2 shadow-md">
-            <svg class="w-4 h-4 fill-current inline-block shrink-0 align-middle" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-            <span>WhatsApp</span>
-        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- KUNDENSTIMMEN -->
+  <section class="section alt-bg">
+    <div class="section-inner">
+      <div class="section-label center">
+        <span></span>
+        Erfahrungsberichte
+        <span></span>
+      </div>
+      <h2 class="section-title">In ihren <em>eigenen</em> Worten</h2>
+      <p class="section-sub">
+        Das Vertrauen unserer Paare ist unser wertvollstes Gut. Echte Liebesgeschichten und unvergessliche Momente.
+      </p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testimonial-quote">&ldquo;</div>
+            <p class="testimonial-text">
+              Ich wollte den perfekten Heiratsantrag, war aber beruflich extrem eingespannt. Das Team von Ketadecor hat alles bis ins kleinste Detail vorbereitet. Als meine Verlobte die Kulisse mit den Cold Sparklern und dem Kerzenmeer betrat, flossen sofort die Tränen. Sie hat natürlich JA gesagt!
+            </p>
+          </div>
+          <div>
+            <div class="testimonial-divider"></div>
+            <div class="testimonial-author">Maximilian &amp; Sophie</div>
+            <div class="testimonial-event">Heiratsantrag im Kerzenmeer</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <svg class="w-4 h-4 text-gold fill-current" viewBox="0 0 24 24" style="width:15px;height:15px;color:#C4A265;fill:currentColor;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="testimonial-quote">&ldquo;</div>
+            <p class="testimonial-text">
+              Für unsere Verlobungsfeier haben wir eine elegante Salon-Dekoration gesucht, die modern und gleichzeitig feierlich ist. Ketadecor hat unsere Erwartungen weit übertroffen. Der Blütenbogen war ein Traum und der pünktliche Auf- und Abbau lief völlig geräuschlos im Hintergrund.
+            </p>
+          </div>
+          <div>
+            <div class="testimonial-divider"></div>
+            <div class="testimonial-author">Dennis &amp; Melina</div>
+            <div class="testimonial-event">Elegante Verlobungsfeier</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WARUM KETADECOR (PHILOSOPHIE & VERSPRECHEN) -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label center">
+        <span></span>
+        Qualitätsversprechen
+        <span></span>
+      </div>
+      <h2 class="section-title">Warum Paare <em>KETADECOR</em> vertrauen</h2>
+      <p class="section-sub">
+        Höchste Diskretion, handwerkliche Perfektion und ein 100% verlässliches Sorglos-Versprechen.
+      </p>
+
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <div>
+            <div class="why-title">100% Pünktlichkeits-Garantie</div>
+            <div class="why-desc">
+              Wir sind immer mindestens 60 bis 90 Minuten vor Ihrem Eintreffen fertig aufgebaut. Jeder Kerzenschein brennt, jede Blüte sitzt perfekt.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <div>
+            <div class="why-title">Schlechtwetter-Garantie</div>
+            <div class="why-desc">
+              Droht Regen oder starker Wind bei Outdoor-Events? Wir reagieren flexibel und passen das Setup kostenlos an Indoor- oder Ausweichflächen an.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <div>
+            <div class="why-title">Absolute Diskretion</div>
+            <div class="why-desc">
+              Gerade bei Heiratsanträgen ist Geheimhaltung oberste Priorität. Wir agieren unbemerkt und stimmen uns auf die Sekunde genau mit Ihnen ab.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-item">
+          <div class="why-num">04</div>
+          <div>
+            <div class="why-title">Meisterfloristik &amp; Premium-Materialien</div>
+            <div class="why-desc">
+              Wir verwenden ausschließlich naturgetreue Premium-Seidenfloristik in Couture-Qualität, echte Kerzen in Glaszylindern und hochwertige Lichtinstallationen.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DARK INVERTED CTA BANNER -->
+  <section class="cta">
+    <div class="section-inner">
+      <div class="cta-label">Exklusive Momentaufnahmen</div>
+      <h2>Lassen Sie uns etwas <em>Unvergessliches</em> erschaffen</h2>
+      <p class="cta-p">
+        Ob atemberaubender Heiratsantrag, stilvolle Verlobungsfeier oder meisterhafte Hochzeitskulisse &ndash; wir inszenieren Ihren großen Tag mit 100% Hingabe und verlässlichem Rundum-Sorglos-Service.
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="inquiry.html" class="btn-cream">
+          <span>Verfügbarkeit anfragen</span>
+          <svg class="inline-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-left:6px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://wa.me/4917642055627?text=Hallo%20Ketadecor%20Team%2C%20ich%20interessiere%20mich%20fuer%20eine%20exklusive%20Dekoration%20an%20meiner%20Wunsch-Location." target="_blank" class="btn-secondary" style="border-color: rgba(250,247,242,0.4); color: #FAF7F2;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.952 1.18-.175.2-.351.226-.652.075-.301-.15-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.675-2.085-.175-.3-.019-.462.131-.612.136-.135.301-.351.452-.527.15-.175.2-.3.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.632-.927-2.233-.244-.585-.492-.506-.677-.515l-.577-.01c-.2 0-.526.075-.802.376s-1.053 1.028-1.053 2.508c0 1.48 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.279.495 1.716.634.721.229 1.377.197 1.895.12.578-.087 1.78-.727 2.031-1.429.25-.702.25-1.304.175-1.429-.075-.125-.276-.2-.577-.35zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.174L2 22l4.981-1.405A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.167c-1.644 0-3.17-.492-4.453-1.336l-.32-.209-2.956.833.847-2.882-.228-.337A8.134 8.134 0 013.833 12c0-4.502 3.665-8.167 8.167-8.167 4.502 0 8.167 3.665 8.167 8.167 0 4.502-3.665 8.167-8.167 8.167z"/></svg> <span>WhatsApp Beratung</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LUXURY FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          KETA<b>DECOR</b>
+        </div>
+        <p class="footer-text">
+          Haute Couture Event- und Hochzeitsdekoration. Wir kreieren maßgeschneiderte Kulissen voller Romantik, floraler Meisterwerke und Lichtarchitektur &ndash; mit 100% Sorglos-Service inkl. pünktlichem Auf- und Abbau direkt an Ihrer Wunsch-Location.
+        </p>
+        <div style="margin-top: 20px; font-size: 12px; color: #C4A265; letter-spacing: 1px;">
+          100% Pünktlichkeits- &amp; Schönwetter-Garantie
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Kollektionen</div>
+        <a href="heiratsantrag.html">Heiratsantrag</a>
+        <a href="verlobung.html">Verlobungsfeier</a>
+        <a href="standesamt.html">Standesamt &amp; Empfang</a>
+        <a href="hochzeit.html">Traumhochzeit &amp; Brauttisch</a>
+        <a href="extras.html">Spezialeffekte &amp; Extras</a>
+        <a href="gallery.html">Portfolio Galerie</a>
+      </div>
+
+      <div>
+        <div class="footer-heading">Service &amp; Infos</div>
+        <a href="about.html">Über KETADECOR</a>
+        <a href="faq.html">Häufig gestellte Fragen</a>
+        <a href="inquiry.html">Buchungs-Concierge</a>
+        <a href="https://wa.me/4917642055627?text=Hallo%20Ketadecor%20Team%2C%20ich%20moechte%20eine%20unverbindliche%20Beratung%20vereinbaren." target="_blank">WhatsApp Direktanfrage</a>
+        <a href="tel:+4917642055627">Telefonischer Kontakt</a>
+      </div>
+
+      <div>
+        <div class="footer-heading">Rechtliches</div>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <div style="margin-top: 24px; font-size: 12px; color: #8C8276; line-height: 1.6;">
+          Kontakt:<br>
+          <span style="color: #FAF7F2;">+49 176 42055627</span><br>
+          <span style="color: #FAF7F2;">info@ketadecor.de</span>
+        </div>
+      </div>
     </div>
 
-    <!-- =====================================================================
-         SCRIPTS: NAVBAR SCROLL, MOBILE DRAWER, ZERO-EMOJI WHATSAPP ENGINE
-         ===================================================================== -->
-    <script>
-        // 1. Navbar Scroll Effect (Lara Event COM Exact Behavior)
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 40) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
-            }
+    <div class="footer-bottom">
+      <div>
+        &copy; 2026 KETADECOR Luxury Event &amp; Wedding Design. Alle Rechte vorbehalten.
+      </div>
+      <div>
+        Design &amp; Ästhetik nach laraevent.com
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CONCIERGE -->
+  <div class="sticky-concierge">
+    <div class="sticky-concierge-text">
+      KETADECOR CONCIERGE
+      <span>VOR-ORT-SERVICE INKL. AUFBAU</span>
+    </div>
+    <a href="https://wa.me/4917642055627?text=Hallo%20Ketadecor%20Team%2C%20ich%20moechte%20eine%20exklusive%20Dekoration%20anfragen." target="_blank" class="btn-gold" style="padding: 10px 18px; font-size: 10.5px;">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.978-.276-.1-.476-.15-.677.15-.2.301-.777.978-.952 1.18-.175.2-.351.226-.652.075-.301-.15-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.675-2.085-.175-.3-.019-.462.131-.612.136-.135.301-.351.452-.527.15-.175.2-.3.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.632-.927-2.233-.244-.585-.492-.506-.677-.515l-.577-.01c-.2 0-.526.075-.802.376s-1.053 1.028-1.053 2.508c0 1.48 1.078 2.908 1.228 3.109.15.2 2.122 3.24 5.141 4.544.718.31 1.279.495 1.716.634.721.229 1.377.197 1.895.12.578-.087 1.78-.727 2.031-1.429.25-.702.25-1.304.175-1.429-.075-.125-.276-.2-.577-.35zM12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.174L2 22l4.981-1.405A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.167c-1.644 0-3.17-.492-4.453-1.336l-.32-.209-2.956.833.847-2.882-.228-.337A8.134 8.134 0 013.833 12c0-4.502 3.665-8.167 8.167-8.167 4.502 0 8.167 3.665 8.167 8.167 0 4.502-3.665 8.167-8.167 8.167z"/></svg> <span>Anfragen</span>
+    </a>
+  </div>
+
+  <!-- SCRIPT FOR NAVBAR & DRAWER -->
+  <script>
+    (function() {
+      const nav = document.getElementById('mainNav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      const drawer = document.getElementById('mobileDrawer');
+      const backdrop = document.getElementById('drawerBackdrop');
+      const openBtn = document.getElementById('drawerOpenBtn');
+      const closeBtn = document.getElementById('drawerCloseBtn');
+
+      function openDrawer() {
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      if (openBtn) openBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+      // FAQ accordion toggle handler
+      document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+          const item = q.parentElement;
+          item.classList.toggle('open');
         });
-
-        // 2. Mobile Drawer Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const closeMobileDrawerBtn = document.getElementById('closeMobileDrawerBtn');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-
-        if (mobileMenuBtn && mobileDrawer) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileDrawer.classList.remove('translate-x-full');
-            });
-        }
-        if (closeMobileDrawerBtn && mobileDrawer) {
-            closeMobileDrawerBtn.addEventListener('click', () => {
-                mobileDrawer.classList.add('translate-x-full');
-            });
-        }
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileDrawer) mobileDrawer.classList.add('translate-x-full');
-            });
-        });
-
-        // 3. WhatsApp Direct Inquiry (100% Fail-Safe, Pure ASCII, Zero Emojis)
-        function openWhatsApp(topic) {
-            const message = 
-`*KETADECOR EVENT-ANFRAGE*
---------------------------------------------
-*Anfrage-Thema:* ${topic || "Event- & Hochzeitsdekoration"}
-*Region:* Dual-Hub NRW & Raum Stuttgart
-
-Hallo ketadecor-Team! Ich interessiere mich fuer eure Eventdekoration und moechte die Verfuegbarkeit meines Wunschtermins anfragen.`;
-
-            const url = "https://wa.me/4917657354779?text=" + encodeURIComponent(message);
-            window.open(url, "_blank", "noopener,noreferrer");
-        }
-
-        // 4. Form Submit to WhatsApp
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('formName').value.trim();
-            const phone = document.getElementById('formPhone').value.trim();
-            const occasion = document.getElementById('formOccasion').value;
-            const location = document.getElementById('formLocation').value.trim();
-            const date = document.getElementById('formDate').value || "Nach Absprache";
-            const messageText = document.getElementById('formMessage').value.trim() || "Keine gesonderten Notizen";
-
-            const waText = 
-`*KETADECOR KONTAKT-ANFRAGE*
---------------------------------------------
-*Name:* ${name}
-*Telefon / WhatsApp:* ${phone}
-*Anlass:* ${occasion}
-*Wunschort / Region:* ${location}
-*Wunschdatum:* ${date}
-
-*Nachricht / Wuensche:*
-${messageText}
---------------------------------------------
-(Inklusive 100% Sorglos-Service: Anlieferung, bezugsfertiger Auf- und Abbau)`;
-
-            const url = "https://wa.me/4917657354779?text=" + encodeURIComponent(waText);
-            window.open(url, "_blank", "noopener,noreferrer");
-        }
-    </script>
+      });
+    })();
+  </script>
 
 </body>
 </html>
