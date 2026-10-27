@@ -1760,3 +1760,293 @@ img, video {
     border-bottom: none;
   }
 }
+
+
+
+/* ==========================================================================
+   LUXURY SWIPEABLE GALLERY LIGHTBOX MODAL
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 15, 13, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.lightbox-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1140px;
+  height: 94vh;
+  max-height: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 24px;
+  box-sizing: border-box;
+}
+
+.lightbox-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(250, 247, 242, 0.08);
+}
+
+.lightbox-top-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.lightbox-cat-badge {
+  background: rgba(196, 162, 101, 0.15);
+  border: 1px solid rgba(196, 162, 101, 0.3);
+  color: #C4A265;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.lightbox-counter {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #FAF7F2;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.lightbox-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: #FAF7F2;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-close-btn:hover {
+  background: #C4A265;
+  border-color: #C4A265;
+  color: #FAF7F2;
+  transform: rotate(90deg) scale(1.05);
+}
+
+/* VIEWER TRACK */
+.lightbox-viewer {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  touch-action: pan-y;
+  padding: 12px 0;
+}
+
+.lightbox-viewer:active {
+  cursor: grabbing;
+}
+
+.lightbox-slide {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.lightbox-slide img {
+  max-width: 100%;
+  max-height: calc(94vh - 240px);
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  border: 1px solid rgba(250, 247, 242, 0.1);
+}
+
+/* DESKTOP NAV BUTTONS */
+.lightbox-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(42, 37, 32, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(196, 162, 101, 0.35);
+  border-radius: 50%;
+  color: #FAF7F2;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-prev-btn {
+  left: 16px;
+}
+
+.lightbox-next-btn {
+  right: 16px;
+}
+
+.lightbox-arrow-btn:hover {
+  background: #C4A265;
+  border-color: #C4A265;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* BOTTOM DETAILS */
+.lightbox-details {
+  background: rgba(42, 37, 32, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(196, 162, 101, 0.3);
+  border-radius: 20px;
+  padding: 18px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: #FAF7F2;
+}
+
+.lightbox-meta-info {
+  flex-grow: 1;
+}
+
+.lightbox-item-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #FAF7F2;
+  margin: 0 0 4px 0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.lightbox-item-desc {
+  font-size: 13.5px;
+  color: rgba(250, 247, 242, 0.75);
+  margin: 0;
+  font-weight: 300;
+  max-width: 620px;
+  line-height: 1.45;
+}
+
+.lightbox-cta-group {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.lightbox-swipe-hint {
+  display: none;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(196, 162, 101, 0.75);
+  margin-top: 8px;
+}
+
+/* CURSOR POINTER ON MASONRY CARDS */
+.masonry-item {
+  cursor: pointer;
+}
+
+/* RESPONSIVE LIGHTBOX (TABLETS & SMARTPHONES) */
+@media (max-width: 900px) {
+  .lightbox-content {
+    padding: 16px 18px;
+    height: 100vh;
+    max-height: none;
+  }
+  .lightbox-arrow-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .lightbox-prev-btn { left: 8px; }
+  .lightbox-next-btn { right: 8px; }
+  .lightbox-details {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+    gap: 14px;
+  }
+  .lightbox-cta-group {
+    width: 100%;
+  }
+  .lightbox-cta-group a {
+    flex-grow: 1;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .lightbox-arrow-btn {
+    display: none; /* Mobile uses fluid touch swipe! */
+  }
+  .lightbox-swipe-hint {
+    display: block;
+  }
+  .lightbox-content {
+    padding: 12px 14px;
+  }
+  .lightbox-slide img {
+    max-height: calc(100vh - 280px);
+    border-radius: 10px;
+  }
+  .lightbox-item-title {
+    font-size: 18px;
+  }
+  .lightbox-item-desc {
+    font-size: 12px;
+  }
+}
