@@ -1,3 +1,22 @@
+/* === ABSOLUTE ANNOUNCEMENT BAR SUPPRESSION === */
+.announcement-bar,
+#announcement-bar,
+[class*="announcement"],
+.top-bar,
+#top-bar {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
 /* ==========================================================================
    KETADECOR HAUTE COUTURE LUXURY DESIGN SYSTEM
    Modeled 100% on https://www.laraevent.com/
