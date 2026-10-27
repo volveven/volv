@@ -47,25 +47,6 @@ a {
 }
 
 /* ==========================================================================
-   ANNOUNCEMENT BAR
-   ========================================================================== */
-.announcement-bar {
-  background: #2A2520;
-  color: #FAF7F2;
-  font-size: 10.5px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  padding: 8px 24px;
-  text-align: center;
-  font-weight: 400;
-  border-bottom: 1px solid rgba(196, 162, 101, 0.2);
-}
-
-.announcement-bar span {
-  color: #C4A265;
-}
-
-/* ==========================================================================
    HAUTE COUTURE NAVIGATION
    ========================================================================== */
 .nav {
@@ -74,7 +55,7 @@ a {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 22px 48px;
+  padding: 24px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -381,15 +362,16 @@ a {
   background: #FAF7F2;
   position: relative;
   overflow: hidden;
+  padding-top: 60px;
 }
 
 .hero-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 140px 48px 120px;
+  padding: 120px 48px 100px;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
   align-items: center;
   width: 100%;
 }
@@ -418,10 +400,10 @@ a {
 
 .hero h1 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 56px;
+  font-size: 54px;
   font-weight: 400;
   color: #2A2520;
-  line-height: 1.12;
+  line-height: 1.14;
   margin-bottom: 28px;
 }
 
@@ -471,24 +453,89 @@ a {
   font-weight: 400;
 }
 
-.hero-img {
+/* HERO VIDEO CONTAINER */
+.hero-video-wrap {
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 24px 64px rgba(42, 37, 32, 0.1);
+  box-shadow: 0 24px 64px rgba(42, 37, 32, 0.12);
   position: relative;
+  background: #1A1714;
+  aspect-ratio: 9/16;
+  max-height: 600px;
 }
 
-.hero-img img {
+.hero-video-wrap video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 3/4;
+  display: block;
+}
+
+.video-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(42, 37, 32, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(196, 162, 101, 0.35);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C4A265;
+  font-weight: 500;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #C4A265;
+  display: inline-block;
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.video-sound-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(42, 37, 32, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(196, 162, 101, 0.4);
+  color: #FAF7F2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.video-sound-btn:hover {
+  background: #C4A265;
+  color: #FFFFFF;
+  transform: scale(1.08);
 }
 
 /* SUBPAGE PAGE HERO */
 .page-hero {
-  padding: 160px 48px 80px;
+  padding: 140px 48px 80px;
   background: #FAF7F2;
   text-align: center;
   position: relative;
@@ -540,41 +587,92 @@ a {
 }
 
 /* ==========================================================================
-   PROCESS / 4-SCHRITTE ABLAUF (laraevent.de Struktur)
+   LIVE VIDEO SHOWCASE ("MOMENTE IN BEWEGUNG")
    ========================================================================== */
-.process-grid {
+.video-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 36px;
+  gap: 24px;
   margin-top: 56px;
-  text-align: center;
 }
 
-.process-item {
+.video-card {
   position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1A1714;
+  border: 1px solid rgba(237, 232, 223, 0.7);
+  aspect-ratio: 9/16;
+  box-shadow: 0 16px 40px rgba(42, 37, 32, 0.08);
+  transition: all 0.4s ease;
 }
 
-.process-num {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 40px;
-  color: rgba(196, 162, 101, 0.35);
-  font-weight: 400;
-  margin-bottom: 16px;
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px rgba(42, 37, 32, 0.16);
+  border-color: rgba(196, 162, 101, 0.5);
 }
 
-.process-title {
+.video-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 18px;
+  background: linear-gradient(to top, rgba(20, 18, 16, 0.95) 0%, rgba(20, 18, 16, 0.5) 60%, transparent 100%);
+  color: #FAF7F2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.video-card-overlay * {
+  pointer-events: auto;
+}
+
+.video-card-tag {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C4A265;
   font-weight: 500;
-  font-size: 16px;
-  color: #2A2520;
-  margin-bottom: 10px;
-  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
-.process-desc {
-  font-size: 13.5px;
-  color: #8C8276;
-  line-height: 1.7;
+.video-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  color: #FAF7F2;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.video-card-desc {
+  font-size: 12px;
+  color: rgba(250, 247, 242, 0.75);
+  line-height: 1.5;
+  margin-bottom: 12px;
   font-weight: 300;
+}
+
+.video-card-btn {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
 }
 
 /* ==========================================================================
@@ -655,6 +753,44 @@ a {
 
 .service-link:hover {
   color: #2A2520;
+}
+
+/* ==========================================================================
+   PROCESS / 4-SCHRITTE ABLAUF
+   ========================================================================== */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+  margin-top: 56px;
+  text-align: center;
+}
+
+.process-item {
+  position: relative;
+}
+
+.process-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 40px;
+  color: rgba(196, 162, 101, 0.35);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.process-title {
+  font-weight: 500;
+  font-size: 16px;
+  color: #2A2520;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.process-desc {
+  font-size: 13.5px;
+  color: #8C8276;
+  line-height: 1.7;
+  font-weight: 300;
 }
 
 /* ==========================================================================
@@ -998,7 +1134,7 @@ a {
 }
 
 /* ==========================================================================
-   FAQ ACCORDION (faq.html & Subpages)
+   FAQ ACCORDION
    ========================================================================== */
 .faq-list {
   max-width: 760px;
@@ -1063,6 +1199,59 @@ a {
   font-size: 14.5px;
   line-height: 1.8;
   color: #8C8276;
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   WHY US (GRID)
+   ========================================================================== */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.why-item {
+  display: flex;
+  gap: 20px;
+  padding: 32px 28px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  border: 1px solid rgba(237, 232, 223, 0.7);
+  transition: all 0.3s ease;
+}
+
+.why-item:hover {
+  border-color: rgba(196, 162, 101, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(42, 37, 32, 0.04);
+}
+
+.why-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  color: #C4A265;
+  font-weight: 400;
+  flex-shrink: 0;
+  width: 32px;
+}
+
+.why-title {
+  font-weight: 500;
+  font-size: 15px;
+  color: #2A2520;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.why-desc {
+  font-size: 13.5px;
+  color: #8C8276;
+  line-height: 1.7;
   font-weight: 300;
 }
 
@@ -1225,7 +1414,7 @@ a {
 }
 
 /* ==========================================================================
-   FORM CONTROLS (inquiry.html & Contact Forms)
+   FORM CONTROLS
    ========================================================================== */
 .booking-form {
   max-width: 720px;
@@ -1288,8 +1477,13 @@ a {
   .hero-inner {
     grid-template-columns: 1fr;
     gap: 48px;
-    padding: 120px 24px 80px;
+    padding: 100px 24px 80px;
     text-align: center;
+  }
+  .hero-video-wrap {
+    max-height: 480px;
+    max-width: 440px;
+    margin: 0 auto;
   }
   .hero-label {
     justify-content: center;
@@ -1303,6 +1497,9 @@ a {
   }
   .hero-stats {
     justify-content: center;
+  }
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   .services-grid, .collections-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1338,6 +1535,9 @@ a {
   }
   .section-title {
     font-size: 32px;
+  }
+  .video-grid {
+    grid-template-columns: 1fr;
   }
   .services-grid, .collections-grid, .testimonials-grid {
     grid-template-columns: 1fr;
