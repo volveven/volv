@@ -19,6 +19,7 @@ def get_base64_img(path):
 
 wa_qr_b64 = get_base64_img(os.path.join(poster_assets, "wa_qr_900.png"))
 ig_qr_b64 = get_base64_img(os.path.join(poster_assets, "ig_qr_900.png"))
+tt_qr_b64 = get_base64_img(os.path.join(poster_assets, "tiktok_qr_900.png"))
 
 posters = [
     {
@@ -27,9 +28,9 @@ posters = [
         "theme": "dark",
         "photo_side": "left",
         "photo": os.path.join(img_dir, "32.jpg"),
-        "photo_badge": "SIGNATURE MOMENT • COLD SPARKS & KERZENMEER",
+        "photo_badge": "SIGNATURE MOMENT • NRW & BADEN-WÜRTTEMBERG",
         "headline": "DER PERFEKTE HEIRATSANTRAG",
-        "subline": "Atemberaubende Kulissen, Kerzenmeer & Spezialeffekte in ganz NRW",
+        "subline": "Atemberaubende Kulissen, Kerzenmeer & Spezialeffekte in NRW & Baden-Württemberg",
         "accent_glow": "rgba(212, 175, 55, 0.15)"
     },
     {
@@ -38,7 +39,7 @@ posters = [
         "theme": "dark",
         "photo_side": "right",
         "photo": os.path.join(img_dir, "36.jpg"),
-        "photo_badge": "HAUTE COUTURE HOCHZEITEN • NRW",
+        "photo_badge": "HAUTE COUTURE HOCHZEITEN • NRW & BADEN-WÜRTTEMBERG",
         "headline": "HOCHZEITSDEKORATION DER EXTRAKLASSE",
         "subline": "Monumentale Brauttische, Blütenportale & maßgeschneidertes Eventdesign",
         "accent_glow": "rgba(212, 175, 55, 0.15)"
@@ -49,7 +50,7 @@ posters = [
         "theme": "dark_crimson",
         "photo_side": "left",
         "photo": os.path.join(img_dir, "35.jpg"),
-        "photo_badge": "VIP EDITION • 101 SAMTIGE EDELROSEN",
+        "photo_badge": "VIP EDITION • 101 SAMTIGE EDELROSEN • NRW & BW",
         "headline": "SAG JA ZUM PERFEKTEN MOMENT",
         "subline": "Das originale 101-Rosen VIP-Herz, Roter Teppich & Rundum-Sorglos-Service",
         "accent_glow": "rgba(220, 20, 60, 0.18)"
@@ -60,9 +61,9 @@ posters = [
         "theme": "pearl_ivory",
         "photo_side": "right",
         "photo": os.path.join(img_dir, "3.jpg"),
-        "photo_badge": "ORANGERIE & SALON DESIGNS • GANZ NRW",
+        "photo_badge": "ORANGERIE & SALON DESIGNS • NRW & BW",
         "headline": "DEINE TRAUMDEKORATION",
-        "subline": "Heiratsantrag • Verlobung • Traumhochzeit – Pünktlicher Auf- & Abbau vor Ort",
+        "subline": "Heiratsantrag • Verlobung • Traumhochzeit – Auf- & Abbau in NRW & Baden-Württemberg",
         "accent_glow": "rgba(212, 175, 55, 0.2)"
     },
     {
@@ -71,9 +72,9 @@ posters = [
         "theme": "dark_midnight",
         "photo_side": "left",
         "photo": os.path.join(img_dir, "28.jpg"),
-        "photo_badge": "ROOFTOP & SKYLINE EMOTION • NRW",
+        "photo_badge": "ROOFTOP & SKYLINE EMOTION • NRW & BW",
         "headline": "UNVERGESSLICHE MOMENTE",
-        "subline": "Exklusive Rooftop-, Outdoor- & Luxus-Locations in Düsseldorf, Köln & NRW",
+        "subline": "Exklusive Rooftop-, Outdoor- & Luxus-Locations in NRW & Baden-Württemberg",
         "accent_glow": "rgba(65, 105, 225, 0.15)"
     }
 ]
@@ -92,7 +93,6 @@ def generate_html(p):
         gold_title = "linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #8A6D3B 100%)"
         card_bg = "rgba(255, 255, 255, 0.95)"
         card_shadow = "0 12px 35px rgba(0, 0, 0, 0.06)"
-        badge_border = "rgba(180, 140, 60, 0.3)"
         footer_color = "#78716C"
         crown_fill = "#B8860B"
     elif p["theme"] == "dark_crimson":
@@ -104,7 +104,6 @@ def generate_html(p):
         gold_title = "linear-gradient(135deg, #FFF0D0 0%, #F3D280 40%, #D4AF37 70%, #AA8020 100%)"
         card_bg = "rgba(18, 14, 16, 0.85)"
         card_shadow = "0 16px 40px rgba(0, 0, 0, 0.6)"
-        badge_border = "rgba(220, 40, 60, 0.4)"
         footer_color = "#9E9E9E"
         crown_fill = "url(#goldGrad)"
     elif p["theme"] == "dark_midnight":
@@ -116,7 +115,6 @@ def generate_html(p):
         gold_title = "linear-gradient(135deg, #FFF0D0 0%, #F3D280 40%, #D4AF37 70%, #AA8020 100%)"
         card_bg = "rgba(14, 17, 26, 0.85)"
         card_shadow = "0 16px 40px rgba(0, 0, 0, 0.6)"
-        badge_border = "rgba(65, 105, 225, 0.4)"
         footer_color = "#9E9E9E"
         crown_fill = "url(#goldGrad)"
     else: # dark noir gold
@@ -128,7 +126,6 @@ def generate_html(p):
         gold_title = "linear-gradient(135deg, #FFF0D0 0%, #F3D280 40%, #D4AF37 70%, #AA8020 100%)"
         card_bg = "rgba(18, 19, 23, 0.85)"
         card_shadow = "0 16px 40px rgba(0, 0, 0, 0.6)"
-        badge_border = "rgba(212, 175, 55, 0.3)"
         footer_color = "#9E9E9E"
         crown_fill = "url(#goldGrad)"
 
@@ -232,7 +229,7 @@ def generate_html(p):
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 75px 75px;
+      padding: 70px 65px;
       position: relative;
       z-index: 10;
     }}
@@ -242,8 +239,8 @@ def generate_html(p):
       text-align: left;
     }}
     .crown-svg {{
-      width: 52px;
-      height: 40px;
+      width: 50px;
+      height: 38px;
       margin-bottom: 12px;
       display: block;
     }}
@@ -271,7 +268,7 @@ def generate_html(p):
       display: flex;
       align-items: center;
       gap: 15px;
-      margin-top: 24px;
+      margin-top: 20px;
       width: 100%;
     }}
     .divider-line .line {{
@@ -286,20 +283,20 @@ def generate_html(p):
 
     /* Main Message (Nur 1-2 Sachen, riesig & leserlich!) */
     .hero-message {{
-      margin: 30px 0;
+      margin: 25px 0;
     }}
     .hero-tagline {{
       font-size: 15px;
       font-weight: 700;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       color: #D4AF37;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: inline-block;
     }}
     .hero-headline {{
       font-family: 'Playfair Display', serif;
-      font-size: 64px;
+      font-size: 62px;
       font-weight: 800;
       line-height: 1.12;
       color: {text_primary};
@@ -307,48 +304,48 @@ def generate_html(p):
       text-transform: uppercase;
     }}
     .hero-subline {{
-      font-size: 24px;
+      font-size: 23px;
       font-weight: 500;
       line-height: 1.45;
       color: {text_secondary};
-      margin-top: 22px;
+      margin-top: 18px;
       max-width: 95%;
     }}
 
-    /* QR Code Action Section */
+    /* QR Code Action Section (3 Kanäle: WhatsApp, Instagram, TikTok) */
     .qr-block {{
       background: {card_bg};
       backdrop-filter: blur(15px);
       border: 1px solid {border_color};
       border-radius: 28px;
-      padding: 32px 34px;
+      padding: 28px 26px;
       box-shadow: {card_shadow};
     }}
     .qr-block-header {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }}
     .qr-block-title {{
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
       color: {text_primary};
     }}
     .qr-cards-row {{
       display: flex;
-      gap: 22px;
+      gap: 16px;
     }}
     
     /* WhatsApp Card */
     .qr-card-wa {{
       flex: 1;
       background: rgba(37, 211, 102, 0.04);
-      border: 2px solid rgba(37, 211, 102, 0.4);
-      border-radius: 20px;
-      padding: 20px;
+      border: 2px solid rgba(37, 211, 102, 0.45);
+      border-radius: 18px;
+      padding: 16px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -358,37 +355,37 @@ def generate_html(p):
     .wa-pill {{
       background: #25D366;
       color: #05260F;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 1.2px;
-      padding: 6px 16px;
+      letter-spacing: 1px;
+      padding: 5px 14px;
       border-radius: 30px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }}
     .qr-box {{
       background: #FFFFFF;
-      padding: 10px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      margin-bottom: 14px;
+      padding: 8px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      margin-bottom: 10px;
     }}
     .qr-box img {{
-      width: 175px;
-      height: 175px;
+      width: 145px;
+      height: 145px;
       display: block;
     }}
     .qr-action-title {{
-      font-size: 15px;
+      font-size: 13.5px;
       font-weight: 700;
       color: {text_primary};
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }}
     .qr-action-sub {{
-      font-size: 13.5px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #25D366;
       letter-spacing: 0.5px;
@@ -398,9 +395,9 @@ def generate_html(p):
     .qr-card-ig {{
       flex: 1;
       background: rgba(225, 48, 108, 0.04);
-      border: 2px solid rgba(225, 48, 108, 0.4);
-      border-radius: 20px;
-      padding: 20px;
+      border: 2px solid rgba(225, 48, 108, 0.45);
+      border-radius: 18px;
+      padding: 16px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -410,21 +407,57 @@ def generate_html(p):
     .ig-pill {{
       background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
       color: #FFFFFF;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 1.2px;
-      padding: 6px 16px;
+      letter-spacing: 1px;
+      padding: 5px 14px;
       border-radius: 30px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }}
     .qr-action-sub-ig {{
-      font-size: 13.5px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #E1306C;
+      letter-spacing: 0.5px;
+    }}
+
+    /* TikTok Card */
+    .qr-card-tt {{
+      flex: 1;
+      background: rgba(254, 44, 85, 0.04);
+      border: 2px solid rgba(254, 44, 85, 0.45);
+      border-radius: 18px;
+      padding: 16px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(254, 44, 85, 0.1);
+    }}
+    .tt-pill {{
+      background: #000000;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: -2px 0 0 #25F4EE, 2px 0 0 #FE2C55;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 5px 14px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }}
+    .qr-action-sub-tt {{
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #FE2C55;
       letter-spacing: 0.5px;
     }}
 
@@ -435,8 +468,8 @@ def generate_html(p):
       align-items: center;
       padding-top: 15px;
       border-top: 1px solid {border_color};
-      font-size: 13px;
-      letter-spacing: 3px;
+      font-size: 12.5px;
+      letter-spacing: 2.5px;
       color: {footer_color};
       font-weight: 600;
       text-transform: uppercase;
@@ -483,23 +516,23 @@ def generate_html(p):
 
       <!-- Hero Message: Nur 1-2 Sachen, riesig & leserlich! -->
       <div class="hero-message">
-        <div class="hero-tagline">Exklusiv in Nordrhein-Westfalen</div>
+        <div class="hero-tagline">Exklusiv in NRW & Baden-Württemberg</div>
         <h2 class="hero-headline">{p['headline']}</h2>
         <p class="hero-subline">{p['subline']}</p>
       </div>
 
-      <!-- Big Dual QR Block -->
+      <!-- 3-QR Code Action Section (WhatsApp, Instagram, TikTok) -->
       <div class="qr-block">
         <div class="qr-block-header">
           <div class="qr-block-title">Wunschtermin anfragen & Inspiration erleben</div>
-          <div style="font-size: 13px; color: #D4AF37; font-weight: 700; letter-spacing: 1px;">★ 5.0 GOOGLE RATING</div>
+          <div style="font-size: 13px; color: #D4AF37; font-weight: 700; letter-spacing: 1px;">★ 5.0 GOOGLE</div>
         </div>
         <div class="qr-cards-row">
           
           <!-- WhatsApp -->
           <div class="qr-card-wa">
             <div class="wa-pill">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.33c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.293 8.293 0 0 1-1.27-4.47c0-4.58 3.73-8.31 8.31-8.31 2.22 0 4.31.86 5.88 2.43a8.25 8.25 0 0 1 2.43 5.88c0 4.58-3.73 8.33-8.31 8.33zm4.56-6.22c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.01 2.58.13.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.3z"/>
               </svg>
               WhatsApp
@@ -507,14 +540,14 @@ def generate_html(p):
             <div class="qr-box">
               <img src="{wa_qr_b64}" alt="WhatsApp QR Code">
             </div>
-            <div class="qr-action-title">Direkt chatten & anfragen</div>
+            <div class="qr-action-title">Termin & Chat</div>
             <div class="qr-action-sub">+49 176 57354779</div>
           </div>
 
           <!-- Instagram -->
           <div class="qr-card-ig">
             <div class="ig-pill">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
               Instagram
@@ -522,8 +555,23 @@ def generate_html(p):
             <div class="qr-box">
               <img src="{ig_qr_b64}" alt="Instagram QR Code">
             </div>
-            <div class="qr-action-title">100+ Live-Videos & Reels</div>
+            <div class="qr-action-title">Reels & Videos</div>
             <div class="qr-action-sub-ig">@ketadecor_</div>
+          </div>
+
+          <!-- TikTok -->
+          <div class="qr-card-tt">
+            <div class="tt-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3.14 15.7a6.34 6.34 0 0 0 10.82 4.48 6.26 6.26 0 0 0 1.86-4.5V9.03a8.28 8.28 0 0 0 5.23 1.84v-3.5c-.51 0-.99-.11-1.46-.32v-.36z"/>
+              </svg>
+              TikTok
+            </div>
+            <div class="qr-box">
+              <img src="{tt_qr_b64}" alt="TikTok QR Code">
+            </div>
+            <div class="qr-action-title">Virale Clips</div>
+            <div class="qr-action-sub-tt">@ketadecor_</div>
           </div>
 
         </div>
@@ -531,7 +579,7 @@ def generate_html(p):
 
       <!-- Footer Info -->
       <div class="poster-footer">
-        <div>DÜSSELDORF • KÖLN • DORTMUND • ESSEN • GANZ NRW</div>
+        <div>NRW & BADEN-WÜRTTEMBERG • KÖLN • DÜSSELDORF • STUTTGART • MANNHEIM • HEIDELBERG</div>
         <div style="font-weight: 800; color: #D4AF37;">WWW.KETADECOR.DE</div>
       </div>
 
@@ -542,7 +590,7 @@ def generate_html(p):
 </html>"""
 
 # Generate HTML files
-print("Generating HTML files...")
+print("Generating HTML files with TikTok & Baden-Württemberg...")
 for p in posters:
     html_content = generate_html(p)
     file_path = os.path.join(out_dir, f"{p['id']}.html")
@@ -550,4 +598,4 @@ for p in posters:
         f.write(html_content)
     print(f"Created: {file_path}")
 
-print("All 5 HTML files created successfully!")
+print("All 5 HTML files updated successfully!")
