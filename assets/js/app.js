@@ -356,7 +356,7 @@
       ping: "PING de-cix-fra.volvevent.net (80.81.192.1): 56 data bytes\n64 bytes: icmp_seq=1 ttl=58 time=4.12 ms\n64 bytes: icmp_seq=2 ttl=58 time=4.08 ms\n64 bytes: icmp_seq=3 ttl=58 time=4.15 ms\n--- Ping-Statistik ---\n3 Pakete übertragen, 3 empfangen, 0 % Paketverlust, Avg: 4.11 ms",
       whoami: "volvevent. | IT-Architektur und Softwareentwicklung\nInhaber: Muhammet Hasan Gürcan (7+ Jahre Systemadministration & DevOps)\nStandort: Bäckerstr. 8a, 84030 Ergolding",
       services: "1. Enterprise Netzwerkarchitektur (Cisco, Aruba, VLAN-Segmentierung)\n2. Server & Virtualisierung (Proxmox VE, VMware, Hyper-V)\n3. Cybersecurity & Zero-Trust (Hardware-Firewalls, IDS/IPS, NIS2)\n4. Webdesign & E-Commerce (individueller Code, Core Web Vitals)\n5. App & SaaS Entwicklung (native Apps, sichere APIs)\n6. IT-Systemadministration (Wartung, Monitoring, Support)",
-      webdesign: "Webdesign & Webentwicklung:\n- Individueller Code ohne Page-Builder\n- Aktion: 15 % Rabatt auf alle Pakete bis 30.10.2026\n- Details: webdesign.html",
+      webdesign: "Webdesign & Webentwicklung:\n- Individueller Code ohne Page-Builder\n- Aktion: 20 % Rabatt auf alle Pakete bis 31.01.2027\n- Details: webdesign.html",
       contact: "Telefon: +49 172 7045269\nWhatsApp: https://wa.me/491727045269\nE-Mail: kontakt@volvevent.de\nBüro: Bäckerstr. 8a, 84030 Ergolding"
     };
     var print = function (text, type) {
